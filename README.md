@@ -63,7 +63,7 @@ ss://id@ip:port
 ssr://id@ip:port
 ```
 
-## Checker
+## How to check proxy?
 Verify the quality of our proxy lists with our [Online Proxy Checker](https://getfreeproxy.com/checker). This tool evaluates each proxy's speed, anonymity level, and reliability. Our comprehensive checker provides detailed analytics for all supported protocols:
 
 - **Anonymity Levels**
@@ -92,6 +92,23 @@ You can use these proxy lists in various applications that support proxy connect
 2. Download managers
 3. Scraping tools
 4. Network testing
+
+## 🔗 Direct Download Links
+Click on your preferred proxy to get the updated list
+
+|Type|Github|CDN|
+|----|-----|-----|
+|http|[http.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/http.txt)|[http.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/http.txt)|
+|https|[https.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/https.txt)|[https.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/https.txt)|
+|socks4|[socks4.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/socks4.txt)|[socks4.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/socks4.txt)|
+|socks4a|[socks4a.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/socks4a.txt)|[socks4a.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/socks4a.txt)|
+|socks5|[socks5.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/socks5.txt)|[socks5.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/socks5.txt)|
+|socks5h|[socks5h.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/socks5h.txt)|[socks5h.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/socks5h.txt)|
+|trojan|[trojan.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/trojan.txt)|[trojan.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/trojan.txt)|
+|vmess|[vmess.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/vmess.txt)|[vmess.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/vmess.txt)|
+|vless|[vless.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/vless.txt)|[vless.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/vless.txt)|
+|ss|[ss.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/ss.txt)|[ss.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/ss.txt)|
+|ssr|[ssr.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/ssr.txt)|[ssr.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/ssr.txt)|
 
 ## ⚠️ Disclaimer
 
