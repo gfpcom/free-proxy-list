@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/github/license/gfpcom/free-proxy-list.svg">
   <br>
   <br>
-  <a href="https://getfreeproxy.com" title="get free proxy list">Proxy API</a> | <a href="https://getfreeproxy/checker" title="online proxy checker">Proxy Checker</a>| <a href="https://getfreeproxy/database" title="onine free proxy database">Proxy Database</a> | <a href="https://github.com/gfpcom/free-proxy-list">Github</a>
+  <a href="https://getfreeproxy.com" title="get free proxy list">Proxy API</a> | <a href="https://getfreeproxy/checker" title="online proxy checker">Proxy Checker</a>| <a href="https://getfreeproxy/database" title="onine free proxy database">Proxy Database</a> | <a href="https://github.com/gfpcom/free-proxy-list">Github</a>hub</a>
 </p>
 
 # 🌎 GetFreePorxy(GFP): Free Proxy List
@@ -120,6 +120,12 @@ Click on your preferred proxy to get the updated list
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 🙏 Sources & Acknowledgements
+
+Special thanks to all the services and repositories that provide proxy data. The proxies in this repository are collected from various sources listed in the `./sources` directory.
+
+We appreciate these projects for sharing their proxy lists which help make this repository possible.
 
 ## 📝 License
 
