@@ -11,8 +11,9 @@ func Load(proto string, content []byte) error {
 
 	s := bufio.NewScanner(bytes.NewReader(content))
 
-	var line, src, parser string
-
+	var line, src string
+	transformer := FromRaw
+	parser := ParseProxyURL
 	for s.Scan() {
 		line = strings.TrimSpace(s.Text())
 		if line == "" {
@@ -27,14 +28,18 @@ func Load(proto string, content []byte) error {
 			}
 
 			if len(items) > 1 {
-				parser = items[1]
+				transformer = GetTransformer(items[1])
+			}
+
+			if len(items) > 2 {
+				parser = GetParser(items[2])
 			}
 
 			if src == "" {
 				continue
 			}
 
-			log.Printf("> %v %s", Fetch(proto, src, parser), src)
+			log.Printf("> %v %s", Fetch(proto, src, transformer, parser), src)
 		}
 
 	}

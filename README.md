@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/Updated_Every_5_Minutes-passing-success">  
+  <img src="https://img.shields.io/badge/Updated_Every_30_Minutes-passing-success">  
   <br>
   <img src="https://img.shields.io/website/https/getfreeproxy.com.svg">
   <img src="https://img.shields.io/github/last-commit/gfpcom/free-proxy-list.svg">
   <img src="https://img.shields.io/github/license/gfpcom/free-proxy-list.svg">
   <br>
   <br>
-  <a href="https://getfreeproxy.com" title="get free proxy list">Online Proxy API</a> | <a href="https://getfreeproxy/checker" title="online proxy checker">Online Proxy Checker</a>| <a href="https://getfreeproxy/database" title="onine free proxy database">Online Proxy Database</a> | <a href="https://github.com/gfpcom/free-proxy-list">Github</a>
+  <a href="https://getfreeproxy.com" title="free online proxy list">Online Proxy API</a> | <a href="https://getfreeproxy/checker" title="free online proxy checker">Online Proxy Checker</a>| <a href="https://getfreeproxy/db" title="free onine proxy database">Online Proxy Database</a> | <a href="https://github.com/gfpcom/free-proxy-list">Github</a>
   <br>
 </p>
 
@@ -27,7 +27,7 @@ This repository contains lists of free proxies in different formats:
 
 ## 🔄 Updates
 
-Proxy lists are automatically updated every 5 minutes to ensure freshness and reliability.
+Proxy lists are automatically updated every hourly to ensure freshness and reliability.
 
 ## 📊 Proxy Formats
 
@@ -128,7 +128,7 @@ Special thanks to all the services and repositories that provide proxy data. The
 
 We appreciate these projects for sharing their proxy lists which help make this repository possible.
 
-Please raise a PR to remove if you are the owner of any of the sources listed in the `./sources` directory and do not want your source to be listed here.
+Please submit [PR](https://github.com/gfpcom/free-proxy-list/pulls) to remove if you are the owner of any of the sources and do not want your source to be listed here.
 
 ## 📝 License
 

@@ -70,7 +70,7 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 			IP: vu.Host(),
 		}
 
-		port, err := strconv.Atoi(u.Port())
+		port, err := strconv.Atoi(vu.Port())
 		if err != nil {
 			return nil, ErrInvalidProxy
 		}
@@ -87,7 +87,7 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 			IP: vu.Host(),
 		}
 
-		port, err := strconv.Atoi(u.Port())
+		port, err := strconv.Atoi(vu.Port())
 		if err != nil {
 			return nil, ErrInvalidProxy
 		}
@@ -103,7 +103,7 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 			IP: vu.Host(),
 		}
 
-		port, err := strconv.Atoi(u.Port())
+		port, err := strconv.Atoi(vu.Port())
 		if err != nil {
 			return nil, ErrInvalidProxy
 		}
@@ -119,7 +119,7 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 			IP: vu.Host(),
 		}
 
-		port, err := strconv.Atoi(u.Port())
+		port, err := strconv.Atoi(vu.Port())
 		if err != nil {
 			return nil, ErrInvalidProxy
 		}
@@ -135,7 +135,7 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 			IP: vu.Host(),
 		}
 
-		port, err := strconv.Atoi(u.Port())
+		port, err := strconv.Atoi(vu.Port())
 		if err != nil {
 			return nil, ErrInvalidProxy
 		}

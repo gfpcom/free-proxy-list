@@ -11,9 +11,8 @@ concurrency:
 
 on:
   workflow_dispatch:
-    inputs:
   schedule:
-    - cron: '*/5 * * * *'  # Run every 5 minutes
+    - cron: '0,30 * * * *'  # every 30 minutes
 
 jobs:
   Update:
@@ -37,6 +36,7 @@ jobs:
           changes=$(git diff --staged --numstat | wc -l)
           if [[ $changes -gt 0 ]]
           then
-            git commit -m "fix(list): updated list"
+            timestamp=$(date +"%Y-%m-%d %H:%M:%S")
+            git commit -m "fix(list): updated list at $timestamp"
             git push
           fi
