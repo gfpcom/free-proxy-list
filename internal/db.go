@@ -4,6 +4,8 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
+	"io"
+	"net/http"
 	"os"
 	"path/filepath"
 	"sort"
@@ -37,6 +39,8 @@ func WriteTo(dir string) {
 	}
 	sort.Strings(keys)
 
+	counters := make(map[string]int)
+
 	// Iterate through sorted keys
 	for _, key := range keys {
 		it := db[key]
@@ -46,6 +50,34 @@ func WriteTo(dir string) {
 			files[it.Protocol] = file
 		}
 
+		c, ok := counters[it.Protocol]
+		if !ok {
+			counters[it.Protocol] = 1
+		} else {
+			counters[it.Protocol] = c + 1
+		}
+
 		file.WriteString(it.String() + "\n") // nolint: errcheck
 	}
+
+	for proto, n := range counters {
+		WriteBadge(dir, proto, n)
+	}
+}
+
+func WriteBadge(dir, proto string, total int) {
+
+	resp, err := http.Get(fmt.Sprintf("https://img.shields.io/badge/%s-%v-blue", proto, total))
+	if err != nil {
+		return
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode == http.StatusOK {
+		file, err := os.Create(filepath.Join(dir, proto+".svg"))
+		if err == nil {
+			defer file.Close()
+			io.Copy(file, resp.Body) // nolint: errcheck
+		}
+	}
+
 }
