@@ -2,7 +2,7 @@ module github.com/gfpcom/free-proxy-list
 
 go 1.24.0
 
-require github.com/cnlangzi/proxyclient v0.0.5-0.20250413013527-3e9f0760e694
+require github.com/cnlangzi/proxyclient v0.0.5
 
 require (
 	github.com/OmarTariq612/goech v0.0.0-20240405204721-8e2e1dafd3a0 // indirect
