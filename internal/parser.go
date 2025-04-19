@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/cnlangzi/proxyclient"
 	"github.com/cnlangzi/proxyclient/ss"
 	"github.com/cnlangzi/proxyclient/xray"
 )
@@ -146,11 +147,7 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 		it.Protocol = proto
 	}
 
-	if it == nil {
-		return nil, ErrInvalidProxy
-	}
-
-	if IsLocal(it.IP) {
+	if IsLocal(it.IP) || proxyclient.IsHost(it.IP) {
 		return nil, ErrInvalidProxy
 	}
 
@@ -160,10 +157,6 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 }
 
 func IsLocal(ip string) bool {
-	return strings.HasPrefix(ip, "0.") || strings.HasPrefix(ip, "127.") || strings.HasPrefix(ip, "169.254.")
-}
-
-func IsLocalIP(ip string) bool {
 	return strings.HasPrefix(ip, "0.") || strings.HasPrefix(ip, "127.") || strings.HasPrefix(ip, "169.254.")
 }
 
