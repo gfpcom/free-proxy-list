@@ -1338,7 +1338,7 @@ trojan://85950277-f447-48f0-9ead-aaf6d5ff3cad@104.21.49.59:443/?type=tcp&securit
 trojan://9yu6m5okr@104.21.50.5:443?security=tls&type=ws&sni=production.tj.ojan.workers.dev&path=/Telegram-@V2ray_Alpha/?ed=2560&host=production.tj.ojan.workers.dev#%E6%9C%AA%E7%9F%A570
 trojan://241f01b9-8dfc-474f-8342-3fbd5c46417e@104.21.51.242:2087?security=tls&sni=grpcfr.arminhadadi.site&type=grpc&serviceName=grpc#4Sarina-2759
 trojan://mnk8fd@104.21.51.9:443?security=tls&sni=aws-uae-1.f1cflined.com&alpn=http/1.1&fp=chrome&type=ws&path=/f1rocket&host=aws-uae-1.f1cflined.com#4Sarina-3583
-trojan://1c5b4508-7f18-47bf-9bce-e7ec19fb31cb@104.21.52.157:443?security=tls&sni=cccddvfbg.freevpn2026.dpdns.org&type=ws&host=cccddvfbg.freevpn2026.dpdns.org&path=%2FAqI89g7rmh6dX7cJaQmgEe&fp=chrome&alpn=http%2F1.1#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.21.52.157:443
+trojan://6757b7d6-fa32-4708-b5d1-30e3cf928b51@104.21.52.157:443?type=ws&host=222222222d.freevpn2026.dpdns.org&path=%2Fl96MZ8se5Kl2p8BiMhP42l&security=tls&sni=222222222d.FREevpn2026.dPdNS.orG&alpn=http%2F1.1&fp=chrome#%F0%9F%87%BA%F0%9F%87%B8%20US%20%7C%20%F0%9F%9F%A2%20%7C%20trojan%20%7C%20%40freevpnatm%20%7C%2016
 trojan://poTB9j1n12Tq@104.21.54.208:2053/?type=ws&path=%2F%F0%9F%86%94%40M3HDIO1&security=tls&sni=tasnim.andishehnegariran.ir#%F0%9F%8F%81RELAY-104.21.54.208-1343
 trojan://dVqpmoYvWGuP@104.21.54.208:2087?security=tls&sni=leader.andishehnegariran.ir&type=httpupgrade&host=leader.andishehnegariran.ir&path=/рЯЖФ@M3HDIO1#%F0%9F%94%92%20TR-HTTPUPGRADE-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.21.54.208:2087
 trojan://auto@104.21.56.71:443?security=tls&sni=b96ef9ae.trojanfree-76s.pages.dev&type=ws&host=b96ef9ae.trojanfree-76s.pages.dev&path=%2Fb96ef9ae.trojanfree-76s.pages.dev%2F#%20TR-WS-TLS%20%20NA-104.21.56.71:443
@@ -10617,7 +10617,7 @@ trojan://3778399737045327872@flying-tuna.treefrog761.one:443#Singapore
 trojan://e4307a50-9853-11ec-9b4b-1239d0255272@fr-trojan.bonds.id:443?allowInsecure=0
 trojan://9498f3a0-2992-11ee-a4c7-1239d0255272@fr.test3.net:443/?type=tcp&security=tls&sni=zula.ir#%F0%9F%87%AB%F0%9F%87%B7FR-51.159.59.186-7954
 trojan://68dc22fb-e7f3-4806-acd7-b4182d80981e@fr01.freeflyingcloud.xyz:30502?allowInsecure=1&amp;sni=fr01.freeflyingcloud.xyz#%E6%B3%95%E5%9B%BD-2.56MB/s
-trojan://aa0b5a20-1af3-11f0-b31b-1239d0255272@fr1.test3.net:443?security=tls&amp;headerType=none&amp;type=tcp#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
+trojan://35fefe20-29cd-11f0-a536-1239d0255272@fr1.test3.net:443?security=tls&amp;headerType=none&amp;type=tcp#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://0280b529-2747-4b7a-ab11-bad6453150b9@fr2-full.privateip.net:443/?type=tcp&security=tls#%F0%9F%87%AB%F0%9F%87%B7FR-51.178.42.187-5091
 trojan://ParisCore@fr2.eurowave.cloud:443?security=tls&amp;type=tcp&amp;sni=t.me
 trojan://c97cf46e-1554-36cb-8b36-c3556b883dc4@fr2a.88888007.xyz:443?allowInsecure=1&sni=fr2a.88888007.xyz&ws=1&wspath=%2F3f741a9f-3c66-4102-838c-c77524d32d85#%20@MoftConfigCanadaToronto%20ping:51.47ms
@@ -11182,7 +11182,7 @@ trojan://459d23f4-dcfd-4fef-9ba3-ef0ad10fc336@jp.mjt001.com:443/?type=tcp&securi
 trojan://3f27d6e3-2112-46f4-814c-0dc2dfb3fe23@jp.stablize.top:443
 trojan://14d52626-92ff-4860-9748-503169e45692@jp.strand21.xyz:443
 trojan://33ac36d0-3ccc-4b76-80c5-498c50041f36@jp003.170203.xyz:34522
-trojan://5c7dbef8-0fb5-4e88-bb84-24cafeb73f8d@jp005.421421.xyz:20230?allowInsecure=0#%F0%9F%91%89%F0%9F%86%94@v2ray_configs_pool%F0%9F%93%A1%F0%9F%87%AF%F0%9F%87%B5%C2%AE%EF%B8%8FJapan%C2%A9%EF%B8%8FShibuya%F0%9F%85%BF%EF%B8%8Fping:253.31ms
+trojan://5c7dbef8-0fb5-4e88-bb84-24cafeb73f8d@jp005.421421.xyz:20230?allowInsecure=0#%F0%9F%8C%90%D8%B3%D8%B1%D9%88%D8%B1%2054%20%7C%20Tir-26%7C%20MTSRVRS
 trojan://b44da489-fc70-4fd0-8997-a83b51f59267@jp006.421421.xyz:20230?allowInsecure=0&sni=421421.xyz#4Sarina-3354
 trojan://fdd1d613-f234-40f6-b63d-97517e0fc4b3@jp007.421421.xyz:20230/?type=tcp&security=tls&sni=www.alibaba.com#%F0%9F%87%AF%F0%9F%87%B5JP-43.207.138.182-0214
 trojan://b88a1a71-5250-4ddc-8337-3a28594b6192@jp01.awcloud.top:443?allowInsecure=0&peer=jp01.awcloud.top&sni=jp01.awcloud.top
