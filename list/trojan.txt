@@ -2883,6 +2883,7 @@ trojan://telegram-id-privatevpns@13.61.164.154:22222?security=tls&alpn=http/1.1&
 trojan://telegram-id-privatevpns@13.61.166.141:22222?allowInsecure=1&sni=trojan.burgerip.co.uk#@MoftConfigSwedenStockholmping:77.37ms
 trojan://telegram-id-directvpn@13.61.166.141:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#Telegram:@IP_CF
 trojan://telegram-id-v2rayvpnchannel@13.61.167.63:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#[]t.me/MoftConfig
+trojan://telegram-id-privatevpns@13.61.168.23:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#%F0%9F%8C%90%D8%B3%D8%B1%D9%88%D8%B1%2039%20%7C%20Tir-27%7C%20MTSRVRS
 trojan://telegram-id-directvpn@13.61.168.67:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#Our%20Channel%20:%20@DirectVPN
 trojan://telegram-id-directvpn@13.61.172.80:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#Our%20Channel%20:%20@DirectVPN
 trojan://telegram-id-directvpn@13.61.187.102:22222?security=tls&sni=trojan.burgerip.co.uk&alpn=http/1.1&type=tcp#[]t.me/ConfigsHub
@@ -9120,7 +9121,7 @@ trojan://Aimer@59.27.236.245:50003?sni=epccj.ambercc.filegear-sg.me&allowInsecur
 trojan://Aimer@59.29.143.247:12225?sni=epms.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%87%B0%F0%9F%87%B7%20KR-59.29.143.247:12225
 trojan://Aimer@59.3.254.50:50000?sni=epccz.ambercc.filegear-sg.me&allowInsecure=0#[]t.me/MoftConfig
 trojan://Aimer@59.30.229.122:50000?allowInsecure=0&sni=ngepy.ambercc.filegear-sg.me#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
-trojan://Aimer@59.7.61.67:50000?allowInsecure=1&sni=ngepo.ambercc.filegear-sg.me#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
+trojan://Aimer@59.7.61.67:50000?allowInsecure=1&sni=ngepo.ambercc.filegear-sg.me#%F0%9F%8C%90%D8%B3%D8%B1%D9%88%D8%B1%2042%20%7C%20Tir-27%7C%20MTSRVRS
 trojan://Aimer@59.9.154.15:21300?sni=agepl.ambercc.filegear-sg.me#[]t.me/ConfigsHub
 trojan://64617ed2-4823-11ef-9f2d-f23c9164ca5d@59507e3d-sytz40-tk30wc-eyem.cm5.cnkuaishou.com:27231?security=tls&sni=59507e3d-sytz40-tk30wc-eyem.cm5.cnkuaishou.com&type=tcp&headerType=none#%E7%BE%8E%E5%9B%BD%28yudou123.top%20%E7%8E%89%E8%B1%86%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9%29
 trojan://06b2ac52-fcc6-11ec-bb74-f23c9164ca5d@596b1c26-syvts0-sznzxg-1jfvb.cm5.cnkuaishou.com:27233?allowInsecure=0#%F0%9F%87%AF%F0%9F%87%B5%20%E6%97%A5%E6%9C%AC%20048
@@ -10672,7 +10673,7 @@ trojan://3778399737045327872@flying-tuna.treefrog761.one:443#Singapore
 trojan://e4307a50-9853-11ec-9b4b-1239d0255272@fr-trojan.bonds.id:443?allowInsecure=0
 trojan://9498f3a0-2992-11ee-a4c7-1239d0255272@fr.test3.net:443/?type=tcp&security=tls&sni=zula.ir#%F0%9F%87%AB%F0%9F%87%B7FR-51.159.59.186-7954
 trojan://68dc22fb-e7f3-4806-acd7-b4182d80981e@fr01.freeflyingcloud.xyz:30502?allowInsecure=1&amp;sni=fr01.freeflyingcloud.xyz#%E6%B3%95%E5%9B%BD-2.56MB/s
-trojan://aa0b5a20-1af3-11f0-b31b-1239d0255272@fr1.test3.net:443?security=tls&amp;headerType=none&amp;type=tcp#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
+trojan://8ce449a0-29cc-11f0-b43f-1239d0255272@fr1.test3.net:443?security=tls&amp;headerType=none&amp;type=tcp#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://0280b529-2747-4b7a-ab11-bad6453150b9@fr2-full.privateip.net:443/?type=tcp&security=tls#%F0%9F%87%AB%F0%9F%87%B7FR-51.178.42.187-5091
 trojan://ParisCore@fr2.eurowave.cloud:443?security=tls&amp;type=tcp&amp;sni=t.me
 trojan://c97cf46e-1554-36cb-8b36-c3556b883dc4@fr2a.88888007.xyz:443?allowInsecure=1&sni=fr2a.88888007.xyz&ws=1&wspath=%2F3f741a9f-3c66-4102-838c-c77524d32d85#%20@MoftConfigCanadaToronto%20ping:51.47ms
@@ -11666,6 +11667,7 @@ trojan://74260702287384200@quality-kite.shiner427.skin:443/?type=tcp&security=tl
 trojan://ca48f855-42ef-3acc-b16c-9c674bc9fc67@qus6t.bcloudv.cyou:20022
 trojan://57aa53f3afbd@qwanck.xyz:443?allowInsecure=1&sni=qwanck.xyz
 trojan://-40f9-475c-bf46-e3883ee7da5c2b60d6a-a2f5-40ff-b7f9-f7658abcbf26@r-02.selfupay.com:443?allowInsecure=1
+trojan://47a91992-6b70-4bb8-8c5f-f9600e0ba2da@r1.xinyo.me:40801?allowInsecure=0&sni=node.xinyo.vip#%F0%9F%8C%90%D8%B3%D8%B1%D9%88%D8%B1%2035%20%7C%20Tir-27%7C%20MTSRVRS
 trojan://OwXaiuJi7H@r5.safyno.tk:32935?security=tls&type=tcp&headerType=none#%E6%B3%95%E5%9B%BD11%7C2.5M%2Fs%28youtube%E9%98%BF%E4%BC%9F%E7%A7%91%E6%8A%80%29
 trojan://telegram-Afv2Ray@re.iranfastfod.ir:8443?security=reality&encryption=none&pbk=0LI5bDltMLiL2_W9Sl4xp60UGlznmgR-b6TbsKFtKG4&headerType=none&fp=chrome&type=tcp&sni=www.speedtest.net&sid=96c7#MCI-%40V2ray_Alpha-10
 trojan://3774827088566296576@real-meerkat.insect388.motorcycles:443?allowInsecure=1&sni=real-meerkat.insect388.motorcycles#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
@@ -12508,6 +12510,7 @@ trojan://646641e9-868f-30b0-af41-54cee6f69f77@yn.76po.com:42832?allowInsecure=1&
 trojan://42439447-100d-3c09-bdce-7e296b9b2ac6@yn.76po.com:42843?allowInsecure=1&sni=sg01.icmp.eu.org
 trojan://44d901b6-954f-3d03-80c2-375dd2f202be@yn.fjzjvgq.cn:40375?sni=yn.jiashumao.net
 trojan://2cba4104747d49d18319e5ade1b93ab5@yourjobnavigator.online:443?type=tcp&sni=yourjobnavigator.online&fp=chrome#%F0%9F%94%92%F0%9F%87%AC%F0%9F%87%A7%20GB%20161.35.34.48%20%E2%97%88%20tcp%3A443%20%E2%97%88%20DigitalOcean%20%E2%97%88%20239bd
+trojan://984e400bf5d541b7b0815913fe0c432a@yournextcareerstep.online:443?allowInsecure=1#%F0%9F%91%89%F0%9F%86%94@v2ray_configs_pool%F0%9F%93%A1%F0%9F%87%BA%F0%9F%87%B8%C2%AE%EF%B8%8FUnited%20States%C2%A9%EF%B8%8FTampa%20(Beach%20Park)%F0%9F%85%BF%EF%B8%8Fping:7.39ms
 trojan://d1478689-439c-4590-b7ce-36e786a02dc3@youtube-bai-piao-wang-zhe-usa.98848.xyz:443?allowInsecure=0&sni=youtube-bai-piao-wang-zhe-usa.98848.xyz
 trojan://94afcc56-cc1c-4cd4-8c82-1215cd052795@youtube-bai-piao-wang-zhe.nl.884899.cf:41196?allowInsecure=1#%5Btrojan%5D%F0%9F%87%B3%F0%9F%87%B1%5BNL%5Dyoutube-bai-piao-wang-zhe.nl.884899.cf%3A41196%2894afcc56-cc1c-4cd4-8c82-1215cd052795%29
 trojan://df8ebf95-bd60-4f7e-a505-fe8db5ba3342@youtube.bai-piao-wang-zhe.567568.ml:12337?allowInsecure=1&sni=youtube.bai-piao-wang-zhe.567568.ml#%5BLV2%C2%B7%E5%8E%9F%E7%94%9F%5D+%E7%BE%8E%E5%9B%BD145+%7C+%E4%B8%AD%E8%BD%AC+3
