@@ -231,7 +231,7 @@ trojan://blue2024@104.16.178.249:443/?type=tcp&security=tls&sni=ha.lii2010.us.kg
 trojan://a0514d9b-d109-47fd-b173-1e7f83268f21@104.16.183.101:443/?type=ws&path=%2Fupdate&security=tls&sni=tws23.kallepache.store#%F0%9F%8F%81RELAY-104.16.183.101-10452
 trojan://NISHIKUITAN222@104.16.189.90:443?#%20TR-TCP-NA%20%20NA-104.16.189.90:443
 trojan://9d5e7586-64e1-4c29-9d47-6cbbd57fe8d1@104.16.190.131:8443?security=tls&sni=pardazeshvpn-tg48.pages.dev&type=ws&host=pardazeshvpn-tg48.pages.dev&path=%2FTelegram%40Linkvws%3Fed%3D2560&fp=random#%20TR-WS-TLS%20%20NA-104.16.190.131:8443
-trojan://4311735421mM%40@104.16.191.118:443?path=%2F%3Fed%3D2560&security=tls&alpn=h3&host=ziaran.mohsen-karami-ziaranii.workers.dev&fp=randomized&type=ws&sni=ziaran.mohsen-karami-ziaranii.workers.dev#@v2ray_configs_poolCanadaTorontoping:8.19ms%60
+trojan://4311735421mM%40@104.16.191.118:443?security=tls&sni=ziaran.mohsen-karami-ziaranii.workers.dev&alpn=h3&fp=randomized&type=ws&host=ziaran.mohsen-karami-ziaranii.workers.dev&path=%2F%3Fed%3D2560#%F0%9F%85%BC%F0%9F%85%B4%F0%9F%85%B7%F0%9F%85%B3%F0%9F%85%B8
 trojan://Aimer@104.16.192.116:443?sni=epccf.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.16.192.116:443
 trojan://4732adfa16c6450bbef87264e41332db@104.16.192.138:443?security=tls&sni=jobscareerforlawyers.com&type=ws&host=jobscareerforlawyers.com&path=6b777a91#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.16.192.138%3A443
 trojan://Aimer@104.16.192.140:443?sni=epccg.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.16.192.140:443
@@ -1843,6 +1843,7 @@ trojan://Aimer@108.165.152.92:2053/?type=tcp&security=tls&sni=agept.ambercc.file
 trojan://Aimer@108.165.152.93:2083/?type=tcp&security=tls&sni=epccc.ambercc.filegear-sg.me#%F0%9F%8F%81RELAY-108.165.152.93-1414
 trojan://Aimer@108.165.152.98:2087/?type=tcp&security=tls&sni=epccx.ambercc.filegear-sg.me#%F0%9F%8F%81RELAY-108.165.152.98-1405
 trojan://bpb-trojan@108.165.216.155:443?security=tls&sni=bpb.my79801.com&type=tcp#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%87%BA%F0%9F%87%B8%20US-108.165.216.155:443
+trojan://blue2024@108.165.216.88:443?sni=b.promote.icu#@Hope_Net-join-us-on-Telegram%60
 trojan://Aimer@108.165.40.180:41396?sni=agepu.ambercc.filegear-sg.me#[]t.me/ConfigsHub
 trojan://29ea82cf-f956-42b2-a5dc-35feea39e7ff@108.181.22.161:443?security=tls&sni=glc-us2.windowsupdatea.com&type=tcp&headerType=none
 trojan://89ce124f-42d1-4c90-b9d2-bde2861ae615@108.181.22.249:443?security=tls&sni=4-193-163-88.nhost.00cdn.com&allowInsecure=1&type=tcp#4Kian-3863
@@ -3059,6 +3060,7 @@ trojan://Bw5Mz7QkVp@139.84.175.165:443?security=tls&type=tcp&sni=z-v2-080532.kai
 trojan://bv4kWm6T3P8Y@139.84.197.130:443?sni=ash.b495fdd7-be5f-4409-99b3-f725f6bca02e.kailib.com#%20@MoftConfigAustralia
 trojan://aed1cc24-351d-11ef-ba52-f23c9164ca5d@13b10184-sytz40-szv4wy-1rfon.cm5.cnkuaishou.com:14234?allowInsecure=0#%F0%9F%87%AE%F0%9F%87%A9%20%E5%8D%B0%E5%BA%A6%E5%B0%BC%E8%A5%BF%E4%BA%9A%20387
 trojan://5e2f888c-68ef-11ef-96ca-f23c9164ca5d@13c2c931-swin40-swy6li-tni2.cu.plebai.net:15229?allowInsecure=0&sni=13c2c931-swin40-swy6li-tni2.cu.plebai.net#63%20%7C%20%202.1MB%2Fs%7C46%25%7COpenai%7CGem...
+trojan://blue2024@14.102.229.63:443?sni=b.promote.icu#@Hope_Net-join-us-on-Telegram
 trojan://f43d30ee-7a5d-408f-a32e-b74935eeb7d7@14.152.45.234:50311?security=tls&sni=ld.xjpsghkg.yuiuingkig.icu#[]t.me/MoftConfig
 trojan://Mb6124ef@14.215.107.23:28124?allowInsecure=0
 trojan://6e1b9a65-884f-3aa9-9469-bf6ec0f08610@14.215.39.158:3462?sni=45.32.28.232#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%87%A8%F0%9F%87%B3%20CN-14.215.39.158:3462
@@ -6914,6 +6916,7 @@ trojan://telegram-id-directvpn@3.70.103.84:22223?security=tls&alpn=http/1.1&head
 trojan://telegram-id-privatevpns@3.70.117.124:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#@Vip_Security%20join%20us%20-%20426
 trojan://telegram-id-directvpn@3.70.117.124:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#@Vip_Security%20join%20us%20-%20315
 trojan://telegram-id-privatevpns@3.70.149.109:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#[]t.me/ConfigsHub
+trojan://telegram-id-privatevpns@3.70.163.87:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#@Hope_Net-join-us-on-Telegram
 trojan://telegram-id-privatevpns@3.70.219.173:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trj.rollingnext.co.uk#@Vip_Security%20join%20us%20-%20427
 trojan://telegram-id-privatevpns@3.70.31.29:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)%F0%9F%87%A9%F0%9F%87%AAt.me/PrivateVPNs
 trojan://telegram-id-v2rayvpnchannel@3.70.31.29:22223?security=tls&alpn=http%2F1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#4Kian-4780
@@ -6975,6 +6978,8 @@ trojan://telegram-id-directvpn@3.74.102.227:22223/?type=tcp&security=tls&sni=tro
 trojan://telegram-id-privatevpns@3.74.110.109:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S102)%F0%9F%87%A9%F0%9F%87%AAt.me/PrivateVPNs
 trojan://telegram-id-directvpn@3.74.110.109:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#OurChannel%20:%20@DirectVPN
 trojan://telegram-id-directvpn@3.74.116.116:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#@Vip_Security%20join%20us%20-%20266
+trojan://telegram-id-privatevpns@3.74.12.246:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S102)%F0%9F%87%A9%F0%9F%87%AAt.me/PrivateVPNs
+trojan://telegram-id-directvpn@3.74.12.246:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#OurChannel%20:%20@DirectVPN
 trojan://telegram-id-privatevpns@3.74.122.89:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/ConfigsHub
 trojan://telegram-id-directvpn@3.74.122.89:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/ConfigsHub
 trojan://telegram-id-privatevpns@3.74.136.62:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S103)@MoftConfig
@@ -9662,7 +9667,7 @@ trojan://17cdb7983a@78.157.40.244:80?security=tls&sni=irani.host&type=tcp&header
 trojan://-EleP1yiGc6SD72p-m8Brw@78.39.9.168:6161?mode=gun&security=tls&alpn=h2&fp=chrome&type=grpc&serviceName=gg&sni=speedtest.net#4Kian-3166
 trojan://xl87654321@78.47.92.139:443?allowInsecure=1&sni=varzesh3.com
 trojan://telegram-id-v2rayvpnchannel@79.125.114.133:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#[]t.me/ConfigsHub
-trojan://telegram-id-directvpn@79.125.41.206:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
+trojan://telegram-id-directvpn@79.125.41.206:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#@Hope_Net-join-us-on-Telegram
 trojan://telegram-id-directvpn@79.125.50.228:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#Our%20Channel%20:%20@DirectVPN
 trojan://telegram-id-directvpn@79.125.98.214:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#Our%20Channel%20:%20@DirectVPN
 trojan://ec94daf9-442f-4a6b-9633-70c90006dfdd@79.127.70.123:2083?security=none&type=tcp&host=doostihaa.com&headerType=http#%20TR-TCP-NONE%20%20IR-79.127.70.123:2083
@@ -10741,7 +10746,7 @@ trojan://3778399737045327872@flying-tuna.treefrog761.one:443#Singapore
 trojan://e4307a50-9853-11ec-9b4b-1239d0255272@fr-trojan.bonds.id:443?allowInsecure=0
 trojan://9498f3a0-2992-11ee-a4c7-1239d0255272@fr.test3.net:443/?type=tcp&security=tls&sni=zula.ir#%F0%9F%87%AB%F0%9F%87%B7FR-51.159.59.186-7954
 trojan://68dc22fb-e7f3-4806-acd7-b4182d80981e@fr01.freeflyingcloud.xyz:30502?allowInsecure=1&amp;sni=fr01.freeflyingcloud.xyz#%E6%B3%95%E5%9B%BD-2.56MB/s
-trojan://a8664a30-29cc-11f0-92d4-1239d0255272@fr1.test3.net:443?security=tls&amp;headerType=none&amp;type=tcp#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
+trojan://3a792860-34de-11f0-a992-1239d0255272@fr1.test3.net:443?security=tls&amp;headerType=none&amp;type=tcp#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://0280b529-2747-4b7a-ab11-bad6453150b9@fr2-full.privateip.net:443/?type=tcp&security=tls#%F0%9F%87%AB%F0%9F%87%B7FR-51.178.42.187-5091
 trojan://ParisCore@fr2.eurowave.cloud:443?security=tls&amp;type=tcp&amp;sni=t.me
 trojan://c97cf46e-1554-36cb-8b36-c3556b883dc4@fr2a.88888007.xyz:443?allowInsecure=1&sni=fr2a.88888007.xyz&ws=1&wspath=%2F3f741a9f-3c66-4102-838c-c77524d32d85#%20@MoftConfigCanadaToronto%20ping:51.47ms
@@ -11221,7 +11226,7 @@ trojan://3747000103274291200@integral-malamute.adder289.quest:443#Hungary
 trojan://74260704627805900@intense-hornet.shiner427.skin:443/?type=tcp&security=tls#[]t.me/ConfigsHub
 trojan://NISHIKUITAN222@ip.sb:2053?type=ws&allowInsecure=1&path=/&host=t033.ylks.link#%E7%BE%8E%E5%9B%BD_27
 trojan://06e4425e-a8cb-4b63-929f-2105604ab0a9@ip.sb:443?allowInsecure=0&sni=nc.ylka.dpdns.org#%F0%9F%87%BA%F0%9F%87%B8%20_%E7%BE%8E%E5%9B%BD
-trojan://trojan@ip.sb:8443?encryption=none&amp;security=tls&amp;sni=fofang.pages.dev&amp;fp=random&amp;type=ws&amp;host=fofang.pages.dev&amp;path=/?ed=2560
+trojan://trojan@ip.sb:8443?security=tls&sni=fofang.pages.dev&fp=random&type=ws&host=fofang.pages.dev&path=%2F%3Fed%3D2560#%F0%9F%85%BC%F0%9F%85%B4%F0%9F%85%B7%F0%9F%85%B3%F0%9F%85%B8
 trojan://11a4e5be-3c87-37d2-aac8-00b85ef0fcdc@iplc-enter-tw-xe.fib-sys.xyz:11451?allowInsecure=1&sni=tw-xe.fib-sys.xyz
 trojan://64de1de7-e3bb-3dc4-ab04-d1e601e18ac5@iplc.xiaohouzi.club:20011/?type=tcp&security=tls&sni=iplc011.xiaohouzi.club#%F0%9F%87%BA%F0%9F%87%B8US-76.223.54.146-1606
 trojan://0f098bb2-9fad-3cc3-8acf-2a3268c1eb27@iplc.xiaohouzi.club:20015?security=tls&sni=$$$supaz05.xiaohouzi.club#4Kian-3315
