@@ -12,7 +12,7 @@
   <br>
 </p>
 
-# 🌎 GetFreePorxy(GFP): Free Proxy List
+# 🌎 GetFreeProxy(GFP): Free Proxy List
 
 A curated collection of free proxies from various sources, regularly updated and verified.
 
