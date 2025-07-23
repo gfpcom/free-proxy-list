@@ -973,7 +973,7 @@ trojan://auto@104.20.18.74:443?security=tls&type=ws&sni=b96ef9ae.trojanfree-76s.
 trojan://auto@104.20.18.79:443?security=tls&sni=b96ef9ae.trojanfree-76s.pages.dev&type=ws&host=b96ef9ae.trojanfree-76s.pages.dev&path=%2Fb96ef9ae.trojanfree-76s.pages.dev%2F#%20TR-WS-TLS%20%20NA-104.20.18.79:443
 trojan://auto@104.20.18.83:443?security=tls&sni=b96ef9ae.trojanfree-76s.pages.dev&type=ws&host=b96ef9ae.trojanfree-76s.pages.dev&path=%2Fb96ef9ae.trojanfree-76s.pages.dev%2F#%20TR-WS-TLS%20%20NA-104.20.18.83:443
 trojan://auto@104.20.18.8:443?security=tls&type=ws&sni=b96ef9ae.trojanfree-76s.pages.dev&path=/b96ef9ae.trojanfree-76s.pages.dev/&host=b96ef9ae.trojanfree-76s.pages.dev#%E6%9C%AA%E7%9F%A5138
-trojan://NISHIKUITAN222@104.20.19.100:443?#%20TR-TCP-NA%20%20NA-104.20.19.100:443
+trojan://NISHIKUITAN222@104.20.19.100:443?#%F0%9F%91%89%F0%9F%86%94@v2ray_configs_pool%F0%9F%93%A1%F0%9F%87%BA%F0%9F%87%B8%C2%AE%EF%B8%8FUnited%20States%C2%A9%EF%B8%8FSan%20Francisco%20(South%20Beach)%F0%9F%85%BF%EF%B8%8Fping:8.07ms
 trojan://auto@104.20.19.101:443?security=tls&sni=b96ef9ae.trojanfree-76s.pages.dev&type=ws&host=b96ef9ae.trojanfree-76s.pages.dev&path=%2Fb96ef9ae.trojanfree-76s.pages.dev%2F#%20TR-WS-TLS%20%20NA-104.20.19.101:443
 trojan://auto@104.20.19.103:443?security=tls&sni=b96ef9ae.trojanfree-76s.pages.dev&type=ws&host=b96ef9ae.trojanfree-76s.pages.dev&path=%2Fb96ef9ae.trojanfree-76s.pages.dev%2F#%20TR-WS-TLS%20%20NA-104.20.19.103:443
 trojan://auto@104.20.19.105:443?security=tls&sni=b96ef9ae.trojanfree-76s.pages.dev&type=ws&host=b96ef9ae.trojanfree-76s.pages.dev&path=%2Fb96ef9ae.trojanfree-76s.pages.dev%2F#%20TR-WS-TLS%20%20NA-104.20.19.105:443
@@ -1160,6 +1160,7 @@ trojan://NISHIKUITAN222@104.20.58.2:443?#%20TR-TCP-NA%20%20NA-104.20.58.2:443
 trojan://auto@104.20.6.134:443?security=tls&type=ws&sni=e9464f45.trauma-2r4.pages.dev&path=/&host=e9464f45.trauma-2r4.pages.dev#%E6%9C%AA%E7%9F%A52
 trojan://NISHIKUITAN111@104.20.65.198:443#4Sarina-5892
 trojan://f0d584bc-342f-4443-ba24-79e4d0e504b1@104.20.71.132:8880?security=none&type=ws&host=late-tooth.granzinhannah.workers.dev&path=%2FTelegram%40Linkvws%3Fed%3D2560#%20TR-WS-NONE%20%20NA-104.20.71.132:8880
+trojan://NISHIKUITAN111@104.20.8.252:443?#%F0%9F%91%89%F0%9F%86%94@v2ray_configs_pool%F0%9F%93%A1%F0%9F%87%A8%F0%9F%87%A6%C2%AE%EF%B8%8FCanada%C2%A9%EF%B8%8FToronto%F0%9F%85%BF%EF%B8%8Fping:10.47ms
 trojan://blue2024@104.20.8.70:443/?type=tcp&security=tls
 trojan://NISHIKUITAN222@104.20.84.90:443?#%20TR-TCP-NA%20%20NA-104.20.84.90:443
 trojan://NISHIKUITAN222@104.20.98.229:443?#%20TR-TCP-NA%20%20NA-104.20.98.229:443
@@ -6043,6 +6044,7 @@ trojan://NISHIKUITAN222@198.41.212.127:443?allowInsecure=0#%20TR-TCP-NA%20%20NA-
 trojan://f0d584bc-342f-4443-ba24-79e4d0e504b1@198.41.214.224:2052?security=none&type=ws&host=late-tooth.granzinhannah.workers.dev&path=%2F%3Fed%3D2560#%20TR-WS-NONE%20%20NA-198.41.214.224:2052
 trojan://NISHIKUITAN222@198.41.215.216:443?security=tls&sni=im.ylks.xyz&type=ws&host=im.ylks.xyz&path=%2F#%20TR-WS-TLS%20%20NA-198.41.215.216:443
 trojan://NISHIKUITAN222@198.41.215.240:443?security=tls&sni=ij.ylks.xyz&type=ws&host=ij.ylks.xyz&path=%2F#%20TR-WS-TLS%20%20NA-198.41.215.240:443
+trojan://NISHIKUITAN111@198.41.215.2:443?#%F0%9F%91%89%F0%9F%86%94@v2ray_configs_pool%F0%9F%93%A1%F0%9F%87%A8%F0%9F%87%A6%C2%AE%EF%B8%8FCanada%C2%A9%EF%B8%8FToronto%F0%9F%85%BF%EF%B8%8Fping:8.35ms
 trojan://NISHIKUITAN222@198.41.215.68:443?security=tls&sni=in.ylks.xyz&type=ws&host=in.ylks.xyz&path=%2F#%20TR-WS-TLS%20%20NA-198.41.215.68:443
 trojan://NISHIKUITAN222@198.41.215.72:443?allowInsecure=1#%20TR-TCP-NA%20%20NA-198.41.215.72:443
 trojan://NISHIKUITAN222@198.41.216.197:443?security=tls&sni=in.ylks.xyz&type=ws&host=in.ylks.xyz&path=%2F#%20TR-WS-TLS%20%20NA-198.41.216.197:443
@@ -10816,7 +10818,7 @@ trojan://6c64e6f9-a76c-49eb-96d2-bf8b1afee4a3@fr-full.privateip.net:443?security
 trojan://e4307a50-9853-11ec-9b4b-1239d0255272@fr-trojan.bonds.id:443?allowInsecure=0
 trojan://9498f3a0-2992-11ee-a4c7-1239d0255272@fr.test3.net:443/?type=tcp&security=tls&sni=zula.ir#%F0%9F%87%AB%F0%9F%87%B7FR-51.159.59.186-7954
 trojan://68dc22fb-e7f3-4806-acd7-b4182d80981e@fr01.freeflyingcloud.xyz:30502?allowInsecure=1&amp;sni=fr01.freeflyingcloud.xyz#%E6%B3%95%E5%9B%BD-2.56MB/s
-trojan://c86b6670-1af3-11f0-b10c-1239d0255272@fr1.test3.net:443?security=tls&amp;headerType=none&amp;type=tcp#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
+trojan://3a792860-34de-11f0-a992-1239d0255272@fr1.test3.net:443?security=tls&amp;headerType=none&amp;type=tcp#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://0280b529-2747-4b7a-ab11-bad6453150b9@fr2-full.privateip.net:443/?type=tcp&security=tls#%F0%9F%87%AB%F0%9F%87%B7FR-51.178.42.187-4971
 trojan://ParisCore@fr2.eurowave.cloud:443?security=tls&amp;type=tcp&amp;sni=t.me
 trojan://c97cf46e-1554-36cb-8b36-c3556b883dc4@fr2a.88888007.xyz:443?allowInsecure=1&sni=fr2a.88888007.xyz&ws=1&wspath=%2F3f741a9f-3c66-4102-838c-c77524d32d85#%20@MoftConfigCanadaToronto%20ping:51.47ms
@@ -11601,7 +11603,7 @@ trojan://e9b4bdbd-cc5b-4a90-9616-ea0f1092ec7c@mmmkiiuytr.iran.pp.ua:443?security
 trojan://3828095943467868160@modest-firefly.dolphin109.quest:443?security=tls&sni=modest-firefly.dolphin109.quest&type=tcp&headerType=none#GB%E8%8B%B1%E5%9B%BD%28mibei77.com%20%E7%B1%B3%E8%B4%9D%E8%8A%82%E7%82%B9%E5%88%86%E4%BA%AB%29
 trojan://65086520307764900@moral-rat.shiner427.skin:443?allowInsecure=0&sni=moral-rat.shiner427.skin#%5B%F0%9F%8F%81%5Dt.me/ConfigsHub
 trojan://3774827088566296576@more-tomcat.insect388.motorcycles:443?allowInsecure=1&sni=more-tomcat.insect388.motorcycles#%F0%9F%91%89%F0%9F%86%94@v2ray_configs_pool%F0%9F%93%A1%F0%9F%87%A9%F0%9F%87%AA%C2%AE%EF%B8%8FGermany%C2%A9%EF%B8%8FCologne%20(Innenstadt,%20Cologne)%F0%9F%85%BF%EF%B8%8Fping:31.95ms
-trojan://gADMKhbmf8@mr.amorhosein.telegram.nginxvsapache.ir:2083?type=grpc&serviceName=&authority=&security=tls&fp=chrome&alpn=h3%2Ch2%2Chttp%2F1.1&sni=mr.amorhosein.telegram.nginxvsapache.ir#%F0%9F%8C%90%D8%B3%D8%B1%D9%88%D8%B1%2044%20%7C%20Mor-01%7C%20MTSRVRS
+trojan://gADMKhbmf8@mr.amorhosein.telegram.nginxvsapache.ir:2083?type=grpc&serviceName=&authority=&security=tls&fp=chrome&alpn=h3,h2,http/1.1&sni=mr.amorhosein.telegram.nginxvsapache.ir#t.me/entryNET/config=1838440076289126
 trojan://270685c6-f4fb-4b15-bca6-dd6c622e8f44@ms.802039.xyz:32073?allowInsecure=1&sni=tokyo.802039.xyz
 trojan://3828095943467868160@mutual-gannet.dolphin109.quest:443?security=tls&sni=mutual-gannet.dolphin109.quest&type=tcp&headerType=none#GB%E8%8B%B1%E5%9B%BD%28mibei77.com%20%E7%B1%B3%E8%B4%9D%E8%8A%82%E7%82%B9%E5%88%86%E4%BA%AB%29
 trojan://s6rIg1Mkke73fwZU@mv-tw05.link:443?allowInsecure=0
