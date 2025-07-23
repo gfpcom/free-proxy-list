@@ -605,6 +605,7 @@ trojan://trojan@104.18.13.229:8880?security=none&type=ws&host=azadnet.vileyo6708
 trojan://Aimer@104.18.139.18:443?security=tls&sni=epcca.ambercc.filegear-sg.me&type=ws&host=epcca.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.139.18:443
 trojan://c1451ff5-d32c-48a4-914c-188985a3d5d7@104.18.14.19:443?security=tls&sni=azarandooz.azarina.workers.dev&type=ws&host=azarandooz.azarina.workers.dev&path=/trojan-ws/@AzarAndoozVPN#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.14.19:443
 trojan://Telegram-DailyConfigs@104.18.14.8:443?security=tls&sni=kanale-daily-configs.blackoutconnection.ir&type=ws&host=kanale-daily-configs.blackoutconnection.ir&path=%2F%3Fed%3D2560&fp=randomized#%20TR-WS-TLS%20%20NA-104.18.14.8:443
+trojan://bpb-trojan@104.18.146.214:443?allowInsecure=1&sni=bpb.my79801.com#@Hope_Net-join-us-on-Telegram
 trojan://NISHIKUITAN222@104.18.149.10:443?#%20TR-TCP-NA%20%20NA-104.18.149.10:443
 trojan://Aimer@104.18.15.120:443?sni=epccv.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.15.120:443
 trojan://c1451ff5-d32c-48a4-914c-188985a3d5d7@104.18.15.19:443?security=tls&sni=azarandooz.azarina.workers.dev&type=ws&host=azarandooz.azarina.workers.dev&path=/trojan-ws/@AzarAndoozVPN#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.15.19:443
@@ -654,6 +655,7 @@ trojan://bpb-trojan@104.18.23.235:443?security=tls&sni=403b3611-99bc-43B7-88D7-2
 trojan://Aimer@104.18.231.165:443?sni=epms.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.231.165:443
 trojan://e8105dfd24414268b6c7652c63731097@104.18.24.92:443?security=tls&type=ws&sni=avianrecruit.com&path=/6b777a91&host=avianrecruit.com#%E6%9C%AA%E7%9F%A520
 trojan://e8105dfd24414268b6c7652c63731097@104.18.25.92:443?security=tls&sni=avianrecruit.com&type=ws&host=avianrecruit.com&path=%2F6b777a91&fp=chrome&alpn=h2%2Chttp%2F1.1#%20TR-WS-TLS%20%20NA-104.18.25.92:443
+trojan://NISHIKUITAN111@104.18.255.98:443?#%F0%9F%91%89%F0%9F%86%94@v2ray_configs_pool%F0%9F%93%A1%F0%9F%87%A8%F0%9F%87%A6%C2%AE%EF%B8%8FCanada%C2%A9%EF%B8%8FToronto%F0%9F%85%BF%EF%B8%8Fping:8.2ms
 trojan://Xa4%5El%28;.;B%23a@104.18.26.90:443?security=tls&sni=S1.mitivpN.wOrKeRS.DEV&type=ws&host=s1.mitivpn.workers.dev&path=%2FtrUXByA1rnbs4YQ1Xw%3Fed%3D2560&fp=randomized&alpn=h3%2Ch2%2Chttp%2F1.1#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.26.90:443
 trojan://6884d714-d3c4-4b49-aa20-767ea92837d6@104.18.26.94:443?security=tls&sni=icecream.955850.xyz&type=ws&host=icecream.955850.xyz#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.26.94:443
 trojan://Watashi_VPN@104.18.26.94:8443?path=%2F&security=tls&host=t-watashi-r-jacket-o-people-jan.watashi-java.ir&fp=chrome&type=ws&sni=t-watashi-r-jacket-o-people-jan.watashi-java.ir#@Vip_Security%20join%20us%20-%20164
@@ -1720,6 +1722,7 @@ trojan://vip@104.26.9.156:443?security=tls&sni=heihu880.pages.dev&type=ws&host=h
 trojan://auto@104.26.9.160:443?security=tls&sni=trojanmz.pages.dev&type=ws&host=trojanmz.pages.dev&path=%2Ftrojanmz.pages.dev%2F%3Fed%3D2560#%20TR-WS-TLS%20%20NA-104.26.9.160:443
 trojan://Aimer@104.26.9.183:443?sni=epccj.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.26.9.183:443
 trojan://b80Iy90Fma@104.26.9.227:443/?type=ws&host=usa03.rtx.al&path=%2Fcfyyds&security=tls&sni=usa03.rtx.al#%40Hope_Net-join-us-on-Telegram
+trojan://bpb-trojan@104.27.1.100:443?allowInsecure=1&sni=bpb.my79801.com#@Hope_Net-join-us-on-Telegram
 trojan://NISHIKUITAN222@104.27.110.202:443/?type=tcp&security=tls#%40Hope_Net-join-us-on-Telegram
 trojan://NISHIKUITAN222@104.27.117.212:443?#%20TR-TCP-NA%20%20NA-104.27.117.212:443
 trojan://NISHIKUITAN222@104.27.121.68:443?#%20TR-TCP-NA%20%20NA-104.27.121.68:443
@@ -7769,8 +7772,8 @@ trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.13:9141?sni=www.baidu.com&a
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.238:2078?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%AD%F0%9F%87%B0%20%E9%A6%99%E6%B8%AF4%7C%40stairnode
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.239:16158?sni=www.baidu.com#4Nika-4309
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.239:32063?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%B8%F0%9F%87%AC%20%E6%96%B0%E5%8A%A0%E5%9D%A1%7C%40stairnode
-trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.239:32962?allowInsecure=1&sni=www.baidu.com#%E7%BE%8E%E5%9B%BD4%7C@ripaojiedian
-trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.239:3596?allowInsecure=1&sni=www.baidu.com#%E7%BE%8E%E5%9B%BD3%7C@ripaojiedian
+trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.239:32962?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%BA%F0%9F%87%B8%20%E7%BE%8E%E5%9B%BD4%7C%40stairnode
+trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.239:3596?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%BA%F0%9F%87%B8%20%E7%BE%8E%E5%9B%BD3%7C%40stairnode
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.239:39701?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%AF%F0%9F%87%B5%20%E6%97%A5%E6%9C%AC4%7C%40stairnode
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.239:41225?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%AF%F0%9F%87%B5%20%E6%97%A5%E6%9C%AC3%7C%40stairnode
 trojan://QwwHvrnN@36.151.192.239:42395?allowInsecure=0#4Nika-4117
@@ -7829,7 +7832,7 @@ trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.48:44123?sni=www.baidu.com&
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.48:4447?sni=www.baidu.com&allowInsecure=1&fp=chrome#%F0%9F%87%BA%F0%9F%87%B8%20%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%3Adafei.de%20%E7%BE%8E%E5%9B%BD%2094
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.48:53248?sni=www.baidu.com&allowInsecure=1&fp=chrome#%F0%9F%87%AF%F0%9F%87%B5%20%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%3Adafei.de%20%E6%97%A5%E6%9C%AC%2007
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.56:5975?security=tls&sni=www.baidu.com#4FreeIran-3761
-trojan://SdCqFLcA@36.151.251.57:40252?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%A8%F0%9F%87%B3_CN_%E4%B8%AD%E5%9B%BD-%3E%F0%9F%87%BA%F0%9F%87%B8_US_%E7%BE%8E%E5%9B%BD
+trojan://SdCqFLcA@36.151.251.57:40252?security=tls&sni=www.baidu.com#4Nika-4137
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.58:21829?allowInsecure=1&sni=www.baidu.com#%E6%97%A5%E6%9C%AC3%7C%40ripaojiedian
 trojan://dtYahjir@36.151.251.59:28910?security=tls&allowInsecure=1&type=tcp&headerType=none#Telegram:@IP_CF
 trojan://RlzoEILU@36.151.251.59:7815?type=tcp&amp;security=tls&amp;allowInsecure=1#%F0%9F%87%A8%F0%9F%87%B3_%E5%AE%9A%E5%88%B6%E4%B8%93%E7%BA%BF%EF%BC%9A@QS00008
@@ -10833,7 +10836,7 @@ trojan://6c64e6f9-a76c-49eb-96d2-bf8b1afee4a3@fr-full.privateip.net:443?security
 trojan://e4307a50-9853-11ec-9b4b-1239d0255272@fr-trojan.bonds.id:443?allowInsecure=0
 trojan://9498f3a0-2992-11ee-a4c7-1239d0255272@fr.test3.net:443/?type=tcp&security=tls&sni=zula.ir#%F0%9F%87%AB%F0%9F%87%B7FR-51.159.59.186-7954
 trojan://68dc22fb-e7f3-4806-acd7-b4182d80981e@fr01.freeflyingcloud.xyz:30502?allowInsecure=1&amp;sni=fr01.freeflyingcloud.xyz#%E6%B3%95%E5%9B%BD-2.56MB/s
-trojan://1d158510-34de-11f0-99a6-1239d0255272@fr1.test3.net:443?security=tls&amp;headerType=none&amp;type=tcp#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
+trojan://bb101390-29cc-11f0-936b-1239d0255272@fr1.test3.net:443?security=tls&amp;headerType=none&amp;type=tcp#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://0280b529-2747-4b7a-ab11-bad6453150b9@fr2-full.privateip.net:443/?type=tcp&security=tls#%F0%9F%87%AB%F0%9F%87%B7FR-51.178.42.187-4971
 trojan://ParisCore@fr2.eurowave.cloud:443?security=tls&amp;type=tcp&amp;sni=t.me
 trojan://c97cf46e-1554-36cb-8b36-c3556b883dc4@fr2a.88888007.xyz:443?allowInsecure=1&sni=fr2a.88888007.xyz&ws=1&wspath=%2F3f741a9f-3c66-4102-838c-c77524d32d85#%20@MoftConfigCanadaToronto%20ping:51.47ms
@@ -12168,7 +12171,7 @@ trojan://4467ae8518abf1ef321618c0bfb5549ccc@starlink-sgp4.2513142.xyz:10005/?typ
 trojan://dqxLsBV3LitAt8Jwux5IRn7m@starlink-sgp4.2513142.xyz:443?allowInsecure=1#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://94d219c9-1afc-4d42-b090-8b3794764380@std1.loadingip.com:443?allowInsecure=1#@Hope_Net-join-us-on-Telegram
 trojan://6884d714-d3c4-4b49-aa20-767ea92837d6@steamdb.info:443/?type=ws&host=icecream.955850.xyz&path=%2Fproxyip%3D45.67.215.153%3A443%26proxyIP%3Dnull&security=tls&sni=icecream.955850.xyz&alpn=h3&fp=randomized#steamdb.info
-trojan://74260628090146500@stirring-parakeet.shiner427.skin:443?#%E6%9C%AA%E7%9F%A59%202.3MB%2Fs
+trojan://74260628090146500@stirring-parakeet.shiner427.skin:443?allowInsecure=0#%F0%9F%87%B3%F0%9F%87%B1%5Bopenproxylist.com%5D%20trojan-NL
 trojan://ZCR3pplzBEDwYy3w3e8X685aCxFCgaIeYSxSROa97KxDxaC328lD0T4z7SynagqSXA6cR@stodewrn.homeofbrave.net:443?allowInsecure=1#%20@MoftConfigUnited%20States
 trojan://xl87654321@stonebreak.online:443?allowInsecure=0
 trojan://W8gVbKNAZlFzgGPn@storage.starspace.link:443?allowInsecure=1#%E7%BE%8E%E5%9B%BD+006
