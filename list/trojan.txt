@@ -1698,7 +1698,7 @@ trojan://NISHIKUITAN222@104.24.149.225:443?#%20TR-TCP-NA%20%20NA-104.24.149.225:
 trojan://NISHIKUITAN222@104.24.159.236:443?#%20TR-TCP-NA%20%20NA-104.24.159.236:443
 trojan://Aimer@104.24.165.5:443?sni=epccg.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.24.165.5:443
 trojan://NISHIKUITAN222@104.24.174.190:443?#%20TR-TCP-NA%20%20NA-104.24.174.190:443
-trojan://NISHIKUITAN111@104.24.177.24:443?allowInsecure=0#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
+trojan://NISHIKUITAN111@104.24.177.24:443?allowInsecure=0#@SaghiVpnX%5B%F0%9F%87%A8%F0%9F%87%A6%5D
 trojan://NISHIKUITAN222@104.24.177.45:443?#%20TR-TCP-NA%20%20NA-104.24.177.45:443
 trojan://Mojtaba-shieldheart@104.24.180.193:8443?security=tls&sni=broken-bread-6ba6.shieldheart4.workers.dev&type=ws&host=broken-bread-6ba6.shieldheart4.workers.dev#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.24.180.193:8443
 trojan://NISHIKUITAN222@104.24.181.145:443?#%20TR-TCP-NA%20%20NA-104.24.181.145:443
@@ -1728,7 +1728,7 @@ trojan://NISHIKUITAN222@104.24.4.125:443?#%E6%9C%AA%E7%9F%A5126
 trojan://NISHIKUITAN222@104.24.46.138:443?#%20TR-TCP-NA%20%20NA-104.24.46.138:443
 trojan://blue2024@104.24.48.31:443/?type=tcp&security=tls&sni=hb.lii2010.us.kg#%40Hope_Net-join-us-on-Telegram
 trojan://NISHIKUITAN222@104.24.53.160:443?allowInsecure=1#%20TR-TCP-NA%20%20NA-104.24.53.160:443
-trojan://NISHIKUITAN111@104.24.54.196:443?allowInsecure=0#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
+trojan://NISHIKUITAN111@104.24.54.196:443?allowInsecure=0#@SaghiVpnX%5B%F0%9F%87%A8%F0%9F%87%A6%5D
 trojan://NISHIKUITAN111@104.24.60.239:443?#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.24.60.239:443
 trojan://NISHIKUITAN222@104.24.60.84:443?#%20TR-TCP-NA%20%20NA-104.24.60.84:443
 trojan://NISHIKUITAN111@104.24.70.239:443/?type=tcp&security=tls#%40Hope_Net-join-us-on-Telegram
@@ -4540,7 +4540,7 @@ trojan://89b3cbba-e6ac-485a-9481-976a0415eab9@162.159.192.163:443/?type=ws&host=
 trojan://blue2024@162.159.194.188:443/?type=tcp&security=tls&sni=ta.promote.icu&allowInsecure=1#%40Hope_Net-join-us-on-Telegram
 trojan://blue2024@162.159.197.109:443/?type=ws&host=hb.lii2010.us.kg&security=tls&sni=hb.lii2010.us.kg#%40Hope_Net-join-us-on-Telegram
 trojan://NISHIKUITAN222@162.159.197.168:443?#%20TR-TCP-NA%20%20NA-162.159.197.168:443
-trojan://NISHIKUITAN111@162.159.20.17:443?allowInsecure=0#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
+trojan://NISHIKUITAN111@162.159.20.17:443?allowInsecure=0#@SaghiVpnX%5B%F0%9F%87%A8%F0%9F%87%A6%5D
 trojan://blue2024@162.159.21.210:443/?type=tcp&security=tls&sni=ta.promote.icu#%40Hope_Net-join-us-on-Telegram
 trojan://blue2024@162.159.22.138:443/?type=tcp&security=tls&sni=hb.lii2010.us.kg#%40Hope_Net-join-us-on-Telegram
 trojan://blue2024@162.159.23.220:443/?type=tcp&security=tls&sni=ta.promote.icu&allowInsecure=1#%40Hope_Net-join-us-on-Telegram
@@ -5582,6 +5582,7 @@ trojan://telegram-id-directvpn@18.159.27.56:22222?security=tls&alpn=http/1.1&hea
 trojan://telegram-id-privatevpns@18.159.68.55:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#%F0%9F%8C%90%D8%B3%D8%B1%D9%88%D8%B1%2038%20%7C%20Tir-23%7C%20MTSRVRS
 trojan://telegram-id-privatevpns@18.159.76.1:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/ConfigsHub
 trojan://telegram-id-directvpn@18.159.76.1:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/ConfigsHub
+trojan://telegram-id-privatevpns@18.159.77.32:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#t.me/entryNET/config=1838728287528656
 trojan://telegram-id-privatevpns@18.159.91.234:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/ConfigsHub
 trojan://telegram-id-directvpn@18.159.93.88:22223?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#[]t.me/MoftConfig
 trojan://Aimer@18.162.134.60:8443?security=tls&sni=ngep.ambercc.filegear-sg.me&type=ws&host=ngep.ambercc.filegear-sg.mehttp/1.1&path=/?ed#@Hope_Net-join-us-on-Telegram
