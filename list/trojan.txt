@@ -4644,7 +4644,7 @@ trojan://4a8973a9-6d7e-4996-b05a-7df3374c083a@165.227.229.34:443/?type=tcp&secur
 trojan://26c62533-8401-42b8-a799-a08958070706@165.232.159.169:443?security=tls&sni=m.ctrip.com&allowInsecure=1&type=tcp&headerType=none#UnitedStates-1
 trojan://v2raystore.xyz@165.232.166.65:443?security=tls&headerType=none&type=tcp&sni=m.viber.com#@MoftConfigSingaporeSingapore%20(Pioneer)ping:194.57ms
 trojan://02926f9e-153a-42c8-8ecd-8fade7009ad1@166.0.198.68:443?path=%2Fapple&security=tls&host=222.golinkwuxian.top&type=ws&sni=golinkwuxian.top#Channel%20id%3A%20%40ShadowProxy66%20%F0%9F%87%B9%F0%9F%87%BC
-trojan://ttfang@166.0.244.206:2053?security=tls&sni=ttfang.fange.me&type=ws&host=ttfang.fange.me&path=/&allowInsecure=1#%F0%9F%87%AE%F0%9F%87%B3%5Bopenproxylist.com%5D%20trojan-IN
+trojan://ttfang@166.0.244.206:2053?path=/&amp;security=tls&amp;host=ttfang.fange.me&amp;type=ws&amp;sni=ttfang.fange.me#IR-@ARGO_VPN1
 trojan://9d0a75d2-f747-4afa-b43f-d208af9e8f9a@167.234.216.177:443?security=tls&sni=us03.ssr.ee&allowInsecure=1&fp=chrome&type=tcp#%F0%9F%87%BA%F0%9F%87%B8%20United%20States%20-%20San%20Jose%20%F0%9F%8C%8E%20TR-TCP-TLS%204%E2%83%A3
 trojan://9d0a75d2-f747-4afa-b43f-d208af9e8f9a@167.234.220.143:443?security=tls&sni=us01.ssr.ee&allowInsecure=1&fp=chrome&type=tcp#%F0%9F%87%BA%F0%9F%87%B8%20United%20States%20-%20San%20Jose%20%F0%9F%8C%8E%20TR-TCP-TLS%204%E2%83%A3
 trojan://NISHIKUITAN111@167.68.11.173:443/?type=ws&host=zb.ylks.xyz&path=%2F&security=tls&sni=zb.ylks.xyz#%40Hope_Net-join-us-on-Telegram
