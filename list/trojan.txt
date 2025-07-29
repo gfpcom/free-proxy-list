@@ -9878,6 +9878,8 @@ trojan://telegram-id-directvpn@63.177.20.40:22222/?type=tcp&security=tls&sni=tro
 trojan://telegram-id-privatevpns@63.177.200.77:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#%20@MoftConfigGermany
 trojan://telegram-id-directvpn@63.177.204.133:22222?security=tls&sni=trojan.burgerip.co.uk&alpn=http/1.1&type=tcp#[]t.me/ConfigsHub
 trojan://telegram-id-vlessconfig@63.177.205.118:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#@MoftConfig
+trojan://telegram-id-privatevpns@63.177.208.147:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#%F0%9F%8C%90%D8%B3%D8%B1%D9%88%D8%B1%2013%20%7C%20Mor-07%7C%20MTSRVRS
+trojan://telegram-id-directvpn@63.177.208.147:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#%F0%9F%8C%90%D8%B3%D8%B1%D9%88%D8%B1%2049%20%7C%20Mor-07%7C%20MTSRVRS
 trojan://telegram-id-privatevpns@63.177.210.212:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#@Vip_Security%20join%20us%20-%20468
 trojan://telegram-id-directvpn@63.177.210.212:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#@Vip_Security%20join%20us%20-%20350
 trojan://telegram-id-directvpn@63.177.212.46:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#Our%20Channel%20:%20@DirectVPN
@@ -9998,7 +10000,7 @@ trojan://e5f9c753-d401-487f-a77b-1004b7f0f439@64.110.68.224:20152?security=tls&s
 trojan://7b01f853-1c72-47db-8f57-151d491b3bf9@64.110.68.224:21402?security=tls&sni=13-231-155-134.nhost.00cdn.com&type=tcp#4Nika-3789
 trojan://juzi@64.110.70.205:23022?sni=juzi8186-sr1.pages.dev#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%87%B0%F0%9F%87%B7%20KR-64.110.70.205:23022
 trojan://Bw5Mz7QkVp@64.176.181.41:443/?type=tcp&security=tls&sni=z-v2-077925.kailib.com#%40Hope_Net-join-us-on-Telegram
-trojan://Bw5Mz7QkVp@64.176.37.227:443?security=tls&type=tcp&sni=z-v2-082533.kailib.com#[]t.me/ConfigsHub
+trojan://Bw5Mz7QkVp@64.176.37.227:443?security=tls&type=tcp&sni=z-v2-082533.kailib.com#%F0%9F%8C%90%D8%B3%D8%B1%D9%88%D8%B1%2061%20%7C%20Mor-07%7C%20MTSRVRS
 trojan://b8ec1401-e5c1-4299-b315-9694cca0c2f8@64.190.90.29:443?allowInsecure=1&sni=wx.qq.com
 trojan://6d0a7f2f-c26c-466a-8f90-d6630ba97928@64.23.236.215:443?security=tls&type=tcp&sni=829D7BDE-64B9-E759-C661-78BC73E582A0.1c2871ba-6025-61e2-e87f-a5c9e0ac8c1d.9d8f269f96b25232-759cbb36d6548597.kaufen#[]t.me/ConfigsHub
 trojan://b8ec1401-e5c1-4299-b315-9694cca0c2f8@64.52.108.181:443?allowInsecure=1&sni=wx.qq.com
