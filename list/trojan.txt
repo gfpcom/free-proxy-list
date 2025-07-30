@@ -8917,6 +8917,8 @@ trojan://telegram-id-directvpn@51.44.51.85:22222?security=tls&alpn=http/1.1&head
 trojan://telegram-id-privatevpns@51.44.52.29:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/MoftConfig
 trojan://telegram-id-directvpn@51.44.52.4:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#[]t.me/ConfigsHub
 trojan://telegram-id-privatevpns@51.44.53.233:22222?security=tls&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/ConfigsHub
+trojan://telegram-id-privatevpns@51.44.54.149:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#%F0%9F%8C%90%D8%B3%D8%B1%D9%88%D8%B1%2054%20%7C%20Mor-08%7C%20MTSRVRS
+trojan://telegram-id-directvpn@51.44.54.149:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#%F0%9F%8C%90%D8%B3%D8%B1%D9%88%D8%B1%2070%20%7C%20Mor-08%7C%20MTSRVRS
 trojan://telegram-id-privatevpns@51.44.54.217:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S103)%F0%9F%87%A8%F0%9F%87%B5t.me/PrivateVPNs
 trojan://telegram-id-directvpn@51.44.54.217:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#OurChannel%20:%20@DirectVPN
 trojan://telegram-id-privatevpns@51.44.55.243:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S115)@MoftConfig
@@ -9386,7 +9388,7 @@ trojan://telegram-id-v2rayvpnchannel@54.195.48.159:22222?security=tls&sni=trojan
 trojan://telegram-id-directvpn@54.195.87.163:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#Our%20Channel%20:%20@DirectVPN
 trojan://telegram-id-privatevpns@54.195.94.103:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/ConfigsHub
 trojan://a124e41a-0fb8-4543-a0ab-a127c7b515a9@54.199.164.15:20230?security=tls&sni=jp005.421421.xyz&allowInsecure=1#[]t.me/MoftConfig
-trojan://0028109a-37ed-4ded-b858-e566388a904c@54.199.232.244:20230?security=tls&sni=421421.xyz#%F0%9F%8C%90%D8%B3%D8%B1%D9%88%D8%B1%2070%20%7C%20Mor-08%7C%20MTSRVRS
+trojan://0028109a-37ed-4ded-b858-e566388a904c@54.199.232.244:20230?security=tls&sni=421421.xyz#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://cf13832b-4ca0-4fee-8e85-2b2411104e75@54.201.148.167:20230?security=tls&sni=421421.xyz#[]t.me/MoftConfig
 trojan://Aimer@54.203.85.46:80/?type=tcp&security=tls&sni=ngepz.am...
 trojan://NZclO7plXC3B3SRg260SFyS53zRBTReEyuxYN8jYZ9K9D8C4yaClq6F82CEqOISejw4n7@54.206.235.1:443?allowInsecure=1&sni=ligtsh.bigkangaroo.net#%20@MoftConfigAustralia
@@ -10701,7 +10703,7 @@ trojan://3828095943467868160@blessed-opossum.dolphin109.quest:443?allowInsecure=
 trojan://9wSlq29Ta3DD633lCcXzFe3qAa3AyC8eO7T7RaFayZRYF3z43ExZuYaEjS0XppgAOg4BC@boohoo.meijireform.com:28334?allowInsecure=1&sni=boohoo.meijireform.com#%20@MoftConfigJapan
 trojan://Rpcl4qFSzOYTZB3u3RXCFTgypA347ZEeCCa0x39E2DX36AlgwF8eDYAyaSa393aaO7zqj@boohoo.meijireform.com:28335?security=tls&type=tcp&headerType=none#@MoftConfigJapanShibuyaping:273.64ms
 trojan://3723507166611775488@boss-hound.boa152.lol:443?allowInsecure=1&sni=boss-hound.boa152.lol#4Kian-3456
-trojan://3770966768580042752@boss-tetra.treefrog761.one:443?allowInsecure=1&sni=boss-tetra.treefrog761.one#%F0%9F%8C%90%D8%B3%D8%B1%D9%88%D8%B1%2045%20%7C%20Mor-08%7C%20MTSRVRS
+trojan://3770966768580042752@boss-tetra.treefrog761.one:443?allowInsecure=1&sni=boss-tetra.treefrog761.one#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://6d898085-bf6a-449b-9763-0073d4dc2ce0@boston01.818185.ggff.net:443/?type=ws&host=boston01.818185.ggff.net&path=%2FQ3cz2AWTPMCtDGV1L6R1Jz18eIUw&security=tls&sni=BOsToN01.818185.GGff.NET&alpn=http%2F1.1#Telegram:@IP_CF
 trojan://6d898085-bf6a-449b-9763-0073d4dc2ce0@boston01.852224.ggff.net:443/?type=ws&host=boston01.852224.ggff.net&path=%2FQ3cz2AWTPMCtDGV1L6R1Jz18eIUw&security=tls&sni=boStoN01.852224.gGff.nET&alpn=http%2F1.1#Telegram:@IP_CF
 trojan://6d898085-bf6a-449b-9763-0073d4dc2ce0@boston01.862224.ggff.net:443/?type=ws&host=boston01.862224.ggff.net&path=%2FQ3cz2AWTPMCtDGV1L6R1Jz18eIUw&security=tls&sni=bostOn01.862224.gGFf.NET&alpn=http%2F1.1#Telegram:@IP_CF
