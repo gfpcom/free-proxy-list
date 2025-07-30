@@ -3407,7 +3407,6 @@ trojan://NISHIKUITAN222@141.101.123.43:443?#%20TR-TCP-NA%20%20NA-141.101.123.43:
 trojan://NISHIKUITAN111@141.101.123.61:443?#@Hope_Net-join-us-on-Telegram
 trojan://718046d1-acee-48be-b5d3-1bda5eee0139@141.11.127.230:443
 trojan://a00330bc-7f67-4bad-a59b-481cd2d67456@141.11.127.26:443?type=tcp&sni=16-163-218-240.nhost.00cdn.com&allowInsecure=1#4Nika-4097
-trojan://bpb-trojan@141.11.202.133:443?allowInsecure=1&sni=bpb.my79801.com&type=ws&host=bpb.my79801.com&path=/tr#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://Aimer@141.11.203.168:443/?type=tcp&security=tls&sni=agepy.ambercc.filegear-sg.me#%F0%9F%8F%81RELAY-141.11.203.168-1289
 trojan://Aimer@141.11.203.191:8443/?type=ws&path=%2F&security=tls&sni=epmk.ambercc.filegear-sg.me#%F0%9F%8F%81RELAY-141.11.203.191-0680
 trojan://NISHIKUITAN111@141.11.203.203:443?security=tls&sni=za.ylks.xyz&type=ws&host=za.ylks.xyz&path=/#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%87%AB%F0%9F%87%B7%20FR-141.11.203.203:443
@@ -7068,7 +7067,6 @@ trojan://telegram-id-privatevpns@3.126.7.25:22222?security=tls&alpn=http/1.1&hea
 trojan://telegram-id-privatevpns@3.126.90.141:22222?allowInsecure=0&sni=trojan.burgerip.co.uk#[]t.me/ConfigsHub
 trojan://telegram-id-privatevpns@3.126.94.205:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%87%A9%F0%9F%87%AA%20DE-3.126.94.205:22222
 trojan://telegram-id-directvpn@3.126.94.205:22223?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%87%A9%F0%9F%87%AA%20DE-3.126.94.205:22223
-trojan://telegram-id-privatevpns@3.127.1.123:22222?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://telegram-id-privatevpns@3.127.161.179:22222?security=tls&sni=trojan.burgerip.co.uk#[]t.me/MoftConfig
 trojan://telegram-id-privatevpns@3.127.171.65:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#%20@MoftConfigGermany
 trojan://telegram-id-privatevpns@3.127.179.35:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S114)@MoftConfig
@@ -8082,7 +8080,7 @@ trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.10:9141?allowInsecure=1&sni
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.13:1122?sni=www.baidu.com#4Nika-4264
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.13:9141?sni=www.baidu.com#4Nika-4266
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.238:2078?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%AD%F0%9F%87%B0%20%E9%A6%99%E6%B8%AF4%7C%40stairnode
-trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.238:446?sni=www.baidu.com&allowInsecure=1&fp=chrome#%F0%9F%87%AD%F0%9F%87%B0%20%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%3Adafei.de%20%E9%A6%99%E6%B8%AF%2017
+trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.238:446?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%AD%F0%9F%87%B0%20%E9%A6%99%E6%B8%AF5%7C%40stairnode
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.239:16158?sni=www.baidu.com#4Nika-4268
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.239:32063?sni=www.baidu.com#4Nika-4270
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.239:32962?sni=www.baidu.com#4Nika-4272
@@ -8160,15 +8158,16 @@ trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.61:38482?allowInsecure=1&sn
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.61:45203?allowInsecure=1&sni=www.baidu.com#%E9%9F%A9%E5%9B%BD4%7C%40ripaojiedian
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.61:7041?allowInsecure=1&sni=www.baidu.com#%E6%96%B0%E5%8A%A0%E5%9D%A12%7C%40ripaojiedian
 trojan://RlzoEILU@36.151.251.61:7789?allowInsecure=0#[]t.me/ConfigsHub
+trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.7:16012?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%B0%F0%9F%87%B7%20%E9%9F%A9%E5%9B%BD%7C%40stairnode
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.7:25618?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%B8%F0%9F%87%AC%20%E6%96%B0%E5%8A%A0%E5%9D%A1%7C%40stairnode
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.7:32962?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%BA%F0%9F%87%B8%20%E7%BE%8E%E5%9B%BD4%7C%40stairnode
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.7:3596?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%BA%F0%9F%87%B8%20%E7%BE%8E%E5%9B%BD3%7C%40stairnode
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.7:40937?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%AF%F0%9F%87%B5%20%E6%97%A5%E6%9C%AC3%7C%40stairnode
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.7:41225?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%AF%F0%9F%87%B5%20%E6%97%A5%E6%9C%AC4%7C%40stairnode
-trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.7:44123?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%B8%F0%9F%87%AC%20%E6%96%B0%E5%8A%A0%E5%9D%A12%7C%40stairnode
-trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.7:443?allowInsecure=0&sni=m.avhxc.cn#%F0%9F%87%AD%F0%9F%87%B0%20%E9%A6%99%E6%B8%AF5%7C%40stairnode
-trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.7:4448?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%B0%F0%9F%87%B7%20%E9%9F%A9%E5%9B%BD%7C%40stairnode
+trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.7:44123?sni=www.baidu.com&allowInsecure=1&fp=chrome#%F0%9F%87%B8%F0%9F%87%AC%20%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%3Adafei.de%20%E6%96%B0%E5%8A%A0%E5%9D%A1%2003
+trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.7:4448?sni=www.baidu.com&allowInsecure=1&fp=chrome#%F0%9F%87%B0%F0%9F%87%B7%20%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%3Adafei.de%20%E9%9F%A9%E5%9B%BD%2003
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.7:8001?sni=www.baidu.com#4Nika-4323
+trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.7:9161?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%B8%F0%9F%87%AC%20%E6%96%B0%E5%8A%A0%E5%9D%A12%7C%40stairnode
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.156.102.123:10600?sni=www.baidu.com#%20b2n.ir/v2ray-configs%20%7C%20968
 trojan://RlzoEILU@36.156.102.123:17166?allowInsecure=1&sni=cdn.egvra.cn#[]t.me/ConfigsHub
 trojan://RlzoEILU@36.156.102.123:50723?allowInsecure=1&sni=36.156.102.123#[]t.me/MoftConfig
@@ -9296,7 +9295,7 @@ trojan://telegram-id-directvpn@52.60.43.70:22222?security=tls&sni=trojan.burgeri
 trojan://telegram-id-directvpn@52.60.57.232:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&allowInsecure=1#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://telegram-id-directvpn@52.60.77.139:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#@Hope_Net-join-us-on-Telegram
 trojan://telegram-id-v2rayvpnchannel@52.60.91.153:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
-trojan://telegram-id-directvpn@52.60.98.113:22222/?type=tcp&security=tls&sni=trojan.burgerip.co.uk#%40Hope_Net-join-us-on-Telegram
+trojan://telegram-id-v2rayvpnchannel@52.60.98.113:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#%F0%9F%8C%90%D8%B3%D8%B1%D9%88%D8%B1%2059%20%7C%20Mor-08%7C%20MTSRVRS
 trojan://c28be7d4-25c8-4351-bc58-e1675855c8af@52.68.1.180:443?security=tls&sni=jp.lydurlclub.top&allowInsecure=1#[]t.me/ConfigsHub
 trojan://a124e41a-0fb8-4543-a0ab-a127c7b515a9@52.68.152.65:20230?security=tls&sni=421421.xyz#[]t.me/ConfigsHub
 trojan://6557bf4a-852b-4a69-ad35-d53293386a13@52.68.27.92:443?sni=tr.mjt000.com#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%87%AF%F0%9F%87%B5%20JP-52.68.27.92:443
@@ -10235,7 +10234,7 @@ trojan://2b57ec48-0da4-11ef-8f35-f23c913c8d2b@916030df-sytz40-t16ejh-1rdqg.cm5.c
 trojan://8fa4bea0-8703-11ef-83cc-f23c913c8d2b@91947508-sy41s0-szj3jn-1qthu.cm5.cnkuaishou.com:27231?security=tls&sni=91947508-sy41s0-szj3jn-1qthu.cm5.cnkuaishou.com#4Nika-3879
 trojan://3gLlCYBipVwr6Y5F@92.118.149.85:443?security=tls#4Nika-3492
 trojan://Aimer@92.243.74.115:443?sni=epml.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%87%B8%F0%9F%87%AC%20SG-92.243.74.115:443
-trojan://Aimer@92.243.74.180:8443?allowInsecure=0&sni=tyep.esslh.filegear-sg.me#%F0%9F%87%BA%F0%9F%87%B8%20%E7%BE%8E%E5%9B%BD%7C%40stairnode
+trojan://Aimer@92.243.74.180:8443?allowInsecure=0&sni=tyep.esslh.filegear-sg.me&type=ws&host=tyep.esslh.filegear-sg.me&path=/#SG_speednode_0256
 trojan://Aimer@92.243.74.239:8443/?type=tcp&security=tls&sni=epcca.ambercc.filegear-sg.me#%F0%9F%8F%81RELAY-92.243.74.239-2057
 trojan://Aimer@92.243.74.23:2096/?type=tcp&security=tls&sni=epcct.ambercc.filegear-sg.me#%F0%9F%8F%81RELAY-92.243.74.23-2201
 trojan://Aimer@92.243.74.2:8443/?type=tcp&security=tls&sni=ngepx.ambercc.filegear-sg.me&allowInsecure=1#%40Hope_Net-join-us-on-Telegram
