@@ -1459,7 +1459,6 @@ trojan://u5v6w7x8-9012-3bcd-4abc-5678abcdef78@104.21.25.520:443?type=ws&host=tro
 trojan://v6w7x8y9-3456-7bcd-8abc-9012abcdef12@104.21.25.530:443?type=ws&host=trojan.workers.dev&path=/trojan#4Kian-4867
 trojan://y9z0a1b2-5678-9abc-def0-1234567890ab@104.21.25.540:443?type=ws&host=trojan.workers.dev&path=/trojan#4Kian-4905
 trojan://g8h9i0j1-2345-5bcd-abc1-4567890abcde@104.21.25.67:443?type=ws&host=trojan.workers.dev&sni=trojan.workers.dev&path=/trojan#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
-trojan://7248e825-887c-48b9-83bc-c26bc6392bf8@104.21.25.72:443?type=ws&host=gggbnmjk.006660666.xyz&path=%2FctdmgeIg3NII3ibrzzKXJGy3S1&security=tls&sni=GggBnmJk.006660666.xYZ&alpn=http%2F1.1&fp=chrome#%F0%9F%8F%B3%5Bopenproxylist.com%5D%20trojan-
 trojan://h0i1j2k3-4567-8bcd-9abc-0123abcdef45@104.21.25.80:443?type=ws&host=trojan.workers.dev&sni=trojan.workers.dev&path=/trojan#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://4d706727-996f-4427-930d-60f3bd414cf9@104.21.25.85:443?security=tls&sni=c2mt.ciscocdn1.live&allowInsecure=1&type=tcp#4Kian-3570
 trojan://f0f6e76e-e5fe-4e2c-9faf-34832e021eae@104.21.25.95:443?type=ws&amp;sni=DDd.890604.FIlEGear-sG.Me&amp;allowInsecure=1&amp;path=/mZr1mA5hub7QHHkQBzYO#%F0%9F%87%BA%F0%9F%87%B8_%E5%AE%9A%E5%88%B6%E4%B8%93%E7%BA%BF%EF%BC%9A@QS00008
@@ -3317,6 +3316,7 @@ trojan://ttfang@138.2.91.98:9711?sni=ttfang.fange.me&allowInsecure=0#%F0%9F%94%9
 trojan://ttfang@138.2.95.61:1111?security=tls&sni=ttfang.fange.me&type=ws&host=ttfang.fange.me&path=%2F&allowInsecure=1#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%87%B8%F0%9F%87%AC%20SG-138.2.95.61:1111
 trojan://0280b529-2747-4b7a-ab11-bad6453150b9@138.68.79.47:443?security=tls&sni=fr2-full.privateip.net&allowInsecure=1&fp=chrome&type=tcp#%F0%9F%87%A9%F0%9F%87%AA%20Germany%20-%20Frankfurt%20am%20Main%20%F0%9F%8C%8D%20TR-TCP-TLS%204%E2%83%A3
 trojan://665c944d-047d-4659-80d5-3eaac70241a9@139.162.158.172:443/?type=tcp&security=tls&sni=de2-full.privateip.net#%F0%9F%87%A9%F0%9F%87%AADE-139.162.158.172-4993
+trojan://3aIMXgxQ3F@139.162.179.106:1935?security=tls&sni=x1-germany-linode-v2-jk001.devefun.org&allowInsecure=1&type=tcp&headerType=none#%F0%9F%94%B7%F0%9F%86%94@v2ray_configs_pool%F0%9F%94%B7
 trojan://FLpONjB2Lb@139.162.45.139:443?security=tls#4Kian-3990
 trojan://633ac2fe-e080-4119-ac96-2abb6c96a5a6@139.162.79.146:443/?type=tcp&security=tls&sni=139.162.79.146&allowInsecure=1#[]t.me/MoftConfig
 trojan://7a566d21dfcd0f12490275fd3dd3cfc4@139.162.83.219:443?#%20TR-TCP-NA%20%20JP-139.162.83.219:443
@@ -11594,6 +11594,7 @@ trojan://3763495894587285504@harmless-mite.goat627.mom:443?allowInsecure=0&sni=h
 trojan://7276c8b5-d4f5-4748-991e-34cc0c5b19d3@hbcu.lele233.top:18900?allowInsecure=1&sni=uk01.ckcloud.info
 trojan://995ab701-4bb1-4824-bae8-8aab3dedbcf4@hbcu.lele233.top:29733
 trojan://a6292090-afe1-4640-97a7-4f1d1d877cf1@hdfy8d1.cpi1.eu.org:443/?type=grpc&amp;serviceName=8bHUAD5IX0lC5KffvrsN6rqb&amp;security=tls&amp;sni=hdfy8d1.cpi1.eu.org&amp;alpn=h2&amp;fp=chrome#d4%20tls_h2%20grpc%20direct%20trojan%20%C2%A7%20443%206
+trojan://FYM7721b7npn7bB5Wb_7kA@helinskifin.gojustore.site:1940?security=none&host=speedtest.net&headerType=http&type=tcp#%F0%9F%8C%90%D8%B3%D8%B1%D9%88%D8%B1%2062%20%7C%20Mor-09%7C%20MTSRVRS
 trojan://375e1e34-8f6f-39be-bdb9-52080f546d4d@hg.jiashumao.net:34210?allowInsecure=1&amp;sni=hg.jiashumao.net
 trojan://752a9404-c729-485e-8ea5-acb3f4fc8180@hg5.leifengkeji.live:6666?security=tls&type=tcp&headerType=none#%F0%9F%87%A6%F0%9F%87%BA%20AU_28%20%7C24.58Mb
 trojan://eb40a3f4-3b04-4a1c-993d-d71b44fee92c@hgmf.speedcncnforward2.tk:80?allowInsecure=1
