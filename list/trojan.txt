@@ -9269,8 +9269,8 @@ trojan://3767107462583558144@52.24.15.9:443?security=tls&sni=possible-macaw.tree
 trojan://telegram-id-privatevpns@52.28.101.69:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trj.rollingnext.co.uk#Germany
 trojan://telegram-id-directvpn@52.28.108.126:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/ConfigsHub
 trojan://telegram-id-directvpn@52.28.112.174:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/ConfigsHub
-trojan://telegram-id-privatevpns@52.28.184.137:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#%F0%9F%91%89%F0%9F%86%94@v2ray_configs_pool%F0%9F%93%A1%F0%9F%87%A9%F0%9F%87%AA%C2%AE%EF%B8%8FGermany%C2%A9%EF%B8%8FFrankfurt%20am%20Main%F0%9F%85%BF%EF%B8%8Fping:25.31ms
-trojan://telegram-id-directvpn@52.28.184.137:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#%F0%9F%91%89%F0%9F%86%94@v2ray_configs_pool%F0%9F%93%A1%F0%9F%87%A9%F0%9F%87%AA%C2%AE%EF%B8%8FGermany%C2%A9%EF%B8%8FFrankfurt%20am%20Main%F0%9F%85%BF%EF%B8%8Fping:25.26ms
+trojan://telegram-id-privatevpns@52.28.184.137:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#%F0%9F%91%89%F0%9F%86%94@v2ray_configs_pool%F0%9F%93%A1%F0%9F%87%A9%F0%9F%87%AA%C2%AE%EF%B8%8FGermany%C2%A9%EF%B8%8FFrankfurt%20am%20Main%F0%9F%85%BF%EF%B8%8Fping:25.15ms
+trojan://telegram-id-v2rayvpnchannel@52.28.184.137:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#%F0%9F%91%89%F0%9F%86%94@v2ray_configs_pool%F0%9F%93%A1%F0%9F%87%A9%F0%9F%87%AA%C2%AE%EF%B8%8FGermany%C2%A9%EF%B8%8FFrankfurt%20am%20Main%F0%9F%85%BF%EF%B8%8Fping:25.52ms
 trojan://telegram-id-privatevpns@52.28.197.210:22222?allowInsecure=0&sni=trojan.burgerip.co.uk#%20@MoftConfigGermany
 trojan://telegram-id-privatevpns@52.28.20.3:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/ConfigsHub
 trojan://telegram-id-directvpn@52.28.20.3:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#OurChannel%20:%20@DirectVPN
