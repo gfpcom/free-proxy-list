@@ -141,6 +141,7 @@ trojan://72d8e820-7926-4ce3-a87c-b6969f425c79@103.235.46.40:443?security=tls&sni
 trojan://94d219c9-1afc-4d42-b090-8b3794764380@103.238.235.140:443?security=tls&sni=std1.loadingip.com&allowInsecure=1&type=tcp&headerType=none#[]t.me/MoftConfig
 trojan://94d219c9-1afc-4d42-b090-8b3794764380@103.238.235.232:443?security=tls&headerType=none&type=tcp&sni=bs1.loadingip.com#Telegram:@IP_CF
 trojan://a0f7a422-7867-469c-946b-190d8fbc2a5d@103.248.229.29:1531?security=tls&sni=103.248.229.29#4Nika-3412
+trojan://2ee85121-31de-4581-a492-eb00f606e392@103.252.116.138:443?security=tls&sni=hk.freeguard.org&allowInsecure=1&type=tcp&headerType=none&host=hk.freeguard.org#%F0%9F%91%89%F0%9F%86%94@v2ray_configs_pool%F0%9F%93%A1%F0%9F%87%AD%F0%9F%87%B0%C2%AE%EF%B8%8FHong%20Kong%C2%A9%EF%B8%8FHong%20Kong%F0%9F%85%BF%EF%B8%8Fping:269.22ms
 trojan://5c5ceb40-902b-11eb-945a-1239d0255272@103.253.24.212:443?security=tls&sni=sg1-trojan.bonds.id&type=tcp#4Kian-3610
 trojan://97fdf760-7bbf-11eb-8e14-1239d0255272@103.253.24.216:443?security=tls&sni=sg3-trojan.bonds.id&type=tcp#4Kian-3942
 trojan://860deb50-4945-11f0-97d9-1239d0255272@103.253.24.248:443?security=tls&sni=sg2.6n6.net&type=tcp#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%87%B8%F0%9F%87%AC%20SG-103.253.24.248:443
