@@ -3343,7 +3343,7 @@ trojan://665c944d-047d-4659-80d5-3eaac70241a9@139.162.158.172:443/?type=tcp&secu
 trojan://FLpONjB2Lb@139.162.45.139:443?security=tls#4Mohsen-3826
 trojan://633ac2fe-e080-4119-ac96-2abb6c96a5a6@139.162.79.146:443/?type=tcp&security=tls&sni=139.162.79.146&allowInsecure=1#[]t.me/MoftConfig
 trojan://7a566d21dfcd0f12490275fd3dd3cfc4@139.162.83.219:443?#%20TR-TCP-NA%20%20JP-139.162.83.219:443
-trojan://7ac49a893e0bd10c@139.162.84.183:3306?security=tls&type=ws&sni=vkvd127.mycdn.me&path=/gateway/connect&host=139.162.84.183#%F0%9F%8C%90%D8%B3%D8%B1%D9%88%D8%B1%204%20%7C%20Mor-16%7C%20MTSRVRS
+trojan://7ac49a893e0bd10c@139.162.84.183:3306?security=tls&type=ws&sni=vkvd127.mycdn.me&path=/gateway/connect&host=139.162.84.183#%E6%9C%AA%E7%9F%A560
 trojan://ttfang@139.180.154.158:443?security=tls&sni=ttfang.fange.me&type=ws&host=ttfang.fange.me&path=%2F&allowInsecure=1#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%87%B8%F0%9F%87%AC%20SG-139.180.154.158:443
 trojan://Bw5Mz7QkVp@139.180.162.78:443?security=tls&sni=z-v2-077755.kailib.com&type=tcp#@Vip_Security%20join%20us%20-%20130
 trojan://dNlpoy@139.226.166.156:28101?allowInsecure=1
@@ -12216,6 +12216,7 @@ trojan://96983eb4-c8f1-316e-ab00-500014ed3d8b@official.tokyometropolis.odesa.ua:
 trojan://96983eb4-c8f1-316e-ab00-500014ed3d8b@official.tokyometropolis.odessa.ua:2053/?type=tcp&security=tls#%F0%9F%87%A8%F0%9F%87%B3CN-14.215.39.158-2951
 trojan://02491ccf-e969-4200-9ebd-5e0da4eff308@okanc.iepl.cac.cab:23003?allowInsecure=0&sni=www.bilibili.com#%F0%9F%87%AD%F0%9F%87%B0%20%E9%A6%99%E6%B8%AF5%7C%40stairnode
 trojan://02491ccf-e969-4200-9ebd-5e0da4eff308@okanc.iepl.cac.cab:23007?allowInsecure=0&sni=www.bilibili.com#%F0%9F%87%AF%F0%9F%87%B5%20%E6%97%A5%E6%9C%AC3%7C%40stairnode
+trojan://6b5b43c9-05bd-471e-b502-d52c0dbd55fd@okanc.iepl.cac.cab:23008?allowInsecure=1&sni=www.bilibili.com#%E6%97%A5%E6%9C%AC3%7C%40ripaojiedian
 trojan://02491ccf-e969-4200-9ebd-5e0da4eff308@okanc.iepl.cac.cab:23012?allowInsecure=0&sni=www.bilibili.com#%F0%9F%87%B8%F0%9F%87%AC%20%E6%96%B0%E5%8A%A0%E5%9D%A13%7C%40stairnode
 trojan://02491ccf-e969-4200-9ebd-5e0da4eff308@okanc.iepl.cac.cab:24001?allowInsecure=0&sni=www.bilibili.com#%F0%9F%87%B0%F0%9F%87%B7%20%E9%9F%A9%E5%9B%BD%7C%40stairnode
 trojan://74260704627805900@on-roughy.shiner427.skin:443/?type=tcp&security=tls#[]t.me/MoftConfig
