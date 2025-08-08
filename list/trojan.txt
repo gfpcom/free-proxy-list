@@ -3348,6 +3348,7 @@ trojan://7a566d21dfcd0f12490275fd3dd3cfc4@139.162.83.219:443?#%20TR-TCP-NA%20%20
 trojan://7ac49a893e0bd10c@139.162.84.183:3306?security=tls&type=ws&sni=vkvd127.mycdn.me&path=/gateway/connect&host=139.162.84.183#%E6%9C%AA%E7%9F%A560
 trojan://ttfang@139.180.154.158:443?security=tls&sni=ttfang.fange.me&type=ws&host=ttfang.fange.me&path=%2F&allowInsecure=1#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%87%B8%F0%9F%87%AC%20SG-139.180.154.158:443
 trojan://Bw5Mz7QkVp@139.180.162.78:443?security=tls&sni=z-v2-077755.kailib.com&type=tcp#@Vip_Security%20join%20us%20-%20130
+trojan://005fddef-e432-482f-a98c-2715563a2b25@139.199.194.86:36009?allowInsecure=1#%E9%9F%A9%E5%9B%BD2%7C%40ripaojiedian
 trojan://dNlpoy@139.226.166.156:28101?allowInsecure=1
 trojan://n9gghq@139.226.166.156:28109?allowInsecure=1
 trojan://n9gghq@139.226.166.156:28132?allowInsecure=1
@@ -4115,6 +4116,7 @@ trojan://2af31107-e577-4995-8247-e8a57855e90b@156.59.152.137:10011?allowInsecure
 trojan://1051bfbb-90db-4261-b5e4-8b91f62b436f@156.67.30.77:443?security=reality&alpn=http%2F1.1&encryption=none&pbk=SDUAmbkyV3wQEEXwV9wpwTqS2qi7gOekiZNpS1jfcXc&headerType=none&fp=chrome&spx=%2F&type=tcp&flow=xtls-rprx-vision&sni=spotify.com&sid=d59cd3#@Vip_Security%20join%20us%20-%206
 trojan://vpn@156.67.63.97:2025?security=none&type=ws&host=vkvd127.mycdn.me&path=%2F&ed=2048&eh=Sec-Websocket-Protocol&fp=chrome#%F0%9F%92%B0%F0%9F%87%B9%F0%9F%87%B7%20TR%20156.67.63.97%20%E2%97%88%20ws%3A2025%20%E2%97%88%20Hostkey%20B.V.%20%E2%97%88%20ef7ed
 trojan://60f6b4c4-9d70-11ed-a4d2-f23c9164ca5d@15606cc9-sw3ts0-t1bnjq-1krtb.cu.plebai.net:15229?allowInsecure=0#Telegram:@IP_CF
+trojan://253bc477d4e43c209f2d427272968280@157.120.32.122:443?allowInsecure=1&sni=www.baidu.com#%E6%97%A5%E6%9C%AC3%7C%40ripaojiedian
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@157.230.32.243:443/?type=tcp&security=tls&sni=www.baidu.com#%F0%9F%87%B8%F0%9F%87%ACSG-157.230.32.243-5437
 trojan://04f8b43b-70b7-4b26-94b5-2486e86d9eb0@157.230.89.187:46355?security=tls&sni=www.python.org&type=tcp&allowInsecure=1#[]t.me/MoftConfig
 trojan://f75b2c90-34da-4b87-90ce-5c7874573f12@157.254.38.210:20006?security=tls&sni=th.catxstar.com&type=tcp&fp=chrome#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%87%BA%F0%9F%87%B8%20US-157.254.38.210:20006
@@ -4732,6 +4734,7 @@ trojan://720fa0c1-7457-42ae-9ef0-8f4c9510f41d@165.154.253.141:443
 trojan://720fa0c1-7457-42ae-9ef0-8f4c9510f41d@165.154.253.249:443
 trojan://f25d1510-3763-4fcf-9804-86d6c1566629@165.154.253.65:443?allowInsecure=1&sni=data.amazon-azure.com
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@165.22.3.117:443/?type=tcp&security=tls&sni=www.baidu.com#%F0%9F%87%BA%F0%9F%87%B8US-165.22.3.117-5444
+trojan://253bc477d4e43c209f2d427272968280@165.22.55.206:443?allowInsecure=1&sni=www.baidu.com#%E6%96%B0%E5%8A%A0%E5%9D%A1%7C%40ripaojiedian
 trojan://4732adfa16c6450bbef87264e41332db@165.22.74.230:443?security=tls&sni=nextstepcareer.online&allowInsecure=1&fp=chrome&type=tcp#%F0%9F%87%A9%F0%9F%87%AA%20Germany%20-%20Frankfurt%20am%20Main%20%F0%9F%8C%8D%20TR-TCP-TLS%204%E2%83%A3
 trojan://4a8973a9-6d7e-4996-b05a-7df3374c083a@165.227.229.34:443/?type=tcp&security=tls&allowInsecure=1#Telegram:@IP_CF
 trojan://26c62533-8401-42b8-a799-a08958070706@165.232.159.169:443?security=tls&sni=m.ctrip.com&allowInsecure=1&type=tcp&headerType=none#UnitedStates-1
@@ -8334,6 +8337,7 @@ trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.156.102.125:1256?sni=www.baidu.com&
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.156.102.125:1601?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%B8%F0%9F%87%AC%20%E6%96%B0%E5%8A%A0%E5%9D%A1%7C%40stairnode
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.156.102.125:181?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%AF%F0%9F%87%B5%20%E6%97%A5%E6%9C%AC3%7C%40stairnode
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.156.102.125:329?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%BA%F0%9F%87%B8%20%E7%BE%8E%E5%9B%BD3%7C%40stairnode
+trojan://253bc477d4e43c209f2d427272968280@36.156.102.125:406?allowInsecure=1&sni=www.baidu.com#%E6%96%B0%E5%8A%A0%E5%9D%A12%7C%40ripaojiedian
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.156.102.125:444?allowInsecure=1&sni=www.ithome.com#%F0%9F%87%AD%F0%9F%87%B0%20%E9%A6%99%E6%B8%AF6%7C%40stairnode
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.156.102.125:447?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%AD%F0%9F%87%B0%20%E9%A6%99%E6%B8%AF4%7C%40stairnode
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.156.102.125:461?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%AF%F0%9F%87%B5%20%E6%97%A5%E6%9C%AC4%7C%40stairnode
@@ -8639,7 +8643,7 @@ trojan://bs6KJkPBW9MP74uHEa@45.80.190.66:443?security=tls#4Mohsen-3984
 trojan://bs6KJkPBW9MP74uHEa@45.80.190.71:443
 trojan://Aimer@45.80.209.25:81/?type=ws&host=epmk.ambercc.filegear-sg.me&path=%2F%3Fed%3D2560%26proxyip%3Dts.hpc.tw&security=tls&sni=epmk.ambercc.filegear-sg.me#%F0%9F%8C%BD98%40oneclickvpnkeys
 trojan://53784f81-7b1a-468e-8792-756a2d4e744e@45.80.210.89:443?allowInsecure=1&sni=data.amazon-azure.com
-trojan://vpn@45.82.14.144:2025?security=none&type=ws&host=dns.google.com&path=%2F#%F0%9F%87%B0%F0%9F%87%BF%5Bopenproxylist.com%5D%20trojan-KZ
+trojan://vpn@45.82.14.144:2025?security=none&fp=chrome&type=ws&path=/&host=dns.google.com#%F0%9F%87%B7%F0%9F%87%BA%20Russian%20Federation%20-%20NA%20%F0%9F%8C%8D%20TR-WS-NONE%204%E2%83%A3
 trojan://750a29bf-0a40-437f-b120-38de74ae7eaf@45.82.253.234:28443?security=tls#4Mohsen-3593
 trojan://a1b16d10-4f43-4dd9-8c4f-52065b2b0910@45.82.253.237:28443?security=tls#4Mohsen-3899
 trojan://blue2024@45.85.118.20:443/?type=ws&host=ta.promote.icu&path=%2F%3Fed%3D2560&security=tls&sni=ta.promote.icu#%40Hope_Net-join-us-on-Telegram
