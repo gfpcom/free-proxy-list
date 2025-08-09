@@ -8346,8 +8346,11 @@ trojan://RlzoEILU@36.156.102.123:17166?allowInsecure=1&sni=cdn.egvra.cn#[]t.me/C
 trojan://RlzoEILU@36.156.102.123:50723?allowInsecure=1&sni=36.156.102.123#[]t.me/MoftConfig
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.156.102.123:8657?type=tcp&security=tls&sni=www.baidu.com&allowInsecure=1#%F0%9F%87%A8%F0%9F%87%B3_CN_%E4%B8%AD%E5%9B%BD-%3E%F0%9F%87%BA%F0%9F%87%B8_US_%E7%BE%8E%E5%9B%BD_3
 trojan://RlzoEILU@36.156.102.124:15624?allowInsecure=1&sni=36.156.102.124#[]t.me/MoftConfig
+trojan://253bc477d4e43c209f2d427272968280@36.156.102.125:1256?allowInsecure=1&sni=www.baidu.com#%E6%96%B0%E5%8A%A0%E5%9D%A1%7C%40ripaojiedian
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.156.102.125:1601?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%B8%F0%9F%87%AC%20%E6%96%B0%E5%8A%A0%E5%9D%A1%7C%40stairnode
+trojan://253bc477d4e43c209f2d427272968280@36.156.102.125:180?allowInsecure=1&sni=www.baidu.com#%E6%97%A5%E6%9C%AC3%7C%40ripaojiedian
 trojan://253bc477d4e43c209f2d427272968280@36.156.102.125:329?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%BA%F0%9F%87%B8%20%E7%BE%8E%E5%9B%BD3%7C%40stairnode
+trojan://253bc477d4e43c209f2d427272968280@36.156.102.125:347?allowInsecure=1&sni=www.baidu.com#%E7%BE%8E%E5%9B%BD3%7C%40ripaojiedian
 trojan://253bc477d4e43c209f2d427272968280@36.156.102.125:406?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%B8%F0%9F%87%AC%20%E6%96%B0%E5%8A%A0%E5%9D%A12%7C%40stairnode
 trojan://253bc477d4e43c209f2d427272968280@36.156.102.125:444?allowInsecure=1&sni=www.ithome.com#%F0%9F%87%AD%F0%9F%87%B0%20%E9%A6%99%E6%B8%AF6%7C%40stairnode
 trojan://253bc477d4e43c209f2d427272968280@36.156.102.125:447?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%AD%F0%9F%87%B0%20%E9%A6%99%E6%B8%AF4%7C%40stairnode
@@ -10388,7 +10391,6 @@ trojan://9a21a898-17f9-4c8a-8848-6177728338b3@8l2k1r01.mcfront.xyz:31401
 trojan://b2403f54-29c4-4392-9053-40821442a226@8t6w01.abzoones.xyz:36301
 trojan://d7ca0e41-0799-40c2-b7eb-bb2ed0281f93@8t6w02.abzoones.xyz:36306
 trojan://13c3cf97-5a4a-434f-880a-aecbd70c15bc@9.elk3b3nwfy.xyz:20019/?type=tcp&security=tls&sni=9.elk3b3nwfy.xyz&allowInsecure=1#%20@MoftConfigChina
-trojan://i42xelUhUd@91.107.128.99:1496?security=none&headerType=/JKVPN_BIA_CHANEL_JKVPN&type=tcp#%5B%F0%9F%87%A9%F0%9F%87%AA%5Dt.me/ConfigsHub
 trojan://59wuZRKxKX@91.107.135.78:8443
 trojan://ziIjOlyGbM@91.107.141.0:23825?type=tcp&amp;path=/&amp;headerType=http&amp;security=none#@anti_ping
 trojan://pChLk4O2J8@91.107.141.97:50255?type=tcp&security=none#%DB%8C%DA%A9%20%D9%85%D8%A7%D9%87%D9%87%20%D8%AA%D8%B9%D8%AF%D8%A7%D8%AF%20%DA%A9%D8%A7%D8%B1%D8%A8%D8%B1%20%D9%88%20%D8%AD%D8%AC%D9%85%20%D9%86%D8%A7%D9%85%D8%AD%D8%AF%D9%88%D8%AF%20%7C%20@free_config_456-ywxg5r0u
@@ -12255,6 +12257,7 @@ trojan://96983eb4-c8f1-316e-ab00-500014ed3d8b@official.tokyometropolis.kiev.ua:2
 trojan://96983eb4-c8f1-316e-ab00-500014ed3d8b@official.tokyometropolis.kyiv.ua:2053/?type=tcp&security=tls#%F0%9F%87%A8%F0%9F%87%B3CN-120.241.226.94-2764
 trojan://96983eb4-c8f1-316e-ab00-500014ed3d8b@official.tokyometropolis.odesa.ua:2053/?type=tcp&security=tls#%F0%9F%87%A8%F0%9F%87%B3CN-120.241.226.94-2560
 trojan://96983eb4-c8f1-316e-ab00-500014ed3d8b@official.tokyometropolis.odessa.ua:2053/?type=tcp&security=tls#%F0%9F%87%A8%F0%9F%87%B3CN-14.215.39.158-2951
+trojan://82d0fb76-b9ff-41c2-ba15-2aec44f78e7c@okanc.iepl.cac.cab:23001?allowInsecure=1&sni=www.bilibili.com#%E9%A6%99%E6%B8%AF3%7C%40ripaojiedian
 trojan://02491ccf-e969-4200-9ebd-5e0da4eff308@okanc.iepl.cac.cab:23003/?type=tcp&security=tls&sni=www.bilibili.com#%F0%9F%87%BA%F0%9F%87%B8US-154.83.90.11-1844
 trojan://6bc1c915-2fee-469b-b0e2-01968be45bf6@okanc.iepl.cac.cab:23007?allowInsecure=0&sni=www.bilibili.com#%F0%9F%87%AF%F0%9F%87%B5%20%E6%97%A5%E6%9C%AC5%7C%40stairnode
 trojan://6b5b43c9-05bd-471e-b502-d52c0dbd55fd@okanc.iepl.cac.cab:23008?allowInsecure=0&sni=www.bilibili.com#%F0%9F%87%AF%F0%9F%87%B5%20%E6%97%A5%E6%9C%AC3%7C%40stairnode
