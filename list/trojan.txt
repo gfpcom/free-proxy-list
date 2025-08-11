@@ -124,6 +124,7 @@ trojan://Aimer@103.182.97.12:443?allowInsecure=0&sni=ngep.ambercc.filegear-sg.me
 trojan://5623be5f-c9da-4511-81a9-b4b39b16edae@103.195.236.24:443/?type=tcp&security=tls#%F0%9F%87%BB%F0%9F%87%B3VN-103.195.236.24-3621
 trojan://Aimer@103.21.244.0:2083?security=tls&sni=epgb.aimercc.dpdns.org&alpn=h3&fp=randomized&allowInsecure=1&type=ws&host=epgb.aimercc.dpdns.org&path=%2F%3Fed%3D2560%26proxyip%3Dts.hpc.tw#SJC
 trojan://blue2024@103.21.244.109:443?allowInsecure=1&sni=hb.lii2010.us.kg&ws=1&wspath=/?ed=2560#4Mohsen-4187
+trojan://blue2024@103.21.244.134:443?type=ws&amp;sni=hb.lii2010.us.kg&amp;path=/?ed=2560&amp;host=hb.lii2010.us.kg#@Hope_Net-join-us-on-Telegram
 trojan://blue2024@103.21.244.13:443?allowInsecure=1&sni=hb.lii2010.us.kg&ws=1&wspath=/?ed=2560#4Mohsen-4188
 trojan://3bcd9e33-8377-4b32-af33-217158577ff3@103.211.32.109:443?security=tls&type=tcp&sni=kdlsupport.zendesk.com#[]t.me/ConfigsHub
 trojan://3bcd9e33-8377-4b32-af33-217158577ff3@103.211.32.111:443?sni=kdlsupport.zendesk.com#[]t.me/MoftConfig
@@ -1972,7 +1973,7 @@ trojan://Aimer@104.26.6.237:443?sni=epccx.ambercc.filegear-sg.me#%F0%9F%94%92%20
 trojan://06e4425e-a8cb-4b63-929f-2105604ab0a9@104.26.6.37:443?sni=tt1.vs2024.dpdns.org&allowInsecure=0#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.26.6.37:443
 trojan://blue2024@104.26.6.89:443/?type=tcp&security=tls&sni=hb.lii2010.us.kg#%40Hope_Net-join-us-on-Telegram
 trojan://Aimer@104.26.6.95:443?sni=epccg.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.26.6.95:443
-trojan://06e4425e-a8cb-4b63-929f-2105604ab0a9@104.26.7.112:443?sni=dt.vs2024.dpdns.org&allowInsecure=0#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.26.7.112:443
+trojan://blue2024@104.26.7.112:443?sni=tb.promote.icu#@Hope_Net-join-us-on-Telegram
 trojan://669d0ac7b5b64ebbb1abb75d5d540a5c@104.26.7.143:443?security=tls&type=ws&sni=bangladeshipatri.com&path=/6b777a91#%E6%9C%AA%E7%9F%A5118
 trojan://Aimer@104.26.7.185:443?sni=epccv.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.26.7.185:443
 trojan://vip@104.26.7.214:443?security=tls&sni=heihu880.pages.dev&type=ws&host=heihu880.pages.dev&path=%2F%3Fed%3D2560#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.26.7.214:443
