@@ -50,7 +50,7 @@ trojan://Aimer@103.103.245.183:443?allowInsecure=0&sni=agepj.ambercc.filegear-sg
 trojan://3828095943467868160@103.106.229.111:443/?type=tcp&security=tls&sni=poetic-coral.dolphin109.quest#Telegram:@IP_CF
 trojan://3828095943467868160@103.106.229.195:443/?type=tcp&security=tls&sni=secure-hookworm.dolphin109.quest#Telegram:@IP_CF
 trojan://3828095943467868160@103.106.229.240:443?allowInsecure=0&sni=stable-labrador.dolphin109.quest#Telegram:@IP_CF
-trojan://ttfang@103.106.230.186:81?security=tls&sni=ttfang.fange.me&type=ws&host=ttfang.fange.me&path=%2F&allowInsecure=1#%F0%9F%87%A6%F0%9F%87%BA%5Bopenproxylist.com%5D%20trojan-AU
+trojan://ttfang@103.106.230.186:81?type=ws&sni=ttfang.fange.me&path=/&host=ttfang.fange.me#TW
 trojan://63779501-4c22-4a03-83d3-9f611b227e7b@103.11.214.137:443?security=tls&sni=c1mc.cdncisco4.co&allowInsecure=1&type=tcp#4Sarina-3514
 trojan://63779501-4c22-4a03-83d3-9f611b227e7b@103.11.214.214:443?security=tls&sni=c1mc.cdncisco4.co&allowInsecure=1&type=tcp#4Sarina-3515
 trojan://Aimer@103.116.7.100:2087?security=tls&sni=epgb.aimercc.dpdns.org&alpn=h3&fp=randomized&allowInsecure=1&type=ws&host=epgb.aimercc.dpdns.org&path=%2F%3Fed%3D2560%26proxyip%3Dts.hpc.tw#SJC
@@ -9757,7 +9757,7 @@ trojan://telegram-id-directvpn@54.217.200.254:22222?security=tls&alpn=http/1.1&h
 trojan://telegram-id-privatevpns@54.217.24.28:22222?security=tls&type=tcp&sni=trojan.burgerip.co.uk#4FreeIran-4039
 trojan://telegram-id-directvpn@54.217.71.51:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#Our%20Channel%20:%20@DirectVPN
 trojan://telegram-id-directvpn@54.220.100.135:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#OurChannel%20:%20@DirectVPN
-trojan://telegram-id-privatevpns@54.220.132.216:22222?security=tls&sni=trojan.burgerip.co.uk#%5B%F0%9F%87%AE%F0%9F%87%AA%5Dt.me/ConfigsHub
+trojan://telegram-id-privatevpns@54.220.132.216:22222?security=tls&sni=trojan.burgerip.co.uk#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://telegram-id-privatevpns@54.220.133.195:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://telegram-id-privatevpns@54.220.134.248:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/MoftConfig
 trojan://telegram-id-directvpn@54.220.149.135:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/MoftConfig
