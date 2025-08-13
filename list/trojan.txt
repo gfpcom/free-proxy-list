@@ -50,7 +50,7 @@ trojan://Aimer@103.103.245.183:443?allowInsecure=0&sni=agepj.ambercc.filegear-sg
 trojan://3828095943467868160@103.106.229.111:443/?type=tcp&security=tls&sni=poetic-coral.dolphin109.quest#Telegram:@IP_CF
 trojan://3828095943467868160@103.106.229.195:443/?type=tcp&security=tls&sni=secure-hookworm.dolphin109.quest#Telegram:@IP_CF
 trojan://3828095943467868160@103.106.229.240:443?allowInsecure=0&sni=stable-labrador.dolphin109.quest#Telegram:@IP_CF
-trojan://ttfang@103.106.230.186:81?security=tls&sni=ttfang.fange.me#4Jadi-4773
+trojan://ttfang@103.106.230.186:81?security=tls&sni=ttfang.fange.me&type=ws&host=ttfang.fange.me&path=%2F&allowInsecure=1#%F0%9F%87%A6%F0%9F%87%BA%5Bopenproxylist.com%5D%20trojan-AU
 trojan://63779501-4c22-4a03-83d3-9f611b227e7b@103.11.214.137:443?security=tls&sni=c1mc.cdncisco4.co&allowInsecure=1&type=tcp#4Jadi-3514
 trojan://63779501-4c22-4a03-83d3-9f611b227e7b@103.11.214.214:443?security=tls&sni=c1mc.cdncisco4.co&allowInsecure=1&type=tcp#4Jadi-3515
 trojan://Aimer@103.116.7.100:2087/?type=tcp&security=tls&sni=ngepx.ambercc.filegear-sg.me#%40Hope_Net-join-us-on-Telegram
@@ -2140,7 +2140,7 @@ trojan://blue2024@108.162.195.203:443/?type=tcp&security=tls&sni=td.promote.icu#
 trojan://06e4425e-a8cb-4b63-929f-2105604ab0a9@108.162.195.205:443?sni=dt.vs2024.dpdns.org&allowInsecure=0#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-108.162.195.205:443
 trojan://06e4425e-a8cb-4b63-929f-2105604ab0a9@108.162.195.207:443?sni=dt.vs2024.dpdns.org&allowInsecure=0#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-108.162.195.207:443
 trojan://auto@108.162.195.209:443/?type=ws&host=trojanmz.pages.dev&security=tls&sni=trojanmz.pages.dev#%40Hope_Net-join-us-on-Telegram
-trojan://blue2024@108.162.195.217:443?sni=hb.lii2010.us.kg#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
+trojan://auto@108.162.195.217:443?security=tls&sni=b96ef9ae.trojanfree-76s.pages.dev&type=ws&host=b96ef9ae.trojanfree-76s.pages.dev&path=/b96ef9ae.trojanfree-76s.pages.dev/#%20TR-WS-TLS%20%20NA-108.162.195.217:443
 trojan://Aimer@108.162.195.227:443?sni=agepq.ambercc.filegear-sg.me&allowInsecure=1#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-108.162.195.227:443
 trojan://Aimer@108.162.195.236:443/?type=ws&host=ngepz.ambercc.filegear-sg.me&security=tls&sni=sage.ns.cloudflare.com#%40Hope_Net-join-us-on-Telegram
 trojan://NISHIKUITAN222@108.162.195.239:443?security=tls&sni=in.ylks.xyz&type=ws&host=in.ylks.xyz&path=%2F#%20TR-WS-TLS%20%20NA-108.162.195.239:443
