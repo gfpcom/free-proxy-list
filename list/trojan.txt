@@ -6610,7 +6610,7 @@ trojan://blue2024@198.62.62.156:443/?type=tcp&security=tls&sni=tc.promote.icu&al
 trojan://Aimer@198.62.62.192:2083?security=tls&sni=ngepy.ambercc.filegear-sg.me&type=ws&host=ngepy.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%87%BA%F0%9F%87%B8%20US-198.62.62.192:2083
 trojan://12345678@198.62.62.4:443/?type=ws&host=7bdfb97a.ikl.pages.dev&path=%2F7bdfb97a.ikl.pages.dev&security=tls&sni=7bdfb97a.ikl.pages.dev#%F0%9F%92%AE19%40oneclickvpnkeys
 trojan://Aimer@198.62.62.61:2083?allowInsecure=1&sni=epgc.aimercc.dpdns.org&ws=1&wspath=%2F%3Fed%3D2560#%F0%9F%87%BA%F0%9F%87%B8%20%E5%8C%97%E7%BE%8E%E5%9C%B0%E5%8C%BA%20V2CROSS.COM
-trojan://tg-fq521free@198.62.62.67:443?allowInsecure=0&sni=torjan.xn--xhq44j.eu.org&type=ws&host=torjan.xn--xhq44j.eu.org&path=/#US_speednode_0336
+trojan://tg-fq521free@198.62.62.67:443?type=ws&sni=torjan.xn--xhq44j.eu.org&path=/&host=torjan.xn--xhq44j.eu.org#US20
 trojan://aa6ddd2f-d1cf-4a52-ba1b-2640c41a7856@198b5d217c53dcdb4464db22aa2b145f.v1.cac.node-is.green:47300/?type=tcp&security=tls&sni=hk14.bilibili.com&allowInsecure=1#@MoftConfigUnited%20StatesSan%20Joseping:165.84ms
 trojan://4863e1b2-ec2f-4c71-b862-ce533028e57e@199.115.116.216:443?security=tls&sni=trus.moonfree.top&type=tcp#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%87%BA%F0%9F%87%B8%20US-199.115.116.216:443
 trojan://Aimer@199.231.45.35:443/?type=tcp&security=tls&sni=agepn.ambercc.filegear-sg.me#%F0%9F%87%BA%F0%9F%87%B8US-199.231.45.35-1337
@@ -8665,7 +8665,6 @@ trojan://Aimer@45.154.98.230:5006?sni=epma.ambercc.filegear-sg.me#%F0%9F%94%92%2
 trojan://Aimer@45.154.98.230:5007?sni=epmf.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%87%B3%F0%9F%87%B1%20NL-45.154.98.230:5007
 trojan://Aimer@45.154.98.230:7102?sni=epma.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%87%B3%F0%9F%87%B1%20NL-45.154.98.230:7102
 trojan://Aimer@45.155.121.169:443?allowInsecure=1&sni=amepo.ambercc.filegear-sg.me#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
-trojan://LG7HKcZFIJ@45.155.54.117:110?security=tls&headerType=none&type=tcp&sni=sws.ftpcomand.com#4Kian-4026
 trojan://NISHIKUITAN111@45.159.216.191:443/?type=ws&host=zb.ylks.xyz&path=%2F&security=tls&sni=zb.ylks.xyz#%40Hope_Net-join-us-on-Telegram
 trojan://NISHIKUITAN111@45.159.218.103:443/?type=tcp&security=tls#%40Hope_Net-join-us-on-Telegram
 trojan://NISHIKUITAN111@45.159.218.249:443/?type=tcp&security=tls#%40Hope_Net-join-us-on-Telegram
@@ -10825,7 +10824,7 @@ trojan://3f319a18-1d20-4475-b775-f5c98a52ba18@agroup.node5.t.nodelist-gfwairport
 trojan://44d901b6-954f-3d03-80c2-375dd2f202be@agt.fjzjvgq.cn:13349?sni=agt.jiashumao.net
 trojan://giosZwLNqAUWxczWJDYqXQDgNLMYwbKI@ahgjs-4-tr-0.hkg-01.o-two.xyz:889?security=tls&sni=o-two.bond#4Mohsen-4439
 trojan://f282b878-8711-45a1-8c69-5564172123c1@aio.nolimit.dpdns.org:443/?type=ws&host=aio.nolimit.dpdns.org&path=%2Faioproxybot%2F146.190.192.43-80&security=tls&sni=aio.nolimit.dpdns.org#%F0%9F%AB%9C56%40oneclickvpnkeys
-trojan://f282b878-8711-45a1-8c69-5564172123c1@aio.zipzap.biz.id:443/?type=ws&host=aio.zipzap.biz.id&path=%2Faioproxybot%2F129.150.49.58-18650&security=tls&sni=aio.zipzap.biz.id#%F0%9F%AB%9123%40oneclickvpnkeys
+trojan://f282b878-8711-45a1-8c69-5564172123c1@aio.zipzap.biz.id:443?security=tls&sni=aio.zipzap.biz.id&type=ws&host=aio.zipzap.biz.id&path=%2Faioproxybot%2F129.150.49.58-18650#%F0%9F%85%BC%F0%9F%85%B4%F0%9F%85%B7%F0%9F%85%B3%F0%9F%85%B8
 trojan://f282b878-8711-45a1-8c69-5564172123c1@aio.zipzap.biz.id:80?encryption=none&type=ws&host=aio.zipzap.biz.id&path=/aioproxybot/129.150.49.58-18650&security=none&sni=aio.zipzap.biz.id#@warp_city
 trojan://4cfb5b98-5a9d-4c6d-8911-25deca297fa1@air-Phoenix13.900513.xyz:7528
 trojan://4cfb5b98-5a9d-4c6d-8911-25deca297fa1@air-Phoenix13.900513.xyz:7708
