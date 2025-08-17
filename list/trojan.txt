@@ -778,7 +778,7 @@ trojan://NISHIKUITAN222@104.18.27.217:443?#%20TR-TCP-NA%20%20NA-104.18.27.217:44
 trojan://WOeXShhJpL@104.18.27.238:443?security=tls&sni=03jzus.zdzdzd.xyz&type=ws&host=03jzus.zdzdzd.xyz&path=%2Fjuzigongyi#%20TR-WS-TLS%20%20NA-104.18.27.238:443
 trojan://vip@104.18.27.94:443/?type=tcp&security=tls&sni=heihu...
 trojan://Watashi_VPN@104.18.27.94:8443?security=tls&sni=t-watashi-r-jacket-o-people-jan.watashi-java.ir&type=ws&host=t-watashi-r-jacket-o-people-jan.watashi-java.ir&path=/#%20TR-WS-TLS%20%20NA-104.18.27.94:8443
-trojan://slch2024@104.18.3.108:8443?allowInsecure=1&sni=ocost-dy.wmlefl.cc&ws=1&wspath=%2F#%F0%9F%87%BA%F0%9F%87%B8%20%E7%BE%8E%E5%9B%BD%20CloudFlare%E8%8A%82%E7%82%B9
+trojan://slch2024@104.18.3.108:8443?type=ws&sni=ocost-dy.wmlefl.cc&path=/&host=ocost-dy.wmlefl.cc#US13
 trojan://Telegram-DailyConfigs@104.18.3.11:2096/?type=ws&host=kanale-daily-configs.blackoutconnection.ir&security=tls&sni=kanale-daily-configs.blackoutconnection.ir#%40Hope_Net-join-us-on-Telegram
 trojan://trojan@104.18.3.150:443?security=tls&sni=main.xicun.us.kg&type=ws&host=main.xicun.us.kg#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.3.150:443
 trojan://NISHIKUITAN111@104.18.31.159:443/?type=tcp&security=tls#%40Hope_Net-join-us-on-Telegram
@@ -10891,7 +10891,7 @@ trojan://3f319a18-1d20-4475-b775-f5c98a52ba18@agroup.node5.t.nodelist-gfwairport
 trojan://44d901b6-954f-3d03-80c2-375dd2f202be@agt.fjzjvgq.cn:13349?sni=agt.jiashumao.net
 trojan://giosZwLNqAUWxczWJDYqXQDgNLMYwbKI@ahgjs-4-tr-0.hkg-01.o-two.xyz:889?security=tls&sni=o-two.bond#4Kian-4550
 trojan://f282b878-8711-45a1-8c69-5564172123c1@aio.nolimit.dpdns.org:443/?type=ws&host=aio.nolimit.dpdns.org&path=%2Faioproxybot%2F146.190.192.43-80&security=tls&sni=aio.nolimit.dpdns.org#%F0%9F%AB%9C56%40oneclickvpnkeys
-trojan://f282b878-8711-45a1-8c69-5564172123c1@aio.zipzap.biz.id:443/?type=ws&host=aio.zipzap.biz.id&path=%2Faioproxybot%2F129.150.49.58-18650&security=tls&sni=aio.zipzap.biz.id#%F0%9F%AB%9123%40oneclickvpnkeys
+trojan://f282b878-8711-45a1-8c69-5564172123c1@aio.zipzap.biz.id:443?security=tls&sni=aio.zipzap.biz.id&type=ws&host=aio.zipzap.biz.id&path=%2Faioproxybot%2F129.150.49.58-18650#%F0%9F%85%BC%F0%9F%85%B4%F0%9F%85%B7%F0%9F%85%B3%F0%9F%85%B8
 trojan://f282b878-8711-45a1-8c69-5564172123c1@aio.zipzap.biz.id:80?encryption=none&type=ws&host=aio.zipzap.biz.id&path=/aioproxybot/129.150.49.58-18650&security=none&sni=aio.zipzap.biz.id#@warp_city
 trojan://4cfb5b98-5a9d-4c6d-8911-25deca297fa1@air-Phoenix13.900513.xyz:7528
 trojan://4cfb5b98-5a9d-4c6d-8911-25deca297fa1@air-Phoenix13.900513.xyz:7708
