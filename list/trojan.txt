@@ -3538,6 +3538,7 @@ trojan://utF6JLQd2x@141.227.128.69:1935?security=tls&alpn=h3,h2,http/1.1&headerT
 trojan://hZ7JkYVAfB@141.227.138.29:1935?security=tls&alpn=h3,h2,http/1.1&headerType=none&type=tcp&sni=x1ch-ovh.devefun.net#4Mohsen-4464
 trojan://AXpQXM4vNh@141.227.160.167:1935?security=tls&alpn=h3,h2,http/1.1&headerType=none&type=tcp&sni=x2swe-ovh.devefun.net#4Mohsen-3672
 trojan://OLq0FfOlp7@141.227.160.88:1935?security=tls&sni=x1-sweden-ovh-v2.devefun.net&alpn=h2,http/1.1&allowInsecure=1&fp=chrome&type=tcp#%F0%9F%87%AB%F0%9F%87%B7%20France%20-%20NA%20%F0%9F%8C%8D%20TR-TCP-TLS%204%E2%83%A3
+trojan://Aimer@141.94.70.24:2053?security=tls&sni=epgc.aimercc.dpdns.org&type=tcp&headerType=none#%F0%9F%87%A9%F0%9F%87%AA_%E5%BE%B7%E5%9B%BD
 trojan://6e3b4240-38f9-4321-9b3c-bc669a34b848@141.94.76.177:443?security=tls#4Mohsen-3449
 trojan://4f2c305b-9a03-4493-b3e4-2dff2f1af8c9@141.95.61.209:1145?security=tls#4Mohsen-3364
 trojan://f25d1510-3763-4fcf-9804-86d6c1566629@141.98.18.14:443?allowInsecure=1&sni=data.amazon-azure.com
@@ -8825,7 +8826,7 @@ trojan://bs6KJkPBW9MP74uHEa@45.80.190.71:443
 trojan://Aimer@45.80.209.25:81/?type=ws&host=epmk.ambercc.filegear-sg.me&path=%2F%3Fed%3D2560%26proxyip%3Dts.hpc.tw&security=tls&sni=epmk.ambercc.filegear-sg.me#%F0%9F%8C%BD98%40oneclickvpnkeys
 trojan://53784f81-7b1a-468e-8792-756a2d4e744e@45.80.210.89:443?allowInsecure=1&sni=data.amazon-azure.com
 trojan://bpb-trojan@45.81.58.174:443/?type=tcp&security=tls&sni=bpb.my79801.com&allowInsecure=1#%40Hope_Net-join-us-on-Telegram
-trojan://vpn@45.82.14.144:2025?security=none&fp=chrome&type=ws&path=/&host=dns.google.com#%F0%9F%87%B7%F0%9F%87%BA%20Russian%20Federation%20-%20NA%20%F0%9F%8C%8D%20TR-WS-NONE%204%E2%83%A3
+trojan://vpn@45.82.14.144:2025?security=none&type=ws&host=dns.google.com&path=%2F#%F0%9F%87%B0%F0%9F%87%BF%5Bopenproxylist.com%5D%20trojan-KZ
 trojan://750a29bf-0a40-437f-b120-38de74ae7eaf@45.82.253.234:28443?security=tls#4Mohsen-3473
 trojan://a1b16d10-4f43-4dd9-8c4f-52065b2b0910@45.82.253.237:28443?security=tls#4Mohsen-4149
 trojan://blue2024@45.85.118.20:443/?type=ws&host=ta.promote.icu&path=%2F%3Fed%3D2560&security=tls&sni=ta.promote.icu#%40Hope_Net-join-us-on-Telegram
