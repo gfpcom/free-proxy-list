@@ -2620,7 +2620,7 @@ trojan://telegram-id-directvpn@13.36.247.226:22223?security=tls&alpn=http/1.1&he
 trojan://telegram-id-privatevpns@13.36.249.249:22222?security=tls&alpn=http%2F1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/MoftConfig
 trojan://telegram-id-directvpn@13.36.250.47:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#Telegram:@IP_CF
 trojan://telegram-id-directvpn@13.36.250.95:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/ConfigsHub
-trojan://telegram-id-privatevpns@13.36.252.221:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
+trojan://telegram-id-privatevpns@13.36.252.221:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S104)%F0%9F%87%A8%F0%9F%87%B5t.me/PrivateVPNs
 trojan://telegram-id-v2rayvpnchannel@13.36.252.85:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://telegram-id-privatevpns@13.36.253.184:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S103)%F0%9F%87%A8%F0%9F%87%B5t.me/PrivateVPNs
 trojan://telegram-id-directvpn@13.36.253.184:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#OurChannel%20:%20@DirectVPN
@@ -6033,7 +6033,7 @@ trojan://telegram-id-directvpn@18.196.72.95:22223?security=tls&alpn=http/1.1&hea
 trojan://telegram-id-privatevpns@18.196.84.143:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S102)@MoftConfig
 trojan://telegram-id-privatevpns@18.197.117.242:22222?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://telegram-id-directvpn@18.197.117.242:22223?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
-trojan://telegram-id-privatevpns@18.197.119.26:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
+trojan://telegram-id-privatevpns@18.197.119.26:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)%F0%9F%87%A9%F0%9F%87%AAt.me/PrivateVPNs
 trojan://telegram-id-privatevpns@18.197.173.247:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)%F0%9F%87%A9%F0%9F%87%AAt.me/PrivateVPNs
 trojan://telegram-id-directvpn@18.197.173.247:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#OurChannel%20:%20@DirectVPN
 trojan://telegram-id-privatevpns@18.197.182.128:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)%F0%9F%87%A9%F0%9F%87%AAt.me/PrivateVPNs
@@ -10704,7 +10704,7 @@ trojan://3ad5547b-609b-4f59-916b-afebd85aba7d@921tw.tfzhc.top:443?allowInsecure=
 trojan://5125c2c4-ad7c-4d3c-8b17-73c9b8a9f8e8@924hk02.tfzhc.top:443?allowInsecure=0&sni=924hk02.tfzhc.top
 trojan://S7UE4ko6Al@93.113.238.32:226?type=tcp&amp;security=reality&amp;fp=chrome&amp;sni=google.com&amp;pbk=7gAftDl-mXzoikjBEtcWptQ7-ncmMZVqu-DiR8mUeVI&amp;sid=0e4addf000a5ccd4&amp;spx=/api
 trojan://3828095943467868160@93.114.98.8:443/?type=tcp&security=tls&sni=supreme-loon.dolphin109.quest#Telegram:@IP_CF
-trojan://wz0hewE7GFcDTP_I6LF0qA@93.127.181.14:60592?note=---Telegram---@NetifyVPN---Telegram---@NetifyVPN---Telegram---@NetifyVPN---Telegram---@NetifyVPN---&security=none&headerType=none&type=tcp#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
+trojan://wz0hewE7GFcDTP_I6LF0qA@93.127.181.14:60592?note=---Telegram---@NetifyVPN---Telegram---@NetifyVPN---Telegram---@NetifyVPN---Telegram---@NetifyVPN---&security=none&headerType=none&type=tcp#%F0%9F%87%A6%F0%9F%87%AA%5BTelegram:NetifyVpn%5D
 trojan://3828095943467868160@93.174.164.49:443?allowInsecure=1&sni=concrete-lion.dolphin109.quest#[]t.me/ConfigsHub
 trojan://9Bb6wjlTOA@93.189.94.159:1935/?type=tcp&security=tls&sni=x14spain.devefun.net#%40Hope_Net-join-us-on-Telegram
 trojan://989aa406-ea9b-11ef-97da-f23c91cfbbc9@931e2678-sx4v40-sy3dhh-1rnrp.cm5.cnkuaishou.com:27231?security=tls&sni=931e2678-sx4v40-sy3dhh-1rnrp.cm5.cnkuaishou.com&type=tcp&headerType=none#%E4%B8%AD%E5%9B%BD%E3%80%90%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%9Ahttps%3A%2F%2Fa0a.xyz%2F%E3%80%9114
