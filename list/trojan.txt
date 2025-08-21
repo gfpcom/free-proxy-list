@@ -726,7 +726,7 @@ trojan://blue2024@104.18.118.73:443/?type=tcp&security=tls&sni=ta.promote.icu#%4
 trojan://Aimer@104.18.12.141:443?sni=epccx.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.12.141:443
 trojan://vip@104.18.12.229:2053?security=tls&sni=heihu880.pages.dev&type=ws&host=heihu880.pages.dev#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.12.229:2053
 trojan://DailyConfigs@104.18.12.229:2087?security=tls&sni=kanale-daily-configs.blackoutconnection.ir&type=ws&host=kanale-daily-configs.blackoutconnection.ir#%20TR-WS-TLS%20%20NA-104.18.12.229:2087
-trojan://trojan@104.18.12.229:8443?sni=store.timimi.dpdns.org#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.12.229:8443
+trojan://trojan@104.18.12.229:8443?allowInsecure=1&amp;sni=mav2flyng.pages.dev&amp;ws=1&amp;wspath=//#@Hope_Net-join-us-on-Telegram
 trojan://trojan@104.18.12.229:8880?security=none&type=ws&host=azadnet.vileyo6708.workers.dev&path=%2F%3Fed%3D2560#%F0%9F%94%92%20TR-WS-NONE%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.12.229:8880
 trojan://NISHIKUITAN111@104.18.120.151:443/?type=tcp&security=tls#%40Hope_Net-join-us-on-Telegram
 trojan://blue2024@104.18.121.158:443/?type=tcp&security=tls&sni=td.promote.icu#%40Hope_Net-join-us-on-Telegram
@@ -920,6 +920,7 @@ trojan://Aimer@104.18.86.56:443?sni=epcca.ambercc.filegear-sg.me#%F0%9F%94%92%20
 trojan://blue2024@104.18.88.163:443/?type=tcp&security=tls&sni=ha.lii2010.us.kg#%40Hope_Net-join-us-on-Telegram
 trojan://Aimer@104.18.9.214:443?sni=epccu.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.9.214:443
 trojan://Aimer@104.18.92.92:443?sni=epccx.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.92.92:443
+trojan://blue2024@104.18.93.219:443?allowInsecure=1&amp;sni=ha.lii2010.us.kg&amp;ws=1&amp;wspath=/?ed=2560#@Hope_Net-join-us-on-Telegram
 trojan://NISHIKUITAN222@104.18.97.15:443?#%20TR-TCP-NA%20%20NA-104.18.97.15:443
 trojan://Aimer@104.19.103.190:2096/?type=tcp&security=tls&sni=ngepy.ambercc.filegear-sg.me#%40Hope_Net-join-us-on-Telegram
 trojan://NISHIKUITAN222@104.19.104.49:443?allowInsecure=0#%20TR-TCP-NA%20%20NA-104.19.104.49:443
