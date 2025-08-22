@@ -5721,7 +5721,6 @@ trojan://telegram-id-directvpn@18.157.53.101:22222?security=tls&sni=trojan.burge
 trojan://telegram-id-privatevpns@18.157.57.224:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/MoftConfig
 trojan://telegram-id-privatevpns@18.157.66.125:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S102)%F0%9F%87%A9%F0%9F%87%AAt.me/PrivateVPNs
 trojan://telegram-id-directvpn@18.157.66.125:22223/?type=tcp&security=tls&sni=trojan.burgerip.co.uk&alpn=http%2F1.1#OurChannel
-trojan://telegram-id-privatevpns@18.158.145.222:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#4Nika-4450
 trojan://telegram-id-directvpn@18.158.15.97:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/ConfigsHub
 trojan://telegram-id-directvpn@18.158.160.70:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#@Vip_Security%20join%20us%20-%20287
 trojan://telegram-id-privatevpns@18.158.172.124:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S113)@MoftConfig
@@ -10830,13 +10829,14 @@ trojan://81fc1ae9-2028-4d59-9c25-7580f318937b@aafrtpfxr.jpl01i9zjfegelp.5xfsur8v
 trojan://f141008b-fc3f-45d3-9c50-d96b09b1e529@aafrtpfxr.jpl01i9zjfegelp.5xfsur8v62.gosdk.xyz:46926?security=tls&sni=q08m.vgraxiw73s.hasyaf.cn&type=tcp&headerType=none#NL%E8%8D%B7%E5%85%B0%28mibei77.com%20%E7%B1%B3%E8%B4%9D%E8%8A%82%E7%82%B9%E5%88%86%E4%BA%AB%29
 trojan://3c80069b-903a-4648-bdc3-fef095edaae3@aafrtpfxr.jpl01i9zjfegelp.5xfsur8v62.gosdk.xyz:46927?security=tls&sni=q08m.vgraxiw73s.hasyaf.cn&type=tcp&headerType=none#NL%E8%8D%B7%E5%85%B0%28mibei77.com%20%E7%B1%B3%E8%B4%9D%E8%8A%82%E7%82%B9%E5%88%86%E4%BA%AB%29
 trojan://028c6a0d-7268-4e13-a59a-e443f8145e8f@aafrtpfxr.jpl02i9zjfegelp.5xfsur8v62.gosdk.xyz:27002/?type=tcp&security=tls&sni=q08m.vgraxiw73s.hasyaf.cn#Telegram:@IP_CF
-trojan://67aae342-d53e-4b33-bc16-b70e15b30dc4@aafrtpfxr.jpl03i9zjfegelp.5xfsur8v62.gosdk.xyz:22271?allowInsecure=0&sni=q08m.vgraxiw73s.hasyaf.cn#[]t.me/ConfigsHub
+trojan://67aae342-d53e-4b33-bc16-b70e15b30dc4@aafrtpfxr.jpl03i9zjfegelp.5xfsur8v62.gosdk.xyz:22271?allowInsecure=0&sni=q08m.vgraxiw73s.hasyaf.cn#Telegram:@config_proxy%20%F0%9F%92%A2
 trojan://d70a8847-7c64-4912-98f2-ea21e952880f@aafrtpfxr.jpl04i9zjfegelp.5xfsur8v62.gosdk.xyz:22269?allowInsecure=0&sni=q08m.vgraxiw73s.hasyaf.cn#[]t.me/ConfigsHub
 trojan://6b0e1898-e7d4-4bfb-8c80-9a521a483302@aafrtpfxr.krl01i9zjfegelp.5xfsur8v62.gosdk.xyz:46668?allowInsecure=0&amp;sni=q08m.vgraxiw73s.hasyaf.cn#Telegram@WFVPN+%E9%9F%A9%E5%9B%BD1
 trojan://6849c459-9b04-46e6-8dd8-f92812711563@aafrtpfxr.myl01i9zjfegelp.5xfsur8v62.gosdk.xyz:43393?allowInsecure=0&amp;sni=q08m.vgraxiw73s.hasyaf.cn#Telegram@WFVPN+%E9%A9%AC%E6%9D%A5%E8%A5%BF%E4%BA%9A2
 trojan://6b0e1898-e7d4-4bfb-8c80-9a521a483302@aafrtpfxr.myl02i9zjfegelp.5xfsur8v62.gosdk.xyz:43383?allowInsecure=0&amp;sni=q08m.vgraxiw73s.hasyaf.cn#Telegram@WFVPN+%E9%A9%AC%E6%9D%A5%E8%A5%BF%E4%BA%9A1
 trojan://6849c459-9b04-46e6-8dd8-f92812711563@aafrtpfxr.nll01i9zjfegelp.5xfsur8v62.gosdk.xyz:43591?allowInsecure=0&amp;sni=q08m.vgraxiw73s.hasyaf.cn#Telegram@WFVPN+%E8%8D%B7%E5%85%B01
 trojan://c6a6376a-2c09-4bcc-971a-8cbecaea1291@aafrtpfxr.pkl01i9zjfegelp.5xfsur8v62.gosdk.xyz:42883?security=tls&sni=q08m.vgraxiw73s.hasyaf.cn&type=tcp&headerType=none#NL%E8%8D%B7%E5%85%B0%28mibei77.com%20%E7%B1%B3%E8%B4%9D%E8%8A%82%E7%82%B9%E5%88%86%E4%BA%AB%29
+trojan://67aae342-d53e-4b33-bc16-b70e15b30dc4@aafrtpfxr.sgl01i9zjfegelp.5xfsur8v62.gosdk.xyz:27401?allowInsecure=0&sni=q08m.vgraxiw73s.hasyaf.cn#Telegram:@config_proxy%20%F0%9F%92%A2
 trojan://67aae342-d53e-4b33-bc16-b70e15b30dc4@aafrtpfxr.sgl02i9zjfegelp.5xfsur8v62.gosdk.xyz:42881?allowInsecure=0&sni=q08m.vgraxiw73s.hasyaf.cn#[]t.me/ConfigsHub
 trojan://d70a8847-7c64-4912-98f2-ea21e952880f@aafrtpfxr.twl01i9zjfegelp.5xfsur8v62.gosdk.xyz:27201?allowInsecure=0&sni=q08m.vgraxiw73s.hasyaf.cn#[]t.me/ConfigsHub
 trojan://d63b8dad-02ee-4477-8f58-693a715ddd4c@aafrtpfxr.usl02i9zjfegelp.5xfsur8v62.gosdk.xyz:33505/?type=tcp&security=tls&sni=q08m.vgraxiw73s.hasyaf.cn#[]t.me/ConfigsHub
