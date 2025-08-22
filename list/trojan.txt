@@ -2990,7 +2990,6 @@ trojan://telegram-id-privatevpns@13.48.45.205:22222?security=tls&sni=trj.rolling
 trojan://telegram-id-privatevpns@13.48.5.87:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trj.rollingnext.co.uk#@Vip_Security%20join%20us%20-%20379
 trojan://telegram-id-privatevpns@13.48.52.204:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S110)@MoftConfig
 trojan://telegram-id-privatevpns@13.48.55.194:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trj.rollingnext.co.uk#%28S416%29%F0%9F%87%B8%F0%9F%87%AAt.me%2FPrivateVPNs
-trojan://telegram-id-directvpn@13.48.66.57:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#4Mohsen-4377
 trojan://telegram-id-privatevpns@13.48.7.125:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#%20@MoftConfigSweden
 trojan://telegram-id-privatevpns@13.48.81.193:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S111)@MoftConfig
 trojan://telegram-id-directvpn@13.48.82.139:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#Telegram:@IP_CF
@@ -5800,7 +5799,7 @@ trojan://telegram-id-directvpn@18.169.253.250:22222?security=tls&sni=trojan.burg
 trojan://telegram-id-privatevpns@18.169.33.206:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S116)@MoftConfig
 trojan://telegram-id-privatevpns@18.169.33.253:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://telegram-id-directvpn@18.169.65.9:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/ConfigsHub
-trojan://telegram-id-privatevpns@18.169.69.27:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#4Mohsen-4459
+trojan://telegram-id-privatevpns@18.169.69.27:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#4FreeIran-6951
 trojan://telegram-id-privatevpns@18.169.71.154:22222?security=tls&sni=trojan.burgerip.co.uk#[]t.me/MoftConfig
 trojan://telegram-id-privatevpns@18.169.75.233:22222?allowInsecure=0&sni=trojan.burgerip.co.uk#@Vip_Security%20join%20us%20-%20269
 trojan://telegram-id-v2rayvpnchannel@18.169.81.26:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#[]t.me/ConfigsHub
@@ -6525,7 +6524,7 @@ trojan://Aimer@193.9.46.16:13333?allowInsecure=0&sni=agepj.ambercc.filegear-sg.m
 trojan://Aimer@193.9.46.181:50080?allowInsecure=0&sni=epccy.ambercc.filegear-sg.me#[]t.me/ConfigsHub
 trojan://bpb-trojan@193.9.49.23:443/?type=tcp&security=tls&sni=bpb.my79801.com&allowInsecure=1#%40Hope_Net-join-us-on-Telegram
 trojan://2af31107-e577-4995-8247-e8a57855e90b@194.104.147.169:10013?sni=xn--vck0bp0g2a4h.xn--ick8a8i.xn--tckwe
-trojan://dda4f3bf-85fb-41bd-9d8e-77a8a02dbd59@194.104.147.74:1066?security=tls&allowInsecure=1&type=tcp#%F0%9F%87%AD%F0%9F%87%B0HK%20%7C%20@V2ray_Collector
+trojan://dda4f3bf-85fb-41bd-9d8e-77a8a02dbd59@194.104.147.74:1066/?type=tcp&security=tls#%F0%9F%87%AD%F0%9F%87%B0HK-194.104.147.74-5062
 trojan://2af31107-e577-4995-8247-e8a57855e90b@194.114.138.1:10011?allowInsecure=1&sni=xn--vck0bp0g2a4h.xn--ick8a8i.xn--tckwe
 trojan://lpt8Opu8fMWxPed5eFV40A@194.145.119.224:3060?security=none&host=fast.com&headerType=http&type=tcp#%D8%A2%D9%84%D9%85%D8%A7%D9%86%20%F0%9F%87%A9%F0%9F%87%AA%20@V2xay
 trojan://2ea5fc44-bd38-4fb0-a9b9-88c83fc56622@194.146.26.40:443?allowInsecure=1&sni=4-193-105-141.nhost.00cdn.com
@@ -12085,7 +12084,7 @@ trojan://8008b06e-2d1d-421c-9cdc-20af1f59093a@itjs.stablize.top:443?type=tcp&all
 trojan://ae54202f-6e78-4362-b24f-528d18e79674@j-p01.niuniucloud.xyz:53044?sni=niuniucloud.xyz#%F0%9F%87%A8%F0%9F%87%B3%E4%B8%AD%E5%9B%BD(%E6%AC%A2%E8%BF%8E%E8%AE%A2%E9%98%85Youtube%E5%85%83%E4%BA%A8%E5%88%A9%E8%B4%9E)
 trojan://ae54202f-6e78-4362-b24f-528d18e79674@j-p02.niuniucloud.xyz:53046?sni=niuniucloud.xyz#%F0%9F%87%A8%F0%9F%87%B3%E4%B8%AD%E5%9B%BD(%E6%AC%A2%E8%BF%8E%E8%AE%A2%E9%98%85Youtube%E5%85%83%E4%BA%A8%E5%88%A9%E8%B4%9E)
 trojan://ae54202f-6e78-4362-b24f-528d18e79674@j-p04.niuniucloud.xyz:53050?sni=niuniucloud.xyz#%F0%9F%87%A8%F0%9F%87%B3%E4%B8%AD%E5%9B%BD(%E6%AC%A2%E8%BF%8E%E8%AE%A2%E9%98%85Youtube%E5%85%83%E4%BA%A8%E5%88%A9%E8%B4%9E)
-trojan://bpb-trojan@japan.com:443?encryption=none&security=tls&sni=zamim340.ggff.net&type=ws&host=zamim340.ggff.net&path=/tr?ed=2560#4Mohsen-4082
+trojan://vip@japan.com:443?encryption=none&security=tls&sni=heihu880.pages.dev&type=ws&host=heihu880.pages.dev&path=/?ed=2560#%F0%9F%87%A8%F0%9F%87%A6CA+-%3E+%F0%9F%87%B8%F0%9F%87%AASE+%E2%9A%A1@DeamNet_Proxy
 trojan://bbab60b8-779f-31e2-916e-571f7d7023c4@jd100.8faka.tk:35100?allowInsecure=1#Relay_%f0%9f%87%ba%f0%9f%87%b8US-%f0%9f%87%ba%f0%9f%87%b8US_1328
 trojan://bbab60b8-779f-31e2-916e-571f7d7023c4@jd100.zahuopu.top:35100?allowInsecure=1#Relay_%f0%9f%87%ba%f0%9f%87%b8US-%f0%9f%87%ba%f0%9f%87%b8US_1292
 trojan://bbab60b8-779f-31e2-916e-571f7d7023c4@jd101.8faka.tk:35101?allowInsecure=1#Relay_%f0%9f%87%b7%f0%9f%87%baRU-%f0%9f%87%b7%f0%9f%87%baRU_628
