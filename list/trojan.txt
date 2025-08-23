@@ -698,7 +698,7 @@ trojan://NISHIKUITAN111@104.17.88.219:443/?type=tcp&security=tls#%40Hope_Net-joi
 trojan://NISHIKUITAN111@104.17.9.34:443?allowInsecure=1&ws=1&wspath=/#4Kian-3818
 trojan://bpb-trojan@104.17.9.38:443/?type=tcp&security=tls&sni=bpb.my79801.com&allowInsecure=1#%40Hope_Net-join-us-on-Telegram
 trojan://blue2024@104.17.90.26:443/?type=tcp&security=tls&sni=ha.lii2010.us.kg#%40Hope_Net-join-us-on-Telegram
-trojan://Kanale-Daily_Configs@104.17.97.5:2053?security=tls&sni=kanale-daily-configs.blackoutconnection.ir&type=ws&host=kanale-daily-configs.blackoutconnection.ir&path=%2FTELEGRAM%3A%40Daily_Configs%3Fed%3D2560&fp=randomized#%20TR-WS-TLS%20%20NA-104.17.97.5:2053
+trojan://Daily_Configs@104.17.97.5:2053?security=tls&amp;type=ws&amp;sni=kanale-daily-configs.blackoutconnection.ir&amp;path=/TELEGRAM:@Daily_Configs?ed=2560&amp;host=kanale-daily-configs.blackoutconnection.ir#@Hope_Net-join-us-on-Telegram
 trojan://Aimer@104.17.99.31:443?sni=epccg.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.17.99.31:443
 trojan://vip@104.18.0.117:443?security=tls&sni=heihu880.pages.dev&type=ws&host=heihu880.pages.dev#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.0.117:443
 trojan://Aimer@104.18.0.96:443?sni=epccv.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.0.96:443
@@ -1130,7 +1130,7 @@ trojan://auto@104.20.17.209:443?security=tls&sni=b96ef9ae.trojanfree-76s.pages.d
 trojan://auto@104.20.17.212:443?security=tls&sni=b96ef9ae.trojanfree-76s.pages.dev&type=ws&host=b96ef9ae.trojanfree-76s.pages.dev&path=%2Fb96ef9ae.trojanfree-76s.pages.dev%2F#%20TR-WS-TLS%20%20NA-104.20.17.212:443
 trojan://auto@104.20.17.227:443?security=tls&sni=b96ef9ae.trojanfree-76s.pages.dev&type=ws&host=b96ef9ae.trojanfree-76s.pages.dev&path=%2Fb96ef9ae.trojanfree-76s.pages.dev%2F#%20TR-WS-TLS%20%20NA-104.20.17.227:443
 trojan://auto@104.20.17.232:443?security=tls&sni=b96ef9ae.trojanfree-76s.pages.dev&type=ws&host=b96ef9ae.trojanfree-76s.pages.dev&path=%2Fb96ef9ae.trojanfree-76s.pages.dev%2F#%20TR-WS-TLS%20%20NA-104.20.17.232:443
-trojan://auto@104.20.17.233:443?security=tls&sni=b96ef9ae.trojanfree-76s.pages.dev&type=ws&host=b96ef9ae.trojanfree-76s.pages.dev&path=%2Fb96ef9ae.trojanfree-76s.pages.dev%2F#%20TR-WS-TLS%20%20NA-104.20.17.233:443
+trojan://auto@104.20.17.233:443?security=tls&amp;type=ws&amp;sni=b96ef9ae.trojanfree-76s.pages.dev&amp;path=/b96ef9ae.trojanfree-76s.pages.dev/&amp;host=b96ef9ae.trojanfree-76s.pages.dev#@Hope_Net-join-us-on-Telegram
 trojan://auto@104.20.17.239:443?security=tls&sni=b96ef9ae.trojanfree-76s.pages.dev&type=ws&host=b96ef9ae.trojanfree-76s.pages.dev&path=%2Fb96ef9ae.trojanfree-76s.pages.dev%2F#%20TR-WS-TLS%20%20NA-104.20.17.239:443
 trojan://auto@104.20.17.255:443?security=tls&sni=b96ef9ae.trojanfree-76s.pages.dev&type=ws&host=b96ef9ae.trojanfree-76s.pages.dev&path=%2Fb96ef9ae.trojanfree-76s.pages.dev%2F#%20TR-WS-TLS%20%20NA-104.20.17.255:443
 trojan://auto@104.20.17.25:443?security=tls&sni=b96ef9ae.trojanfree-76s.pages.dev&type=ws&host=b96ef9ae.trojanfree-76s.pages.dev&path=%2Fb96ef9ae.trojanfree-76s.pages.dev%2F#%20TR-WS-TLS%20%20NA-104.20.17.25:443
@@ -1387,6 +1387,7 @@ trojan://NISHIKUITAN222@104.20.58.2:443?#%20TR-TCP-NA%20%20NA-104.20.58.2:443
 trojan://auto@104.20.6.134:443?security=tls&type=ws&sni=e9464f45.trauma-2r4.pages.dev&path=/&host=e9464f45.trauma-2r4.pages.dev#%E6%9C%AA%E7%9F%A52
 trojan://NISHIKUITAN111@104.20.65.198:443#4Sarina-5892
 trojan://f0d584bc-342f-4443-ba24-79e4d0e504b1@104.20.71.132:8880?security=none&type=ws&host=late-tooth.granzinhannah.workers.dev&path=%2FTelegram%40Linkvws%3Fed%3D2560#%20TR-WS-NONE%20%20NA-104.20.71.132:8880
+trojan://bpb-trojan@104.20.75.209:443?sni=adagio.us.kg#@Hope_Net-join-us-on-Telegram
 trojan://blue2024@104.20.8.70:443/?type=tcp&security=tls
 trojan://NISHIKUITAN222@104.20.84.90:443?#%20TR-TCP-NA%20%20NA-104.20.84.90:443
 trojan://NISHIKUITAN222@104.20.98.229:443?#%20TR-TCP-NA%20%20NA-104.20.98.229:443
@@ -1717,7 +1718,7 @@ trojan://Julius@104.219.41.229:443?security=tls&sni=miami.juliusnet.com&allowIns
 trojan://vip@104.22.14.132:443?security=tls&sni=heihu880.pages.dev&type=tcp#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.22.14.132:443
 trojan://6884d714-d3c4-4b49-aa20-767ea92837d6@104.22.15.132:443?security=tls&sni=icecream.955850.xyz&type=ws&host=icecream.955850.xyz#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.22.15.132:443
 trojan://NISHIKUITAN222@104.22.17.58:443?#%20TR-TCP-NA%20%20NA-104.22.17.58:443
-trojan://NISHIKUITAN222@104.22.2.252:443?allowInsecure=0#%20TR-TCP-NA%20%20NA-104.22.2.252:443
+trojan://NISHIKUITAN222@104.22.2.252:443?#@Hope_Net-join-us-on-Telegram
 trojan://Aimer@104.22.24.27:443?sni=epccv.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.22.24.27:443
 trojan://Aimer@104.22.27.125:443?sni=epccv.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.22.27.125:443
 trojan://NISHIKUITAN222@104.22.27.200:443?#%20TR-TCP-NA%20%20NA-104.22.27.200:443
