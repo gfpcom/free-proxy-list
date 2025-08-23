@@ -16426,7 +16426,6 @@ vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@18.195.155.9:22222?path=/telegram-c
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@18.195.157.38:22224?type=ws&security=tls&path=/telegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#%F0%9F%87%A9%F0%9F%87%AADE_732_@Surfboardv2ray
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@18.195.211.167:22222?path=/telegram-channel-vlessconfig-ws&security=tls&encryption=none&host=telegram-channel-vlessconfig.sohala.uk&type=ws&sni=telegram-channel-vlessconfig.sohala.uk#Telegram:@IP_CF
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@18.195.228.194:22224?type=ws&security=tls&path=%2Ftelegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@Vip_Security%20join%20us%20-%2045
-vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@18.195.47.244:22224?type=ws&amp;security=tls&amp;path=/telegram-channel-vlessconfig&amp;sni=trojan.burgerip.co.uk#@VlessConfig
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@18.195.86.154:22222?path=/telegram-channel-vlessconfig-ws&security=tls&encryption=none&host=telegram-channel-vlessconfig.sohala.uk&type=ws&sni=telegram-channel-vlessconfig.sohala.uk#Telegram%20@VlessConfig
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@18.195.86.160:22224?type=ws&security=tls&path=%2Ftelegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@VlessConfig
 vless://d8b42cd5-a149-4356-9e61-30ad83662600@18.195.9.12:443?type=tcp&security=none#[]t.me/MoftConfig
@@ -40965,8 +40964,8 @@ vless://0ef0630e-544c-4ed0-a4de-861f14695f37@m2-1cm.pages.dev:443?encryption=non
 vless://cd71a9ab-d547-4809-924f-1ae49c993cb4@m2.ezilax.net:2053?security=none&amp;encryption=none&amp;headerType=http&amp;type=tcp#@appsooner%20%DA%A9%D8%A7%D9%86%D8%A7%D9%84%20%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85%20%F0%9F%92%94%20%D9%85%D9%88%D9%82%D8%AA
 vless://06ff78d1-762f-47a6-81c7-9ebb1a24192f@m2.mixproject.ir:442?security=tls&amp;type=httpupgrade&amp;headerType=&amp;path=/inboundsCWNeRzWFjgWHWZFw?ed=2560&amp;host=&amp;sni=name.giftsata.ir&amp;fp=chrome&amp;alpn=h3,h2,http/1.1#%F0%9F%87%B3%F0%9F%87%B1%20MTN%20-%20%D9%87%D9%84%D9%86%D8%AF%20-%20%D8%B6%D8%AF%20%D9%81%DB%8C%D9%84%D8%AA%D8%B1%20%207860131882_a7b1
 vless://6bfe29b6-6b37-4186-a9c1-377503f5ea0d@m2.momazlumi.website:41577/?type=tcp&encryption=none#31%F0%9F%8E%AF%40oneclickvpnkeys
-vless://f65e636d-c532-4e6c-b428-015402fd276c@m22a.vip784.com:33801?security=none&encryption=none&host=varzesh3.ir&headerType=http&type=tcp#%5B%F0%9F%8F%81%5Dt.me/ConfigsHub
-vless://56c3abea-507d-4559-b1bd-39f339fc4997@m2a.vip784.com:33801?security=none&encryption=none&host=varzesh3.ir&headerType=http&type=tcp#Channel%20id:%20@ShadowProxy66%F0%9F%87%AB%F0%9F%87%B7
+vless://f65e636d-c532-4e6c-b428-015402fd276c@m22a.vip784.com:33801?security=none&amp;encryption=none&amp;host=varzesh3.ir&amp;headerType=http&amp;type=tcp#Channel%20id:%20@ShadowProxy66%F0%9F%87%B5%F0%9F%87%B1
+vless://56c3abea-507d-4559-b1bd-39f339fc4997@m2a.vip784.com:33801?security=none&amp;encryption=none&amp;host=varzesh3.ir&amp;headerType=http&amp;type=tcp#Channel%20id:%20@ShadowProxy66%F0%9F%87%AB%F0%9F%87%B7
 vless://72f14dc6-b3bf-4c26-b4ad-2724ced253e9@m8.shop99.top:90?security=tls&encryption=none&headerType=none&type=tcp#4Nika-8627
 vless://81432563-263d-4e9b-b8a7-9d2c0309d88e@mJe.nimhub.ir:2053?type=ws&host=mJe.nimhub.ir&path=/&security=tls&fp=random&sni=mJe.nimhub.ir&alpn=h2,http/1.1#[]t.me/ConfigsHub
 vless://a8f095f1-3663-40f9-be12-2c16ae3e86ba@mJe.nimhub.ir:2096?type=ws&host=mJe.nimhub.ir&path=/&security=tls&fp=random&sni=mJe.nimhub.ir&alpn=h2,http/1.1#[]t.me/ConfigsHub
