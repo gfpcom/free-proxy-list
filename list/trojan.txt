@@ -3639,7 +3639,7 @@ trojan://telegram-id-v2rayvpnchannel@15.156.230.250:22222?security=tls&sni=troja
 trojan://telegram-id-directvpn@15.156.41.125:22222?security=tls&sni=trojan.burgerip.co.uk#@Vip_Security%20join%20us%20-%20233
 trojan://telegram-id-directvpn@15.156.42.205:22222?security=tls&type=tcp&sni=trojan.burgerip.co.uk#@Vip_Security%20join%20us%20-%20268
 trojan://telegram-id-v2rayvpnchannel@15.156.99.158:22222/?type=tcp&security=tls&sni=trojan.burgerip.co.uk&alpn=http%2F1.1#%40Hope_Net-join-us-o...
-trojan://telegram-id-directvpn@15.157.103.50:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#%5B%F0%9F%87%A8%F0%9F%87%A6%5Dt.me/ConfigsHub
+trojan://telegram-id-directvpn@15.157.103.50:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://telegram-id-v2rayvpnchannel@15.157.137.166:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#@Hope_Net-join-us-on-Telegram%60
 trojan://telegram-id-directvpn@15.157.141.220:22222?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.miwan.co.uk
 trojan://telegram-id-directvpn@15.157.241.128:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
@@ -8515,6 +8515,7 @@ trojan://oIwjHDXpKePvYIg8@43.162.127.44:443?allowInsecure=1&sni=myvps.cfd#%20@Mo
 trojan://8aeacb46-cd15-4c2d-8de8-9b1cd34a35dd@43.198.102.156:443
 trojan://ae7cc604-d970-4200-9a9b-eb45087b4fc1@43.198.12.229:28443?security=tls&sni=mzy.hruqoaw.cn#4Kian-3970
 trojan://dns68@43.198.148.59:8099?security=tls&sni=trojan.putata.us.kg&type=ws&host=trojan.putata.us.kg&path=%2F%3Fed%3D2560&fp=randomized&alpn=http%2F1.1#%20TR-WS-TLS%20%20HK-43.198.148.59:8099
+trojan://aa6ddd2f-d1cf-4a52-ba1b-2640c41a7856@43.198.250.49:49782?sni=jp12.bilibili.com&allowInsecure=1#%5B%F0%9F%8F%81%5Dt.me/ConfigsHub
 trojan://7103c753-b8a5-4642-b370-8a5cc44ecc99@43.198.94.89:443
 trojan://299beacf-37f0-41c6-a122-9260c75731bf@43.199.157.180:49782?sni=hk12.bilibili.com#[]t.me/ConfigsHub
 trojan://299beacf-37f0-41c6-a122-9260c75731bf@43.199.216.251:49782?security=tls&type=tcp&sni=hk12.bilibili.com#@Vip_Security%20join%20us%20-%2012
