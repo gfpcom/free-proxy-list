@@ -6438,7 +6438,7 @@ trojan://blue2024@190.93.247.128:443/?type=tcp&security=tls&sni=hb.lii2010.us.kg
 trojan://blue2024@190.93.247.133:443/?type=tcp&security=tls&sni=hb.lii2010.us.kg&allowInsecure=1#%40Hope_Net-join-us-on-Telegram
 trojan://NISHIKUITAN111@190.93.247.139:443/?type=tcp&security=tls&allowInsecure=1#%40Hope_Net-join-us-on-Telegram
 trojan://NISHIKUITAN222@190.93.247.146:443?security=tls&sni=im.ylks.xyz&type=ws&host=im.ylks.xyz&path=%2F#%20TR-WS-TLS%20%20NA-190.93.247.146:443
-trojan://572e7789-76af-51c8-928b-e327d862f16c@190.93.247.152:80?security=none&type=ws&host=Uk1.vless.site.&path=%2Fvless#%20TR-WS-NONE%20%20NA-190.93.247.152:80
+trojan://572e7789-76af-51c8-928b-e327d862f16c@190.93.247.152:80?security=none&type=ws&path=/vless&host=Uk1.vless.site.#%5B%F0%9F%87%A8%F0%9F%87%B7%5Dt.me/ConfigsHub
 trojan://NISHIKUITAN111@190.93.247.175:443?#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-190.93.247.175:443
 trojan://NISHIKUITAN222@190.93.247.234:443?security=tls&sni=im.ylks.xyz&type=ws&host=im.ylks.xyz&path=%2F#%20TR-WS-TLS%20%20NA-190.93.247.234:443
 trojan://NISHIKUITAN222@190.93.247.242:443?allowInsecure=1#%20TR-TCP-NA%20%20NA-190.93.247.242:443
@@ -7492,6 +7492,7 @@ trojan://telegram-id-privatevpns@3.66.20.79:22222?allowInsecure=0&sni=trojan.bur
 trojan://telegram-id-privatevpns@3.66.209.73:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/MoftConfig
 trojan://telegram-id-directvpn@3.66.209.73:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/ConfigsHub
 trojan://telegram-id-privatevpns@3.66.238.211:22222/?type=tcp&security=tls&sni=trojan.burgerip.co.uk#%40Hope_Net-join-us-on-Telegram
+trojan://telegram-id-privatevpns@3.66.251.142:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S102)%F0%9F%87%A9%F0%9F%87%AAt.me/PrivateVPNs
 trojan://telegram-id-privatevpns@3.66.64.80:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/MoftConfig
 trojan://telegram-id-privatevpns@3.66.72.220:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)@MoftConfig
 trojan://telegram-id-directvpn@3.66.72.220:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#[]t.me/MoftConfig
@@ -11208,6 +11209,7 @@ trojan://fb54fa9e-20ab-4583-b449-69f270776672@cdntwa.xiaomispeed.com:38522?allow
 trojan://a66c69cf-c8f5-436d-a7e7-efdbfd7143af@cdntwa.xiaomispeed.com:39765?allowInsecure=1&sni=cdntwa.xiaomispeed.com#%F0%9F%87%B9%F0%9F%87%BC%20%E5%8F%B0%E6%B9%BE%2015
 trojan://9e0822c2-75ea-4d30-8895-9fe59da9935c@cdnu46352173896.m.ihotelapis.net:26781?allowInsecure=1&sni=cdnU46352173896.m.ihotelapis.net
 trojan://5y8y3CwxRVYhyfSY@ce.rutracker-cn.com:443?allowInsecure=0
+trojan://bpb-trojan@cf.090227.xyz:443?sni=bpbpanel.ac.cn.eu.org#%5B%F0%9F%87%A8%F0%9F%87%A6%5Dt.me/ConfigsHub
 trojan://4807b8ab-d74a-445e-9556-45a7ace4f6d6@cf.dalazhi.eu.org:443?security=tls&sni=tj2.dalazhi.eu.org&alpn=h2&fp=chrome&type=grpc&serviceName=puijtrojangrpc&mode=gun#dalazhi%40gmail.com-Trojan_gRPC
 trojan://e14c0c0e-f838-49e9-bcee-01ead9208af2@cf.dalazhi.eu.org:8443?security=tls&sni=us.dalazhi.eu.org&alpn=h2&fp=chrome&type=grpc&serviceName=unlotrojangrpc&mode=gun#e14c0c0e-Trojan_gRPC
 trojan://e14c0c0e-f838-49e9-bcee-01ead9208af2@cf3.dalazhi.eu.org:8443?security=tls&sni=us.dalazhi.eu.org&alpn=h2&fp=chrome&type=grpc&serviceName=unlotrojangrpc&mode=gun#e14c0c0e-Trojan_gRPC1
