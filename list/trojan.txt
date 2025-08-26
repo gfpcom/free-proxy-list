@@ -6998,6 +6998,7 @@ trojan://Aimer@218.156.228.198:20202/?type=tcp&security=tls&sni=ngepz.ambercc.fi
 trojan://ttfang@218.157.11.21:12601/?type=ws&host=ttfang.fange.me&path=%2F&security=tls&sni=ttfang.fange.me&allowInsecure=1#@MoftConfigSouth%20KoreaSeongnam-si%20(Jeongja-dong)ping:333.65ms
 trojan://Aimer@218.158.109.102:12336?sni=epcci.ambercc.filegear-sg.me&allowInsecure=0#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%87%B0%F0%9F%87%B7%20KR-218.158.109.102:12336
 trojan://Aimer@218.158.251.112:20900/?type=tcp&security=tls&sni=ngepx.ambercc.filegear-sg.me#%40Hope_Net-join-us-on-Telegram%20vless%3A%2F%2F238...
+trojan://aa6ddd2f-d1cf-4a52-ba1b-2640c41a7856@218.190.230.207:49364?security=tls&sni=hk12.bilibili.com&type=tcp#%5B%F0%9F%8F%81%5Dt.me/ConfigsHub
 trojan://20a84ebf-9341-4f5f-8245-3975e2fdeee5@219.135.231.205:21019?allowInsecure=0#@Hope_Net-join-us-on-Telegram
 trojan://Aimer@219.76.13.166:443?security=tls&sni=ngepz.ambercc.filegear-sg.me&type=tcp#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%87%AD%F0%9F%87%B0%20HK-219.76.13.166:443
 trojan://ZFYOpKqD8uEClpZ2ya83cyCDalwSOYz3F3eCxnBD4eSXNSR5R0aAATj7I3x69g@219.76.13.175:443?security=tls&sni=golang.protocolbuffer.com#4Mohsen-3830
@@ -13281,6 +13282,7 @@ trojan://c85761bc-5d74-4ae5-b525-0d32443182fa@ua.mjt000.com:443/?type=tcp&securi
 trojan://af4dc66a-ec88-4057-9e46-777b584577f7@ua.mjt001.com:443?allowInsecure=1&sni=ua.mjt001.com#_JP_%e6%97%a5%e6%9c%ac_%e6%ac%a2%e8%bf%8e%e8%ae%a2%e9%98%85yui%e7%a7%91%e6%8a%80_183
 trojan://f25d1510-3763-4fcf-9804-86d6c1566629@udhk2-tg-data.amazonwebservicess.com:443?sni=tls.amazonwebservicess.com
 trojan://zsu4Mq3A9J@uk-02.allhubb.info:8443?security=tls&alpn=h3%2Ch2%2Chttp%2F1.1&headerType=none&fp=random&type=tcp&sni=uk-02.allhubb.info#[]t.me/MoftConfig
+trojan://1ce1df7962f71c6f@uk-03.allhubb.info:8443?security=tls&alpn=h2,http/1.1&headerType=none&fp=chrome&type=tcp&sni=uk-03.allhubb.info#t.me/entryNET/config=1841495082751781
 trojan://ldq6RVIsLJ@uk-04.allhubb.info:8443?security=tls&alpn=h3%2Ch2%2Chttp%2F1.1&headerType=&fp=randomized&type=tcp&sni=uk-04.allhubb.info#[]t.me/MoftConfig
 trojan://d150c8c3-a667-4d3e-843c-739f8558c7d2@uk-full.privateip.net:443?security=tls#4Mohsen-4001
 trojan://65abdb1c-1cdf-4630-a32b-8ae566b48c00@uk.fastsoonlink.com:40007/?type=tcp&security=tls&sni=uknode.soon.guru#%40Hope_Net-join-us-on-Telegram
