@@ -9059,7 +9059,7 @@ trojan://Aimer@46.254.93.243:8443?security=tls&sni=epge.esslh.filegear-sg.me&alp
 trojan://Aimer@46.254.93.251:2087/?type=tcp&security=tls&sni=epmd.ambercc.filegear-sg.me#%F0%9F%8F%81RELAY-46.254.93.251-1006
 trojan://Aimer@46.254.93.37:8443?security=tls&sni=epge.esslh.filegear-sg.me&alpn=h3&fp=randomized&allowInsecure=1&type=ws&host=epge.esslh.filegear-sg.me&path=%2F%3Fed%3D2560%26proxyip%3Dts.hpc.tw#SJC
 trojan://Aimer@46.254.93.52:8443/?type=tcp&security=tls&sni=epcca.ambercc.filegear-sg.me#%F0%9F%8F%81RELAY-46.254.93.52-2045
-trojan://vpn@46.29.234.154:2025?security=none&allowInsecure=1&fp=chrome&type=ws&path=/&host=dns.google.com#%F0%9F%87%B1%F0%9F%87%B9%20Lithuania%20-%20Vilnius%20%F0%9F%8C%8D%20TR-WS-NONE%204%E2%83%A3
+trojan://vpn@46.29.234.154:2025?security=none&type=ws&host=dns.google.com&path=/#%F0%9F%87%B1%F0%9F%87%B9%5Bopenproxylist.com%5D%20trojan-LT
 trojan://Aimer@46.29.235.31:2053?sni=agepq.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%87%A9%F0%9F%87%B0%20DK-46.29.235.31:2053
 trojan://Aimer@46.3.109.215:8443/?type=tcp&security=tls&sni=ngepx.ambercc.filegear-sg.me&allowInsecure=1#%40Hope_Net-join-us-on-Telegram
 trojan://XW7lkRZpi9@46.31.76.99:22658/?type=tcp&path=%2F&host=cloudflare.com&headerType=http&security=none#[]t.me/ConfigsHub
