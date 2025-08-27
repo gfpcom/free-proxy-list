@@ -2229,8 +2229,8 @@ trojan://24913fd0-a94b-4ed9-9b0e-fddb06af63d3@111.29.60.217:21003?allowInsecure=
 trojan://24913fd0-a94b-4ed9-9b0e-fddb06af63d3@111.29.60.217:21004?allowInsecure=1
 trojan://24913fd0-a94b-4ed9-9b0e-fddb06af63d3@111.29.60.217:41001?allowInsecure=1
 trojan://38571ca6-6692-4559-b901-0bc5826b7661@111.4.108.163:60194?allowInsecure=0#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
-trojan://7fec5d9d-4a06-377f-9fc3-6c1fef6a7f4b@111.47.212.170:20139/?type=tcp&amp;security=tls&amp;sni=z139.hongkongnode.top#%F0%9F%84%B5%F0%9F%84%BA%20%F0%9F%87%AF%F0%9F%87%B5%20%E6%97%A5%E6%9C%AC%E2%80%A2%E9%AB%98%E9%80%9F139%E2%80%A2%E9%93%82%E9%87%91
-trojan://7fec5d9d-4a06-377f-9fc3-6c1fef6a7f4b@111.47.212.170:63985/?type=tcp&amp;security=tls&amp;sni=x74.flybar.work&amp;alpn=h2#%F0%9F%84%B5%F0%9F%84%BA%20gy.58n.net:63985
+trojan://7fec5d9d-4a06-377f-9fc3-6c1fef6a7f4b@111.47.212.170:20139/?type=tcp&security=tls&sni=z139.hongkongnode.top#%F0%9F%84%B5%F0%9F%84%BA%20%F0%9F%87%AF%F0%9F%87%B5%20%E6%97%A5%E6%9C%AC%E2%80%A2%E9%AB%98%E9%80%9F139%E2%80%A2%E9%93%82%E9%87%91
+trojan://7fec5d9d-4a06-377f-9fc3-6c1fef6a7f4b@111.47.212.170:63985/?type=tcp&security=tls&sni=x74.flybar.work&alpn=h2#%F0%9F%84%B5%F0%9F%84%BA%20gy.58n.net:63985
 trojan://13c3cf97-5a4a-434f-880a-aecbd70c15bc@111.62.241.211:20083?allowInsecure=1&sni=3.p5zqtpj2n7.xyz#%20@MoftConfigChina
 trojan://13c3cf97-5a4a-434f-880a-aecbd70c15bc@111.62.241.211:20106?security=tls&headerType=&type=tcp&sni=6.2gyh5ybsic.xyz#%20@MoftConfigChina
 trojan://BZjkHMao@112.16.228.103:443?allowInsecure=1#%E4%B8%AD%E8%BD%AC%E8%8A%82%E7%82%B9-3.80MB/s
@@ -8432,7 +8432,7 @@ trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.61:4448?security=tls&sni=ww
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.192.61:444?allowInsecure=1&sni=www.baidu.com#%F0%9F%87%AD%F0%9F%87%B0%20%E9%A6%99%E6%B8%AF4%7C%40stairnode
 trojan://TNDSJfNv@36.151.195.48:4603?security=tls#4Kian-3990
 trojan://TNDSJfNv@36.151.195.48:4787?security=tls#4Kian-3991
-trojan://6927305290f4e972cdd3575433bbc5f1@36.151.251.24:32765/?type=tcp&security=tls&sni=www.baidu.com&allowInsecure=1#%F0%9F%AA%9092%40oneclickvpnkeys
+trojan://6927305290f4e972cdd3575433bbc5f1@36.151.251.24:32765/?type=tcp&security=tls&sni=www.baidu.com&allowInsecure=1#%E6%96%B0%E5%8A%A0%E5%9D%A1
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.24:50723?allowInsecure=1&sni=www.baidu.com#%E9%A6%99%E6%B8%AF5%7C%40ripaojiedian
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.29:53067?allowInsecure=1&sni=www.baidu.com#%E6%97%A5%E6%9C%AC4%7C%40ripaojiedian
 trojan://d0d08cddacc3190ea81b1b792e1b5fde@36.151.251.33:19577/?type=tcp&security=tls&sni=www.baidu.com#%F0%9F%87%A8%F0%9F%87%B3CN-36.151.251.33-0176
@@ -11703,11 +11703,11 @@ trojan://xjN4xcuPGg@f.522226.xyz:45601?security=tls&headerType=none&type=tcp#4Ki
 trojan://3f514ea2-4662-11ed-a8bf-f23c91cfbbc9@f01b2667-sytz40-szptnz-1kcpe.cm5.cnkuaishou.com:14234?security=tls&sni=f01b2667-sytz40-szptnz-1kcpe.cm5.cnkuaishou.com#4Mohsen-3638
 trojan://3f514ea2-4662-11ed-a8bf-f23c91cfbbc9@f01b2667-sytz40-szptnz-1kcpe.cm5.cnkuaishou.com:27231?allowInsecure=0#%F0%9F%87%B8%F0%9F%87%AC%20%E6%96%B0%E5%8A%A0%E5%9D%A1%20324
 trojan://9cc3c03e-21fd-11ee-a642-f23c91369f2d@f068bcd0-syvts0-t80cbx-1k0yf.cm5.cnkuaishou.com:27231?allowInsecure=0#%F0%9F%87%B8%F0%9F%87%AC%20%E6%96%B0%E5%8A%A0%E5%9D%A1%20243
-trojan://9c3c38d0-8637-4c94-a790-61f3202a943a@f10011.flyflylflyflysbs.sbs:10187/?type=tcp&amp;security=tls&amp;sni=hk04.ckcloud.info&amp;allowInsecure=1&amp;fp=chrome#HK
-trojan://9c3c38d0-8637-4c94-a790-61f3202a943a@f10011.flyflylflyflysbs.sbs:19013/?type=tcp&amp;security=tls&amp;sni=sg02.ckcloud.info&amp;allowInsecure=1&amp;fp=chrome#SG
-trojan://9c3c38d0-8637-4c94-a790-61f3202a943a@f10011.flyflylflyflysbs.sbs:19949/?type=tcp&amp;security=tls&amp;sni=tw01.ckcloud.info&amp;allowInsecure=1&amp;fp=chrome#TW
-trojan://9c3c38d0-8637-4c94-a790-61f3202a943a@f10011.flyflylflyflysbs.sbs:29496/?type=tcp&amp;security=tls&amp;sni=jp01.ckcloud.info&amp;allowInsecure=1&amp;fp=cJKRHK#JP
-trojan://9c3c38d0-8637-4c94-a790-61f3202a943a@f10021.flyflylflyflysbs.sbs:55474/?type=tcp&amp;security=tls&amp;sni=vn01.ckcloud.info&amp;allowInsecure=1&amp;fp=chrome#VN
+trojan://9c3c38d0-8637-4c94-a790-61f3202a943a@f10011.flyflylflyflysbs.sbs:10187/?type=tcp&security=tls&sni=hk04.ckcloud.info&allowInsecure=1&fp=chrome#HK
+trojan://9c3c38d0-8637-4c94-a790-61f3202a943a@f10011.flyflylflyflysbs.sbs:19013/?type=tcp&security=tls&sni=sg02.ckcloud.info&allowInsecure=1&fp=chrome#SG
+trojan://9c3c38d0-8637-4c94-a790-61f3202a943a@f10011.flyflylflyflysbs.sbs:19949/?type=tcp&security=tls&sni=tw01.ckcloud.info&allowInsecure=1&fp=chrome#TW
+trojan://9c3c38d0-8637-4c94-a790-61f3202a943a@f10011.flyflylflyflysbs.sbs:29496/?type=tcp&security=tls&sni=jp01.ckcloud.info&allowInsecure=1&fp=cJKRHK#JP
+trojan://9c3c38d0-8637-4c94-a790-61f3202a943a@f10021.flyflylflyflysbs.sbs:55474/?type=tcp&security=tls&sni=vn01.ckcloud.info&allowInsecure=1&fp=chrome#VN
 trojan://5dc6fa05-a601-aba6-7761-ecde22d2b0fc@f24250ff-sytz40-t5qufl-8n27.cm5.cnkuaishou.com:27231?security=tls&sni=f24250ff-sytz40-t5qufl-8n27.cm5.cnkuaishou.com&type=tcp&headerType=none#%E7%BE%8E%E5%9B%BD%28yudou123.top%20%E7%8E%89%E8%B1%86%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9%29
 trojan://7699767c-44ae-11ef-80c7-f23c91cfbbc9@f32dc0f0-sx6ps0-t4yfev-1rz31.cm5.cnkuaishou.com:27231?security=tls&sni=f32dc0f0-sx6ps0-t4yfev-1rz31.cm5.cnkuaishou.com&type=tcp&headerType=none#%E7%BE%8E%E5%9B%BD%28yudou123.top%20%E7%8E%89%E8%B1%86%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9%29
 trojan://4088a148-dbec-11ec-bd7c-f23c913c8d2b@f4bbb283-sytz40-t01cuj-1itli.cm5.cnkuaishou.com:27231?allowInsecure=0#%F0%9F%87%B8%F0%9F%87%AC%20%E6%96%B0%E5%8A%A0%E5%9D%A1%20069
@@ -13088,7 +13088,7 @@ trojan://4467ae8518abf1ef321618c0bfb5549ccc@starlink-sgp4.2513142.xyz:10005/?typ
 trojan://dqxLsBV3LitAt8Jwux5IRn7m@starlink-sgp4.2513142.xyz:443?allowInsecure=1#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://94d219c9-1afc-4d42-b090-8b3794764380@std1.loadingip.com:443?allowInsecure=1#@Hope_Net-join-us-on-Telegram
 trojan://6884d714-d3c4-4b49-aa20-767ea92837d6@steamdb.info:443/?type=ws&host=icecream.955850.xyz&path=%2Fproxyip%3D45.67.215.153%3A443%26proxyIP%3Dnull&security=tls&sni=icecream.955850.xyz&alpn=h3&fp=randomized#steamdb.info
-trojan://74260628090146500@stirring-parakeet.shiner427.skin:443?allowInsecure=0#%E2%9A%9C%EF%B8%8FTelegram:@IP_CF%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%F0%9F%93%A2%20Channel%20:%20@IP_CF_Config%F0%9F%93%A2%20Main%20Channel%20:%20@IP_CF%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2
+trojan://74260628090146500@stirring-parakeet.shiner427.skin:443/?type=tcp&security=tls#%F0%9F%87%AC%F0%9F%87%A7%E8%8B%B1%E5%9B%BD
 trojan://ZCR3pplzBEDwYy3w3e8X685aCxFCgaIeYSxSROa97KxDxaC328lD0T4z7SynagqSXA6cR@stodewrn.homeofbrave.net:443?allowInsecure=1#%20@MoftConfigUnited%20States
 trojan://xl87654321@stonebreak.online:443?allowInsecure=0
 trojan://W8gVbKNAZlFzgGPn@storage.starspace.link:443?allowInsecure=1#%E7%BE%8E%E5%9B%BD+006
