@@ -1992,7 +1992,6 @@ trojan://your_password@15.220.121.237:443?security=tls&sni=aws-ar-buenosaires-1.
 trojan://your_password@15.220.240.255:443?security=tls&sni=aws-th-bkk-1.f1rocketnode.com&type=tcp#4Kian-4795
 trojan://xV6yLF0Z69Hm@15.222.64.220:16700?allowInsecure=0&sni=appsvs.shop#4Kian-4768
 trojan://telegram-id-directvpn@15.222.9.61:22222?security=tls&sni=trj.rollingnext.co.uk&alpn=http%2F1.1&type=tcp&headerType=none#4Kian-4344
-trojan://telegram-id-directvpn@15.223.163.66:22222?security=tls&type=tcp&sni=trojan.burgerip.co.uk#4Jadi-4347
 trojan://16bcc187-a1a0-4b8a-8b69-627f38b7cc0d@15.235.197.4:80/?type=tcp&security=tls&sni=15.235.197.4#%F0%9F%87%B8%F0%9F%87%ACSG-15.235.197.4-9813
 trojan://telegram-id-privatevpns@15.236.1.190:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#4Kian-4410
 trojan://telegram-id-privatevpns@15.236.122.160:22222?security=tls&sni=trj.rollingnext.co.uk#4Kian-4411
@@ -4657,7 +4656,6 @@ trojan://Aimer@63.141.128.66:2087/?type=tcp&security=tls&sni=epmf.ambercc.filege
 trojan://telegram-id-privatevpns@63.176.123.44:22222?security=tls&amp;sni=trojan.burgerip.co.uk&amp;type=tcp#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://telegram-id-privatevpns@63.176.143.79:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#4Kian-4496
 trojan://telegram-id-directvpn@63.176.143.79:22223?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
-trojan://telegram-id-privatevpns@63.176.182.62:22222?security=tls&type=tcp&sni=trojan.burgerip.co.uk#4Jadi-4500
 trojan://telegram-id-privatevpns@63.176.195.158:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#4Kian-4497
 trojan://telegram-id-privatevpns@63.176.217.80:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#4Kian-4498
 trojan://telegram-id-privatevpns@63.176.42.107:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#4Kian-4499
