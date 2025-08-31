@@ -1986,6 +1986,7 @@ trojan://7ea37e4f-325b-416f-901a-67012367307f@15.204.209.50:80?type=tcp&sni=tele
 trojan://c0fde6ac-a07c-4f60-84ae-e7ed4da78a6f@15.204.210.176:80/?type=tcp&security=tls&sni=15.204.210.176#%F0%9F%87%BA%F0%9F%87%B8US-15.204.210.176-8688
 trojan://90580010-d84f-11ef-8489-1239d0255272@15.204.234.166:443/?type=tcp&security=tls&sni=chatbuzzteambhm.chatbuzzt7150.workers.dev#%40Hope_Net-join-us-on-Telegram
 trojan://a304a875-482e-4e48-9db5-15b4ab99beaf@15.204.236.45:52306?allowInsecure=0#4Mohsen-3888
+trojan://2ee85121-31de-4581-a492-eb00f606e392@15.204.248.103:443?encryption=none&security=tls&sni=rs3.freeguard.org&type=raw&headertype=none#%5B%F0%9F%87%BA%F0%9F%87%B8%5Dt.me/ConfigsHub
 trojan://your_password@15.220.121.237:443?security=tls&sni=aws-ar-buenosaires-1.f1rocketnode.com&type=tcp#4Mohsen-4709
 trojan://your_password@15.220.240.255:443?security=tls&sni=aws-th-bkk-1.f1rocketnode.com&type=tcp#4Mohsen-4710
 trojan://xV6yLF0Z69Hm@15.222.64.220:16700?allowInsecure=0&sni=appsvs.shop#4Mohsen-4683
@@ -5067,7 +5068,7 @@ trojan://9c3c38d0-8637-4c94-a790-61f3202a943a@f10021.flyflylflyflysbs.sbs:55474/
 trojan://0c6a3341e8d5ab17@f5465c4.pg.gladns.com:3389?security=tls#4Mohsen-3109
 trojan://2fadf1dc-f401-4225-ac95-da030118eaef@falungong.19890604.day:10823?type=tcp&sni=cloudflare.node-ssl.cdn-alibaba.com&allowInsecure=1#4Mohsen-3284
 trojan://1fce7b14-5ce9-4dfd-aea6-db881d50ec87@falungong.19890604.day:10826?type=tcp&sni=cloudflare.node-ssl.cdn-alibaba.com&allowInsecure=1#4Mohsen-3178
-trojan://56c852c2-9517-4c13-ae18-bf0bee41706a@fastcup.net:8443?allowInsecure=1&sni=cdn-node-oss-99.paofu.de#%F0%9F%87%A9%F0%9F%87%B0_DK_%E4%B8%B9%E9%BA%A6-%3E%F0%9F%87%BA%F0%9F%87%B8_US_%E7%BE%8E%E5%9B%BD
+trojan://56c852c2-9517-4c13-ae18-bf0bee41706a@fastcup.net:8443?allowInsecure=0&sni=cdn-node-oss-99.paofu.de&ws=1&wspath=%2Fprofile%2Ftelegram%40ssrsub#%F0%9F%87%BA%F0%9F%87%B8%20US%E7%BE%8E%E5%9B%BD%28mibei77.com%20%E7%B1%B3%E8%B4%9D%E8%8A%82%E7%82%B9%E5%88%86%E4%BA%AB%29
 trojan://vip@fbi.gov:443/?type=ws&host=heihu880.pages.dev&path=%2F%3Fed%3D2560&security=tls&sni=heihu880.pages.dev#%F0%9F%8C%BB43%40oneclickvpnkeys
 trojan://5FTlL946VG@fc.v2rayngvz.online:2087?path=%2F&security=tls&host=neronix.sadeghij87.workers.dev%2Fcf.v2rayngvz.online&type=ws&sni=fc.v2rayngvz.online#%40V2ray_NG%F0%9F%87%AB%F0%9F%87%AE
 trojan://f39bd244-f5fe-415c-8b98-a1e5250bf178@fhcarm2.gaox.ml:443#4Mohsen-4190
