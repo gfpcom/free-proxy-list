@@ -3113,7 +3113,7 @@ trojan://Aimer@173.245.59.144:443?security=tls&sni=ngepo.ambercc.filegear-sg.me&
 trojan://bpb-trojan@173.245.59.182:443/?type=ws&host=fcspring.ggff.net&path=%2Ftr%3Fed&security=tls&sni=fcspring.ggff.net#%40Hope_Net-join-us-on-Telegram
 trojan://NISHIKUITAN222@173.245.59.185:443/?type=ws&host=im.ylks.xyz&path=%2F&security=tls&sni=im.ylks.xyz#%40Hope_Net-join-us-on-Telegram
 trojan://NISHIKUITAN111@173.245.59.189:443/?type=tcp&security=tls&allowInsecure=1#%40Hope_Net-join-us-on-Telegram
-trojan://Aimer@173.245.59.201:443?security=tls&sni=ngepz.ambercc.filegear-sg.me&type=tcp#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-173.245.59.201:443
+trojan://Aimer@173.245.59.201:443?sni=agepw.ambercc.filegear-sg.me#%5B%F0%9F%87%A8%F0%9F%87%A6%5Dt.me/ConfigsHub
 trojan://Aimer@173.245.59.202:2083/?type=tcp&security=tls&sni=epmf.ambercc.filegear-sg.me#%F0%9F%8F%81RELAY-173.245.59.202-1077
 trojan://Aimer@173.245.59.203:443/?type=tcp&security=tls&sni=ngepx.ambercc.filegear-sg.me#%40Hope_Net-join-us-on-Telegram
 trojan://NISHIKUITAN222@173.245.59.61:443/?type=ws&host=in.ylks.xyz&path=%2F&security=tls&sni=in.ylks.xyz#%40Hope_Net-join-us-on-Telegram
@@ -3862,7 +3862,6 @@ trojan://Aimer@220.120.139.237:12189/?type=tcp&security=tls&sni=epmd.ambercc.fil
 trojan://851418c5-a1f0-453c-b8f8-24664990bdf8@220.130.58.136:28504/?type=tcp&security=tls&sni=green2.cdntencentmusic.com#%F0%9F%87%B9%F0%9F%87%BCTW-220.130.58.136-1833
 trojan://feac8d6d-8fcf-4ef1-9ad0-18833c9fca11@220.130.58.136:28505?security=tls&sni=green.cdntencentmusic.com#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%87%B9%F0%9F%87%BC%20TW-220.130.58.136:28505
 trojan://20cc1a99-a26e-4c6b-b0be-1ed331b0c271@220.130.58.136:28507?sni=green2.cdntencentmusic.com#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%87%B9%F0%9F%87%BC%20TW-220.130.58.136:28507
-trojan://ttfang@220.135.202.250:81?security=tls&sni=ttfang.fange.me&type=ws&host=ttfang.fange.me&path=%2F#%E4%B8%AD%E5%9B%BD%E3%80%90%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%9Ahttps%3A%2F%2Fa0a.xyz%2F%E3%80%917
 trojan://Aimer@220.71.185.223:10093?security=tls&sni=ngepz.ambercc.filegear-sg.me&type=tcp#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%87%B0%F0%9F%87%B7%20KR-220.71.185.223:10093
 trojan://Aimer@220.74.106.40:50000?security=tls&sni=ngepy.ambercc.filegear-sg.me&type=tcp#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%87%B0%F0%9F%87%B7%20KR-220.74.106.40:50000
 trojan://Aimer@220.78.106.96:50000?security=tls&sni=ngepz.ambercc.filegear-sg.me&type=tcp#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%87%B0%F0%9F%87%B7%20KR-220.78.106.96:50000
@@ -5646,7 +5645,6 @@ trojan://14bdba6dede262387ebdebaa706e1c90@trs12.bolab.net:443/?type=tcp&security
 trojan://40c89b10235c40321e7a3cef82b53a03@trs16.bolab.net:22/?type=tcp&security=tls#%F0%9F%87%AF%F0%9F%87%B5JP-153.127.215.49-2489
 trojan://40c89b10235c40321e7a3cef82b53a03@trs17.bolab.net:22/?type=tcp&security=tls#%F0%9F%87%AF%F0%9F%87%B5JP-153.127.203.108-2507
 trojan://4863e1b2-ec2f-4c71-b862-ce533028e57e@trus.moonfree.top:443/?type=tcp&security=tls#%F0%9F%87%BA%F0%9F%87%B8US-69.162.95.5-5718
-trojan://ttfang@ttfang.fange.me:2096?security=tls&sni=ttfang.fange.me&type=ws&host=ttfang.fange.me&path=%2FTelegram%E9%A6%83%E5%9A%9A%E9%A6%83%E5%9A%A6#%E7%BE%8E%E5%9B%BD%E3%80%90%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%9Ahttps%3A%2F%2Fa0a.xyz%2F%E3%80%9135
 trojan://TurbooServer@turbooserver.aftabz.com:8080?security=reality&amp;pbk=MlCxfES5k6SVZz4qfrnfF516r60hVZ7izp5MvPbfYk4&amp;headerType=none&amp;fp=chrome&amp;spx=/&amp;type=tcp&amp;sni=tgju.org&amp;sid=d5e7#@appsooner%20%DA%A9%D8%A7%D9%86%D8%A7%D9%84%20%D8%AA%D9%84%DA%AF%D8%B1%D8%A7%D9%85%20%F0%9F%87%A9%F0%9F%87%AA
 trojan://ED177480-E516-11EA-8B44-BBC4E882BA0B@tw01.balala2016.xyz:20261?security=tls#4Kian-3778
 trojan://e2afc128-ca51-39b6-897c-eb2649825df9@twb-zf.jiashumao.net:25888?security=tls#4Kian-4136
