@@ -2171,7 +2171,7 @@ trojan://2cba4104747d49d18319e5ade1b93ab5@161.35.34.48:443?security=tls&sni=your
 trojan://c378f9c9-733c-4a28-af47-cfa8b063a7f6@161.35.83.110:443?security=tls&sni=nl2-full.privateip.net&allowInsecure=1&fp=chrome&type=tcp#%F0%9F%87%B3%F0%9F%87%B1%20Netherlands%20-%20Amsterdam%20%F0%9F%8C%8D%20TR-TCP-TLS%204%E2%83%A3
 trojan://Aimer@162.120.94.232:8443/?type=tcp&security=tls&sni=ngepy.ambercc.filegear-sg.me#%40Hope_Net-join-us-on-Telegram
 trojan://Aimer@162.120.94.23:2087/?type=tcp&security=tls&sni=epccd.ambercc.filegear-sg.me#%F0%9F%8F%81RELAY-162.120.94.23-1988
-trojan://trojan@162.159.0.0:443?security=tls&sni=azadnet-cqb.pages.dev&fp=random&type=ws&host=azadnet-cqb.pages.dev&path=%2F%3Fed%3D2560#MarkazeAhan%20%7C%20SERVER%2018
+trojan://trojan@162.159.0.0:443?encryption=none&security=tls&sni=azadnet-cqb.pages.dev&fp=chrome&type=ws&host=azadnet-cqb.pages.dev&path=/?ed=2560#t.me/entryNET/config=1842215076913821
 trojan://bpb-trojan@162.159.1.2:443/?type=tcp&security=tls&sni=adagio.us.kg#%40Hope_Net-join-us-on-Telegram
 trojan://7743e1b5-d301-4a66-b765-17094890fae2@162.159.128.101:443?sni=ssp1.100896.xyz#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-162.159.128.101:443
 trojan://blue2024@162.159.128.104:443/?type=tcp&security=tls&sni=ha.lii2010.us.kg#%40Hope_Net-join-us-on-Telegram
