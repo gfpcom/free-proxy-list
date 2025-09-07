@@ -2101,7 +2101,7 @@ trojan://Aimer@154.26.176.94:8443?sni=agepq.ambercc.filegear-sg.me&allowInsecure
 trojan://Aimer@154.26.181.30:45956?security=tls&sni=epmk.ambercc.filegear-sg.me&type=ws&host=epmk.ambercc.filegear-sg.me&path=%2F%3Fed%3D2560%26proxyip%3Dts.hpc.tw#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%87%BA%F0%9F%87%B8%20US-154.26.181.30:45956
 trojan://Aimer@154.26.186.86:443?sni=epcco.ambercc.filegear-sg.me&allowInsecure=0#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%87%BA%F0%9F%87%B8%20US-154.26.186.86:443
 trojan://Aimer@154.29.150.2:8080?sni=agepl.ambercc.filegear-sg.me&allowInsecure=0#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%87%BA%F0%9F%87%B8%20US-154.29.150.2:8080
-trojan://745654@154.3.37.9:443?type=raw&headerType=none&security=tls&fp=chrome&sni=hk.cestbon.work#%5B%F0%9F%87%AD%F0%9F%87%B0%5D%20%5Btr-tl-ra%5D%20%5B250907-221612.963%5D
+trojan://745654@154.3.37.9:443?type=raw&headerType=none&security=tls&fp=chrome&sni=hk.cestbon.work#%5B%F0%9F%87%AD%F0%9F%87%B0%5D%20%5Btr-tl-ra%5D%20%5B250908-011048.482%5D
 trojan://Aimer@154.31.113.72:443/?type=tcp&security=tls&sni=ngepz.ambercc.filegear-sg.me#%F0%9F%8D%8053%40oneclickvpnkeys
 trojan://f75b2c90-34da-4b87-90ce-5c7874573f12@154.64.226.149:9150?security=tls&sni=hk.catxstar.com&type=tcp&fp=chrome#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%87%AF%F0%9F%87%B5%20JP-154.64.226.149:9150
 trojan://NISHIKUITAN111@154.83.2.121:443/?type=tcp&security=tls#%40Hope_Net-join-us-on-Teleg...
@@ -4020,7 +4020,7 @@ trojan://xxoo@3.34.6.217:443?security=tls#4Kian-4539
 trojan://your_password@3.35.157.103:443?security=tls&sni=aws-kr-seoul-1.f1rocketnode.com&allowInsecure=1&fp=chrome&type=tcp#%F0%9F%87%B0%F0%9F%87%B7%20Korea,%20Republic%20of%20-%20Incheon%20%F0%9F%8C%8F%20TR-TCP-TLS%204%E2%83%A3
 trojan://65086520307764900@3.39.67.154:443?security=tls&sni=hopeful-seagull.shiner427.skin&type=tcp#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%87%B0%F0%9F%87%B7%20KR-3.39.67.154:443
 trojan://telegram-id-privatevpns@3.65.233.81:22222?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
-trojan://telegram-id-directvpn@3.65.233.81:22223?security=tls&amp;alpn=http%2F1.1&amp;host=TELEGRAM--V2XAY--V2XAY--V2XAY--V2XAY--V2XAY--V2XAY--V2XAY--V2XAY--V2XAY--V2XAY--V2XAY--V2XAY--V2XAY--V2XAY--V2XAY&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
+trojan://telegram-id-directvpn@3.65.233.81:22223?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://telegram-id-privatevpns@3.65.97.31:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S102)%F0%9F%87%A9%F0%9F%87%AAt.me/PrivateVPNs
 trojan://telegram-id-v2rayvpnchannel@3.65.97.31:22223?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#OurChannel
 trojan://juzi@3.66.115.225:443?sni=juzi8186-sr1.pages.dev#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%87%A9%F0%9F%87%AA%20DE-3.66.115.225:443
@@ -4857,7 +4857,6 @@ trojan://92902210-2eb5-11ee-b234-205c6d5f5d78@95.179.255.171:2087?security=tls&s
 trojan://Aimer@95.216.143.166:443/?type=tcp&security=tls&sni=ngepy.ambercc.filegear-sg.me#%40Hope_Net-join-us-on-Telegram
 trojan://tune7jerky7HAYRICK@96.126.123.244:443?security=tls&sni=ap-northeast-1.openssl3.com&allowInsecure=1&type=tcp#4Kian-4483
 trojan://G9CHhXltVx@96.9.213.108:12646?security=tls&sni=96.9.213.108&allowInsecure=1&fp=chrome&type=tcp#%F0%9F%87%BA%F0%9F%87%B8%20United%20States%20-%20NA%20%F0%9F%8C%8E%20TR-TCP-TLS%204%E2%83%A3
-trojan://telegram-id-directvpn@99.79.116.196:22222?security=tls&amp;sni=trojan.burgerip.co.uk&amp;type=tcp&amp;alpn=http/1.1#@Hope_Net-join-us-on-Telegram
 trojan://telegram-id-directvpn@99.80.179.36:22222?security=tls&sni=trojan.burgerip.co.uk&alpn=http/1.1&allowInsecure=1&fp=chrome&type=tcp#%F0%9F%87%AE%F0%9F%87%AA%20Ireland%20-%20Dublin%20%F0%9F%8C%8D%20TR-TCP-TLS%204%E2%83%A3
 trojan://6e1b9a65-884f-3aa9-9469-bf6ec0f08610@a03.taipeicitygovernment.cn.ua:3462?security=tls#4Kian-3438
 trojan://6e1b9a65-884f-3aa9-9469-bf6ec0f08610@a10.taipeicitygovernment.kyiv.ua:3462/?type=tcp&security=tls&sni=45.32.28.232#%40Hope_Net-join-us-on-Telegram
