@@ -2104,7 +2104,7 @@ trojan://Aimer@154.26.176.94:8443?sni=agepq.ambercc.filegear-sg.me&allowInsecure
 trojan://Aimer@154.26.181.30:45956?security=tls&sni=epmk.ambercc.filegear-sg.me&type=ws&host=epmk.ambercc.filegear-sg.me&path=%2F%3Fed%3D2560%26proxyip%3Dts.hpc.tw#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%87%BA%F0%9F%87%B8%20US-154.26.181.30:45956
 trojan://Aimer@154.26.186.86:443?sni=epcco.ambercc.filegear-sg.me&allowInsecure=0#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%87%BA%F0%9F%87%B8%20US-154.26.186.86:443
 trojan://Aimer@154.29.150.2:8080?sni=agepl.ambercc.filegear-sg.me&allowInsecure=0#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%87%BA%F0%9F%87%B8%20US-154.29.150.2:8080
-trojan://745654@154.3.37.9:443?type=raw&headerType=none&security=tls&fp=chrome&sni=hk.cestbon.work#%5B%F0%9F%87%AD%F0%9F%87%B0%5D%20%5Btr-tl-ra%5D%20%5B250908-054839.482%5D
+trojan://745654@154.3.37.9:443?type=raw&headerType=none&security=tls&fp=chrome&sni=hk.cestbon.work#%5B%F0%9F%87%AD%F0%9F%87%B0%5D%20%5Btr-tl-ra%5D%20%5B250908-072423.012%5D
 trojan://Aimer@154.31.113.72:443/?type=tcp&security=tls&sni=ngepz.ambercc.filegear-sg.me#%F0%9F%8D%8053%40oneclickvpnkeys
 trojan://f75b2c90-34da-4b87-90ce-5c7874573f12@154.64.226.149:9150?security=tls&sni=hk.catxstar.com&type=tcp&fp=chrome#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%87%AF%F0%9F%87%B5%20JP-154.64.226.149:9150
 trojan://NISHIKUITAN111@154.83.2.121:443/?type=tcp&security=tls#%40Hope_Net-join-us-on-Teleg...
@@ -4174,7 +4174,6 @@ trojan://0f098bb2-9fad-3cc3-8acf-2a3268c1eb27@43.154.172.79:10102?security=tls#4
 trojan://Aimer@43.154.34.74:1935/?type=tcp&security=tls&sni=ngepz.ambercc.filegear-sg.me#%40Hope_Net-join-us-on-Telegram
 trojan://Aimer@43.156.116.194:443/?type=tcp&security=tls&sni=agept.ambercc.filegear-sg.me#%F0%9F%87%B8%F0%9F%87%ACSG-43.156.116.194-1320
 trojan://Aimer@43.156.181.203:443?sni=epcct.ambercc.filegear-sg.me&allowInsecure=0#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%87%B8%F0%9F%87%AC%20SG-43.156.181.203:443
-trojan://506313349@43.156.226.72:443?security=tls&headerType=none&fp=chrome&type=tcp&sni=506313349.hk365.work#%5BOpenRay%5D%20%F0%9F%87%B8%F0%9F%87%AC%20SG-525
 trojan://Aimer@43.160.202.92:443/?type=ws&path=%2F%3Fed%3D2560%26proxyip%3Dts.hpc.tw&security=tls&sni=epgb.aimercc.dpdns.org#%F0%9F%87%B8%F0%9F%87%ACSG-43.160.202.92-1036
 trojan://ae7cc604-d970-4200-9a9b-eb45087b4fc1@43.198.12.229:28443?security=tls&sni=mzy.hruqoaw.cn#4Kian-3725
 trojan://253bc477d4e43c209f2d427272968280@43.198.153.8:3957?allowInsecure=1&sni=23.45.86.28#%F0%9F%87%B8%F0%9F%87%AC%20%E6%96%B0%E5%8A%A0%E5%9D%A1%7C%40stairnode
