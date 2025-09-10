@@ -8,7 +8,7 @@
   
   <br>
   <br>
-  <a href="https://getfreeproxy.com/lists/" title="free working proxy list">Working Proxy List</a> | <a href="https://getfreeproxy.com/tools/proxy-checker" title="free online proxy checker">Online Proxy Checker</a> | <a href="https://github.com/gfpcom/free-proxy-list">Github</a>
+  <a href="https://getfreeproxy.com/lists/" title="free working proxy list">Working Proxy List</a> | <a href="https://getfreeproxy.com/tools/proxy-checker" title="free online proxy checker">Free Proxy Checker</a> | <a href="https://github.com/gfpcom/free-proxy-list">Github</a>
   <br>
 </p>
 
