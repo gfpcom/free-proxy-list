@@ -1990,7 +1990,7 @@ trojan://7dafe71e-2be6-302f-bdfc-e6319a3299bc@15.204.20.229:443?security=tls#4Mo
 trojan://7ea37e4f-325b-416f-901a-67012367307f@15.204.209.50:80?type=tcp&sni=telewebion.com&allowInsecure=1#4Mohsen-3527
 trojan://c0fde6ac-a07c-4f60-84ae-e7ed4da78a6f@15.204.210.176:80?security=tls&sni=telewebion.com#4Mohsen-3822
 trojan://90580010-d84f-11ef-8489-1239d0255272@15.204.234.166:443/?type=tcp&security=tls&sni=chatbuzzteambhm.chatbuzzt7150.workers.dev#%40Hope_Net-join-us-on-Telegram
-trojan://2ee85121-31de-4581-a492-eb00f606e392@15.204.248.103:443?security=tls&sni=rs3.freeguard.org&type=tcp&headerType=none#%F0%9F%87%BA%F0%9F%87%B8_%E7%BE%8E%E5%9B%BD
+trojan://2ee85121-31de-4581-a492-eb00f606e392@15.204.248.103:443?sni=rs3.freeguard.org#%E7%BE%8E%E5%9B%BD+%E6%83%A0%E6%99%AEHP
 trojan://your_password@15.220.121.237:443?security=tls&sni=aws-ar-buenosaires-1.f1rocketnode.com&type=tcp#4Mohsen-4614
 trojan://your_password@15.220.240.255:443?security=tls&sni=aws-th-bkk-1.f1rocketnode.com&type=tcp#4Mohsen-4615
 trojan://xV6yLF0Z69Hm@15.222.64.220:16700?allowInsecure=0&sni=appsvs.shop#4Mohsen-4592
@@ -3601,7 +3601,7 @@ trojan://slch2024@195.13.55.195:2096?security=tls&sni=ocost-dy.wmlefl.cc&type=ws
 trojan://slch2024@195.13.55.87:2096?security=tls&sni=ocost-dy.wmlefl.cc&type=ws&path=Telegram🇨🇳&Host=ocost-dy.wmlefl.cc#4Mohsen-4338
 trojan://PU3f7528NtNXnQqb9X263rGSD@195.133.11.229:443/?type=ws&host=get.fragmentary.info&path=%2Fsocks5tobefree&security=tls&sni=get.fragmentary.info#%40Hope_Net-join-us-on-Telegram
 trojan://3747000103274291200@195.133.93.135:443/?type=tcp&security=tls&sni=epic-weasel.treefrog761.one#%F0%9F%9A%8037%40oneclickvpnkeys
-trojan://1sbtkLK7F3@195.22.157.104:48677?host=joon.arshiacomplus.dpdns.org&path=%2Fewrf4d453&security=tls&sni=joon.arshiacomplus.dpdns.org&type=ws#4Mohsen-3102
+trojan://1sbtkLK7F3@195.22.157.104:48677?host=joon.arshiacomplus.dpdns.org&path=%2Fewrf4d453&security=tls&sni=joon.arshiacomplus.dpdns.org&type=ws#%F0%9F%87%AC%F0%9F%87%A7%5Bopenproxylist.com%5D%20trojan-GB
 trojan://NISHIKUITAN111@195.245.221.107:443/?type=tcp&security=tls&allowInsecure=1#%40Hope_Net-join-us-on-Telegram
 trojan://slch2024@195.245.221.195:2096/?type=ws&path=Telegram%F0%9F%87%A8%F0%9F%87%B3&security=tls&sni=ocost-dy.wmlefl.cc#%F0%9F%8F%81RELAY-195.245.221.195-0616
 trojan://slch2024@195.245.221.87:2096?security=tls&sni=ocost-dy.wmlefl.cc&type=ws&path=Telegram🇨🇳&Host=ocost-dy.wmlefl.cc#4Mohsen-4339
