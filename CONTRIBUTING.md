@@ -13,6 +13,13 @@ There are several ways you can contribute to this project:
 - **Improving the core application:** Enhancing performance, fixing bugs, or adding new features.
 - **Reporting bugs or suggesting features:** If you find an issue or have an idea for a new feature, please open an issue.
 
+### Other Ways to Contribute
+
+Even if you don't have time to contribute code, there are other ways you can support the project:
+
+- **Star our repository:** A star is a great way to show your appreciation and helps increase the project's visibility.
+- **Share the repository:** Share the project with your friends, colleagues, or on social media. The more people who know about it, the better!
+
 ### Pull Request Process
 
 1.  Ensure any install or build dependencies are removed before the end of the layer when doing a build.
