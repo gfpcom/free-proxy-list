@@ -42,6 +42,7 @@ We provide proxies in multiple formats, ready to be used in your applications.
 | **V2Ray/XRay**| `vmess://...` / `vless://...` | `vless://uuid@...` |
 | **Trojan** | `trojan://...` | `trojan://uuid@...` |
 | **ShadowSocks**| `ss://...` / `ssr://...` | `ss://method:pass@...` |
+| **Hysteria** | `hysteria://...` | `hysteria://uuid@...` |
 | **Hysteria2**| `hysteria2://...` (*Note: `hy2://`, `hhy2://`, `hhysteria2://` are automatically converted to `hysteria2://`) | `hysteria2://uuid@...` |
 
 ## 🔗 Direct Download Links
