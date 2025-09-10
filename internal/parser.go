@@ -49,6 +49,13 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 
 	scheme := strings.ToLower(u.Scheme)
 
+	// Normalize Hysteria2 variants to hysteria2://
+	if scheme == "hy2" || scheme == "hhy2" || scheme == "hhysteria2" {
+		scheme = "hysteria2"
+		proxyURL = "hysteria2://" + strings.TrimPrefix(proxyURL, u.Scheme+"://")
+		u, _ = url.Parse(proxyURL)
+	}
+
 	var it *Proxy
 	switch scheme {
 	case "vmess":
