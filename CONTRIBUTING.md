@@ -49,6 +49,18 @@ The application reads files from the `/sources` directory. Each file in this dir
 
 Sometimes, a source provides data in a non-standard format. Our application uses **Transformers** and **Parsers** to handle these cases. You can specify them in the source file on the same line as the URL, separated by commas.
 
+**URL Tokens:**
+
+You can use dynamic tokens in the source URLs to fetch lists that are generated based on the current date and time. The application will replace these tokens with the current values.
+
+-   `{YYYY}`: Full year (e.g., 2023)
+-   `{MM}`: Zero-padded month (e.g., 09)
+-   `{M}`: Month (e.g., 9)
+-   `{DD}`: Zero-padded day (e.g., 05)
+-   `{HH}`: Zero-padded hour (e.g., 08)
+-   `{mm}`: Zero-padded minute (e.g., 01)
+-   `{HH/N}`: Hour rounded to the nearest increment of N. For example, if it's 14:00, `{HH/6}` would resolve to `12`. This is useful for sources that update at regular intervals (e.g., every 6 hours).
+
 **Format:** `url,transformer,parser`
 
 -   **`url`**: (Required) The URL of the proxy list.
