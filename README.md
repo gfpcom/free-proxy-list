@@ -60,6 +60,13 @@ Click on your preferred proxy type to get the latest list. These links always po
 |<img src="./list/vless.svg">|[vless.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/vless.txt)|[vless.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/vless.txt)|
 |<img src="./list/ss.svg">|[ss.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/ss.txt)|[ss.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/ss.txt)|
 |<img src="./list/ssr.svg">|[ssr.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/ssr.txt)|[ssr.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/ssr.txt)|
+|<img src="./list/hhy2.svg">|[hhy2.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/hhy2.txt)|[hhy2.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/hhy2.txt)|
+|<img src="./list/hhysteria2.svg">|[hhysteria2.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/hhysteria2.txt)|[hhysteria2.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/hhysteria2.txt)|
+|<img src="./list/hy2.svg">|[hy2.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/hy2.txt)|[hy2.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/hy2.txt)|
+|<img src="./list/hysteria.svg">|[hysteria.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/hysteria.txt)|[hysteria.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/hysteria.txt)|
+|<img src="./list/hysteria2.svg">|[hysteria2.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/hysteria2.txt)|[hysteria2.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/hysteria2.txt)|
+|<img src="./list/tuic.svg">|[tuic.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/tuic.txt)|[tuic.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/tuic.txt)|
+|<img src="./list/wireguard.svg">|[wireguard.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/wireguard.txt)|[wireguard.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/wireguard.txt)|
 
 ## 🤝 Contributing
 
