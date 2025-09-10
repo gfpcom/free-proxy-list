@@ -1990,6 +1990,7 @@ trojan://7dafe71e-2be6-302f-bdfc-e6319a3299bc@15.204.20.229:443?security=tls#4Fr
 trojan://7ea37e4f-325b-416f-901a-67012367307f@15.204.209.50:80?type=tcp&sni=telewebion.com&allowInsecure=1#4FreeIran-3509
 trojan://c0fde6ac-a07c-4f60-84ae-e7ed4da78a6f@15.204.210.176:80?security=tls&sni=telewebion.com#4FreeIran-3804
 trojan://90580010-d84f-11ef-8489-1239d0255272@15.204.234.166:443/?type=tcp&security=tls&sni=chatbuzzteambhm.chatbuzzt7150.workers.dev#%40Hope_Net-join-us-on-Telegram
+trojan://2ee85121-31de-4581-a492-eb00f606e392@15.204.248.103:443?security=tls&sni=rs3.freeguard.org&type=tcp&headerType=none#%F0%9F%87%BA%F0%9F%87%B8_%E7%BE%8E%E5%9B%BD
 trojan://your_password@15.220.121.237:443?security=tls&sni=aws-ar-buenosaires-1.f1rocketnode.com&type=tcp#4FreeIran-4604
 trojan://your_password@15.220.240.255:443?security=tls&sni=aws-th-bkk-1.f1rocketnode.com&type=tcp#4FreeIran-4605
 trojan://xV6yLF0Z69Hm@15.222.64.220:16700?allowInsecure=0&sni=appsvs.shop#4FreeIran-4582
@@ -4007,6 +4008,8 @@ trojan://telegram-id-privatevpns@3.123.67.61:22222?security=tls&sni=trojan.burge
 trojan://telegram-id-privatevpns@3.125.188.184:22222?security=tls&sni=trj.rollingnext.co.uk&alpn=http/1.1&type=tcp#4FreeIran-4500
 trojan://telegram-id-privatevpns@3.126.107.40:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)%F0%9F%87%A9%F0%9F%87%AAt.me/PrivateVPNs
 trojan://telegram-id-v2rayvpnchannel@3.126.107.40:22223?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#OurChannel
+trojan://telegram-id-privatevpns@3.126.199.220:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#t.me/entryNET/config=1842858441327601
+trojan://telegram-id-directvpn@3.126.199.220:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#t.me/entryNET/config=1842857686580859
 trojan://telegram-id-privatevpns@3.126.94.205:22222?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%87%A9%F0%9F%87%AA%20DE-3.126.94.205:22222
 trojan://telegram-id-directvpn@3.126.94.205:22223?security=tls&sni=trojan.burgerip.co.uk&type=tcp&alpn=http/1.1#%F0%9F%94%92%20TR-TCP-TLS%20%F0%9F%87%A9%F0%9F%87%AA%20DE-3.126.94.205:22223
 trojan://telegram-id-v2rayvpnchannel@3.127.213.136:22222?security=tls&sni=trojan.burgerip.co.uk&alpn=http/1.1&allowInsecure=1&fp=chrome&type=tcp#%F0%9F%87%A9%F0%9F%87%AA%20Germany%20-%20Frankfurt%20am%20Main%20%F0%9F%8C%8D%20TR-TCP-TLS%204%E2%83%A3
