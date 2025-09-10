@@ -122,7 +122,7 @@ Click on your preferred proxy to get the updated list
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please read our [contributing guidelines](CONTRIBUTING.md) to get started.
 
 ## 🙏 Sources & Acknowledgements
 
