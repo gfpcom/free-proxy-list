@@ -12,94 +12,42 @@
   <br>
 </p>
 
-# 🌎 GetFreeProxy(GFP): Free Proxy List
+# 🌎 GetFreeProxy (GFP): Free Proxy List
 
-A curated collection of free proxies from various sources, regularly updated and verified.
+**GetFreeProxy (GFP)** is an open-source project that automatically aggregates and validates free proxies from across the internet. Our goal is to provide a fresh, reliable, and comprehensive list of public proxies for developers, researchers, and anyone in need of proxy services.
 
-## 📋 Contents
+The lists are updated hourly, ensuring you always have access to the most current proxies available.
 
-This repository contains lists of free proxies in different formats:
+## 🔄 How It Works
 
-- HTTP/HTTPS proxies
-- SOCKS4/SOCKS5 proxies
-- V2Ray configurations
-- XRay configurations
-- Clash configurations
-- Telegram proxy MTProto links
+This project runs on a simple yet powerful automated workflow:
 
-## 🔄 Updates
+1.  **Fetch**: A Go application fetches proxy lists from various sources defined in the `sources/` directory. It supports dynamic URL generation (e.g., based on the current date) and can handle different data formats like raw text, Base64, etc.
+2.  **Parse & Normalize**: The fetched data is parsed and normalized into a standard proxy format. The system is extensible, allowing new parsers and data transformers to be added easily.
+3.  **Deduplicate & Store**: All unique proxies are stored in memory.
+4.  **Generate Lists**: The application generates clean, protocol-specific proxy lists (e.g., `http.txt`, `vless.txt`) and saves them in the `list/` directory.
+5.  **Update Badges**: SVG badges are generated to display the count of available proxies for each protocol.
 
-Proxy lists are automatically updated every hourly to ensure freshness and reliability.
+This entire process is automated using GitHub Actions and runs every hour.
 
-## 📊 Proxy Formats
+## 📋 Proxy Formats
 
-### HTTP/HTTPS
-```
-http://ip:port
-http://username:password@ip:port
-https://ip:port
-https://username:password@ip:port
-```
+We provide proxies in multiple formats, ready to be used in your applications.
 
-### SOCKS4/SOCKS5
-```
-socks4://ip:port
-socks4://username:password@ip:port
-socks5://ip:port
-socks5://username:password@ip:port
-```
-
-### V2Ray/XRay: Vmess/Vless
-```
-vemess://base64_encoded_string
-vless://uuid@ip:port?encryption=none#name
-```
-
-### Trojan
-```
-trojan://uuid@ip:port#name
-```
-
-### ShadowSocks: SS/SSR
-```
-ss://id@ip:port
-ssr://id@ip:port
-```
-
-## How to check proxy?
-Verify the quality of our proxy lists with our [Online Proxy Checker](https://getfreeproxy.com/checker). This tool evaluates each proxy's speed, anonymity level, and reliability. Our comprehensive checker provides detailed analytics for all supported protocols:
-
-- **Anonymity Levels**
-  - Elite (High Anonymity): Your IP remains completely hidden
-  - Anonymous (Medium Anonymity): Servers know you're using a proxy but can't see your real IP
-  - Transparent (Low Anonymity): Basic proxying with minimal identity protection
-  
-- **Protocol**
-  - HTTP/HTTPS
-  - SOCKS4/SOCKS5
-  - V2Ray/XRay
-  - Trojan
-  - ShadowSocks (SS/SSR)
-  
-- **Geolocation Data**
-  - Precise location detection
-  - Country of origin
-  - City information
-  - ISP details
-
-## 🚀 Usage
-
-You can use these proxy lists in various applications that support proxy connections:
-
-1. Web browsers
-2. Download managers
-3. Scraping tools
-4. Network testing
+| Type | Format | Example |
+| :--- | :--- | :--- |
+| **HTTP/S** | `http://ip:port` | `http://1.2.3.4:8080` |
+| | `http://user:pass@ip:port` | `http://user:pass@1.2.3.4:8080` |
+| **SOCKS4/5** | `socks5://ip:port` | `socks5://1.2.3.4:1080` |
+| **V2Ray/XRay**| `vmess://...` / `vless://...` | `vless://uuid@...` |
+| **Trojan** | `trojan://...` | `trojan://uuid@...` |
+| **ShadowSocks**| `ss://...` / `ssr://...` | `ss://method:pass@...` |
 
 ## 🔗 Direct Download Links
-Click on your preferred proxy to get the updated list
 
-|Type|Github|CDN|
+Click on your preferred proxy type to get the latest list. These links always point to the most recently updated proxy files.
+
+|Type|GitHub|CDN|
 |----|-----|-----|
 |<img src="./list/http.svg">|[http.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/http.txt)|[http.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/http.txt)|
 |<img src="./list/https.svg">|[https.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/https.txt)|[https.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/https.txt)|
@@ -113,24 +61,24 @@ Click on your preferred proxy to get the updated list
 |<img src="./list/ss.svg">|[ss.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/ss.txt)|[ss.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/ss.txt)|
 |<img src="./list/ssr.svg">|[ssr.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/ssr.txt)|[ssr.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/ssr.txt)|
 
-## ⚠️ Disclaimer
-
-- These proxies are collected from public sources
-- No guarantee of speed or uptime
-- Use at your own risk
-- Do not use for illegal activities
-
 ## 🤝 Contributing
 
-Contributions are welcome! Please read our [contributing guidelines](CONTRIBUTING.md) to get started.
+This is a community-driven project, and your contributions are highly welcome! The easiest way to contribute is by adding new proxy sources.
 
-## 🙏 Sources & Acknowledgements
+Please read our **[Contributing Guidelines](CONTRIBUTING.md)** to get started.
 
-Special thanks to all the services and repositories that provide proxy data. The proxies in this repository are collected from various sources listed in the `./sources` directory.
+## 🙏 Support the Project
 
-We appreciate these projects for sharing their proxy lists which help make this repository possible.
+If you find this project useful, please consider supporting it. It helps us gain visibility and encourages more people to contribute.
 
-Please submit [PR](https://github.com/gfpcom/free-proxy-list/pulls) to remove if you are the owner of any of the sources and do not want your source to be listed here.
+-   **Star this repository** on GitHub! ⭐️
+-   **Share it** with your friends and colleagues.
+
+## ⚠️ Disclaimer
+
+-   These proxies are collected from public sources. There is no guarantee of their speed, security, or uptime.
+-   Use these proxies at your own risk.
+-   The maintainers of this repository are not responsible for any misuse. Do not use these proxies for illegal activities.
 
 ## 📝 License
 
