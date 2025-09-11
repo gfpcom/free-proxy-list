@@ -42,8 +42,10 @@ We provide proxies in multiple formats, ready to be used in your applications.
 | **V2Ray/XRay**| `vmess://...` / `vless://...` | `vless://uuid@...` |
 | **Trojan** | `trojan://...` | `trojan://uuid@...` |
 | **ShadowSocks**| `ss://...` / `ssr://...` | `ss://method:pass@...` |
-| **Hysteria** | `hysteria://...` | `hysteria://uuid@...` |
-| **Hysteria2**| `hysteria2://...` (*Note: `hy2://`, `hhy2://`, `hhysteria2://` are automatically converted to `hysteria2://`) | `hysteria2://uuid@...` |
+| **Hysteria** | `hy://...` (*Note: `hysteria://`, `hhysteria://` are automatically converted to `hy://`) | `hy://uuid@...` |
+| **Hysteria2**| `hy2://...` (*Note: `hysteria2://`, `hhy2://`, `hhysteria2://` are automatically converted to `hy2://`) | `hy2://uuid@...` |
+| **TUIC**| `tuic://...` | `tuic://uuid@...` |
+| **WireGuard**| `wireguard://...` | `wireguard://publickey@endpoint:port?allowed_ips=...` |
 
 ## 🔗 Direct Download Links
 
@@ -62,8 +64,8 @@ Click on your preferred proxy type to get the latest list. These links always po
 |<img src="./list/vless.svg">|[vless.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/vless.txt)|[vless.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/vless.txt)|
 |<img src="./list/ss.svg">|[ss.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/ss.txt)|[ss.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/ss.txt)|
 |<img src="./list/ssr.svg">|[ssr.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/ssr.txt)|[ssr.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/ssr.txt)|
-|<img src="./list/hysteria.svg">|[hysteria.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/hysteria.txt)|[hysteria.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/hysteria.txt)|
-|<img src="./list/hysteria2.svg">|[hysteria2.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/hysteria2.txt)|[hysteria2.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/hysteria2.txt)|
+|<img src="./list/hy.svg">|[hy.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/hy.txt)|[hy.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/hy.txt)|
+|<img src="./list/hy2.svg">|[hy2.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/hy2.txt)|[hy2.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/hy2.txt)|
 |<img src="./list/tuic.svg">|[tuic.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/tuic.txt)|[tuic.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/tuic.txt)|
 |<img src="./list/wireguard.svg">|[wireguard.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/wireguard.txt)|[wireguard.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/wireguard.txt)|
 

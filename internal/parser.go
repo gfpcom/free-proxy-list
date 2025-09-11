@@ -49,10 +49,15 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 
 	scheme := strings.ToLower(u.Scheme)
 
-	// Normalize Hysteria2 variants to hysteria2://
-	if scheme == "hy2" || scheme == "hhy2" || scheme == "hhysteria2" {
-		scheme = "hysteria2"
-		proxyURL = "hysteria2://" + strings.TrimPrefix(proxyURL, u.Scheme+"://")
+	// Convert hysteria to hy and hysteria2 to hy2
+	switch scheme {
+	case "hysteria", "hhysteria":
+		scheme = "hy"
+		proxyURL = "hy://" + strings.TrimPrefix(proxyURL, u.Scheme+"://")
+		u, _ = url.Parse(proxyURL)
+	case "hysteria2", "hhy2", "hhysteria2":
+		scheme = "hy2"
+		proxyURL = "hy2://" + strings.TrimPrefix(proxyURL, u.Scheme+"://")
 		u, _ = url.Parse(proxyURL)
 	}
 
