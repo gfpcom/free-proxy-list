@@ -2973,7 +2973,7 @@ trojan://blue2024@172.67.179.208:443/?type=tcp&security=tls&sni=tb.promote.icu#%
 trojan://vip@172.67.179.98:443/?type=tcp&security=tls&sni=heihu880.pages.dev#%F0%9F%8F%81RELAY-172.67.179.98-0921
 trojan://bpb-trojan@172.67.180.227:443?security=tls&sni=mashdt.pages.dev&type=ws&host=mashdt.pages.dev&path=%2Ftr%3Fed%3D2560&fp=randomized&alpn=h3#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-172.67.180.227:443
 trojan://bpb-trojan@172.67.180.238:443/?type=ws&host=403b3611-99bc-43b7-8...&security=tls&sni=403b3611-99BC-43B7-88d7-26eD5D0825A9-3.PAges.DEV
-trojan://f282b878-8711-45a1-8c69-5564172123c1@172.67.181.173:443?security=tls&type=ws&sni=vpn.stupidworld.web.id&path=/Stupid-World/103.106.228.126-2053&host=vpn.stupidworld.web.id#%E6%9C%AA%E7%9F%A52
+trojan://f282b878-8711-45a1-8c69-5564172123c1@172.67.181.173:443?security=tls&sni=vpn.stupidworld.web.id&fp=chrome&type=ws&host=vpn.stupidworld.web.id&path=%2FStupid-World%2F103.106.228.126-2053#%F0%9F%85%BC%F0%9F%85%B4%F0%9F%85%B7%F0%9F%85%B3%F0%9F%85%B8%60%60%60
 trojan://c8eac4b7-95ba-4ce0-920d-c3279eb3b391@172.67.181.193:443/?type=ws&host=EEeEee4.hUAngSHANG2030.dPdNS.org&path=%2FptGwaGzcA4KNAXX&security=tls&sni=EEeEee4.hUAngSHANG2030.dPdNS.org#%F0%9F%87%BA%F0%9F%87%B8%20%E5%85%B3%E6%B3%A8TG%40dafei_di%20%E7%BE%8E%E5%9B%BD%20222
 trojan://blue2024@172.67.181.209:443/?type=tcp&security=tls&sni=hb.lii2010.us.kg&allowInsecure=1#%40Hope_Net-join-us-on-Telegram
 trojan://NISHIKUITAN111@172.67.181.95:443/?type=tcp&security=tls#%40Hope_Net-join-us-on-Telegram
@@ -3223,6 +3223,8 @@ trojan://telegram-id-privatevpns@18.184.9.101:22222?security=tls&sni=trj.rolling
 trojan://telegram-id-privatevpns@18.193.102.237:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trj.rollingnext.co.uk#%28S427%29%F0%9F%87%A9%F0%9F%87%AAt.me%2FPrivateVPNs
 trojan://telegram-id-privatevpns@18.193.209.201:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S102)%F0%9F%87%A9%F0%9F%87%AAt.me/PrivateVPNs
 trojan://telegram-id-v2rayvpnchannel@18.193.209.201:22223?security=tls&alpn=http%2F1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#4Mohsen-4712
+trojan://telegram-id-privatevpns@18.194.163.172:22222?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#(S102)
+trojan://telegram-id-v2rayvpnchannel@18.194.163.172:22223?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#OurChannel
 trojan://telegram-id-privatevpns@18.195.211.160:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S101)%F0%9F%87%A9%F0%9F%87%AAt.me/PrivateVPNs%F0%9F%93%9A%D8%A2%D9%85%D9%88%D8%B2%D8%B4%20%D8%A7%D8%B3%D8%AA%D9%81%D8%A7%D8%AF%D9%87%20%D8%A7%D8%B2%20%D8%B3%D8%B1%D9%88%D8%B1%D9%87%D8%A7%F0%9F%8C%90%20@PrivateVPNs
 trojan://telegram-id-directvpn@18.195.211.160:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#OurChannel%20:%20@DirectVPN%F0%9F%9A%80%20@DirectVPN%20%E2%9C%B4%EF%B8%8F
 trojan://telegram-id-privatevpns@18.195.237.139:22222?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
@@ -3331,6 +3333,7 @@ trojan://slch2024@185.148.107.91:2096?sni=ocost-dy.wmlefl.cc&allowInsecure=1&typ
 trojan://Aimer@185.148.13.158:587?sni=agepy.aimercc.filegear-sg.me&allowInsecure=1#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%87%BA%F0%9F%87%B8%20US-185.148.13.158:587
 trojan://slch2024@185.149.135.195:2096/?type=ws&path=Telegram%F0%9F%87%A8%F0%9F%87%B3&security=tls&sni=ocost-dy.wmlefl.cc#%F0%9F%8F%81RELAY-185.149.135.195-0679
 trojan://slch2024@185.149.135.91:2096?sni=ocost-dy.wmlefl.cc&allowInsecure=1&type=ws&path=%2FTelegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2%20%2F%3Fed%3D2560&host=ocost-dy.wmlefl.cc#%F0%9F%87%BA%F0%9F%87%B8%20%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%3Adafei.de%20%E7%BE%8E%E5%9B%BD%20450
+trojan://2d722623-3740-4f73-9357-01ad1a25ce27@185.156.108.40:13784?security=none&amp;headerType=none&amp;type=tcp#@Hope_Net-join-us-on-Telegram
 trojan://slch2024@185.156.19.195:2096?security=tls&sni=ocost-dy.wmlefl.cc&type=ws&host=ocost-dy.wmlefl.cc&path=%2FTelegram#%E8%8B%B1%E5%9B%BD
 trojan://slch2024@185.156.19.91:2096?sni=ocost-dy.wmlefl.cc&allowInsecure=1&type=ws&path=%2FTelegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2%20%2F%3Fed%3D2560&host=ocost-dy.wmlefl.cc#%F0%9F%87%BA%F0%9F%87%B8%20%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%3Adafei.de%20%E7%BE%8E%E5%9B%BD%20449
 trojan://slch2024@185.158.133.195:2096/?type=ws&path=Telegram%F0%9F%87%A8%F0%9F%87%B3&security=tls&sni=ocost-dy.wmlefl.cc#%F0%9F%8F%81RELAY-185.158.133.195-0677
@@ -5318,11 +5321,11 @@ trojan://8a03bc28-2a33-42c4-be59-30464dbb9954@fra13.yukiss.eu.org:18818?security
 trojan://57edfecf-5694-4a34-8072-54a4f0636a62@frontend.kuangbiaoyun.com:40001?allowInsecure=1&sni=frontend.kuangbiaoyun.com&fp=chrome#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://57edfecf-5694-4a34-8072-54a4f0636a62@frontend.kuangbiaoyun.com:40004?allowInsecure=1&amp;sni=&amp;fp=chrome
 trojan://57edfecf-5694-4a34-8072-54a4f0636a62@frontend.kuangbiaoyun.com:40005?allowInsecure=1&sni=frontend.kuangbiaoyun.com&fp=chrome#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
-trojan://57edfecf-5694-4a34-8072-54a4f0636a62@frontend.kuangbiaoyun.com:40006?allowInsecure=1&sni=&fp=chrome#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
+trojan://57edfecf-5694-4a34-8072-54a4f0636a62@frontend.kuangbiaoyun.com:40006?allowInsecure=1&amp;sni=&amp;fp=chrome
 trojan://57edfecf-5694-4a34-8072-54a4f0636a62@frontend.kuangbiaoyun.com:40007?allowInsecure=1&sni=frontend.kuangbiaoyun.com&fp=chrome#26%20%E2%9C%82%EF%B8%8F-%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F-last%2014(@GheychiAmoozesh)
 trojan://c75da6ec-2151-4191-bcde-1778a5c12cf7@frontend.yijianlian.app:54000?allowInsecure=1&sni=frontend.yijianlian.app&fp=chrome#37%20%E2%9C%82%EF%B8%8F-%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F-last%2014(@GheychiAmoozesh)
 trojan://c75da6ec-2151-4191-bcde-1778a5c12cf7@frontend.yijianlian.app:54420?allowInsecure=1&sni=frontend.yijianlian.app&fp=chrome#14%20%E2%9C%82%EF%B8%8F-%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F-last%2014(@GheychiAmoozesh)
-trojan://1d29537a-3ec0-4775-97ec-c5773b6e4103@frontend.yijianlian.app:54530?allowInsecure=1&amp;sni=frontend.yijianlian.app&amp;fp=chrome
+trojan://1468eae4-eb01-4b9f-ae8f-ce55c372d1af@frontend.yijianlian.app:54530?allowInsecure=1&amp;sni=&amp;fp=chrome
 trojan://c75da6ec-2151-4191-bcde-1778a5c12cf7@frontend.yijianlian.app:54570?allowInsecure=1&sni=frontend.yijianlian.app&fp=chrome#15%20%E2%9C%82%EF%B8%8F-%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F-last%2014(@GheychiAmoozesh)
 trojan://b5e4e360-5946-470b-aad0-db98f50faa57@frontend.yijianlian.app:54590?allowInsecure=1&sni=&fp=chrome#39%20%E2%9C%82%EF%B8%8F-%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F-last%2014(@GheychiAmoozesh)
 trojan://7cea4e6c-ccb7-48c0-a8ba-77826f836102@fschk.1234567890spcloud.com:20004?type=tcp&sni=ceshii.1234567890spcloud.com&allowInsecure=1#4Mohsen-3614
