@@ -1709,7 +1709,7 @@ trojan://telegram-id-v2rayvpnchannel@13.37.182.65:22223?security=tls&alpn=http%2
 trojan://telegram-id-privatevpns@13.37.27.224:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S103)%F0%9F%87%A8%F0%9F%87%B5t.me/PrivateVPNs
 trojan://telegram-id-v2rayvpnchannel@13.37.27.224:22223?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#OurChannel
 trojan://telegram-id-privatevpns@13.37.35.7:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S103)%F0%9F%87%A8%F0%9F%87%B5t.me/PrivateVPNs
-trojan://telegram-id-v2rayvpnchannel@13.37.35.7:22223?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#OurChannel
+trojan://telegram-id-directvpn@13.37.35.7:22223?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#%F0%9F%94%A5Join+Telegram:@Farah_VPN%F0%9F%9F%A3
 trojan://telegram-id-privatevpns@13.37.56.104:22222/?type=tcp&security=tls&sni=trojan.burgerip.co.uk&alpn=http%2F1.1#%F0%9F%87%AB%F0%9F%87%B7%20FR%20%7C%20%F0%9F%94%92%20TROJAN%20%7C%20%40privatevpns%20%5B14%5D
 trojan://telegram-id-directvpn@13.37.56.104:22223/?type=tcp&security=tls&sni=trojan.burgerip.co.uk&alpn=http%2F1.1#%F0%9F%87%AB%F0%9F%87%B7%20FR%20%7C%20%F0%9F%94%92%20TROJAN%20%7C%20%40directvpn%20%5B14%5D
 trojan://telegram-id-privatevpns@13.37.65.168:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#(S104)%F0%9F%87%A8%F0%9F%87%B5t.me/PrivateVPNs
@@ -2786,7 +2786,6 @@ trojan://V+%40iFj2PAdz.%7D_Hq@172.66.47.183:8443/?type=ws&host=joinmahdiserver-6
 trojan://DC&&buj17.%23donz%2A@172.66.47.185:2096/?type=tcp&security=tls&sni=sUE-SUpPorT.PAges.dEV
 trojan://c6d299d4-db0b-4444-8b56-b23bbdcbcd67@172.66.47.200:443/?type=ws&host=mIDsuMMer-bpb.PAgEs.DeV&security=tls&sni=midsUMmER-Bpb.pAgES.DEV#%40Hope_Net-join-us-on-Telegram
 trojan://Aimer@172.66.47.217:443?security=tls&sni=epcca.ambercc.filegear-sg.me&type=ws&host=epcca.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-172.66.47.217:443
-trojan://38720105-063f-40f5-a5eb-f3198b9b617d@172.66.47.23:443?security=tls&amp;type=ws&amp;sni=aksnmaioas.pages.dev&amp;path=/Telegram@V2ray_Alpha/?ed=2048&amp;host=aksnmaioas.pages.dev#@Hope_Net-join-us-on-Telegram
 trojan://Aimer@172.66.47.24:443?sni=epccv.ambercc.filegear-sg.me#%F0%9F%94%92%20TR-TCP-NA%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-172.66.47.24:443
 trojan://8r%3C%5B9%27l6hAO%238ZQi@172.66.47.26:8443?security=tls&sni=Koma-YT.PAGeS.Dev&type=ws&host=koma-yt.pages.dev#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-172.66.47.26:8443
 trojan://0q%2776Evm32qz%40Q%27%28@172.66.47.30:2087?security=tls&sni=JOInMahdiserver-11R.PaGES.dEv&type=ws&host=joinmahdiserver-11r.pages.dev#%F0%9F%94%92%20TR-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-172.66.47.30:2087
@@ -5547,7 +5546,6 @@ trojan://maradona_vpn@maradona_vpn14.history-paint.art:443?path=%2Fwss24142%3Fed
 trojan://PKsmz7W2sx@mashti.isvcloud2.ir:1010?type=tcp&path=/ISVvpn&host=fonts.gstatic.com&headerType=http&security=none#https:%2F%2Ft.me%2FForceRunVPN-%F0%9F%87%92%F0%9F%87%92-Unknown-715ms-Unknown
 trojan://a6292090-afe1-4640-97a7-4f1d1d877cf1@mci.filna.cloud:443/?type=grpc&amp;serviceName=8bHUAD5IX0lC5KffvrsN6rqb&amp;security=tls&amp;sni=hdfy8c1.foriran.me&amp;alpn=h2&amp;fp=chrome#c2%20tls_h2%20grpc%20CDN%20trojan%20%C2%A7%20443%209
 trojan://8a03bc28-2a33-42c4-be59-30464dbb9954@mel12.yukiss.eu.org:18818?security=tls#4Sarina-3691
-trojan://1187ba87-8ebc-4a07-aa89-b331ed2cb356@meti-u9d.pages.dev:443?security=tls&amp;type=ws&amp;sni=meti-u9d.pages.dev&amp;path=/Telegram@V2ray_Alpha/?ed=2560&amp;host=meti-u9d.pages.dev#@Hope_Net-join-us-on-Telegram
 trojan://6aa31a86-e2bd-4ede-b2be-095310b77ad5@microsoft-hk.85413.xyz:443?type=tcp&allowInsecure=1#4Sarina-3563
 trojan://blue2024@moura.ns.cloudflare.com:443/?type=tcp&security=tls&sni=hb.lii2010.us.kg#%40Hope_Net-join-us-on-Telegram
 trojan://027c71ac-026b-4755-9a33-26558ce6f6a2@mrarshaordenshpgaamericang00d.arshaproplus.cf:443?allowInsecure=1&amp;sni=ddragon.leagueoflegends.com&amp;fp=chrome
