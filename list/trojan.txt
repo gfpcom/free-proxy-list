@@ -5233,7 +5233,7 @@ trojan://d86c421f-dbfe-4507-a864-f8f9e29d80e4@de-full.privateip.net:443?security
 trojan://176196e4-7cf7-4561-87a9-21a1b4e344be@de.liangyuandian.top:443/?type=tcp&security=tls#%F0%9F%87%B8%F0%9F%87%ACSG-52.220.109.207-3912
 trojan://1bf16b43-0ad5-4512-a0e8-34bb8966278e@de.stablize.top:443/?type=tcp&security=tls#%F0%9F%87%BA%F0%9F%87%B8US-13.248.169.48-4096
 trojan://b12c2eb0-b9e9-11ed-a046-1239d0255272@de.test3.net:443?security=tls&headerType=none&type=tcp#%40V2RAY_VMESS_freevmess://eyJhZGQiOiJmci0xLjByZC5uZXQiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6IiIsImlkIjoiYWE2OWJhZjAtYjllOC0xMWVkLWI0MzktMjA1YzZkNWY1ZDc4IiwibmV0Ijoid3MiLCJwYXRoIjoiL2ltengyNGQxIiwicG9ydCI6IjQ0MyIsInBzIjoiQFYyUkFZX1ZNRVNTX2ZyZWUiLCJzY3kiOiJhdXRvIiwic25pIjoiIiwidGxzIjoidGxzIiwidHlwZSI6IiIsInYiOiIyIn0=vmess://eyJhZGQiOiJkZTIuc29jaWZpbGVzLmNvbSIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoiIiwiaWQiOiI1MTI5ZTJlMC1iOWU5LTExZWQtOGI2OS0xMjM5ZDAyNTUyNzIiLCJuZXQiOiJ3cyIsInBhdGgiOiIvdm13cyIsInBvcnQiOiI0NDMiLCJwcyI6IkBWMlJBWV9WTUVTU19mcmVlIiwic2N5Ijoibm9uZSIsInNuaSI6IiIsInRscyI6InRscyIsInR5cGUiOiIiLCJ2IjoiMiJ9vmess://eyJhZGQiOiJ1czUuc29jaWZpbGVzLmNvbSIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoiIiwiaWQiOiIxOTg1MzQ0MC1iOWU5LTExZWQtYTZiNS0xMjM5ZDAyNTUyNzIiLCJuZXQiOiJ3cyIsInBhdGgiOiIvdm13cyIsInBvcnQiOiI0NDMiLCJwcyI6IkBWMlJBWV9WTUVTU19mcmVlIiwic2N5Ijoibm9uZSIsInNuaSI6IiIsInRscyI6InRscyIsInR5cGUiOiIiLCJ2IjoiMiJ9vmess://eyJhZGQiOiJzZzEuc29jaWZpbGVzLmNvbSIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoiIiwiaWQiOiI4NjBjZDFjMC1iOWU5LTExZWQtYjFkOS0xMjM5ZDAyNTUyNzIiLCJuZXQiOiJ3cyIsInBhdGgiOiIvdm13cyIsInBvcnQiOiI0NDMiLCJwcyI6IkBWMlJBWV9WTUVTU19mcmVlIiwic2N5Ijoibm9uZSIsInNuaSI6IiIsInRscyI6InRscyIsInR5cGUiOiIiLCJ2IjoiMiJ9
-trojan://9e76767d-4bfa-4f04-a800-42e2f63afed2@de.viefast.net:443?allowInsecure=1&sni=csapp.catch.net.tw#%F0%9F%87%A9%F0%9F%87%AA%5Bopenproxylist.com%5D%20trojan-DE
+trojan://9e76767d-4bfa-4f04-a800-42e2f63afed2@de.viefast.net:443?security=tls&sni=csapp.catch.net.tw#4Jadi-3777
 trojan://cd41b9d7-df15-46ad-a778-257b0851525a@de01.trojanyyds.xyz:443?security=tls#4Jadi-3983
 trojan://6e1b9a65-884f-3aa9-9469-bf6ec0f08610@de01a.kbservice.club:443/?type=tcp&security=tls&sni=45.32.28.232#%E2%9B%B31%40oneclickvpnkeys
 trojan://b8841c50-c3ad-11ee-9be0-1239d0255272@de1.test3.net:443?sni=chatbuzzteambhm.chatbuzzt7150.workers.dev#https:%2F%2Ft.me%2FForceRunVPN-%F0%9F%87%92%F0%9F%87%92-Unknown-444ms-Unknown
@@ -5506,11 +5506,8 @@ trojan://6e1b9a65-884f-3aa9-9469-bf6ec0f08610@my.singaporenodeserverone.kyiv.ua:
 trojan://9bb27128-e6d2-4cac-bbd3-beb46c4417f8@my01.trojanyyds.xyz:443?security=tls&type=tcp#4Jadi-3773
 trojan://9bb27128-e6d2-4cac-bbd3-beb46c4417f8@my02.trojanyyds.xyz:443?security=tls&type=tcp#4Jadi-3774
 trojan://oIwjHDXpKePvYIg8@myvps.lol:443?security=tls&sni=myvps.lol#4Jadi-4168
-trojan://ec79a5eb-60e0-45e8-b33c-10ca70b61a72@n001.xunxunmimisbs.sbs:21201?allowInsecure=0&sni=hk02.xxxxyyyysbs.sbs#%F0%9F%87%AD%F0%9F%87%B0%20%E9%A6%99%E6%B8%AF%2006
-trojan://ec79a5eb-60e0-45e8-b33c-10ca70b61a72@n001.xunxunmimisbs.sbs:24100?allowInsecure=0&sni=us01.xxxxyyyysbs.sbs#%F0%9F%87%BA%F0%9F%87%B8%20%E7%BE%8E%E5%9B%BD%20016
 trojan://c3b1a3ad-fca5-4361-8294-7614db0377f4@n001.xunxunmimisbs.sbs:47100?sni=in01.xxxxyyyysbs.sbs#%F0%9F%87%AE%F0%9F%87%B3%20%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%3Adafei.de%20%E5%8D%B0%E5%BA%A6%2003
 trojan://403ec4e0-53f5-4d26-912f-a631bf162b8f@n001.xunxunmimisbs.sbs:49120?sni=tai01.xxxxyyyysbs.sbs#%F0%9F%87%B9%F0%9F%87%AD%20%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%3Adafei.de%20%E6%B3%B0%E5%9B%BD%2001
-trojan://ec79a5eb-60e0-45e8-b33c-10ca70b61a72@n002.xunxunmimisbs.sbs:21201?allowInsecure=0&sni=hk02.xxxxyyyysbs.sbs#%F0%9F%87%AD%F0%9F%87%B0%20%E9%A6%99%E6%B8%AF%2004
 trojan://7b86c302-d97f-4b62-82b4-9cff29816212@n002.xunxunmimisbs.sbs:42100?sni=jp01.xxxxyyyysbs.sbs&allowInsecure=1#%F0%9F%87%AF%F0%9F%87%B5%20%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%3Adafei.de%20%E6%97%A5%E6%9C%AC%2008
 trojan://7b86c302-d97f-4b62-82b4-9cff29816212@n002.xunxunmimisbs.sbs:42101?sni=jp02.xxxxyyyysbs.sbs&allowInsecure=1#%F0%9F%87%AF%F0%9F%87%B5%20%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%3Adafei.de%20%E6%97%A5%E6%9C%AC%2007
 trojan://403ec4e0-53f5-4d26-912f-a631bf162b8f@n002.xunxunmimisbs.sbs:49100?sni=db01.xxxxyyyysbs.sbs#%F0%9F%87%A6%F0%9F%87%AA%20%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%3Adafei.de%20%E9%98%BF%E8%81%94%E9%85%8B%2001
@@ -5830,7 +5827,6 @@ trojan://a0087535-9c6f-42cd-9220-a7bb8eeae6cc@v02.gutingting.com:30057/?type=tcp
 trojan://blue2024@visa.cn:443/?type=tcp&security=tls&sni=hb.lii2010.us.kg&allowInsecure=1#%40Hope_Net-join-us-on-Telegram
 trojan://453121aa-6c1d-33ed-a175-cb46aa8f22f0@vjh309h93hcx.bniu3jf0csd.xyz:13039?sni=vjh309h93hcx.bniu3jf0csd.xyz&allowInsecure=1#%F0%9F%87%AE%F0%9F%87%B3%20%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%3Adafei.de%20%E5%8D%B0%E5%BA%A6%2002
 trojan://1ba48a0e-af2e-45fb-9e15-2b2d4134657c@vn.mjt000.com:443/?type=tcp&security=tls&sni=vn.mjt000.com#%40Hope_Net-join-us-on-Telegram
-trojan://569e8b16-f91d-45f3-ab52-8a7c74f1bfb7@vn.ourspce.fun:302?allowInsecure=0#%F0%9F%87%BB%F0%9F%87%B3%20%E8%B6%8A%E5%8D%97%20034
 trojan://dfcf3cca-47d0-49aa-9143-42ad1873af77@vn2.microsoft-orgwly.vip:10019?type=tcp&allowInsecure=1#4Jadi-4029
 trojan://08964210-e7b8-11ec-95aa-1239d0255272@w12.udpgw.com:443?security=tls#4Jadi-3139
 trojan://c85761bc-5d74-4ae5-b525-0d32443182fa@waphk.mjt000.com:443/?type=tcp&security=tls&sni=waphk.mjt000.com#%F0%9F%87%AD%F0%9F%87%B0HK-20.2.156.38-1210
