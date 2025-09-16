@@ -324,7 +324,7 @@ vless://a13df940-020c-465f-bc89-ee5279b5cd6a@103.169.142.91:443?encryption=none&
 vless://53fa8faf-ba4b-4322-9c69-a3e5b1555049@103.169.142.95:80?security=none&type=ws&host=ipsycho.suex12.ir&path=%2Fre5IzbZ9IZZMddtw%3Fed%3D2560#%F0%9F%94%92%20VL-WS-NONE%20%F0%9F%87%A6%F0%9F%87%BA%20AU-103.169.142.95:80
 vless://b99590df-eda0-4e34-e1a9-3d1118faed83@103.169.142.99:8880?security=none&type=httpupgrade&host=nufillter.jtip.sbs.&path=/#%F0%9F%94%92%20VL-HTTPUPGRADE-NONE%20%F0%9F%87%A6%F0%9F%87%BA%20AU-103.169.142.99:8880
 vless://89b90001-4206-4871-a99d-1744d48f215b@103.17.99.54:19280?security=reality&flow=xtls-rprx-vision&sni=cdn-dynmedia-1.microsoft.com&type=tcp&fp=chrome&pbk=F5_aTQFA2QRCig3L-qT0Qth76JdewSHK5MgEt_p8Dlo&sid=a8bd783f#[]t.me/ConfigsHub
-vless://49ed01ad-3bb4-204f-b0ff-a58f658fd618@103.175.79.10:443?flow=xtls-rprx-vision&type=tcp&headerType=none&security=reality&fp=chrome&sni=speed.cloudflare.com&pbk=4e-unF1RO2v--E7-X3aqxnCSPaK9QaTfJ7LawAr2bRI#https:%2F%2Ft.me%2FForceRunVPN-%F0%9F%87%B5%F0%9F%87%B0-Islamabad-704ms-PureVoltage%20Hosting%20Inc.
+vless://49ed01ad-3bb4-204f-b0ff-a58f658fd618@103.175.79.10:443?security=reality&encryption=none&pbk=4e-unF1RO2v--E7-X3aqxnCSPaK9QaTfJ7LawAr2bRI&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=speed.cloudflare.com#%F0%9F%87%B5%F0%9F%87%B0%5Bopenproxylist.com%5D%20vless-PK
 vless://83f60f65-339e-d033-20ea-f81022e4bf57@103.175.79.2:443?flow=xtls-rprx-vision&security=reality&encryption=none&sni=speed.cloudflare.com&fp=chrome&pbk=4e-unF1RO2v--E7-X3aqxnCSPaK9QaTfJ7LawAr2bRI&type=tcp&path=%2f#%f0%9f%87%b5%f0%9f%87%b0%20PK%206
 vless://d342d11e-d424-4583-b36e-524ab1f0afa4@103.180.161.123:587?security=tls&sni=vless.ifx.us.kg&type=ws&host=vless.ifx.us.kg&path=%2F%3Fed%3D2560fp%3Dchrome&fp=chrome#%20VL-WS-TLS%20%20SG-103.180.161.123:587
 vless://d342d11e-d424-4583-b36e-524ab1f0afa4@103.180.161.69:587?security=tls&sni=vless.ifx.us.kg&type=ws&host=vless.ifx.us.kg&path=%2F%3Fed%3D2560#%20VL-WS-TLS%20%20SG-103.180.161.69:587
@@ -1953,7 +1953,7 @@ vless://f6a7873b-5d12-48a1-8439-a737b7dcbeab@104.18.14.19:8080/?type=ws&encrypti
 vless://c3aea77c-cb41-442b-a083-2811707ba623@104.18.14.19:80/?type=ws&encryption=none&host=0305.reandoor.workers.dev&path=%2F%3Fed%3D2560#%40Gp_Config%20%F0%9F%8D%8B%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20vpn%20%D9%85%D9%86%D8%A8%D8%B9
 vless://a13df940-020c-465f-bc89-ee5279b5cd6a@104.18.14.19:8443?security=tls&sni=lj.ylks.us.kg&type=ws&host=lj.ylks.us.kg&path=%2F%3Fed%3D2560#%20VL-WS-TLS%20%20NA-104.18.14.19:8443
 vless://df342f8c-8490-4fef-8f1a-f7abb3f99596@104.18.14.19:8880/?type=ws&encryption=none&host=1227.3kiqa0ev.workers.dev&path=%2F%3Fed%3D2560#%40Hope_Net-join-us-o...
-vless://67c662fa-cd6a-474a-b55f-d50dc0a7e210@104.18.14.201:2096?allowInsecure=0&sni=iamdt.pages.dev&type=ws&host=iamdt.pages.dev&path=/fp=chrome&security=tls#14%7CUS_speednode_0025
+vless://67c662fa-cd6a-474a-b55f-d50dc0a7e210@104.18.14.201:2096?allowInsecure=0&sni=iamdt.pages.dev&type=ws&host=iamdt.pages.dev&path=/fp=chrome&security=tls#US_speednode_0025
 vless://e1ad1088-c7ab-4c06-83b1-27c8188e631b@104.18.14.229:443?security=tls&sni=cpanel.pharmaweb.info&type=ws&host=cpanel.pharmaweb.info&path=/wws&fp=chrome&alpn=h2,http/1.1#%F0%9F%94%92%20VL-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.14.229:443
 vless://3d4257f9-bb34-45a8-b5bf-60664ee67f1e@104.18.14.63:443?security=tls&sni=yeladtmeyj6ek36i3in.thelastronin.cloudns.org&type=ws&host=yelan.thelastronin.cloudns.org&path=%2FVLESS%2Fit-full.privateip.net&fp=random&alpn=http%2F1.1#%20VL-WS-TLS%20%20NA-104.18.14.63:443
 vless://e1ad1088-c7ab-4c06-83b1-27c8188e631b@104.18.14.89:443/?type=ws&encryption=none&host=cpanel.pharmaweb.info&security=tls&sni=cpanel.pharmaweb.info
@@ -1976,7 +1976,7 @@ vless://0c04dd79-71ad-475e-9a22-8fe625afccbb@104.18.15.19:8080/?type=ws&encrypti
 vless://131387aa-4b2a-43aa-bf7c-d94306ba55fb@104.18.15.19:80?path=/?ed&amp;security=none&amp;encryption=none&amp;host=13tg.jpl8xmqb.workers.dev&amp;fp=chrome&amp;type=ws#%F0%9F%94%B0@Fast_2ray%20%F0%9F%91%88%D8%B3%D8%B1%D9%88%D8%B1%D9%87%D8%A7%DB%8C%E2%80%8C%D8%A8%DB%8C%D8%B4%D8%AA%D8%B1
 vless://a13df940-020c-465f-bc89-ee5279b5cd6a@104.18.15.19:8443?security=tls&sni=ln.ylka.us.kg&type=ws&host=ln.ylka.us.kg&path=%2F%3Fed%3D2560#%20VL-WS-TLS%20%20NA-104.18.15.19:8443
 vless://26842241-856f-45f2-b33c-b58e66f36fb8@104.18.15.19:8880/?type=ws&encryption=none&host=0113.edwv8ve3.workers.dev&path=%2F%3Fed%3D2560#%40...
-vless://67c662fa-cd6a-474a-b55f-d50dc0a7e210@104.18.15.201:2096?allowInsecure=0&sni=iamdt.pages.dev&type=ws&host=iamdt.pages.dev&path=/fp=chrome&security=tls#14%7CUS_speednode_0027
+vless://67c662fa-cd6a-474a-b55f-d50dc0a7e210@104.18.15.201:2096?allowInsecure=0&sni=iamdt.pages.dev&type=ws&host=iamdt.pages.dev&path=/fp=chrome&security=tls#US_speednode_0027
 vless://b6f52521-c65d-43d6-bca4-76790c68d6fd@104.18.15.229:443?security=tls&sni=xxx.66500-280b-471c-b2b8-d68b7f9960009.workers.dev&type=ws&host=xxx.66500-280b-471c-b2b8-d68b7f9960009.workers.dev&path=%2F%3Fed%3D2048&fp=chrome&alpn=h3%2Ch2#%F0%9F%94%92%20VL-WS-TLS%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%20NA-104.18.15.229:443
 vless://3d4257f9-bb34-45a8-b5bf-60664ee67f1e@104.18.15.63:443?security=tls&sni=yeladtmeyj6ek36i3in.thelastronin.cloudns.org&type=ws&host=yelan.thelastronin.cloudns.org&path=%2FVLESS%2Fit-full.privateip.net&fp=random&alpn=http%2F1.1#%20VL-WS-TLS%20%20NA-104.18.15.63:443
 vless://a13df940-020c-465f-bc89-ee5279b5cd6a@104.18.15.8:443?security=tls&sni=lj.ylks.us.kg&type=ws&host=lj.ylks.us.kg&path=%2F%3Fed%3D2560#%20VL-WS-TLS%20%20NA-104.18.15.8:443
@@ -6200,7 +6200,7 @@ vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.253.14:22224?type=ws&security
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.253.253:22222?security=tls&sni=telegram-channel-vlessconfig.sohala.uk&type=ws&host=telegram-channel-vlessconfig.sohala.uk&path=/telegram-channel-vlessconfig-ws#[]t.me/ConfigsHub
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.253.72:22224?type=ws&security=tls&path=%2Ftelegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@VlessConfig
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.27.221:22222?path=/telegram-channel-vlessconfig-ws&security=tls&encryption=none&host=telegram-channel-vlessconfig.sohala.uk&type=ws&sni=telegram-channel-vlessconfig.sohala.uk#Telegram:@IP_CF
-vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.27.224:22224?type=ws&amp;security=tls&amp;path=/telegram-channel-vlessconfig&amp;sni=trojan.burgerip.co.uk#@VlessConfig
+vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.27.224:22224?type=ws&security=tls&path=/telegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@VlessConfig
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.27.97:22224?type=ws&security=tls&path=%2Ftelegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@VlessConfig
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.28.154:22224?type=ws&security=tls&path=%2Ftelegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@VlessConfig
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.29.56:22222?path=/telegram-channel-vlessconfig-ws&security=tls&encryption=none&host=telegram-channel-vlessconfig.sohala.uk&type=ws&sni=telegram-channel-vlessconfig.sohala.uk#Telegram%20@MoftConfig
@@ -6219,7 +6219,7 @@ vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.59.91:22224?type=ws&security=
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.64.182:22224?type=ws&security=tls&path=%2Ftelegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@MoftConfig
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.64.205:22224?type=ws&security=tls&path=%2Ftelegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@VlessConfig
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.65.149:22224?type=ws&security=tls&path=%2Ftelegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@VlessConfig
-vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.65.168:22224?type=ws&amp;security=tls&amp;path=/telegram-channel-vlessconfig&amp;sni=trojan.burgerip.co.uk#@VlessConfig
+vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.65.168:22224?type=ws&security=tls&path=/telegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@VlessConfig
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.66.53:22224?type=ws&security=tls&path=%2Ftelegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@VlessConfig
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.71.81:22224?type=ws&security=tls&path=%2Ftelegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@MoftConfig
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@13.37.72.82:22224?type=ws&security=tls&path=%2Ftelegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#Telegram:@IP_CF
@@ -16491,7 +16491,7 @@ vless://df0680ca-e43c-498d-ed86-8e196eedd012@185.231.205.5:8880?encryption=none&
 vless://1d86846c-5a27-43c8-8981-57bb75c82195@185.231.205.65:3237?security=none&encryption=none&headerType=none&type=tcp#@Vip_Security%20join%20us%20-%20301
 vless://1d86846c-5a27-43c8-8981-57bb75c82195@185.231.205.71:3237?security=none&encryption=none&headerType=none&type=tcp#@Vip_Security%20join%20us%20-%20302
 vless://1d86846c-5a27-43c8-8981-57bb75c82195@185.231.205.74:3237?type=tcp#[]t.me/ConfigsHub
-vless://df0680ca-e43c-498d-ed86-8e196eedd012@185.231.205.99:8880?mode=gun&security=none&encryption=none&type=grpc#%F0%9F%87%AB%F0%9F%87%B7%5Bopenproxylist.com%5D%20vless-FR
+vless://df0680ca-e43c-498d-ed86-8e196eedd012@185.231.205.99:8880?mode=gun&security=none&encryption=none&type=grpc#%F0%9F%8F%B3%5Bopenproxylist.com%5D%20vless-
 vless://2f33cc6f-c80a-4c19-ac4f-66547bfdd33d@185.232.152.148:1501?security=none&encryption=none&host=varzesh3.com&headerType=http&type=tcp#4Sarina-5528
 vless://b756ab67-8181-4bbc-83fd-1edca44c211a@185.232.154.219:8416?security=reality&sni=www.speedtest.net&type=grpc&serviceName=9513vless&fp=chrome&pbk=eNl9igWK4DQud2xfrMVpJy6VHI8JzvTN6dwckwko-HM&sid=502a76d3e038#%F0%9F%94%92%20VL-GRPC-RLT%20%F0%9F%87%AE%F0%9F%87%B7%20IR-185.232.154.219:8416
 vless://1a79d43f-b41c-496b-a241-dcbeefa81f0e@185.232.170.240:443?security=tls&sni=0926.qiang2000.link&type=ws&path=Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2%2F%3Fed#%F0%9F%94%92%20VL-WS-TLS%20%F0%9F%87%A7%F0%9F%87%AC%20BG-185.232.170.240:443
@@ -27846,7 +27846,7 @@ vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@63.179.231.61:22224?type=ws&securit
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@63.179.32.181:22224?type=ws&security=tls&path=%2Ftelegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@VlessConfig
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@63.179.35.160:22224?type=ws&security=tls&path=%2Ftelegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@VlessConfig
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@63.179.37.208:22224?type=ws&security=tls&path=%2Ftelegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#[]t.me/ConfigsHub
-vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@63.179.38.42:22224?type=ws&amp;security=tls&amp;path=/telegram-channel-vlessconfig&amp;sni=trojan.burgerip.co.uk#@VlessConfig
+vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@63.179.38.42:22224?type=ws&security=tls&path=/telegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@VlessConfig
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@63.179.40.205:22224?type=ws&security=tls&path=%2Ftelegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@VlessConfig
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@63.179.44.169:22224?type=ws&security=tls&path=%2Ftelegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@VlessConfig
 vless://05519058-d2ac-4f28-9e4a-2b2a1386749e@63.179.45.126:22224?type=ws&security=tls&path=%2Ftelegram-channel-vlessconfig&sni=trojan.burgerip.co.uk#@VlessConfig
@@ -35307,7 +35307,7 @@ vless://5b6867c7-d683-43cb-8ff3-b8bc320f9999@m75a.vip784.com:33801?security=none
 vless://68e6dee9-9448-49ba-a3b6-1cbcc7d5f199@m76a.vip784.com:33801?security=none&encryption=none&host=varzesh3.ir&headerType=http&type=tcp#4Sarina-6750
 vless://10811461-dd47-46a7-8f6d-c34bbd8f9734@m77a.vip784.com:33801?security=none&encryption=none&type=tcp&host=varzesh3.ir/&path=/&headerType=http#%F0%9F%91%89%F0%9F%86%94@v2ray_configs_pool%F0%9F%93%A1%F0%9F%87%AB%F0%9F%87%AE%C2%AE%EF%B8%8FFinland%C2%A9%EF%B8%8FHelsinki%F0%9F%85%BF%EF%B8%8Fping:17.55ms
 vless://bbacaf6d-292c-463a-ac31-98b02685e6b5@m78a.vip784.com:33801?security=none&encryption=none&host=varzesh3.ir&headerType=http&type=tcp#4Sarina-8456
-vless://13c10b21-6211-4d43-856f-2e54ef2ac2e2@m7a.vip784.com:33801?security=none&encryption=none&host=varzesh3.ir%2F%3FBIA_TELEGRAM%40MARAMBASHI_MARAMBASHI_MARAMBASHI&headerType=http&type=tcp#%F0%9F%87%A8%F0%9F%87%A6%5Bopenproxylist.com%5D%20vless-CA
+vless://13c10b21-6211-4d43-856f-2e54ef2ac2e2@m7a.vip784.com:33801?security=none&encryption=none&host=varzesh3.ir%2F%3FBIA_TELEGRAM%40MARAMBASHI_MARAMBASHI_MARAMBASHI&headerType=http&type=tcp#%F0%9F%8F%B3%5Bopenproxylist.com%5D%20vless-
 vless://72f14dc6-b3bf-4c26-b4ad-2724ced253e9@m8.shop99.top:90?security=tls&encryption=none&headerType=none&type=tcp#%F0%9F%87%AE%F0%9F%87%B7IR_2372_@Surfboardv2ray
 vless://5fd9c3f7-bd70-4dab-8915-4c57bfe2b309@mAth.bOok.zEdMoDeOn.sToRe:80?path=%2FJoin-ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON&security=none&encryption=none&host=d.jOin.zEdMoDeOn.oNl.&type=ws#[]t.me/ConfigsHub
 vless://81432563-263d-4e9b-b8a7-9d2c0309d88e@mJe.nimhub.ir:2053?type=ws&host=mJe.nimhub.ir&path=/&security=tls&fp=random&sni=mJe.nimhub.ir&alpn=h2,http/1.1#[]t.me/ConfigsHub
