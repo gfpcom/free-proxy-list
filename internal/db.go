@@ -11,10 +11,13 @@ import (
 	"sort"
 )
 
+// db stores deduplicated proxies indexed by an internal id.
 var (
 	db = make(map[string]*Proxy)
 )
 
+// Save adds a proxy to the internal database.
+// It uses an MD5 of protocol+ip+port as the key to deduplicate entries.
 func Save(it *Proxy) {
 	h := md5.New()
 
@@ -23,6 +26,8 @@ func Save(it *Proxy) {
 	db[id] = it
 }
 
+// WriteTo writes all collected proxies to files under the provided directory.
+// Each protocol has its own file named <protocol>.txt. Badges are also generated.
 func WriteTo(dir string) {
 	files := make(map[string]*os.File)
 	defer func() {
@@ -68,6 +73,7 @@ func WriteTo(dir string) {
 	WriteBadge(dir, "total", total)
 }
 
+// WriteBadge fetches an SVG badge for the given protocol and writes it to disk.
 func WriteBadge(dir, proto string, total int) {
 
 	resp, err := http.Get(fmt.Sprintf("https://img.shields.io/badge/%s-%v-blue", proto, total))

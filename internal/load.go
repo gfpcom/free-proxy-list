@@ -3,14 +3,17 @@ package internal
 import (
 	"bufio"
 	"bytes"
-	"log"
-	"strings"
 	"fmt"
-	"time"
+	"log"
 	"regexp"
 	"strconv"
+	"strings"
+	"time"
 )
 
+// Load parses the content of a source file for the given protocol and
+// fetches each listed source URL. It applies tokenization and uses the
+// configured transformer and parser for each source line.
 func Load(proto string, content []byte) error {
 
 	s := bufio.NewScanner(bytes.NewReader(content))
@@ -43,16 +46,16 @@ func roundToNearestIncrement(currentHour int, increment int) int {
 	if increment <= 0 || increment > 24 {
 		return currentHour
 	}
-	
+
 	// Generate valid hours based on increment
 	var validHours []int
 	for h := 0; h < 24; h += increment {
 		validHours = append(validHours, h)
 	}
-	
+
 	closest := 0
 	minDiff := 24
-	
+
 	for _, validHour := range validHours {
 		diff := currentHour - validHour
 		if diff < 0 {
@@ -61,13 +64,13 @@ func roundToNearestIncrement(currentHour int, increment int) int {
 		if diff > 12 {
 			diff = 24 - diff
 		}
-		
+
 		if diff < minDiff {
 			minDiff = diff
 			closest = validHour
 		}
 	}
-	
+
 	return closest
 }
 

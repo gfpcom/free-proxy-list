@@ -25,6 +25,11 @@ var (
 	}
 )
 
+// Fetch retrieves the data from src, applies transformer and parser to each
+// non-empty line, stores parsed proxies via Save and returns the count of
+// successfully parsed proxies.
+// transformer and parser may be nil depending on callers but are expected
+// to be valid functions when provided.
 func Fetch(proto, src string, transformer Transformer, parser Parser) int {
 	var total int
 	resp, err := client.Get(src)
