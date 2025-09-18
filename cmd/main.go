@@ -99,7 +99,7 @@ func main() {
 	for _, h := range hosts {
 		md.WriteString(fmt.Sprintf("| %s | %d |\n", h, hostProxyCount[h]))
 	}
-	os.WriteFile(filepath.Join(dir, "SOURCES.md"), []byte(md.String()), 0644)
+	os.WriteFile(filepath.Join(dir, "/list/SOURCES.md"), []byte(md.String()), 0644)
 
 	internal.WriteTo(filepath.Join(dir, "list"))
 
