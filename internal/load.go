@@ -11,10 +11,8 @@ import (
 	"time"
 )
 
-// Load parses the content of a source file for the given protocol and
-// fetches each listed source URL. It applies tokenization and uses the
-// configured transformer and parser for each source line.
-func Load(proto string, content []byte) error {
+// Load reads proxy source lines and fetches proxies. If onFetch is not nil, it is called with (src, count) for each fetch.
+func Load(proto string, content []byte, onFetch func(src string, count int)) error {
 
 	s := bufio.NewScanner(bytes.NewReader(content))
 
@@ -26,17 +24,17 @@ func Load(proto string, content []byte) error {
 		if line == "" {
 			continue
 		}
-
 		if strings.HasPrefix(line, "https://") || strings.HasPrefix(line, "http://") {
 			src, transformer, parser = parseLine(line)
-
 			if src == "" {
 				continue
 			}
-
-			log.Printf("> %v %s", Fetch(proto, src, transformer, parser), src)
+			count := Fetch(proto, src, transformer, parser)
+			if onFetch != nil {
+				onFetch(src, count)
+			}
+			log.Printf("> %v %s", count, src)
 		}
-
 	}
 
 	return nil
