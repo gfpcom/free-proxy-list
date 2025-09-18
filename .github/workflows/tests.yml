@@ -1,0 +1,32 @@
+name: Go Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21'
+
+    - name: Install dependencies
+      run: go mod download
+
+    - name: Check sources for duplicates
+      run: make check-sources
+
+    - name: Run golint
+      run: make install-lint && make lint
+
+    - name: Run tests
+      run: go test -v ./...

@@ -12,18 +12,25 @@ import (
 	"github.com/cnlangzi/proxyclient/xray"
 )
 
+// Parsers contains named parser implementations used to parse custom lines.
 var (
 	Parsers = map[string]Parser{}
 
+	// ErrInvalidProxy is returned when a proxy URL cannot be parsed or is
+	// rejected by validation rules.
 	ErrInvalidProxy = errors.New("gfp: invalid proxy")
 )
 
+// Parser is a function that parses a single line into a Proxy object.
 type Parser func(string, string) (*Proxy, error)
 
+// RegisterParser registers a Parser under the given name.
 func RegisterParser(name string, parser Parser) {
 	Parsers[name] = parser
 }
 
+// GetParser returns the parser registered under name or the default
+// ParseProxyURL if no parser is found.
 func GetParser(name string) Parser {
 	if parser, ok := Parsers[name]; ok {
 		return parser
@@ -37,6 +44,9 @@ func init() {
 	Parsers["SpaceURL"] = ParseSpaceURL
 }
 
+// ParseProxyURL parses a proxy URL into a Proxy struct and performs basic
+// validation. It supports many schemes such as vmess, vless, ss, ssr, trojan,
+// and standard http/socks proxies.
 func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 	if !strings.Contains(proxyURL, "://") {
 		proxyURL = proto + "://" + proxyURL
@@ -175,10 +185,13 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 	return it, nil
 }
 
+// IsLocal returns true when ip is a link-local or localhost address and should
+// be rejected.
 func IsLocal(ip string) bool {
 	return strings.HasPrefix(ip, "0.") || strings.HasPrefix(ip, "127.") || strings.HasPrefix(ip, "169.254.")
 }
 
+// ParseColonURL accepts `ip:port` style lines and delegates to ParseProxyURL.
 func ParseColonURL(proto, proxyURL string) (*Proxy, error) {
 	items := strings.Split(proxyURL, ":")
 
@@ -189,6 +202,7 @@ func ParseColonURL(proto, proxyURL string) (*Proxy, error) {
 	return ParseProxyURL(proto, items[0]+":"+items[1])
 }
 
+// ParseSpaceURL accepts `ip port` style lines and delegates to ParseProxyURL.
 func ParseSpaceURL(proto, proxyURL string) (*Proxy, error) {
 	items := strings.Split(proxyURL, " ")
 

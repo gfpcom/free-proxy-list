@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// Proxy represents a parsed proxy entry.
 type Proxy struct {
 	IP       string `json:"ip"`
 	Port     int    `json:"port"`
