@@ -51,23 +51,23 @@ We provide proxies in multiple formats, ready to be used in your applications.
 
 Click on your preferred proxy type to get the latest list. These links always point to the most recently updated proxy files.
 
-|Type|GitHub|CDN|
-|----|-----|-----|
-|<img src="./list/http.svg">|[http.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/http.txt)|[http.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/http.txt)|
-|<img src="./list/https.svg">|[https.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/https.txt)|[https.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/https.txt)|
-|<img src="./list/socks4.svg">|[socks4.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/socks4.txt)|[socks4.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/socks4.txt)|
-|<img src="./list/socks4a.svg">|[socks4a.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/socks4a.txt)|[socks4a.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/socks4a.txt)|
-|<img src="./list/socks5.svg">|[socks5.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/socks5.txt)|[socks5.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/socks5.txt)|
-|<img src="./list/socks5h.svg">|[socks5h.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/socks5h.txt)|[socks5h.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/socks5h.txt)|
-|<img src="./list/trojan.svg">|[trojan.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/trojan.txt)|[trojan.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/trojan.txt)|
-|<img src="./list/vmess.svg">|[vmess.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/vmess.txt)|[vmess.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/vmess.txt)|
-|<img src="./list/vless.svg">|[vless.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/vless.txt)|[vless.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/vless.txt)|
-|<img src="./list/ss.svg">|[ss.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/ss.txt)|[ss.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/ss.txt)|
-|<img src="./list/ssr.svg">|[ssr.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/ssr.txt)|[ssr.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/ssr.txt)|
-|<img src="./list/hy.svg">|[hy.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/hy.txt)|[hy.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/hy.txt)|
-|<img src="./list/hy2.svg">|[hy2.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/hy2.txt)|[hy2.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/hy2.txt)|
-|<img src="./list/tuic.svg">|[tuic.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/tuic.txt)|[tuic.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/tuic.txt)|
-|<img src="./list/wireguard.svg">|[wireguard.txt](https://raw.githubusercontent.com/gfpcom/free-proxy-list/main/list/wireguard.txt)|[wireguard.txt](https://cdn.jsdelivr.net/gh/gfpcom/free-proxy-list@main/list/wireguard.txt)|
+|Type|GitHub|
+|----|-----|
+|<img src="./list/http.svg">|[http.txt](https://media.githubusercontent.com/media/gfpcom/free-proxy-list/main/list/http.txt)|
+|<img src="./list/https.svg">|[https.txt](https://media.githubusercontent.com/media/gfpcom/free-proxy-list/main/list/https.txt)|
+|<img src="./list/socks4.svg">|[socks4.txt](https://media.githubusercontent.com/media/gfpcom/free-proxy-list/main/list/socks4.txt)|
+|<img src="./list/socks4a.svg">|[socks4a.txt](https://media.githubusercontent.com/media/gfpcom/free-proxy-list/main/list/socks4a.txt)|
+|<img src="./list/socks5.svg">|[socks5.txt](https://media.githubusercontent.com/media/gfpcom/free-proxy-list/main/list/socks5.txt)|
+|<img src="./list/socks5h.svg">|[socks5h.txt](https://media.githubusercontent.com/media/gfpcom/free-proxy-list/main/list/socks5h.txt)|
+|<img src="./list/trojan.svg">|[trojan.txt](https://media.githubusercontent.com/media/gfpcom/free-proxy-list/main/list/trojan.txt)|
+|<img src="./list/vmess.svg">|[vmess.txt](https://media.githubusercontent.com/media/gfpcom/free-proxy-list/main/list/vmess.txt)|
+|<img src="./list/vless.svg">|[vless.txt](https://media.githubusercontent.com/media/gfpcom/free-proxy-list/main/list/vless.txt)|
+|<img src="./list/ss.svg">|[ss.txt](https://media.githubusercontent.com/media/gfpcom/free-proxy-list/main/list/ss.txt)|
+|<img src="./list/ssr.svg">|[ssr.txt](https://media.githubusercontent.com/media/gfpcom/free-proxy-list/main/list/ssr.txt)|
+|<img src="./list/hy.svg">|[hy.txt](https://media.githubusercontent.com/media/gfpcom/free-proxy-list/main/list/hy.txt)|
+|<img src="./list/hy2.svg">|[hy2.txt](https://media.githubusercontent.com/media/gfpcom/free-proxy-list/main/list/hy2.txt)|
+|<img src="./list/tuic.svg">|[tuic.txt](https://media.githubusercontent.com/media/gfpcom/free-proxy-list/main/list/tuic.txt)|
+|<img src="./list/wireguard.svg">|[wireguard.txt](https://media.githubusercontent.com/media/gfpcom/free-proxy-list/main/list/wireguard.txt)|
 
 ## 🤝 Contributing
 
