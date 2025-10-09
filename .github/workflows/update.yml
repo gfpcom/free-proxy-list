@@ -1,6 +1,5 @@
 name: Update
 
-
 permissions:
   contents: write
   repository-projects: write
@@ -17,6 +16,8 @@ on:
 jobs:
   Update:
     runs-on: ubuntu-latest
+    outputs:
+      changes_made: ${{ steps.update_check.outputs.changes }}
 
     steps:
       - name: Checkout code
@@ -35,9 +36,32 @@ jobs:
           
           git add .
           changes=$(git diff --staged --numstat | wc -l)
+          echo "changes=$changes" >> $GITHUB_OUTPUT
           if [[ $changes -gt 0 ]]
           then
             timestamp=$(date +"%Y-%m-%d %H:%M:%S")
             git commit -m "fix(list): updated list at $timestamp"
             git push
           fi
+
+  Cleanup-LFS:
+    needs: Update
+    if: needs.Update.outputs.changes_made != '0'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Git LFS
+        run: |
+          git lfs install
+          git config user.name gfpcom
+          git config user.email support@getfreeproxy.com
+
+      - name: Clean LFS history
+        run: |
+          make clean-lfs
+          git push --force origin HEAD:main
