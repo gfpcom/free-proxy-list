@@ -40,7 +40,7 @@ jobs:
             total=0
           fi
 
-          cat > wiki/Home.md << 'EOF'
+          cat > wiki/Home.md << EOF
 # Proxy Lists
 
 **Total Proxies:** $total

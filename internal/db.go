@@ -63,7 +63,7 @@ func WriteTo(dir string) {
 	// Generate total.svg and update README.md
 	WriteTotalAndUpdateReadme(dir, counters)
 }
- 
+
 func WriteTotalAndUpdateReadme(dir string, counters map[string]int) {
 	// Calculate total
 	total := 0
@@ -130,10 +130,11 @@ Click on your preferred proxy type to get the latest list. These links always po
 }
 
 // httpGet fetches URL and returns a small wrapper with the body bytes and Close()
-type respWrap struct{
+type respWrap struct {
 	b []byte
 }
-func (r *respWrap) Close() error { return nil }
+
+func (r *respWrap) Close() error  { return nil }
 func (r *respWrap) Bytes() []byte { return r.b }
 
 func httpGet(url string) (*respWrap, error) {
