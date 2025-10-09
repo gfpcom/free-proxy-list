@@ -65,4 +65,4 @@ jobs:
       - name: Clean LFS history
         run: |
           make clean-lfs
-          git push --force origin HEAD:main
+          git push --force-with-lease origin HEAD:main
