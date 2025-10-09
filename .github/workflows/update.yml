@@ -1,10 +1,10 @@
-name: Update Wiki Lists
+name: Update Lists
 
 permissions:
   contents: write
 
 concurrency:
-  group: "update-wiki"
+  group: "update"
   cancel-in-progress: true
 
 on:
@@ -13,13 +13,13 @@ on:
     - cron: '0,30 * * * *'  # every 30 minutes
 
 jobs:
-  update-wiki:
+  update:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Generate Lists
+      - name: Update Lists
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
