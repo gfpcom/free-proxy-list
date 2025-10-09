@@ -19,6 +19,9 @@ func main() {
 	flag.StringVar(&dir, "dir", ".", "work directory")
 	flag.Parse()
 
+	os.MkdirAll(filepath.Join(dir, "list"), 0755) // nolint: errcheck
+
+
 	err := fs.WalkDir(os.DirFS(filepath.Join(dir, "sources")), ".", func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
 			slog.Warn("gfp: open source", slog.String("file", path), slog.Any("err", err))
@@ -50,6 +53,7 @@ func main() {
 
 		return nil
 	})
+
 
 	internal.WriteTo(filepath.Join(dir, "list"))
 

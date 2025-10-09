@@ -23,53 +23,7 @@ jobs:
         run: make update
 
       - name: Clone Wiki
-        run: |
-          git clone "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git" wiki
+        run: make clone-wiki
 
       - name: Update Wiki
-        run: |
-          # Create directories if needed
-          mkdir -p wiki/lists
-
-          # Copy all generated files to wiki (ignore errors if no files)
-          cp -r list/* wiki/lists/ || true
-
-          # Update main wiki page with a simple index (write numeric total and available lists)
-          total=$(cat list/*.txt 2>/dev/null | wc -l | tr -d ' ')
-          if [ -z "$total" ]; then
-            total=0
-          fi
-
-          cat > wiki/Home.md << EOF
-# Proxy Lists
-
-**Total Proxies:** $total
-
-This wiki contains the latest protocol-specific proxy lists under the `lists/` directory.
-
-## Available Lists
-
-$(for f in list/*.txt; do [ -f "$f" ] && echo "* [$(basename "$f")](lists/$(basename "$f"))"; done)
-EOF
-          # This ensures the wiki keeps only one commit in its history.
-          cd wiki
-          remote="https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git"
-
-          # Wiki repos always use master as the default branch
-          # Remove existing git history and create a fresh single-commit repo
-          rm -rf .git
-          git init
-          
-          # Set git configuration
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          
-          git remote add origin "$remote"
-
-          git add .
-          if [ -n "$(git status --porcelain)" ]; then
-            timestamp=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
-            git commit -m "Update proxy lists - $timestamp"
-            git branch -M master
-            git push --force origin master
-          fi
+        run: make update-wiki
