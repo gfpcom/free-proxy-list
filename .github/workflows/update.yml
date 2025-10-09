@@ -34,22 +34,8 @@ jobs:
           # Copy all generated files to wiki (ignore errors if no files)
           cp -r list/* wiki/lists/ || true
 
-          # Update main wiki page
-          cat > wiki/Home.md << EOF
-          # Proxy Lists
-
-          This page contains automatically updated proxy lists. Last update: $(date -u)
-
-          ## Available Lists
-
-          $(for f in list/*.txt; do echo "* [$(basename $f .txt)](lists/$(basename $f))"; done)
-
-          ## Statistics
-
-          $(for f in list/*.svg; do echo "* ![$(basename $f .svg) stats](lists/$(basename $f))"; done)
-          EOF
-
-          # Replace wiki history with a single commit and force-push.
+          # Update main wiki page with stats
+          cp list/STATS.md wiki/Home.md          # Replace wiki history with a single commit and force-push.
           # This ensures the wiki keeps only one commit in its history.
           cd wiki
           remote="https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git"

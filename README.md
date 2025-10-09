@@ -49,8 +49,10 @@ We provide proxies in multiple formats, ready to be used in your applications.
 
 ## 🔗 Direct Download Links
 
+
 Click on your preferred proxy type to get the latest list. These links always point to the most recently updated proxy files.
 
+<!-- BEGIN PROXY LIST -->
 |Type|GitHub Wiki|
 |----|-----|
 |<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/http.svg">|[http.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/http.txt)|
@@ -68,6 +70,7 @@ Click on your preferred proxy type to get the latest list. These links always po
 |<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/hy2.svg">|[hy2.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/hy2.txt)|
 |<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/tuic.svg">|[tuic.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/tuic.txt)|
 |<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/wireguard.svg">|[wireguard.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/wireguard.txt)|
+<!-- END PROXY LIST -->
 
 ## 🤝 Contributing
 
