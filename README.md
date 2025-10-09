@@ -53,23 +53,29 @@ We provide proxies in multiple formats, ready to be used in your applications.
 Click on your preferred proxy type to get the latest list. These links always point to the most recently updated proxy files.
 
 <!-- BEGIN PROXY LIST -->
-|Type|GitHub Wiki|
-|----|-----|
-|<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/http.svg">|[http.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/http.txt)|
-|<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/https.svg">|[https.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/https.txt)|
-|<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/socks4.svg">|[socks4.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/socks4.txt)|
-|<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/socks4a.svg">|[socks4a.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/socks4a.txt)|
-|<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/socks5.svg">|[socks5.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/socks5.txt)|
-|<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/socks5h.svg">|[socks5h.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/socks5h.txt)|
-|<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/trojan.svg">|[trojan.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/trojan.txt)|
-|<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/vmess.svg">|[vmess.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/vmess.txt)|
-|<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/vless.svg">|[vless.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/vless.txt)|
-|<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/ss.svg">|[ss.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/ss.txt)|
-|<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/ssr.svg">|[ssr.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/ssr.txt)|
-|<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/hy.svg">|[hy.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/hy.txt)|
-|<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/hy2.svg">|[hy2.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/hy2.txt)|
-|<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/tuic.svg">|[tuic.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/tuic.txt)|
-|<img src="https://github.com/gfpcom/free-proxy-list/wiki/lists/wireguard.svg">|[wireguard.txt](https://github.com/gfpcom/free-proxy-list/wiki/lists/wireguard.txt)|
+
+Last Updated: 2025-10-09 09:30:10 UTC
+
+**Total Proxies: 1855242**
+
+Click on your preferred proxy type to get the latest list. These links always point to the most recently updated proxy files.
+
+| Protocol | Count | Download |
+|----------|-------|----------|
+| HTTP | 449226 | https://github.com/gfpcom/free-proxy-list/wiki/lists/http.txt |
+| HTTPS | 450098 | https://github.com/gfpcom/free-proxy-list/wiki/lists/https.txt |
+| HY | 6 | https://github.com/gfpcom/free-proxy-list/wiki/lists/hy.txt |
+| HY2 | 286 | https://github.com/gfpcom/free-proxy-list/wiki/lists/hy2.txt |
+| SOCKS4 | 447694 | https://github.com/gfpcom/free-proxy-list/wiki/lists/socks4.txt |
+| SOCKS5 | 448992 | https://github.com/gfpcom/free-proxy-list/wiki/lists/socks5.txt |
+| SS | 5174 | https://github.com/gfpcom/free-proxy-list/wiki/lists/ss.txt |
+| SSR | 36 | https://github.com/gfpcom/free-proxy-list/wiki/lists/ssr.txt |
+| TROJAN | 5922 | https://github.com/gfpcom/free-proxy-list/wiki/lists/trojan.txt |
+| TUIC | 1 | https://github.com/gfpcom/free-proxy-list/wiki/lists/tuic.txt |
+| VLESS | 40613 | https://github.com/gfpcom/free-proxy-list/wiki/lists/vless.txt |
+| VMESS | 7177 | https://github.com/gfpcom/free-proxy-list/wiki/lists/vmess.txt |
+| WIREGUARD | 17 | https://github.com/gfpcom/free-proxy-list/wiki/lists/wireguard.txt |
+
 <!-- END PROXY LIST -->
 
 ## 🤝 Contributing

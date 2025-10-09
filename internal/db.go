@@ -4,6 +4,8 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
+	"io"
+	"net/http"
 	"os"
 	"path/filepath"
 	"sort"
@@ -58,23 +60,34 @@ func WriteTo(dir string) {
 		file.WriteString(it.String() + "\n") // nolint: errcheck
 	}
 
-	// Generate STATS.md and update README.md
-	WriteStats(dir, counters)
+	// Generate total.svg and update README.md
+	WriteTotalAndUpdateReadme(dir, counters)
 }
-
-func WriteStats(dir string, counters map[string]int) {
-	// Get sorted protocols for consistent ordering
-	protocols := make([]string, 0, len(counters))
+ 
+func WriteTotalAndUpdateReadme(dir string, counters map[string]int) {
+	// Calculate total
 	total := 0
+	protocols := make([]string, 0, len(counters))
 	for proto, count := range counters {
 		protocols = append(protocols, proto)
-		total = total + count
+		total += count
 	}
 	sort.Strings(protocols)
 
 	timestamp := time.Now().UTC().Format("2006-01-02 15:04:05 UTC")
 
-	// Generate table content
+	// Generate total.svg using shields.io
+	// e.g. https://img.shields.io/badge/total-1234-blue
+	svgURL := fmt.Sprintf("https://img.shields.io/badge/total-%d-blue", total)
+	resp, err := httpGet(svgURL)
+	if err == nil && resp != nil {
+		defer resp.Close()
+		// write to list/total.svg
+		outPath := filepath.Join(dir, "total.svg")
+		_ = os.WriteFile(outPath, resp.Bytes(), 0644) // nolint: errcheck
+	}
+
+	// Build table content for README replacement
 	var tableContent strings.Builder
 	for _, proto := range protocols {
 		count := counters[proto]
@@ -85,34 +98,11 @@ func WriteStats(dir string, counters map[string]int) {
 			url))
 	}
 
-	// Write STATS.md
-	statsFile, err := os.Create(filepath.Join(dir, "STATS.md"))
-	if err != nil {
-		return
-	}
-	defer statsFile.Close()
-
-	statsContent := fmt.Sprintf(`# Proxy Statistics
-
-Last Updated: %s
-
-**Total Proxies: %d**
-
-| Protocol | Count | Download |
-|----------|-------|----------|
-%s`, timestamp, total, tableContent.String())
-
-	statsFile.WriteString(statsContent)
-
 	// Update README.md
 	readmePath := filepath.Join(dir, "..", "README.md")
 	readmeContent, err := os.ReadFile(readmePath)
-	if err != nil {
-		return
-	}
-
-	// Prepare new section content
-	newSection := fmt.Sprintf(`
+	if err == nil {
+		newSection := fmt.Sprintf(`
 Last Updated: %s
 
 **Total Proxies: %d**
@@ -123,21 +113,42 @@ Click on your preferred proxy type to get the latest list. These links always po
 |----------|-------|----------|
 %s`, timestamp, total, tableContent.String())
 
-	// Find and replace the section in README.md
-	content := string(readmeContent)
-	startMarker := "<!-- BEGIN PROXY LIST -->"
-	endMarker := "<!-- END PROXY LIST -->"
+		content := string(readmeContent)
+		startMarker := "<!-- BEGIN PROXY LIST -->"
+		endMarker := "<!-- END PROXY LIST -->"
 
-	startIdx := strings.Index(content, startMarker)
-	endIdx := strings.Index(content, endMarker)
+		startIdx := strings.Index(content, startMarker)
+		endIdx := strings.Index(content, endMarker)
 
-	if startIdx != -1 && endIdx != -1 {
-		// Keep the markers and replace content between them
-		before := content[:startIdx+len(startMarker)]
-		after := content[endIdx:]
-
-		// Add newlines for better readability
-		newContent := before + "\n" + newSection + "\n" + after
-		os.WriteFile(readmePath, []byte(newContent), 0644)
+		if startIdx != -1 && endIdx != -1 {
+			before := content[:startIdx+len(startMarker)]
+			after := content[endIdx:]
+			newContent := before + "\n" + newSection + "\n" + after
+			_ = os.WriteFile(readmePath, []byte(newContent), 0644) // nolint: errcheck
+		}
 	}
+}
+
+// httpGet fetches URL and returns a small wrapper with the body bytes and Close()
+type respWrap struct{
+	b []byte
+}
+func (r *respWrap) Close() error { return nil }
+func (r *respWrap) Bytes() []byte { return r.b }
+
+func httpGet(url string) (*respWrap, error) {
+	// Use simple http.Get but avoid adding net/http import at top if not present; import locally
+	resp, err := http.DefaultClient.Get(url)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode != 200 {
+		return nil, fmt.Errorf("status %d", resp.StatusCode)
+	}
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+	return &respWrap{b: data}, nil
 }

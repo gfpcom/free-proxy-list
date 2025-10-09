@@ -21,6 +21,7 @@
 go.work
 
 # Generated proxy lists
+gfp
 /list/
 go.work
 go.work.sum
