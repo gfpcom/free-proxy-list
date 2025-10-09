@@ -33,7 +33,7 @@ jobs:
           git add README.md list/total.svg 2>/dev/null || true
           if [ -n "$(git status --porcelain)" ]; then
             timestamp=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
-            git commit -m "chore(list): update README and total.svg - $timestamp"
+            git commit -m "chore(list): update STATS and total.svg - $timestamp"
             # push using token
             git push "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" HEAD
           fi
