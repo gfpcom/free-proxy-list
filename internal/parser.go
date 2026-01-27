@@ -49,6 +49,11 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 
 	scheme := strings.ToLower(u.Scheme)
 
+	// Validate scheme length to prevent invalid protocols
+	if len(scheme) == 0 || len(scheme) > 15 {
+		return nil, ErrInvalidProxy
+	}
+
 	// Convert hysteria to hy and hysteria2 to hy2
 	switch scheme {
 	case "hysteria", "hhysteria":
@@ -145,6 +150,7 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 		it.Port = port
 		it.Opaque = strings.TrimPrefix(vu.Raw().String(), "ssr://")
 	default: // "http", "https", "socks4", "socks4a", "socks5", "socks5h":
+
 		it = &Proxy{
 			IP:   u.Hostname(),
 			User: u.User.Username(),
