@@ -3,7 +3,7 @@ module github.com/gfpcom/free-proxy-list
 go 1.25.0
 
 require (
-	github.com/cnlangzi/proxyclient v0.0.23
+	github.com/cnlangzi/proxyclient v0.0.24
 	github.com/stretchr/testify v1.11.1
 )
 
@@ -27,7 +27,7 @@ require (
 	github.com/quic-go/quic-go v0.58.0 // indirect
 	github.com/refraction-networking/utls v1.8.2 // indirect
 	github.com/riobard/go-bloom v0.0.0-20200614022211-cdc8013cb5b3 // indirect
-	github.com/sagernet/sing v0.8.8 // indirect
+	github.com/sagernet/sing v0.8.9 // indirect
 	github.com/sagernet/sing-shadowsocks v0.2.8 // indirect
 	github.com/seiflotfy/cuckoofilter v0.0.0-20240715131351-a2f2c23f1771 // indirect
 	github.com/v2fly/ss-bloomring v0.0.0-20210312155135-28617310f63e // indirect
