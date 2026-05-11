@@ -5,6 +5,7 @@ go 1.25.0
 require (
 	github.com/cnlangzi/proxyclient v0.0.23
 	github.com/stretchr/testify v1.11.1
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
@@ -50,7 +51,6 @@ require (
 	google.golang.org/grpc v1.79.3 // indirect
 	google.golang.org/protobuf v1.36.11 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gvisor.dev/gvisor v0.0.0-20250428193742-2d800c3129d5 // indirect
 	h12.io/socks v1.0.3 // indirect
 	lukechampine.com/blake3 v1.4.1 // indirect
