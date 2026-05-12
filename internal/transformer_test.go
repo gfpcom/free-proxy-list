@@ -43,7 +43,7 @@ func TestFromClash(t *testing.T) {
     port: 443
     cipher: chacha20-ietf-poly1305
     password: "test123"`,
-			expected: "ss://" + base64.URLEncoding.EncodeToString([]byte("chacha20-ietf-poly1305:test123")) + "@9.10.11.12:443\n",
+			expected: "ss://" + base64.StdEncoding.EncodeToString([]byte("chacha20-ietf-poly1305:test123")) + "@9.10.11.12:443\n",
 		},
 		{
 			name: "clash config with no proxies",

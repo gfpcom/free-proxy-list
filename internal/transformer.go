@@ -102,6 +102,11 @@ func buildProxyURL(proxy map[string]interface{}) string {
 
 	switch proxyType {
 	case "http", "https", "socks5", "socks4":
+		username, hasUser := proxy["username"].(string)
+		password, hasPass := proxy["password"].(string)
+		if hasUser && hasPass && username != "" && password != "" {
+			return fmt.Sprintf("%s://%s:%s@%s:%d", proxyType, username, password, server, portInt)
+		}
 		return fmt.Sprintf("%s://%s:%d", proxyType, server, portInt)
 	case "ss":
 		cipher, ok := proxy["cipher"].(string)
@@ -113,7 +118,7 @@ func buildProxyURL(proxy map[string]interface{}) string {
 			return ""
 		}
 		// Shadowsocks URL format: ss://base64(cipher:password)@server:port
-		credentials := base64.URLEncoding.EncodeToString([]byte(cipher + ":" + password))
+		credentials := base64.StdEncoding.EncodeToString([]byte(cipher + ":" + password))
 		return fmt.Sprintf("ss://%s@%s:%d", credentials, server, portInt)
 	case "vmess", "vless", "trojan":
 		// These protocols require complex URL formats with UUIDs, encryption params, etc.
