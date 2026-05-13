@@ -27,8 +27,8 @@ func WriteTo(dir string) {
 	files := make(map[string]*os.File)
 	defer func() {
 		for _, f := range files {
-			f.Sync() // nolint: errcheck
-			f.Close()
+			_ = f.Sync()  // nolint: errcheck
+			_ = f.Close() // nolint: errcheck
 		}
 	}()
 
@@ -81,7 +81,7 @@ func WriteTotalAndUpdateReadme(dir string, counters map[string]int) {
 	svgURL := fmt.Sprintf("https://img.shields.io/badge/total-%d-blue", total)
 	resp, err := httpGet(svgURL)
 	if err == nil && resp != nil {
-		defer resp.Close()
+		defer func() { _ = resp.Close() }() // nolint: errcheck
 		// write to list/total.svg
 		outPath := filepath.Join(dir, "total.svg")
 		_ = os.WriteFile(outPath, resp.Bytes(), 0644) // nolint: errcheck
@@ -92,10 +92,10 @@ func WriteTotalAndUpdateReadme(dir string, counters map[string]int) {
 	for _, proto := range protocols {
 		count := counters[proto]
 		url := fmt.Sprintf("https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/%s.txt", proto)
-		tableContent.WriteString(fmt.Sprintf("| %s | %d | %s |\n",
+		fmt.Fprintf(&tableContent, "| %s | %d | %s |\n",
 			strings.ToUpper(proto),
 			count,
-			url))
+			url)
 	}
 
 	// Update README.md
@@ -143,7 +143,7 @@ func httpGet(url string) (*respWrap, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }() // nolint: errcheck
 	if resp.StatusCode != 200 {
 		return nil, fmt.Errorf("status %d", resp.StatusCode)
 	}
