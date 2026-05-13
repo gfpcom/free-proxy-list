@@ -137,6 +137,35 @@ socks-port: 7891`,
 			expected: "",
 		},
 		{
+			name: "https proxy",
+			input: `proxies:
+  - name: "https-proxy"
+    type: https
+    server: 5.6.7.8
+    port: 8443`,
+			expected: "https://5.6.7.8:8443\n",
+		},
+		{
+			name: "socks4 proxy",
+			input: `proxies:
+  - name: "socks4-proxy"
+    type: socks4
+    server: 9.9.9.9
+    port: 1080`,
+			expected: "socks4://9.9.9.9:1080\n",
+		},
+		{
+			name: "http proxy with auth credentials",
+			input: `proxies:
+  - name: "auth-proxy"
+    type: http
+    server: 1.2.3.4
+    port: 8080
+    username: "user1"
+    password: "pass1"`,
+			expected: "http://user1:pass1@1.2.3.4:8080\n",
+		},
+		{
 			name: "vmess proxy skipped",
 			input: `proxies:
   - name: "vmess-proxy"
@@ -144,6 +173,32 @@ socks-port: 7891`,
     server: 1.2.3.4
     port: 443`,
 			expected: "",
+		},
+		{
+			name: "float64 port",
+			input: `proxies:
+  - name: "float-port"
+    type: http
+    server: 1.2.3.4
+    port: 8080.0`,
+			expected: "http://1.2.3.4:8080\n",
+		},
+		{
+			name: "bool port skipped gracefully",
+			input: `proxies:
+  - name: "valid"
+    type: http
+    server: 1.2.3.4
+    port: 8080
+  - name: "bool-port"
+    type: http
+    server: 5.6.7.8
+    port: true
+  - name: "valid2"
+    type: socks5
+    server: 9.10.11.12
+    port: 1080`,
+			expected: "http://1.2.3.4:8080\nsocks5://9.10.11.12:1080\n",
 		},
 		{
 			name: "mixed valid and invalid proxies",

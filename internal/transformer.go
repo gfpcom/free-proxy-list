@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	"strconv"
+
 	"gopkg.in/yaml.v3"
 )
 
@@ -44,12 +45,53 @@ func FromBase64(buf []byte) []byte {
 	return decoded
 }
 
-// ClashConfig represents a Clash YAML configuration
-type ClashConfig struct {
-	Proxies []map[string]interface{} `yaml:"proxies"`
+// FlexPort handles YAML port values that may be int, float, or string.
+type FlexPort int
+
+func (p *FlexPort) UnmarshalYAML(value *yaml.Node) error {
+	switch value.Tag {
+	case "!!int":
+		v, err := strconv.Atoi(value.Value)
+		if err != nil {
+			return err
+		}
+		*p = FlexPort(v)
+		return nil
+	case "!!float":
+		v, err := strconv.ParseFloat(value.Value, 64)
+		if err != nil {
+			return err
+		}
+		*p = FlexPort(int(v))
+		return nil
+	case "!!str":
+		v, err := strconv.Atoi(value.Value)
+		if err != nil {
+			return err
+		}
+		*p = FlexPort(v)
+		return nil
+	}
+	// Unsupported types (bool, null, etc.) default to 0; port range check rejects them.
+	return nil
 }
 
-// FromClash parses a Clash YAML config and extracts proxy URLs
+// ClashProxy represents a single proxy entry in a Clash config.
+type ClashProxy struct {
+	Type     string   `yaml:"type"`
+	Server   string   `yaml:"server"`
+	Port     FlexPort `yaml:"port"`
+	Cipher   string   `yaml:"cipher,omitempty"`
+	Password string   `yaml:"password,omitempty"`
+	Username string   `yaml:"username,omitempty"`
+}
+
+// ClashConfig represents a Clash YAML configuration.
+type ClashConfig struct {
+	Proxies []ClashProxy `yaml:"proxies"`
+}
+
+// FromClash parses a Clash YAML config and extracts proxy URLs.
 func FromClash(buf []byte) []byte {
 	// Limit YAML size to prevent OOM attacks (10MB max)
 	const maxYAMLSize = 10 * 1024 * 1024
@@ -74,52 +116,31 @@ func FromClash(buf []byte) []byte {
 	return result.Bytes()
 }
 
-func buildProxyURL(proxy map[string]interface{}) string {
-	proxyType, ok := proxy["type"].(string)
-	if !ok {
+func buildProxyURL(proxy ClashProxy) string {
+	if proxy.Type == "" || proxy.Server == "" {
 		return ""
 	}
 
-	server, ok := proxy["server"].(string)
-	if !ok {
-		return ""
-	}
-
-	port, ok := proxy["port"]
-	if !ok {
-		return ""
-	}
-
-	portInt, err := extractPort(port)
-	if err != nil {
-		return ""
-	}
+	port := int(proxy.Port)
 
 	// Validate port range
-	if portInt < 1 || portInt > 65535 {
+	if port < 1 || port > 65535 {
 		return ""
 	}
 
-	switch proxyType {
+	switch proxy.Type {
 	case "http", "https", "socks5", "socks4":
-		username, hasUser := proxy["username"].(string)
-		password, hasPass := proxy["password"].(string)
-		if hasUser && hasPass && username != "" && password != "" {
-			return fmt.Sprintf("%s://%s:%s@%s:%d", proxyType, username, password, server, portInt)
+		if proxy.Username != "" && proxy.Password != "" {
+			return fmt.Sprintf("%s://%s:%s@%s:%d", proxy.Type, proxy.Username, proxy.Password, proxy.Server, port)
 		}
-		return fmt.Sprintf("%s://%s:%d", proxyType, server, portInt)
+		return fmt.Sprintf("%s://%s:%d", proxy.Type, proxy.Server, port)
 	case "ss":
-		cipher, ok := proxy["cipher"].(string)
-		if !ok || cipher == "" {
-			return ""
-		}
-		password, ok := proxy["password"].(string)
-		if !ok || password == "" {
+		if proxy.Cipher == "" || proxy.Password == "" {
 			return ""
 		}
 		// Shadowsocks URL format: ss://base64(cipher:password)@server:port
-		credentials := base64.StdEncoding.EncodeToString([]byte(cipher + ":" + password))
-		return fmt.Sprintf("ss://%s@%s:%d", credentials, server, portInt)
+		credentials := base64.StdEncoding.EncodeToString([]byte(proxy.Cipher + ":" + proxy.Password))
+		return fmt.Sprintf("ss://%s@%s:%d", credentials, proxy.Server, port)
 	case "vmess", "vless", "trojan":
 		// These protocols require complex URL formats with UUIDs, encryption params, etc.
 		// Since we can't construct valid URLs without all required fields, skip them
@@ -127,22 +148,5 @@ func buildProxyURL(proxy map[string]interface{}) string {
 		return ""
 	default:
 		return ""
-	}
-}
-
-func extractPort(port interface{}) (int, error) {
-	switch v := port.(type) {
-	case int:
-		return v, nil
-	case float64:
-		return int(v), nil
-	case string:
-		p, err := strconv.Atoi(v)
-		if err != nil {
-			return 0, err
-		}
-		return p, nil
-	default:
-		return 0, fmt.Errorf("unsupported port type")
 	}
 }
