@@ -279,12 +279,16 @@ socks-port: 7891`,
 			expected: "http://[::1]:8080\n",
 		},
 		{
-			name: "exact 10MB YAML accepted",
+			// 10MB is the maxYAMLSize boundary: input passes the size gate and
+			// reaches the YAML parser, which fails on non-YAML content, so output is empty.
+			name: "input at 10MB size limit reaches parser and yields empty output on parse failure",
 			input: strings.Repeat("x", 10*1024*1024),
 			expected: "",
 		},
 		{
-			name: "oversized YAML rejected",
+			// 11MB exceeds maxYAMLSize: input is rejected by the size gate
+			// before YAML parsing, so output is empty without a parse attempt.
+			name: "input above 10MB size limit rejected by size gate before parsing",
 			input: strings.Repeat("x", 11*1024*1024), // 11MB
 			expected: "",
 		},
