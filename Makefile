@@ -1,10 +1,16 @@
-.PHONY: update build clone-wiki update-wiki
+.PHONY: update build clone-wiki update-wiki test lint
 
 update:
 	go build -o gfp cmd/main.go && ./gfp
 
 build:
 	go build -v -o gfp cmd/main.go
+
+test:
+	go test ./...
+
+lint:
+	golangci-lint run
 
 # clone-wiki: clone the wiki repo and copy generated list files into wiki/lists
 clone-wiki:
