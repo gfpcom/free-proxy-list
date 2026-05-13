@@ -990,3 +990,41 @@ func parseVlessTestURL(rawURL string) (*url.URL, error) {
 func parseTrojanTestURL(rawURL string) (*url.URL, error) {
 	return url.Parse(rawURL)
 }
+
+// TestFlexPortFloatRejection locks the contract that float ports must be
+// integral, finite, and within the valid TCP/UDP range. Catches CodeRabbit's
+// concern that int(f) silently truncates non-integer floats and accepts
+// out-of-range or non-finite values.
+func TestFlexPortFloatRejection(t *testing.T) {
+	tests := []struct {
+		name      string
+		yamlPort  string // raw YAML scalar for the port field
+		wantEmpty bool   // FromClash returns empty when port is invalid
+	}{
+		{name: "integer port accepted", yamlPort: "8080", wantEmpty: false},
+		{name: "float equal to integer accepted", yamlPort: "8080.0", wantEmpty: false},
+		{name: "non-integer float rejected", yamlPort: "8080.5", wantEmpty: true},
+		{name: "fractional float rejected", yamlPort: "8080.7", wantEmpty: true},
+		{name: "negative float rejected", yamlPort: "-1.0", wantEmpty: true},
+		{name: "out-of-range float rejected", yamlPort: "99999.0", wantEmpty: true},
+		{name: "NaN rejected", yamlPort: ".nan", wantEmpty: true},
+		{name: "positive infinity rejected", yamlPort: ".inf", wantEmpty: true},
+		{name: "negative infinity rejected", yamlPort: "-.inf", wantEmpty: true},
+		{name: "zero rejected", yamlPort: "0", wantEmpty: true},
+		{name: "negative integer rejected", yamlPort: "-1", wantEmpty: true},
+		{name: "above 65535 rejected", yamlPort: "65536", wantEmpty: true},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			yaml := "proxies:\n  - name: test\n    type: http\n    server: example.com\n    port: " + tt.yamlPort + "\n"
+			result := string(FromClash([]byte(yaml)))
+			if tt.wantEmpty && result != "" {
+				t.Errorf("port %q: expected empty result, got %q", tt.yamlPort, result)
+			}
+			if !tt.wantEmpty && result == "" {
+				t.Errorf("port %q: expected non-empty result, got empty", tt.yamlPort)
+			}
+		})
+	}
+}
