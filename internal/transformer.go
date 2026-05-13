@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"math"
 	"net"
 	"net/url"
 	"strconv"
@@ -66,9 +67,18 @@ func (p *FlexPort) UnmarshalYAML(value *yaml.Node) error {
 		if err != nil {
 			return err
 		}
-		// Reject non-integer floats like 8080.9
-		if v != float64(int(v)) {
+		// Reject NaN, Inf, non-integer floats, and out-of-range values before
+		// casting. int(f) on NaN/Inf is implementation-defined and silently
+		// truncates fractional parts (8080.9 -> 8080), so each case is checked
+		// explicitly before the cast.
+		if math.IsNaN(v) || math.IsInf(v, 0) {
+			return fmt.Errorf("port must be a finite number, got %v", v)
+		}
+		if v != math.Trunc(v) {
 			return fmt.Errorf("port must be an integer, got %v", v)
+		}
+		if v < 1 || v > 65535 {
+			return fmt.Errorf("port must be in range [1, 65535], got %v", v)
 		}
 		*p = FlexPort(int(v))
 		return nil
