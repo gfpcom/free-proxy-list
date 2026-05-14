@@ -81,7 +81,7 @@ func WriteTotalAndUpdateReadme(dir string, counters map[string]int) {
 	svgURL := fmt.Sprintf("https://img.shields.io/badge/total-%d-blue", total)
 	resp, err := httpGet(svgURL)
 	if err == nil && resp != nil {
-		defer func() { _ = resp.Close() }() // nolint: errcheck
+		defer resp.Close() // nolint: errcheck
 		// write to list/total.svg
 		outPath := filepath.Join(dir, "total.svg")
 		_ = os.WriteFile(outPath, resp.Bytes(), 0644) // nolint: errcheck
@@ -143,7 +143,7 @@ func httpGet(url string) (*respWrap, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer func() { _ = resp.Body.Close() }() // nolint: errcheck
+	defer resp.Close() // nolint: errcheck
 	if resp.StatusCode != 200 {
 		return nil, fmt.Errorf("status %d", resp.StatusCode)
 	}
