@@ -27,8 +27,16 @@ func WriteTo(dir string) {
 	files := make(map[string]*os.File)
 	defer func() {
 		for _, f := range files {
-			_ = f.Sync()  // nolint: errcheck
-			_ = f.Close() // nolint: errcheck
+	defer func() {
+		for proto, f := range files {
+			if err := f.Sync(); err != nil {
+				fmt.Fprintf(os.Stderr, "sync failed for %s: %v\n", proto, err)
+			}
+			if err := f.Close(); err != nil {
+				fmt.Fprintf(os.Stderr, "close failed for %s: %v\n", proto, err)
+			}
+		}
+	}()
 		}
 	}()
 
