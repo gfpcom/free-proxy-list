@@ -27,6 +27,6 @@ jobs:
     - name: golangci-lint
       uses: golangci/golangci-lint-action@v3
       with:
-        version: v2.12
+        version: 'v2.12.2'
     - name: Lint
       run: make lint
