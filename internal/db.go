@@ -143,7 +143,7 @@ func httpGet(url string) (*respWrap, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Close() // nolint: errcheck
+	defer resp.Body.Close() // nolint: errcheck
 	if resp.StatusCode != 200 {
 		return nil, fmt.Errorf("status %d", resp.StatusCode)
 	}
