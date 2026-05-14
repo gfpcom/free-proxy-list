@@ -31,7 +31,7 @@ func Fetch(proto, src string, transformer Transformer, parser Parser) int {
 	if err != nil {
 		return 0
 	}
-	defer resp.Close() // nolint: errcheck
+	defer resp.Body.Close() // nolint: errcheck
 
 	buf, _ := io.ReadAll(resp.Body)
 

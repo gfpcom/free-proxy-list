@@ -26,8 +26,6 @@ func Save(it *Proxy) {
 func WriteTo(dir string) {
 	files := make(map[string]*os.File)
 	defer func() {
-		for _, f := range files {
-	defer func() {
 		for proto, f := range files {
 			if err := f.Sync(); err != nil {
 				fmt.Fprintf(os.Stderr, "sync failed for %s: %v\n", proto, err)
@@ -35,8 +33,6 @@ func WriteTo(dir string) {
 			if err := f.Close(); err != nil {
 				fmt.Fprintf(os.Stderr, "close failed for %s: %v\n", proto, err)
 			}
-		}
-	}()
 		}
 	}()
 
