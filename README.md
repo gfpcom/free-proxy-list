@@ -5,6 +5,7 @@
   <img src="https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/total.svg">
   <img src="https://img.shields.io/github/last-commit/gfpcom/free-proxy-list.svg">
   <img src="https://img.shields.io/github/license/gfpcom/free-proxy-list.svg">
+  <img src="https://codecov.io/gh/gfpcom/free-proxy-list/branch/main/graph/badge.svg">
   
   <br>
   <br>

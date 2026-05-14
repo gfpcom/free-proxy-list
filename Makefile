@@ -7,7 +7,7 @@ build:
 	go build -v -o gfp cmd/main.go
 
 test:
-	go test ./...
+	go test -coverprofile=coverage.txt ./...
 
 lint:
 	golangci-lint run
