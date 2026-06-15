@@ -4,8 +4,8 @@ github.com/cespare/xxhash/v2 v2.3.0 h1:UL815xU9SqsFlibzuggzjXhog7bL6oX9BbNZnL2UF
 github.com/cespare/xxhash/v2 v2.3.0/go.mod h1:VGX0DQ3Q6kWi7AoAeZDth3/j3BFtOZR5XLFGgcrjCOs=
 github.com/cloudflare/circl v1.6.3 h1:9GPOhQGF9MCYUeXyMYlqTR6a5gTrgR/fBLXvUgtVcg8=
 github.com/cloudflare/circl v1.6.3/go.mod h1:2eXP6Qfat4O/Yhh8BznvKnJ+uzEoTQ6jVKJRn81BiS4=
-github.com/cnlangzi/proxyclient v0.1.0 h1:h5aDqDtEhsD7jrrJzycQ4224hrWaafnhVlh2G5NctZw=
-github.com/cnlangzi/proxyclient v0.1.0/go.mod h1:eGrvVgdY7j4eog2dmuN4U8K4wpRn5k3/D2E/AF2nSrQ=
+github.com/cnlangzi/proxyclient v0.1.1 h1:CR+ebp5I4vDidlL8vB0nd+o+TH8gLuqVfxWnYy6l1+c=
+github.com/cnlangzi/proxyclient v0.1.1/go.mod h1:eGrvVgdY7j4eog2dmuN4U8K4wpRn5k3/D2E/AF2nSrQ=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
