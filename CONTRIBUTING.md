@@ -64,7 +64,7 @@ You can use dynamic tokens in the source URLs to fetch lists that are generated 
 **Format:** `url,transformer,parser`
 
 -   **`url`**: (Required) The URL of the proxy list.
--   **`transformer`**: (Optional) Specifies how to transform the raw data before parsing. The default is `raw` (no transformation). We also have `base64` for sources encoded in Base64.
+-   **`transformer`**: (Optional) Specifies how to transform the raw data before parsing. The default is `raw` (no transformation). We also have `base64` for sources encoded in Base64 and `regex:<pattern>` for extracting linked proxy-list URLs from documents such as README files, downloading those lists, and merging their content before parsing.
 -   **`parser`**: (Optional) Specifies how to parse individual lines from the source. The default `ParseProxyURL` handles standard proxy URLs. Other options include `ColonURL` (for `ip:port` formats) and `SpaceURL` (for `ip port` formats).
 
 **Example:**

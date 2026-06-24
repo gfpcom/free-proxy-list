@@ -3,6 +3,8 @@ package internal
 import (
 	"encoding/base64"
 	"encoding/json"
+	"net/http"
+	"net/http/httptest"
 	"net/url"
 	"strings"
 	"testing"
@@ -54,8 +56,8 @@ socks-port: 7891`,
 			expected: "",
 		},
 		{
-			name: "empty input",
-			input: "",
+			name:     "empty input",
+			input:    "",
 			expected: "",
 		},
 		{
@@ -281,15 +283,15 @@ socks-port: 7891`,
 		{
 			// 10MB is the maxYAMLSize boundary: input passes the size gate and
 			// reaches the YAML parser, which fails on non-YAML content, so output is empty.
-			name: "input at 10MB size limit reaches parser and yields empty output on parse failure",
-			input: strings.Repeat("x", 10*1024*1024),
+			name:     "input at 10MB size limit reaches parser and yields empty output on parse failure",
+			input:    strings.Repeat("x", 10*1024*1024),
 			expected: "",
 		},
 		{
 			// 11MB exceeds maxYAMLSize: input is rejected by the size gate
 			// before YAML parsing, so output is empty without a parse attempt.
-			name: "input above 10MB size limit rejected by size gate before parsing",
-			input: strings.Repeat("x", 11*1024*1024), // 11MB
+			name:     "input above 10MB size limit rejected by size gate before parsing",
+			input:    strings.Repeat("x", 11*1024*1024), // 11MB
 			expected: "",
 		},
 	}
@@ -993,6 +995,37 @@ func parseVlessTestURL(rawURL string) (*url.URL, error) {
 // parseTrojanTestURL parses a trojan:// URL for test assertions.
 func parseTrojanTestURL(rawURL string) (*url.URL, error) {
 	return url.Parse(rawURL)
+}
+
+func TestFromRegexLinks(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case "/one.txt":
+			_, _ = w.Write([]byte("http://1.2.3.4:8080\n"))
+		case "/two.txt":
+			_, _ = w.Write([]byte("socks5://5.6.7.8:1080\n"))
+		default:
+			http.NotFound(w, r)
+		}
+	}))
+	defer server.Close()
+
+	readme := []byte("sources:\n- " + server.URL + "/one.txt\n- " + server.URL + "/two.txt\n")
+	transformer := FromRegexLinks(`(https?://[^\s]+\.txt)`)
+
+	got := string(transformer(readme))
+	want := "http://1.2.3.4:8080\nsocks5://5.6.7.8:1080\n"
+	if got != want {
+		t.Fatalf("expected %q, got %q", want, got)
+	}
+}
+
+func TestGetTransformerRegex(t *testing.T) {
+	transformer := GetTransformer(`regex:(https?://[^\s]+\.txt)`)
+	got := string(transformer([]byte("no matching URLs")))
+	if got != "" {
+		t.Fatalf("expected empty output for no matches, got %q", got)
+	}
 }
 
 // TestFlexPortFloatRejection locks the contract that float ports must be

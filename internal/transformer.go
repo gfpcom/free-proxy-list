@@ -5,9 +5,12 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"io"
 	"math"
 	"net"
+	"net/http"
 	"net/url"
+	"regexp"
 	"strconv"
 	"strings"
 
@@ -30,6 +33,10 @@ func RegisterTransformer(name string, t Transformer) {
 }
 
 func GetTransformer(name string) Transformer {
+	if strings.HasPrefix(name, "regex:") {
+		return FromRegexLinks(strings.TrimPrefix(name, "regex:"))
+	}
+
 	if t, ok := Transformers[name]; ok {
 		return t
 	}
@@ -48,6 +55,51 @@ func FromBase64(buf []byte) []byte {
 	}
 
 	return decoded
+}
+
+// FromRegexLinks extracts URLs from a document with pattern and returns the
+// concatenated contents downloaded from those URLs.
+func FromRegexLinks(pattern string) Transformer {
+	return func(buf []byte) []byte {
+		re, err := regexp.Compile(pattern)
+		if err != nil {
+			return []byte{}
+		}
+
+		matches := re.FindAllSubmatch(buf, -1)
+		if len(matches) == 0 {
+			return []byte{}
+		}
+
+		var result bytes.Buffer
+		seen := map[string]struct{}{}
+		for _, match := range matches {
+			link := match[0]
+			if len(match) > 1 {
+				link = match[1]
+			}
+			rawURL := strings.TrimSpace(string(link))
+			if _, ok := seen[rawURL]; ok || rawURL == "" {
+				continue
+			}
+			seen[rawURL] = struct{}{}
+
+			resp, err := client.Get(rawURL)
+			if err != nil {
+				continue
+			}
+			body, err := io.ReadAll(resp.Body)
+			resp.Body.Close() // nolint: errcheck
+			if err != nil || resp.StatusCode < http.StatusOK || resp.StatusCode >= http.StatusMultipleChoices {
+				continue
+			}
+
+			result.Write(bytes.TrimSpace(body))
+			result.WriteByte('\n')
+		}
+
+		return result.Bytes()
+	}
 }
 
 // FlexPort handles YAML port values that may be int, float, or string.
