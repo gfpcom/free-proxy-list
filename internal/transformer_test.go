@@ -1033,6 +1033,14 @@ func TestGetTransformerRegex(t *testing.T) {
 	}
 }
 
+func TestGetTransformerRegexInvalidPattern(t *testing.T) {
+	transformer := GetTransformer(`regex:(https?://[^\s]+\.txt`)
+	got := string(transformer([]byte("http://1.2.3.4:8080\n")))
+	if got != "" {
+		t.Fatalf("expected empty output for invalid regex, got %q", got)
+	}
+}
+
 // TestFlexPortFloatRejection locks the contract that float ports must be
 // integral, finite, and within the valid TCP/UDP range. Catches CodeRabbit's
 // concern that int(f) silently truncates non-integer floats and accepts

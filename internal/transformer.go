@@ -62,7 +62,9 @@ func FromBase64(buf []byte) []byte {
 func FromRegexLinks(pattern string) Transformer {
 	re, err := regexp.Compile(pattern)
 	if err != nil {
-		return FromRaw
+		return func([]byte) []byte {
+			return []byte{}
+		}
 	}
 
 	return func(buf []byte) []byte {
