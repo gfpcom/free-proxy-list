@@ -60,12 +60,12 @@ func FromBase64(buf []byte) []byte {
 // FromRegexLinks extracts URLs from a document with pattern and returns the
 // concatenated contents downloaded from those URLs.
 func FromRegexLinks(pattern string) Transformer {
-	return func(buf []byte) []byte {
-		re, err := regexp.Compile(pattern)
-		if err != nil {
-			return []byte{}
-		}
+	re, err := regexp.Compile(pattern)
+	if err != nil {
+		return FromRaw
+	}
 
+	return func(buf []byte) []byte {
 		matches := re.FindAllSubmatch(buf, -1)
 		if len(matches) == 0 {
 			return []byte{}
@@ -88,9 +88,13 @@ func FromRegexLinks(pattern string) Transformer {
 			if err != nil {
 				continue
 			}
+			if resp.StatusCode < http.StatusOK || resp.StatusCode >= http.StatusMultipleChoices {
+				resp.Body.Close() // nolint: errcheck
+				continue
+			}
 			body, err := io.ReadAll(resp.Body)
 			resp.Body.Close() // nolint: errcheck
-			if err != nil || resp.StatusCode < http.StatusOK || resp.StatusCode >= http.StatusMultipleChoices {
+			if err != nil {
 				continue
 			}
 
