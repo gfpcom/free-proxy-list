@@ -17,8 +17,14 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+const (
+	maxRegexLinkCount         = 32
+	maxRegexLinkResponseBytes = 10 * 1024 * 1024
+)
+
 var (
-	Transformers = map[string]Transformer{}
+	Transformers               = map[string]Transformer{}
+	allowPrivateRegexLinkHosts = false
 )
 
 func init() {
@@ -68,7 +74,7 @@ func FromRegexLinks(pattern string) Transformer {
 	}
 
 	return func(buf []byte) []byte {
-		matches := re.FindAllSubmatch(buf, -1)
+		matches := re.FindAllSubmatch(buf, maxRegexLinkCount)
 		if len(matches) == 0 {
 			return []byte{}
 		}
@@ -81,7 +87,7 @@ func FromRegexLinks(pattern string) Transformer {
 				link = match[1]
 			}
 			rawURL := strings.TrimSpace(string(link))
-			if _, ok := seen[rawURL]; ok || rawURL == "" {
+			if _, ok := seen[rawURL]; ok || !isAllowedRegexLink(rawURL) {
 				continue
 			}
 			seen[rawURL] = struct{}{}
@@ -94,9 +100,9 @@ func FromRegexLinks(pattern string) Transformer {
 				resp.Body.Close() // nolint: errcheck
 				continue
 			}
-			body, err := io.ReadAll(resp.Body)
+			body, err := io.ReadAll(io.LimitReader(resp.Body, maxRegexLinkResponseBytes+1))
 			resp.Body.Close() // nolint: errcheck
-			if err != nil {
+			if err != nil || len(body) > maxRegexLinkResponseBytes {
 				continue
 			}
 
@@ -106,6 +112,41 @@ func FromRegexLinks(pattern string) Transformer {
 
 		return result.Bytes()
 	}
+}
+
+func isAllowedRegexLink(rawURL string) bool {
+	u, err := url.Parse(rawURL)
+	if err != nil || u.Hostname() == "" {
+		return false
+	}
+	if u.Scheme != "http" && u.Scheme != "https" {
+		return false
+	}
+	if allowPrivateRegexLinkHosts {
+		return true
+	}
+
+	host := u.Hostname()
+	if strings.EqualFold(host, "localhost") {
+		return false
+	}
+	if ip := net.ParseIP(host); ip != nil {
+		return isPublicIP(ip)
+	}
+	ips, err := net.LookupIP(host)
+	if err != nil || len(ips) == 0 {
+		return false
+	}
+	for _, ip := range ips {
+		if !isPublicIP(ip) {
+			return false
+		}
+	}
+	return true
+}
+
+func isPublicIP(ip net.IP) bool {
+	return !ip.IsLoopback() && !ip.IsPrivate() && !ip.IsLinkLocalUnicast() && !ip.IsLinkLocalMulticast() && !ip.IsUnspecified()
 }
 
 // FlexPort handles YAML port values that may be int, float, or string.

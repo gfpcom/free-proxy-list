@@ -3,6 +3,7 @@ package internal
 import (
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
@@ -998,6 +999,9 @@ func parseTrojanTestURL(rawURL string) (*url.URL, error) {
 }
 
 func TestFromRegexLinks(t *testing.T) {
+	allowPrivateRegexLinkHosts = true
+	defer func() { allowPrivateRegexLinkHosts = false }()
+
 	tests := []struct {
 		name    string
 		pattern string
@@ -1040,6 +1044,57 @@ func TestFromRegexLinks(t *testing.T) {
 				t.Fatalf("expected duplicate link to be fetched once, got %d requests", requests["/one.txt"])
 			}
 		})
+	}
+}
+
+func TestFromRegexLinksRejectsPrivateTargets(t *testing.T) {
+	allowPrivateRegexLinkHosts = false
+
+	requests := 0
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		requests++
+		_, _ = w.Write([]byte("http://1.2.3.4:8080\n"))
+	}))
+	defer server.Close()
+
+	transformer := FromRegexLinks(`https?://[^\s]+\.txt`)
+	got := string(transformer([]byte("source: " + server.URL + "/private.txt\n")))
+	if got != "" {
+		t.Fatalf("expected private target to be skipped, got %q", got)
+	}
+	if requests != 0 {
+		t.Fatalf("expected private target not to be requested, got %d requests", requests)
+	}
+}
+
+func TestFromRegexLinksLimitsFanOutAndBodySize(t *testing.T) {
+	allowPrivateRegexLinkHosts = true
+	defer func() { allowPrivateRegexLinkHosts = false }()
+
+	requests := 0
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		requests++
+		if r.URL.Path == "/oversize.txt" {
+			_, _ = w.Write([]byte(strings.Repeat("x", maxRegexLinkResponseBytes+1)))
+			return
+		}
+		_, _ = w.Write([]byte("http://1.2.3.4:8080\n"))
+	}))
+	defer server.Close()
+
+	links := make([]string, 0, maxRegexLinkCount+2)
+	for i := 0; i < maxRegexLinkCount+1; i++ {
+		links = append(links, fmt.Sprintf("%s/%d.txt", server.URL, i))
+	}
+	links[0] = server.URL + "/oversize.txt"
+
+	transformer := FromRegexLinks(`https?://[^\s]+\.txt`)
+	got := string(transformer([]byte(strings.Join(links, "\n"))))
+	if strings.Contains(got, strings.Repeat("x", 32)) {
+		t.Fatalf("expected oversized response to be skipped")
+	}
+	if requests != maxRegexLinkCount {
+		t.Fatalf("expected at most %d requests, got %d", maxRegexLinkCount, requests)
 	}
 }
 
