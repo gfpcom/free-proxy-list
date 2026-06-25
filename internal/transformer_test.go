@@ -998,30 +998,48 @@ func parseTrojanTestURL(rawURL string) (*url.URL, error) {
 }
 
 func TestFromRegexLinks(t *testing.T) {
-	requests := map[string]int{}
-	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		requests[r.URL.Path]++
-		switch r.URL.Path {
-		case "/one.txt":
-			_, _ = w.Write([]byte("http://1.2.3.4:8080\n"))
-		case "/two.txt":
-			_, _ = w.Write([]byte("socks5://5.6.7.8:1080\n"))
-		default:
-			http.NotFound(w, r)
-		}
-	}))
-	defer server.Close()
-
-	readme := []byte("sources:\n- " + server.URL + "/one.txt\n- " + server.URL + "/two.txt\n- " + server.URL + "/one.txt\n")
-	transformer := FromRegexLinks(`(https?://[^\s]+\.txt)`)
-
-	got := string(transformer(readme))
-	want := "http://1.2.3.4:8080\nsocks5://5.6.7.8:1080\n"
-	if got != want {
-		t.Fatalf("expected %q, got %q", want, got)
+	tests := []struct {
+		name    string
+		pattern string
+	}{
+		{
+			name:    "capturing group",
+			pattern: `(https?://[^\s]+\.txt)`,
+		},
+		{
+			name:    "whole match",
+			pattern: `https?://[^\s]+\.txt`,
+		},
 	}
-	if requests["/one.txt"] != 1 {
-		t.Fatalf("expected duplicate link to be fetched once, got %d requests", requests["/one.txt"])
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			requests := map[string]int{}
+			server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				requests[r.URL.Path]++
+				switch r.URL.Path {
+				case "/one.txt":
+					_, _ = w.Write([]byte("http://1.2.3.4:8080\n"))
+				case "/two.txt":
+					_, _ = w.Write([]byte("socks5://5.6.7.8:1080\n"))
+				default:
+					http.NotFound(w, r)
+				}
+			}))
+			defer server.Close()
+
+			readme := []byte("sources:\n- " + server.URL + "/one.txt\n- " + server.URL + "/two.txt\n- " + server.URL + "/one.txt\n")
+			transformer := FromRegexLinks(tt.pattern)
+
+			got := string(transformer(readme))
+			want := "http://1.2.3.4:8080\nsocks5://5.6.7.8:1080\n"
+			if got != want {
+				t.Fatalf("expected %q, got %q", want, got)
+			}
+			if requests["/one.txt"] != 1 {
+				t.Fatalf("expected duplicate link to be fetched once, got %d requests", requests["/one.txt"])
+			}
+		})
 	}
 }
 
