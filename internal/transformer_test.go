@@ -998,56 +998,51 @@ func parseTrojanTestURL(rawURL string) (*url.URL, error) {
 	return url.Parse(rawURL)
 }
 
-func TestFromRegexLinks(t *testing.T) {
+func TestFromLinksDownloadsKeywordMatchesAndAppliesTransformer(t *testing.T) {
 	allowPrivateRegexLinkHosts = true
 	defer func() { allowPrivateRegexLinkHosts = false }()
 
-	tests := []struct {
-		name    string
-		pattern string
-	}{
-		{
-			name:    "capturing group",
-			pattern: `(https?://[^\s]+\.txt)`,
-		},
-		{
-			name:    "whole match",
-			pattern: `https?://[^\s]+\.txt`,
-		},
+	requests := map[string]int{}
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		requests[r.URL.Path]++
+		switch r.URL.Path {
+		case "/base64-fn0618.txt":
+			encoded := base64.StdEncoding.EncodeToString([]byte("http://1.2.3.4:8080\n"))
+			_, _ = w.Write([]byte(encoded))
+		case "/clash-fn0618.yaml":
+			_, _ = w.Write([]byte("proxies:\n  - name: socks\n    type: socks5\n    server: 5.6.7.8\n    port: 1080\n"))
+		case "/other.txt":
+			_, _ = w.Write([]byte("http://9.9.9.9:9090\n"))
+		default:
+			http.NotFound(w, r)
+		}
+	}))
+	defer server.Close()
+
+	readme := []byte("sources:\n- " + server.URL + "/base64-fn0618.txt\n- " + server.URL + "/other.txt\n- " + server.URL + "/base64-fn0618.txt\n")
+	transformer := GetTransformer("link:base64-fn0618")
+
+	got := string(transformer(readme))
+	want := "http://1.2.3.4:8080\n"
+	if got != want {
+		t.Fatalf("expected %q, got %q", want, got)
+	}
+	if requests["/base64-fn0618.txt"] != 1 {
+		t.Fatalf("expected duplicate keyword link to be fetched once, got %d requests", requests["/base64-fn0618.txt"])
+	}
+	if requests["/other.txt"] != 0 {
+		t.Fatalf("expected non-keyword link not to be fetched, got %d requests", requests["/other.txt"])
 	}
 
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			requests := map[string]int{}
-			server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-				requests[r.URL.Path]++
-				switch r.URL.Path {
-				case "/one.txt":
-					_, _ = w.Write([]byte("http://1.2.3.4:8080\n"))
-				case "/two.txt":
-					_, _ = w.Write([]byte("socks5://5.6.7.8:1080\n"))
-				default:
-					http.NotFound(w, r)
-				}
-			}))
-			defer server.Close()
-
-			readme := []byte("sources:\n- " + server.URL + "/one.txt\n- " + server.URL + "/two.txt\n- " + server.URL + "/one.txt\n")
-			transformer := FromRegexLinks(tt.pattern)
-
-			got := string(transformer(readme))
-			want := "http://1.2.3.4:8080\nsocks5://5.6.7.8:1080\n"
-			if got != want {
-				t.Fatalf("expected %q, got %q", want, got)
-			}
-			if requests["/one.txt"] != 1 {
-				t.Fatalf("expected duplicate link to be fetched once, got %d requests", requests["/one.txt"])
-			}
-		})
+	clashTransformer := GetTransformer("link:clash-fn0618")
+	got = string(clashTransformer([]byte("source: " + server.URL + "/clash-fn0618.yaml\n")))
+	want = "socks5://5.6.7.8:1080\n"
+	if got != want {
+		t.Fatalf("expected %q, got %q", want, got)
 	}
 }
 
-func TestFromRegexLinksRejectsPrivateTargets(t *testing.T) {
+func TestFromLinksRejectsPrivateTargets(t *testing.T) {
 	allowPrivateRegexLinkHosts = false
 
 	requests := 0
@@ -1057,7 +1052,7 @@ func TestFromRegexLinksRejectsPrivateTargets(t *testing.T) {
 	}))
 	defer server.Close()
 
-	transformer := FromRegexLinks(`https?://[^\s]+\.txt`)
+	transformer := GetTransformer("link:private")
 	got := string(transformer([]byte("source: " + server.URL + "/private.txt\n")))
 	if got != "" {
 		t.Fatalf("expected private target to be skipped, got %q", got)
@@ -1067,7 +1062,7 @@ func TestFromRegexLinksRejectsPrivateTargets(t *testing.T) {
 	}
 }
 
-func TestFromRegexLinksLimitsFanOutAndBodySize(t *testing.T) {
+func TestFromLinksLimitsFanOutAndBodySize(t *testing.T) {
 	allowPrivateRegexLinkHosts = true
 	defer func() { allowPrivateRegexLinkHosts = false }()
 
@@ -1084,33 +1079,17 @@ func TestFromRegexLinksLimitsFanOutAndBodySize(t *testing.T) {
 
 	links := make([]string, 0, maxRegexLinkCount+2)
 	for i := 0; i < maxRegexLinkCount+1; i++ {
-		links = append(links, fmt.Sprintf("%s/%d.txt", server.URL, i))
+		links = append(links, fmt.Sprintf("%s/fn0618-%d.txt", server.URL, i))
 	}
-	links[0] = server.URL + "/oversize.txt"
+	links[0] = server.URL + "/oversize.txt?tag=fn0618"
 
-	transformer := FromRegexLinks(`https?://[^\s]+\.txt`)
+	transformer := GetTransformer("link:fn0618")
 	got := string(transformer([]byte(strings.Join(links, "\n"))))
 	if strings.Contains(got, strings.Repeat("x", 32)) {
 		t.Fatalf("expected oversized response to be skipped")
 	}
 	if requests != maxRegexLinkCount {
 		t.Fatalf("expected at most %d requests, got %d", maxRegexLinkCount, requests)
-	}
-}
-
-func TestGetTransformerRegex(t *testing.T) {
-	transformer := GetTransformer(`regex:(https?://[^\s]+\.txt)`)
-	got := string(transformer([]byte("no matching URLs")))
-	if got != "" {
-		t.Fatalf("expected empty output for no matches, got %q", got)
-	}
-}
-
-func TestGetTransformerRegexInvalidPattern(t *testing.T) {
-	transformer := GetTransformer(`regex:(https?://[^\s]+\.txt`)
-	got := string(transformer([]byte("http://1.2.3.4:8080\n")))
-	if got != "" {
-		t.Fatalf("expected empty output for invalid regex, got %q", got)
 	}
 }
 
