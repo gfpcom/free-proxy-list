@@ -1069,6 +1069,18 @@ func TestFromLinksAppliesKeywordBeforeFanOutLimit(t *testing.T) {
 	}
 }
 
+func TestRegexLinkRedirectsRejectPrivateTargets(t *testing.T) {
+	allowPrivateRegexLinkHosts = false
+
+	req, err := http.NewRequest(http.MethodGet, "http://169.254.169.254/latest/meta-data", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := regexLinkClient.CheckRedirect(req, nil); err == nil {
+		t.Fatal("expected private redirect target to be rejected")
+	}
+}
+
 func TestFromLinksRejectsPrivateTargets(t *testing.T) {
 	allowPrivateRegexLinkHosts = false
 

@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"math"
@@ -25,6 +26,16 @@ const (
 var (
 	Transformers               = map[string]Transformer{}
 	allowPrivateRegexLinkHosts = false
+	errUnsafeRegexLinkRedirect = errors.New("unsafe regex link redirect")
+	regexLinkClient            = &http.Client{
+		Transport: client.Transport,
+		CheckRedirect: func(req *http.Request, _ []*http.Request) error {
+			if !isAllowedRegexLink(req.URL.String()) {
+				return errUnsafeRegexLinkRedirect
+			}
+			return nil
+		},
+	}
 )
 
 func init() {
@@ -96,7 +107,7 @@ func FromLinks(buf []byte, spec string) []byte {
 		}
 		seen[rawURL] = struct{}{}
 
-		resp, err := client.Get(rawURL)
+		resp, err := regexLinkClient.Get(rawURL)
 		if err != nil {
 			continue
 		}
