@@ -299,7 +299,7 @@ socks-port: 7891`,
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result := string(FromClash([]byte(tt.input)))
+			result := string(FromClash([]byte(tt.input), ""))
 			if result != tt.expected {
 				t.Errorf("FromClash() = %q, want %q", result, tt.expected)
 			}
@@ -384,7 +384,7 @@ func TestVmessURL(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result := string(FromClash([]byte(tt.input)))
+			result := string(FromClash([]byte(tt.input), ""))
 			if tt.name == "vmess missing uuid skipped" {
 				if result != "" {
 					t.Errorf("expected empty result for missing uuid, got %q", result)
@@ -647,7 +647,7 @@ func TestVlessURL(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result := string(FromClash([]byte(tt.input)))
+			result := string(FromClash([]byte(tt.input), ""))
 
 			if tt.checkURL == nil {
 				if result != "" {
@@ -907,7 +907,7 @@ func TestTrojanURL(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result := string(FromClash([]byte(tt.input)))
+			result := string(FromClash([]byte(tt.input), ""))
 
 			if tt.checkURL == nil {
 				if result != "" {
@@ -961,7 +961,7 @@ func TestMixedProtocols(t *testing.T) {
     server: 5.6.7.8
     port: 1080`
 
-	result := string(FromClash([]byte(input)))
+	result := string(FromClash([]byte(input), ""))
 	lines := strings.Split(strings.TrimSpace(result), "\n")
 
 	if len(lines) != 6 {
@@ -1020,9 +1020,9 @@ func TestFromLinksDownloadsKeywordMatchesAndAppliesTransformer(t *testing.T) {
 	defer server.Close()
 
 	readme := []byte("sources:\n- " + server.URL + "/base64-fn0618.txt\n- " + server.URL + "/other.txt\n- " + server.URL + "/base64-fn0618.txt\n")
-	transformer := GetTransformer("link:base64-fn0618")
+	transformer, transformerOptions := GetTransformer("link:base64-fn0618")
 
-	got := string(transformer(readme, ""))
+	got := string(transformer(readme, transformerOptions))
 	want := "http://1.2.3.4:8080\n"
 	if got != want {
 		t.Fatalf("expected %q, got %q", want, got)
@@ -1034,8 +1034,8 @@ func TestFromLinksDownloadsKeywordMatchesAndAppliesTransformer(t *testing.T) {
 		t.Fatalf("expected non-keyword link not to be fetched, got %d requests", requests["/other.txt"])
 	}
 
-	clashTransformer := GetTransformer("link:clash-fn0618")
-	got = string(clashTransformer([]byte("source: "+server.URL+"/clash-fn0618.yaml\n"), ""))
+	clashTransformer, clashTransformerOptions := GetTransformer("link:clash-fn0618")
+	got = string(clashTransformer([]byte("source: "+server.URL+"/clash-fn0618.yaml\n"), clashTransformerOptions))
 	want = "socks5://5.6.7.8:1080\n"
 	if got != want {
 		t.Fatalf("expected %q, got %q", want, got)
@@ -1059,8 +1059,8 @@ func TestFromLinksAppliesKeywordBeforeFanOutLimit(t *testing.T) {
 	}
 	links = append(links, server.URL+"/proxy-fn0618.txt")
 
-	transformer := GetTransformer("link:fn0618")
-	got := string(transformer([]byte(strings.Join(links, "\n")), ""))
+	transformer, transformerOptions := GetTransformer("link:fn0618")
+	got := string(transformer([]byte(strings.Join(links, "\n")), transformerOptions))
 	if got != "http://1.2.3.4:8080\n" {
 		t.Fatalf("expected keyword link after non-keyword matches to be fetched, got %q", got)
 	}
@@ -1091,8 +1091,8 @@ func TestFromLinksRejectsPrivateTargets(t *testing.T) {
 	}))
 	defer server.Close()
 
-	transformer := GetTransformer("link:private")
-	got := string(transformer([]byte("source: "+server.URL+"/private.txt\n"), ""))
+	transformer, transformerOptions := GetTransformer("link:private")
+	got := string(transformer([]byte("source: "+server.URL+"/private.txt\n"), transformerOptions))
 	if got != "" {
 		t.Fatalf("expected private target to be skipped, got %q", got)
 	}
@@ -1122,8 +1122,8 @@ func TestFromLinksLimitsFanOutAndBodySize(t *testing.T) {
 	}
 	links[0] = server.URL + "/oversize.txt?tag=fn0618"
 
-	transformer := GetTransformer("link:fn0618")
-	got := string(transformer([]byte(strings.Join(links, "\n")), ""))
+	transformer, transformerOptions := GetTransformer("link:fn0618")
+	got := string(transformer([]byte(strings.Join(links, "\n")), transformerOptions))
 	if strings.Contains(got, strings.Repeat("x", 32)) {
 		t.Fatalf("expected oversized response to be skipped")
 	}
@@ -1159,7 +1159,7 @@ func TestFlexPortFloatRejection(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			yaml := "proxies:\n  - name: test\n    type: http\n    server: example.com\n    port: " + tt.yamlPort + "\n"
-			result := string(FromClash([]byte(yaml)))
+			result := string(FromClash([]byte(yaml), ""))
 			if tt.wantEmpty && result != "" {
 				t.Errorf("port %q: expected empty result, got %q", tt.yamlPort, result)
 			}

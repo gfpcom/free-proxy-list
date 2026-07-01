@@ -25,7 +25,7 @@ var (
 	}
 )
 
-func Fetch(proto, src string, transformer Transformer, parser Parser) int {
+func Fetch(proto, src string, transformer Transformer, transformerOptions string, parser Parser) int {
 	var total int
 	resp, err := client.Get(src)
 	if err != nil {
@@ -35,7 +35,7 @@ func Fetch(proto, src string, transformer Transformer, parser Parser) int {
 
 	buf, _ := io.ReadAll(resp.Body)
 
-	s := bufio.NewScanner(bytes.NewReader(transformer(buf, "")))
+	s := bufio.NewScanner(bytes.NewReader(transformer(buf, transformerOptions)))
 
 	var line string
 

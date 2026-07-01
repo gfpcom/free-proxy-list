@@ -39,8 +39,8 @@ var (
 )
 
 func init() {
-	Transformers["base64"] = func(buf []byte, _ string) []byte { return FromBase64(buf) }
-	Transformers["clash"] = func(buf []byte, _ string) []byte { return FromClash(buf) }
+	Transformers["base64"] = FromBase64
+	Transformers["clash"] = FromClash
 	Transformers["link"] = FromLinks
 }
 
@@ -50,15 +50,13 @@ func RegisterTransformer(name string, t Transformer) {
 	Transformers[name] = t
 }
 
-func GetTransformer(spec string) Transformer {
+func GetTransformer(spec string) (Transformer, string) {
 	name, options := parseTransformerSpec(spec)
 	if t, ok := Transformers[name]; ok {
-		return func(buf []byte, _ string) []byte {
-			return t(buf, options)
-		}
+		return t, options
 	}
 
-	return func(buf []byte, _ string) []byte { return FromRaw(buf) }
+	return FromRaw, ""
 }
 
 func parseTransformerSpec(spec string) (string, string) {
@@ -66,11 +64,11 @@ func parseTransformerSpec(spec string) (string, string) {
 	return strings.TrimSpace(name), strings.TrimSpace(options)
 }
 
-func FromRaw(buf []byte) []byte {
+func FromRaw(buf []byte, _ string) []byte {
 	return buf
 }
 
-func FromBase64(buf []byte) []byte {
+func FromBase64(buf []byte, _ string) []byte {
 	decoded, err := base64.StdEncoding.DecodeString(string(buf))
 	if err != nil {
 		return buf
@@ -130,7 +128,7 @@ func FromLinks(buf []byte, spec string) []byte {
 
 func parseLinkSpec(spec string) (Transformer, string) {
 	if spec == "" {
-		return func(buf []byte, _ string) []byte { return FromRaw(buf) }, ""
+		return FromRaw, ""
 	}
 	if t, ok := Transformers[spec]; ok {
 		return t, ""
@@ -141,7 +139,7 @@ func parseLinkSpec(spec string) (Transformer, string) {
 			return t, strings.TrimPrefix(spec, prefix)
 		}
 	}
-	return func(buf []byte, _ string) []byte { return FromRaw(buf) }, spec
+	return FromRaw, spec
 }
 
 func isAllowedRegexLink(rawURL string) bool {
@@ -157,11 +155,11 @@ func isAllowedRegexLink(rawURL string) bool {
 	}
 
 	host := u.Hostname()
-	if strings.EqualFold(host, "localhost") {
+	if strings.EqualFold(host, "localhost") || IsLocal(host) {
 		return false
 	}
 	if ip := net.ParseIP(host); ip != nil {
-		return isPublicIP(ip)
+		return !IsLocal(ip.String()) && isPublicIP(ip)
 	}
 	ips, err := net.LookupIP(host)
 	if err != nil || len(ips) == 0 {
@@ -280,7 +278,7 @@ type ClashConfig struct {
 }
 
 // FromClash parses a Clash YAML config and extracts proxy URLs.
-func FromClash(buf []byte) []byte {
+func FromClash(buf []byte, _ string) []byte {
 	// Limit YAML size to prevent OOM attacks (10MB max)
 	const maxYAMLSize = 10 * 1024 * 1024
 	if len(buf) > maxYAMLSize {

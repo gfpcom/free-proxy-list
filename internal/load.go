@@ -17,6 +17,7 @@ func Load(proto string, content []byte) error {
 
 	var line, src string
 	var transformer Transformer
+	var transformerOptions string
 	var parser Parser
 	for s.Scan() {
 		line = strings.TrimSpace(s.Text())
@@ -25,13 +26,13 @@ func Load(proto string, content []byte) error {
 		}
 
 		if strings.HasPrefix(line, "https://") || strings.HasPrefix(line, "http://") {
-			src, transformer, parser = parseLine(line)
+			src, transformer, transformerOptions, parser = parseLine(line)
 
 			if src == "" {
 				continue
 			}
 
-			log.Printf("> %v %s", Fetch(proto, src, transformer, parser), src)
+			log.Printf("> %v %s", Fetch(proto, src, transformer, transformerOptions, parser), src)
 		}
 
 	}
@@ -104,13 +105,14 @@ func applyTokenizer(url string) string {
 	return url
 }
 
-func parseLine(line string) (string, Transformer, Parser) {
+func parseLine(line string) (string, Transformer, string, Parser) {
 
 	if strings.HasPrefix(line, "https://") || strings.HasPrefix(line, "http://") {
 		items := strings.Split(line, ",")
 
 		var src string
-		transformer := func(buf []byte, _ string) []byte { return FromRaw(buf) }
+		transformer := FromRaw
+		transformerOptions := ""
 		parser := ParseProxyURL
 
 		if len(items) > 0 {
@@ -118,15 +120,15 @@ func parseLine(line string) (string, Transformer, Parser) {
 		}
 
 		if len(items) > 1 {
-			transformer = GetTransformer(strings.TrimSpace(items[1]))
+			transformer, transformerOptions = GetTransformer(strings.TrimSpace(items[1]))
 		}
 
 		if len(items) > 2 {
 			parser = GetParser(strings.TrimSpace(items[2]))
 		}
 
-		return src, transformer, parser
+		return src, transformer, transformerOptions, parser
 	}
 
-	return "", nil, nil
+	return "", nil, "", nil
 }
