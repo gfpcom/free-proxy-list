@@ -64,7 +64,7 @@ You can use dynamic tokens in the source URLs to fetch lists that are generated 
 **Format:** `url,transformer,parser`
 
 -   **`url`**: (Required) The URL of the proxy list.
--   **`transformer`**: (Optional) Specifies how to transform the raw data before parsing. The default is `raw` (no transformation). We also have `base64` for sources encoded in Base64, `clash` for Clash YAML, and `link[:transformer-keyword]` for extracting link-like strings from documents such as README files. For example, `link:base64-fn0618` fetches links containing `fn0618`, decodes each linked response as Base64, and merges the transformed proxy links before parsing.
+-   **`transformer`**: (Optional) Specifies how to transform the raw data before parsing. The default is `raw` (no transformation). Transformer options use `name[:options]`. We also have `base64` for sources encoded in Base64, `clash` for Clash YAML, and `link[:transformer-keyword]` for extracting link-like strings from documents such as README files. For example, `link:base64-fn0618` fetches links containing `fn0618`, decodes each linked response as Base64, and merges the transformed proxy links before parsing.
 -   **`parser`**: (Optional) Specifies how to parse individual lines from the source. The default `ParseProxyURL` handles standard proxy URLs. Other options include `ColonURL` (for `ip:port` formats) and `SpaceURL` (for `ip port` formats).
 
 **Example:**
@@ -80,7 +80,7 @@ http://myproxies.com/list,base64,ColonURL
 If a proxy source uses a unique encoding or format (e.g., Gzip, custom text format), you might need to add a new `Transformer`.
 
 1.  **Go to `internal/transformer.go`**.
-2.  Define a new function that matches the `Transformer` type: `func([]byte) []byte`. This function will take the raw response body and return the transformed body.
+2.  Define a new function that matches the `Transformer` type: `func([]byte, string) []byte`. This function will take the raw response body plus optional `name[:options]` data and return the transformed body.
 3.  **Register your new transformer** in the `init()` function within `internal/transformer.go`, giving it a name.
 
 ```go
@@ -91,7 +91,7 @@ func init() {
 }
 
 // Define your transformer function
-func MyNewTransformer(buf []byte) []byte {
+func MyNewTransformer(buf []byte, options string) []byte {
     // ... your transformation logic ...
     return transformedBuf
 }

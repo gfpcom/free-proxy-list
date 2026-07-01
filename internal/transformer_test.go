@@ -1022,7 +1022,7 @@ func TestFromLinksDownloadsKeywordMatchesAndAppliesTransformer(t *testing.T) {
 	readme := []byte("sources:\n- " + server.URL + "/base64-fn0618.txt\n- " + server.URL + "/other.txt\n- " + server.URL + "/base64-fn0618.txt\n")
 	transformer := GetTransformer("link:base64-fn0618")
 
-	got := string(transformer(readme))
+	got := string(transformer(readme, ""))
 	want := "http://1.2.3.4:8080\n"
 	if got != want {
 		t.Fatalf("expected %q, got %q", want, got)
@@ -1035,10 +1035,37 @@ func TestFromLinksDownloadsKeywordMatchesAndAppliesTransformer(t *testing.T) {
 	}
 
 	clashTransformer := GetTransformer("link:clash-fn0618")
-	got = string(clashTransformer([]byte("source: " + server.URL + "/clash-fn0618.yaml\n")))
+	got = string(clashTransformer([]byte("source: "+server.URL+"/clash-fn0618.yaml\n"), ""))
 	want = "socks5://5.6.7.8:1080\n"
 	if got != want {
 		t.Fatalf("expected %q, got %q", want, got)
+	}
+}
+
+func TestFromLinksAppliesKeywordBeforeFanOutLimit(t *testing.T) {
+	allowPrivateRegexLinkHosts = true
+	defer func() { allowPrivateRegexLinkHosts = false }()
+
+	requests := 0
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		requests++
+		_, _ = w.Write([]byte("http://1.2.3.4:8080\n"))
+	}))
+	defer server.Close()
+
+	links := make([]string, 0, maxRegexLinkCount+1)
+	for i := 0; i < maxRegexLinkCount; i++ {
+		links = append(links, fmt.Sprintf("%s/asset-%d.css", server.URL, i))
+	}
+	links = append(links, server.URL+"/proxy-fn0618.txt")
+
+	transformer := GetTransformer("link:fn0618")
+	got := string(transformer([]byte(strings.Join(links, "\n")), ""))
+	if got != "http://1.2.3.4:8080\n" {
+		t.Fatalf("expected keyword link after non-keyword matches to be fetched, got %q", got)
+	}
+	if requests != 1 {
+		t.Fatalf("expected only keyword link to be fetched, got %d requests", requests)
 	}
 }
 
@@ -1053,7 +1080,7 @@ func TestFromLinksRejectsPrivateTargets(t *testing.T) {
 	defer server.Close()
 
 	transformer := GetTransformer("link:private")
-	got := string(transformer([]byte("source: " + server.URL + "/private.txt\n")))
+	got := string(transformer([]byte("source: "+server.URL+"/private.txt\n"), ""))
 	if got != "" {
 		t.Fatalf("expected private target to be skipped, got %q", got)
 	}
@@ -1084,7 +1111,7 @@ func TestFromLinksLimitsFanOutAndBodySize(t *testing.T) {
 	links[0] = server.URL + "/oversize.txt?tag=fn0618"
 
 	transformer := GetTransformer("link:fn0618")
-	got := string(transformer([]byte(strings.Join(links, "\n"))))
+	got := string(transformer([]byte(strings.Join(links, "\n")), ""))
 	if strings.Contains(got, strings.Repeat("x", 32)) {
 		t.Fatalf("expected oversized response to be skipped")
 	}

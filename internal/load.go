@@ -3,12 +3,12 @@ package internal
 import (
 	"bufio"
 	"bytes"
-	"log"
-	"strings"
 	"fmt"
-	"time"
+	"log"
 	"regexp"
 	"strconv"
+	"strings"
+	"time"
 )
 
 func Load(proto string, content []byte) error {
@@ -43,16 +43,16 @@ func roundToNearestIncrement(currentHour int, increment int) int {
 	if increment <= 0 || increment > 24 {
 		return currentHour
 	}
-	
+
 	// Generate valid hours based on increment
 	var validHours []int
 	for h := 0; h < 24; h += increment {
 		validHours = append(validHours, h)
 	}
-	
+
 	closest := 0
 	minDiff := 24
-	
+
 	for _, validHour := range validHours {
 		diff := currentHour - validHour
 		if diff < 0 {
@@ -61,13 +61,13 @@ func roundToNearestIncrement(currentHour int, increment int) int {
 		if diff > 12 {
 			diff = 24 - diff
 		}
-		
+
 		if diff < minDiff {
 			minDiff = diff
 			closest = validHour
 		}
 	}
-	
+
 	return closest
 }
 
@@ -110,7 +110,7 @@ func parseLine(line string) (string, Transformer, Parser) {
 		items := strings.Split(line, ",")
 
 		var src string
-		transformer := FromRaw
+		transformer := func(buf []byte, _ string) []byte { return FromRaw(buf) }
 		parser := ParseProxyURL
 
 		if len(items) > 0 {

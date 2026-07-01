@@ -35,7 +35,7 @@ func Fetch(proto, src string, transformer Transformer, parser Parser) int {
 
 	buf, _ := io.ReadAll(resp.Body)
 
-	s := bufio.NewScanner(bytes.NewReader(transformer(buf)))
+	s := bufio.NewScanner(bytes.NewReader(transformer(buf, "")))
 
 	var line string
 

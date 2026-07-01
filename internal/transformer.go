@@ -28,26 +28,31 @@ var (
 )
 
 func init() {
-	Transformers["base64"] = FromBase64
-	Transformers["clash"] = FromClash
+	Transformers["base64"] = func(buf []byte, _ string) []byte { return FromBase64(buf) }
+	Transformers["clash"] = func(buf []byte, _ string) []byte { return FromClash(buf) }
+	Transformers["link"] = FromLinks
 }
 
-type Transformer func([]byte) []byte
+type Transformer func(data []byte, options string) []byte
 
 func RegisterTransformer(name string, t Transformer) {
 	Transformers[name] = t
 }
 
-func GetTransformer(name string) Transformer {
-	if name == "link" || strings.HasPrefix(name, "link:") {
-		return FromLinks(strings.TrimPrefix(name, "link"))
-	}
-
+func GetTransformer(spec string) Transformer {
+	name, options := parseTransformerSpec(spec)
 	if t, ok := Transformers[name]; ok {
-		return t
+		return func(buf []byte, _ string) []byte {
+			return t(buf, options)
+		}
 	}
 
-	return FromRaw
+	return func(buf []byte, _ string) []byte { return FromRaw(buf) }
+}
+
+func parseTransformerSpec(spec string) (string, string) {
+	name, options, _ := strings.Cut(spec, ":")
+	return strings.TrimSpace(name), strings.TrimSpace(options)
 }
 
 func FromRaw(buf []byte) []byte {
@@ -68,53 +73,53 @@ var linkURLPattern = regexp.MustCompile(`https?://[^\s"'<>]+`)
 // FromLinks extracts link-like URLs from a document, optionally filters them by
 // keyword, downloads each unique URL, and applies the selected transformer to
 // the downloaded content before merging it into the result.
-func FromLinks(spec string) Transformer {
+func FromLinks(buf []byte, spec string) []byte {
 	transformer, keyword := parseLinkSpec(spec)
 
-	return func(buf []byte) []byte {
-		matches := linkURLPattern.FindAll(buf, maxRegexLinkCount)
-		if len(matches) == 0 {
-			return []byte{}
-		}
-
-		var result bytes.Buffer
-		seen := map[string]struct{}{}
-		for _, match := range matches {
-			rawURL := strings.Trim(string(match), " 	\r\n\"'<>)]}")
-			if keyword != "" && !strings.Contains(rawURL, keyword) {
-				continue
-			}
-			if _, ok := seen[rawURL]; ok || !isAllowedRegexLink(rawURL) {
-				continue
-			}
-			seen[rawURL] = struct{}{}
-
-			resp, err := client.Get(rawURL)
-			if err != nil {
-				continue
-			}
-			if resp.StatusCode < http.StatusOK || resp.StatusCode >= http.StatusMultipleChoices {
-				resp.Body.Close() // nolint: errcheck
-				continue
-			}
-			body, err := io.ReadAll(io.LimitReader(resp.Body, maxRegexLinkResponseBytes+1))
-			resp.Body.Close() // nolint: errcheck
-			if err != nil || len(body) > maxRegexLinkResponseBytes {
-				continue
-			}
-
-			result.Write(bytes.TrimSpace(transformer(body)))
-			result.WriteByte('\n')
-		}
-
-		return result.Bytes()
+	matches := linkURLPattern.FindAll(buf, -1)
+	if len(matches) == 0 {
+		return []byte{}
 	}
+
+	var result bytes.Buffer
+	seen := map[string]struct{}{}
+	for _, match := range matches {
+		rawURL := strings.Trim(string(match), " 	\r\n\"'<>)]}")
+		if keyword != "" && !strings.Contains(rawURL, keyword) {
+			continue
+		}
+		if _, ok := seen[rawURL]; ok || !isAllowedRegexLink(rawURL) {
+			continue
+		}
+		if len(seen) >= maxRegexLinkCount {
+			break
+		}
+		seen[rawURL] = struct{}{}
+
+		resp, err := client.Get(rawURL)
+		if err != nil {
+			continue
+		}
+		if resp.StatusCode < http.StatusOK || resp.StatusCode >= http.StatusMultipleChoices {
+			resp.Body.Close() // nolint: errcheck
+			continue
+		}
+		body, err := io.ReadAll(io.LimitReader(resp.Body, maxRegexLinkResponseBytes+1))
+		resp.Body.Close() // nolint: errcheck
+		if err != nil || len(body) > maxRegexLinkResponseBytes {
+			continue
+		}
+
+		result.Write(bytes.TrimSpace(transformer(body, "")))
+		result.WriteByte('\n')
+	}
+
+	return result.Bytes()
 }
 
 func parseLinkSpec(spec string) (Transformer, string) {
-	spec = strings.TrimPrefix(spec, ":")
 	if spec == "" {
-		return FromRaw, ""
+		return func(buf []byte, _ string) []byte { return FromRaw(buf) }, ""
 	}
 	if t, ok := Transformers[spec]; ok {
 		return t, ""
@@ -125,7 +130,7 @@ func parseLinkSpec(spec string) (Transformer, string) {
 			return t, strings.TrimPrefix(spec, prefix)
 		}
 	}
-	return FromRaw, spec
+	return func(buf []byte, _ string) []byte { return FromRaw(buf) }, spec
 }
 
 func isAllowedRegexLink(rawURL string) bool {
