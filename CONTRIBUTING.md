@@ -37,7 +37,7 @@ The core of this project is the collection of proxy sources. We are always looki
 
 **How it works:**
 
-The application reads files from the `/sources` directory. Each file in this directory (e.g., `http.txt`, `vless.txt`) corresponds to a proxy protocol. The content of these files are URLs, with each URL pointing to a list of proxies.
+The application reads files from the `/sources` directory. Each file in this directory (e.g., `http.txt`, `vless.txt`) corresponds to a proxy protocol. The contents of these files are URLs, with each URL pointing to a list of proxies.
 
 **Steps to add a source:**
 
