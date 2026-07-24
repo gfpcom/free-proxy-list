@@ -9,7 +9,7 @@
   
   <br>
   <br>
-  <a href="https://getfreeproxy.com/lists/" title="free working proxy list">Working Proxy List</a> | <a href="https://getfreeproxy.com/tools/proxy-checker" title="free online proxy checker">Free Proxy Checker</a> | <a href="https://getfreeproxy.com/tools/proxy-protocol-parser" title="free online proxy protocol parser">Universal Proxy Procotol Parser</a>| <a href="https://developer.getfreeproxy.com/" title="free proxy api">Free Proxy API</a>
+  <a href="https://getfreeproxy.com/lists/" title="free working proxy list">Working Proxy List</a> | <a href="https://getfreeproxy.com/tools/proxy-checker" title="free online proxy checker">Free Proxy Checker</a> | <a href="https://getfreeproxy.com/tools/proxy-protocol-parser" title="free online proxy protocol parser">Universal Proxy Protocol Parser</a>| <a href="https://developer.getfreeproxy.com/" title="free proxy api">Free Proxy API</a>
   <br>
 </p>
 
