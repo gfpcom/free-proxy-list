@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Build wiki Home.md with numeric total and list links
 total=$(cat list/*.txt 2>/dev/null | wc -l | tr -d ' ')
