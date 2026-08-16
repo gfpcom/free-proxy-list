@@ -106,4 +106,4 @@ If you find this project useful, please consider supporting it. It helps us gain
 This repository is released under the MIT license. See [LICENSE](LICENSE) for details.
 
 ## Stars
-[![Star History Chart](https://api.star-history.com/svg?repos=gfpcom/free-proxy-list&type=Date)](https://star-history.com/#gfpcom/free-proxy-list&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=gfpcom/free-proxy-list&type=Date)](https://star-history.dera.page/#gfpcom/free-proxy-list&Date)
