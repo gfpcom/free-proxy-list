@@ -29,9 +29,27 @@ Use `find-feeds` when the task is to discover new candidate repositories rather 
    - Clash YAML may use `,clash` only if the current transformer handles that document shape. Confirm behavior in code or tests instead of assuming support from the extension alone.
    - Use other transformers or parsers only when they are registered and their behavior matches the source. Skip unsupported formats unless the user also requested implementation support.
 5. Add only reachable, non-empty feeds with identifiable protocol/format and a supported parser/transformer. Do not add a mixed or ambiguous feed to a protocol-specific file. Keep the change to new source lines and preserve file conventions.
-6. Run the narrowest relevant parser/transformer tests, then `go test ./...` when available. Run `git diff --check` and inspect the final diff to verify destinations, flags, duplicates, and that unrelated changes remain untouched.
-7. If the user explicitly asks to clean up issue #21, or cleanup is part of the requested task, remove only the entries for repositories whose feeds were successfully added. Fetch the latest issue/comment content, edit the original body or comment in place, preserve all unrelated text, and verify the removed repository names no longer appear there. Do not delete candidates that were skipped or unsupported. Do not modify the issue without explicit user authorization.
-8. Report each added repository, destination source file, parser/transformer configuration, checks performed, skipped candidates and reasons, and whether issue cleanup succeeded.
+6. Put reviewed source entries in a TSV manifest with `protocol<TAB>source-entry` columns. Use the [add-feeds script](./scripts/add-feeds.sh) to check duplicates, fetch and preview feeds, and smoke-check transformer/parser format. The script is a preflight, not a substitute for inspecting the sample or confirming parser compatibility.
+7. Run the script without `--apply` first. Review each sample and the planned source entry. Only after the formats and destinations are confirmed, pass `--apply` to append the validated entries. A failed row prevents the script from writing any entries; duplicate URLs are reported and skipped.
+8. Run the narrowest relevant parser/transformer tests, then `go test ./...` when available. Run `git diff --check` and inspect the final diff to verify destinations, flags, duplicates, and that unrelated changes remain untouched.
+9. If the user explicitly asks to clean up issue #21, or cleanup is part of the requested task, remove only the entries for repositories whose feeds were successfully added. Fetch the latest issue/comment content, edit the original body or comment in place, preserve all unrelated text, and verify the removed repository names no longer appear there. Do not delete candidates that were skipped or unsupported. Do not modify the issue without explicit user authorization.
+10. Report each added repository, destination source file, parser/transformer configuration, checks performed, skipped candidates and reasons, and whether issue cleanup succeeded.
+
+## Manifest and Run
+
+Use one tab between the protocol filename stem and the complete source entry. Blank lines and lines beginning with `#` are ignored.
+
+```text
+auto	https://raw.githubusercontent.com/example/nodes/main/sub.txt,base64
+http	https://raw.githubusercontent.com/example/proxies/main/http.txt,,ColonURL
+```
+
+By default, the script only checks and previews entries. It requires `curl` and `base64`; `ADD_FEEDS_TIMEOUT` and `ADD_FEEDS_MAX_BYTES` can adjust request limits.
+
+```bash
+bash .github/skills/add-feeds/scripts/add-feeds.sh candidates.tsv
+bash .github/skills/add-feeds/scripts/add-feeds.sh --apply candidates.tsv
+```
 
 ## Guardrails
 
