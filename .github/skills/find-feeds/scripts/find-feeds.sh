@@ -38,8 +38,9 @@ fi
 source_dir="$(git rev-parse --show-toplevel)/sources"
 issue_json="$(gh issue view "$issue_number" --repo "$repo_slug" --json state,body,comments)"
 issue_state="$(jq -r .state <<< "$issue_json")"
+issue_body="$(jq -r '.body // ""' <<< "$issue_json")"
 if [[ "$issue_state" != OPEN ]]; then
-	printf 'Source issue #%s is not open; refusing to post.\n' "$issue_number" >&2
+	printf 'Source issue #%s is not open; refusing to update it.\n' "$issue_number" >&2
 	exit 1
 fi
 
@@ -127,6 +128,7 @@ candidate_repositories="$(jq -sr --arg window_start "$window_start" --arg window
 ' <<< "$search_results")"
 
 rows=()
+repositories=()
 while IFS= read -r repository; do
 	[[ -z "$repository" ]] && continue
 	key="$(tr '[:upper:]' '[:lower:]' <<< "$repository")"
@@ -156,6 +158,7 @@ while IFS= read -r repository; do
 
 	row_number="$((${#rows[@]} + 1))"
 	rows+=("| $row_number | https://github.com/$repository | ${pushed_at%%T*} | \`$paths\` |")
+	repositories+=("$repository")
 	seen_repositories["$key"]=1
 	if (( ${#rows[@]} >= limit )); then
 		break
@@ -163,12 +166,41 @@ while IFS= read -r repository; do
 done <<< "$candidate_repositories"
 
 if (( ${#rows[@]} < limit )); then
-	printf 'Found %s of %s requested candidates for %s through %s; no issue comment was posted.\n' \
+	printf 'Found %s of %s requested candidates for %s through %s; issue body was not updated.\n' \
 		"${#rows[@]}" "$limit" "$window_start" "$window_end" >&2
 	exit 1
 fi
 
-body="## Additional $limit repository leads ($(date -u +%F))
+if [[ "$dry_run" != true ]]; then
+	issue_json="$(gh issue view "$issue_number" --repo "$repo_slug" --json state,body)"
+	issue_state="$(jq -r .state <<< "$issue_json")"
+	if [[ "$issue_state" != OPEN ]]; then
+		printf 'Source issue #%s is not open; refusing to update it.\n' "$issue_number" >&2
+		exit 1
+	fi
+	issue_body="$(jq -r '.body // ""' <<< "$issue_json")"
+	declare -A latest_repositories=()
+	while IFS= read -r repository; do
+		[[ -n "$repository" ]] && latest_repositories["$repository"]=1
+	done < <(printf '%s\n' "$issue_body" | extract_repositories)
+	filtered_rows=()
+	row_number=1
+	for index in "${!rows[@]}"; do
+		key="$(tr '[:upper:]' '[:lower:]' <<< "${repositories[$index]}")"
+		[[ -n "${latest_repositories[$key]:-}" ]] && continue
+		latest_repositories["$key"]=1
+		filtered_rows+=("$(sed -E "s/^\\| [0-9]+ \\|/| $row_number |/" <<< "${rows[$index]}")")
+		row_number=$((row_number + 1))
+	done
+	rows=("${filtered_rows[@]}")
+	if (( ${#rows[@]} < limit )); then
+		printf 'Found %s of %s requested candidates after refreshing issue #%s; issue body was not updated.\n' \
+			"${#rows[@]}" "$limit" "$issue_number" >&2
+		exit 1
+	fi
+fi
+
+new_section="## Newly discovered repositories ($(date -u +%F))
 
 Search window: $window_start through $window_end. Each repository was checked for a recent push, absence from sources/ and this issue, and likely text/YAML/JSON data files. Paths are extraction starting points; verify reachability, content format, duplication, and parser/transformer needs before merging.
 
@@ -178,8 +210,14 @@ $(printf '%s\n' "${rows[@]}")
 
 These are discovery candidates only; no entries have been merged into sources/."
 
+body="${issue_body%$'\n'}"
+if [[ -n "$body" ]]; then
+	body+=$'\n\n'
+fi
+body+="$new_section"
+
 if [[ "$dry_run" == true ]]; then
 	printf '%s\n' "$body"
 else
-	gh issue comment "$issue_number" --repo "$repo_slug" --body "$body"
+	gh issue edit "$issue_number" --repo "$repo_slug" --body "$body"
 fi
