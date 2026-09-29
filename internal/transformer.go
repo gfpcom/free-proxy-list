@@ -210,7 +210,10 @@ func (p *FlexPort) UnmarshalYAML(value *yaml.Node) error {
 		*p = FlexPort(int(v))
 		return nil
 	case "!!str":
-		v, err := strconv.Atoi(value.Value)
+		port := strings.TrimFunc(value.Value, func(r rune) bool {
+			return r < '0' || r > '9'
+		})
+		v, err := strconv.Atoi(port)
 		if err != nil {
 			return err
 		}
@@ -274,7 +277,7 @@ type ClashProxy struct {
 
 // ClashConfig represents a Clash YAML configuration.
 type ClashConfig struct {
-	Proxies []ClashProxy `yaml:"proxies"`
+	Proxies []yaml.Node `yaml:"proxies"`
 }
 
 // FromClash parses a Clash YAML config and extracts proxy URLs.
@@ -287,11 +290,19 @@ func FromClash(buf []byte, _ string) []byte {
 
 	var config ClashConfig
 	if err := yaml.Unmarshal(buf, &config); err != nil {
-		return []byte{}
+		config.Proxies = parseInlineClashProxies(buf)
+		if len(config.Proxies) == 0 {
+			return []byte{}
+		}
 	}
 
 	var result bytes.Buffer
-	for _, proxy := range config.Proxies {
+	for _, proxyNode := range config.Proxies {
+		var proxy ClashProxy
+		if err := proxyNode.Decode(&proxy); err != nil {
+			continue
+		}
+
 		proxyURL := buildProxyURL(proxy)
 		if proxyURL != "" {
 			result.WriteString(proxyURL)
@@ -300,6 +311,34 @@ func FromClash(buf []byte, _ string) []byte {
 	}
 
 	return result.Bytes()
+}
+
+func parseInlineClashProxies(buf []byte) []yaml.Node {
+	var proxies []yaml.Node
+	inProxies := false
+	for _, line := range strings.Split(string(buf), "\n") {
+		line = strings.TrimSpace(line)
+		if line == "" || strings.HasPrefix(line, "#") {
+			continue
+		}
+		if !inProxies {
+			inProxies = line == "proxies:"
+			continue
+		}
+		if !strings.HasPrefix(line, "- {") {
+			return nil
+		}
+
+		var document yaml.Node
+		if err := yaml.Unmarshal([]byte(strings.TrimPrefix(line, "- ")), &document); err != nil {
+			continue
+		}
+		if document.Kind != yaml.DocumentNode || len(document.Content) != 1 || document.Content[0].Kind != yaml.MappingNode {
+			continue
+		}
+		proxies = append(proxies, *document.Content[0])
+	}
+	return proxies
 }
 
 // hostPort formats server:port, handling IPv6 addresses correctly via net.JoinHostPort.
