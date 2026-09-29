@@ -1,8 +1,6 @@
 name: Validate New Feeds
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
@@ -22,18 +20,12 @@ jobs:
 
       - name: Validate newly added feeds
         env:
-          EVENT_NAME: ${{ github.event_name }}
-          EVENT_BEFORE: ${{ github.event.before }}
           PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
 
-          if [[ "$EVENT_NAME" == "pull_request" ]]; then
-            base="$PR_BASE_SHA"
-          else
-            base="$EVENT_BEFORE"
-          fi
+          base="$PR_BASE_SHA"
 
           if [[ -z "$base" || "$base" =~ ^0+$ ]]; then
             echo "No valid base revision; skipping feed validation."
@@ -44,11 +36,7 @@ jobs:
           trap 'rm -rf "$temp_dir"' EXIT
           mkdir -p "$temp_dir/sources"
 
-          if [[ "$EVENT_NAME" == "pull_request" ]]; then
-            diff_range="$base...$HEAD_SHA"
-          else
-            diff_range="$base..$HEAD_SHA"
-          fi
+          diff_range="$base...$HEAD_SHA"
 
           git diff --no-ext-diff --unified=0 "$diff_range" -- sources/ | awk -v out="$temp_dir/sources" '
             /^\+\+\+ b\/sources\// {

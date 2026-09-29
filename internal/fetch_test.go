@@ -29,7 +29,9 @@ func TestValidateSource(t *testing.T) {
 			http.NotFound(w, r)
 			return
 		}
-		fmt.Fprintln(w, "http://8.8.8.8:8080")
+		if _, err := fmt.Fprintln(w, "http://8.8.8.8:8080"); err != nil {
+			t.Errorf("write response: %v", err)
+		}
 	}))
 	defer server.Close()
 
