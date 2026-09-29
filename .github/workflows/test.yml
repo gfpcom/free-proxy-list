@@ -1,8 +1,6 @@
 name: Test and Lint
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ main ]
 
@@ -36,3 +34,55 @@ jobs:
         version: v2.12
     - name: Lint
       run: make lint
+
+  validate-new-feeds:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: '1.26'
+      - name: Validate newly added feeds
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          base="$PR_BASE_SHA"
+
+          if [[ -z "$base" || "$base" =~ ^0+$ ]]; then
+            echo "No valid base revision; skipping feed validation."
+            exit 0
+          fi
+
+          temp_dir=$(mktemp -d)
+          trap 'rm -rf "$temp_dir"' EXIT
+          mkdir -p "$temp_dir/sources"
+
+          diff_range="$base...$HEAD_SHA"
+
+          git diff --no-ext-diff --unified=0 "$diff_range" -- sources/ | awk -v out="$temp_dir/sources" '
+            /^\+\+\+ b\/sources\// {
+              path = substr($0, length("+++ b/sources/") + 1)
+              next
+            }
+            /^diff --git / { path = "" }
+            /^\+/ && !/^\+\+\+/ && path != "" {
+              line = substr($0, 2)
+              sub(/^[[:space:]]+/, "", line)
+              if (line ~ /^https?:\/\//) {
+                print line >> (out "/" path)
+              }
+            }
+          '
+
+          if ! find "$temp_dir/sources" -type f -size +0c -print -quit | grep -q .; then
+            echo "No new feed URLs found."
+            exit 0
+          fi
+
+          go run ./cmd -dir "$temp_dir" -dry-run
