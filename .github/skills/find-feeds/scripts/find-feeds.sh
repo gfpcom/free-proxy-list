@@ -38,7 +38,7 @@ fi
 source_dir="$(git rev-parse --show-toplevel)/sources"
 issue_json="$(gh issue view "$issue_number" --repo "$repo_slug" --json state,body,comments)"
 issue_state="$(jq -r .state <<< "$issue_json")"
-issue_body="$(jq -r .body <<< "$issue_json")"
+issue_body="$(jq -r '.body // ""' <<< "$issue_json")"
 if [[ "$issue_state" != OPEN ]]; then
 	printf 'Source issue #%s is not open; refusing to update it.\n' "$issue_number" >&2
 	exit 1
@@ -188,5 +188,11 @@ body+="$new_section"
 if [[ "$dry_run" == true ]]; then
 	printf '%s\n' "$body"
 else
+	issue_body="$(gh issue view "$issue_number" --repo "$repo_slug" --json body --jq '.body // ""')"
+	body="${issue_body%$'\n'}"
+	if [[ -n "$body" ]]; then
+		body+=$'\n\n'
+	fi
+	body+="$new_section"
 	gh issue edit "$issue_number" --repo "$repo_slug" --body "$body"
 fi
