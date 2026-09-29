@@ -32,8 +32,14 @@ func Fetch(proto, src string, transformer Transformer, transformerOptions string
 		return 0
 	}
 	defer resp.Body.Close() // nolint: errcheck
+	if resp.StatusCode < http.StatusOK || resp.StatusCode >= http.StatusMultipleChoices {
+		return 0
+	}
 
-	buf, _ := io.ReadAll(resp.Body)
+	buf, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return 0
+	}
 
 	s := bufio.NewScanner(bytes.NewReader(transformer(buf, transformerOptions)))
 

@@ -12,31 +12,54 @@ import (
 )
 
 func Load(proto string, content []byte) error {
+	return load(proto, content, false)
+}
 
+func ValidateSource(proto string, content []byte) error {
+	return load(proto, content, true)
+}
+
+func load(proto string, content []byte, validate bool) error {
 	s := bufio.NewScanner(bytes.NewReader(content))
-
 	var line, src string
+	lineNumber := 0
+	feedCount := 0
 	var transformer Transformer
 	var transformerOptions string
 	var parser Parser
 	for s.Scan() {
+		lineNumber++
 		line = strings.TrimSpace(s.Text())
 		if line == "" {
 			continue
 		}
 
 		if strings.HasPrefix(line, "https://") || strings.HasPrefix(line, "http://") {
+			feedCount++
 			src, transformer, transformerOptions, parser = parseLine(line)
-
 			if src == "" {
+				if validate {
+					return fmt.Errorf("line %d: invalid feed URL", lineNumber)
+				}
 				continue
 			}
 
-			log.Printf("> %v %s", Fetch(proto, src, transformer, transformerOptions, parser), src)
+			count := Fetch(proto, src, transformer, transformerOptions, parser)
+			log.Printf("> %v %s", count, src)
+			if validate && count == 0 {
+				return fmt.Errorf("line %d: feed %s produced no valid proxies", lineNumber, src)
+			}
+		} else if validate {
+			return fmt.Errorf("line %d: expected an http(s) feed URL", lineNumber)
 		}
-
 	}
 
+	if err := s.Err(); err != nil {
+		return err
+	}
+	if validate && feedCount == 0 {
+		return fmt.Errorf("no feed URLs found")
+	}
 	return nil
 }
 
