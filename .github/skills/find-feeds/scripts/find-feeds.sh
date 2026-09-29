@@ -38,8 +38,9 @@ fi
 source_dir="$(git rev-parse --show-toplevel)/sources"
 issue_json="$(gh issue view "$issue_number" --repo "$repo_slug" --json state,body,comments)"
 issue_state="$(jq -r .state <<< "$issue_json")"
+issue_body="$(jq -r .body <<< "$issue_json")"
 if [[ "$issue_state" != OPEN ]]; then
-	printf 'Source issue #%s is not open; refusing to post.\n' "$issue_number" >&2
+	printf 'Source issue #%s is not open; refusing to update it.\n' "$issue_number" >&2
 	exit 1
 fi
 
@@ -163,12 +164,12 @@ while IFS= read -r repository; do
 done <<< "$candidate_repositories"
 
 if (( ${#rows[@]} < limit )); then
-	printf 'Found %s of %s requested candidates for %s through %s; no issue comment was posted.\n' \
+	printf 'Found %s of %s requested candidates for %s through %s; issue body was not updated.\n' \
 		"${#rows[@]}" "$limit" "$window_start" "$window_end" >&2
 	exit 1
 fi
 
-body="## Additional $limit repository leads ($(date -u +%F))
+new_section="## Newly discovered repositories ($(date -u +%F))
 
 Search window: $window_start through $window_end. Each repository was checked for a recent push, absence from sources/ and this issue, and likely text/YAML/JSON data files. Paths are extraction starting points; verify reachability, content format, duplication, and parser/transformer needs before merging.
 
@@ -178,8 +179,14 @@ $(printf '%s\n' "${rows[@]}")
 
 These are discovery candidates only; no entries have been merged into sources/."
 
+body="${issue_body%$'\n'}"
+if [[ -n "$body" ]]; then
+	body+=$'\n\n'
+fi
+body+="$new_section"
+
 if [[ "$dry_run" == true ]]; then
 	printf '%s\n' "$body"
 else
-	gh issue comment "$issue_number" --repo "$repo_slug" --body "$body"
+	gh issue edit "$issue_number" --repo "$repo_slug" --body "$body"
 fi
