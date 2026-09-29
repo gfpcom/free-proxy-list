@@ -11,7 +11,7 @@ Discover candidate repositories for this project's `sources/` lists and register
 ## Procedure
 
 1. Read the current `sources/` files and the source-tracking issue body and comments. Deduplicate repository identities case-insensitively.
-2. Search GitHub for public proxy lists, HTTP/SOCKS feeds, V2Ray/Xray configs, and free-node subscriptions pushed within the last UTC calendar month.
+2. Search GitHub for public proxy lists, HTTP/SOCKS feeds, V2Ray/Xray configs, and free-node subscriptions pushed during the last completed UTC calendar month.
 3. Exclude forks, archived repositories, repositories already in `sources/`, and repositories already mentioned in the issue.
 4. Inspect each candidate's repository tree. Keep candidates with likely data files (`txt`, `yaml`, `yml`, or `json`) whose paths suggest proxy, node, subscription, protocol, or aggregated config data. Exclude workflow, docs, fixture, and dependency metadata files.
 5. Confirm each repository's latest push is within the date window. Gather the repository, last-push date, and candidate data paths.

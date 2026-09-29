@@ -26,7 +26,15 @@ command -v jq >/dev/null
 gh auth status >/dev/null
 
 repo_slug="$(gh repo view --json nameWithOwner --jq .nameWithOwner)"
-cutoff="$(date -u -d '1 month ago' +%F)"
+if date -u -v1d +%F >/dev/null 2>&1; then
+	current_month_start="$(date -u -v1d +%F)"
+	window_start="$(date -u -v1d -v-1m +%F)"
+	window_end="$(date -u -v1d -v-1d +%F)"
+else
+	current_month_start="$(date -u +%Y-%m-01)"
+	window_start="$(date -u -d "$current_month_start -1 month" +%F)"
+	window_end="$(date -u -d "$current_month_start -1 day" +%F)"
+fi
 source_dir="$(git rev-parse --show-toplevel)/sources"
 issue_json="$(gh issue view "$issue_number" --repo "$repo_slug" --json state,body,comments)"
 issue_state="$(jq -r .state <<< "$issue_json")"
@@ -38,16 +46,55 @@ fi
 declare -A seen_repositories=()
 
 extract_repositories() {
-	grep -Eho 'https?://(raw\.githubusercontent\.com|github\.com)/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+' \
-		| sed -E 's#https?://(raw\.githubusercontent\.com|github\.com)/([^/]+)/([^/]+).*#\2/\3#' \
+	grep -Eho 'https?://(www\.)?(raw\.githubusercontent\.com|github\.com)/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+|(^|[^A-Za-z0-9_./:-])[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+' \
+		| sed -E 's#https?://(www\.)?(raw\.githubusercontent\.com|github\.com)/##; s#^[^A-Za-z0-9_.-]+##' \
+		| sed -E 's#^([^/]+)/([^/]+).*#\1/\2#' \
 		| sed -E 's/\.git$//' \
 		| tr '[:upper:]' '[:lower:]' \
 		| sort -u || true
 }
 
+fetch_tree_paths() {
+	local repository="$1"
+	local initial_tree tree_sha tree_json entry_type entry_sha entry_path prefix
+	local -a tree_shas prefixes paths
+
+	initial_tree="$(cat)"
+	if jq -e '.truncated != true' >/dev/null <<< "$initial_tree"; then
+		jq -c '[.tree[] | select(.type == "blob") | .path]' <<< "$initial_tree"
+		return
+	fi
+
+	tree_shas=(HEAD)
+	prefixes=("")
+	paths=()
+	while (( ${#tree_shas[@]} > 0 )); do
+		tree_sha="${tree_shas[0]}"
+		prefix="${prefixes[0]}"
+		tree_shas=("${tree_shas[@]:1}")
+		prefixes=("${prefixes[@]:1}")
+		tree_json="$(gh api "repos/$repository/git/trees/$tree_sha" 2>/dev/null || true)"
+		[[ -z "$tree_json" ]] && continue
+		if [[ "$(jq -r '.truncated // false' <<< "$tree_json")" == true ]]; then
+			return 1
+		fi
+
+		while IFS=$'\t' read -r entry_type entry_sha entry_path; do
+			if [[ "$entry_type" == tree ]]; then
+				tree_shas+=("$entry_sha")
+				prefixes+=("$prefix$entry_path/")
+			elif [[ "$entry_type" == blob ]]; then
+				paths+=("$prefix$entry_path")
+			fi
+		done < <(jq -r '.tree[] | [.type, .sha, .path] | @tsv' <<< "$tree_json")
+	done
+
+	printf '%s\0' "${paths[@]}" | jq -Rsc 'split("\u0000") | map(select(length > 0))'
+}
+
 while IFS= read -r repository; do
 	[[ -n "$repository" ]] && seen_repositories["$repository"]=1
-done < <(find "$source_dir" -maxdepth 1 -type f -print0 | xargs -0 grep -hEo 'https?://(raw\.githubusercontent\.com|github\.com)/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+' | extract_repositories)
+done < <(find "$source_dir" -maxdepth 1 -type f -exec cat {} + | extract_repositories)
 
 while IFS= read -r repository; do
 	[[ -n "$repository" ]] && seen_repositories["$repository"]=1
@@ -66,15 +113,15 @@ queries=(
 
 search_results=''
 for query in "${queries[@]}"; do
-	result="$(gh search repos "$query pushed:>=$cutoff fork:false archived:false" \
+	result="$(gh search repos "$query pushed:>=$window_start pushed:<=$window_end fork:false archived:false" \
 		--sort updated --limit 100 \
 		--json fullName,description,pushedAt,isFork,isArchived)"
 	search_results+="$result"$'\n'
 done
 
-candidate_repositories="$(jq -sr --arg cutoff "$cutoff" '
+candidate_repositories="$(jq -sr --arg window_start "$window_start" --arg window_end "$window_end" '
 	add | unique_by(.fullName | ascii_downcase)
-	| map(select(.isFork == false and .isArchived == false and .pushedAt[:10] >= $cutoff))
+	| map(select(.isFork == false and .isArchived == false and .pushedAt[:10] >= $window_start and .pushedAt[:10] <= $window_end))
 	| map(select((.description // "" | test("bot[- _]?ips?|ips?[^.]{0,30}used[^.]{0,20}bots|blocklists?|blacklists?|deny lists?|proxy ips? addresses? used by bots"; "i")) | not))
 	| sort_by(.pushedAt) | reverse | .[].fullName
 ' <<< "$search_results")"
@@ -87,21 +134,24 @@ while IFS= read -r repository; do
 
 	metadata="$(gh api "repos/$repository" --jq '[.pushed_at, .fork, .archived] | @tsv' 2>/dev/null || true)"
 	IFS=$'\t' read -r pushed_at is_fork is_archived <<< "$metadata"
-	[[ -z "${pushed_at:-}" || "${pushed_at%%T*}" < "$cutoff" ]] && continue
+	pushed_date="${pushed_at%%T*}"
+	[[ -z "${pushed_at:-}" || "$pushed_date" < "$window_start" || "$pushed_date" > "$window_end" ]] && continue
 	[[ "$is_fork" == true || "$is_archived" == true ]] && continue
 
 	tree="$(gh api "repos/$repository/git/trees/HEAD?recursive=1" 2>/dev/null || true)"
 	[[ -z "$tree" ]] && continue
+	tree_paths="$(fetch_tree_paths "$repository" <<< "$tree")"
 	paths="$(jq -r '
-		[.tree[] | select(.type == "blob") | .path
-		 | select(test("\\.(txt|yaml|yml|json)$"; "i"))
-		 | select(test("(^|/)(\\.github|docs?|tests?|fixtures?|node_modules)(/|$)"; "i") | not)
-		 | select(test("(^|/)(package(-lock)?|tsconfig|manifest|version|info|metadata|stats|badges?)(\\.[^/]*)?\\.(json|yaml|yml)$"; "i") | not)
-		 | select(test("(^|/)(configs?)(\\.prod)?\\.(yaml|yml|json)$"; "i") | not)
-		 | select(test("(blocklist|blacklist|denylist|bot.?ips?)"; "i") | not)
-		 | select(test("(^|/)(protocols|countries)/[^/]+\\.(txt|yaml|yml|json)$"; "i") or test("(^|/)(all|sub|subscriptions|proxies?|nodes?|http|https|socks|vless|vmess|trojan|shadowsocks|clash|mix|raw|result|servers?)([-_.][^/]*)?\\.(txt|yaml|yml|json)$"; "i") or test("[^/]*(proxy|proxies|node|nodes|subscription|sub|http|https|socks|vless|vmess|trojan|shadowsocks|clash|mix|raw|result|server)[^/]*\\.(txt|yaml|yml|json)$"; "i"))]
+		map(select(
+			(test("\\.(txt|yaml|yml|json)$"; "i"))
+			and (test("(^|/)(\\.github|docs?|tests?|fixtures?|node_modules)(/|$)"; "i") | not)
+			and (test("(^|/)(package(-lock)?|tsconfig|manifest|version|info|metadata|stats|badges?)(\\.[^/]*)?\\.(json|yaml|yml)$"; "i") | not)
+			and (test("(^|/)(configs?)(\\.prod)?\\.(yaml|yml|json)$"; "i") | not)
+			and (test("(blocklist|blacklist|denylist|bot.?ips?)"; "i") | not)
+			and (test("(^|/)(protocols|countries)/[^/]+\\.(txt|yaml|yml|json)$"; "i") or test("(^|/)(all|sub|subscriptions|proxies?|nodes?|http|https|socks|vless|vmess|trojan|shadowsocks|clash|mix|raw|result|servers?)([-_.][^/]*)?\\.(txt|yaml|yml|json)$"; "i") or test("[^/]*(proxy|proxies|node|nodes|subscription|sub|http|https|socks|vless|vmess|trojan|shadowsocks|clash|mix|raw|result|server)[^/]*\\.(txt|yaml|yml|json)$"; "i"))
+		))
 		| unique | .[0:3] | join(", ")
-	' <<< "$tree")"
+	' <<< "$tree_paths")"
 	[[ -z "$paths" ]] && continue
 
 	row_number="$((${#rows[@]} + 1))"
@@ -113,14 +163,14 @@ while IFS= read -r repository; do
 done <<< "$candidate_repositories"
 
 if (( ${#rows[@]} < limit )); then
-	printf 'Found %s of %s requested candidates since %s; no issue comment was posted.\n' \
-		"${#rows[@]}" "$limit" "$cutoff" >&2
+	printf 'Found %s of %s requested candidates for %s through %s; no issue comment was posted.\n' \
+		"${#rows[@]}" "$limit" "$window_start" "$window_end" >&2
 	exit 1
 fi
 
 body="## Additional $limit repository leads ($(date -u +%F))
 
-Search window: $cutoff through $(date -u +%F). Each repository was checked for a recent push, absence from sources/ and this issue, and likely text/YAML/JSON data files. Paths are extraction starting points; verify reachability, content format, duplication, and parser/transformer needs before merging.
+Search window: $window_start through $window_end. Each repository was checked for a recent push, absence from sources/ and this issue, and likely text/YAML/JSON data files. Paths are extraction starting points; verify reachability, content format, duplication, and parser/transformer needs before merging.
 
 | # | Repository | Last pushed | Candidate data path(s) |
 |---:|---|---|---|
