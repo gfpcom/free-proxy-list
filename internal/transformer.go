@@ -2,6 +2,7 @@ package internal
 
 import (
 	"bytes"
+	"context"
 	"encoding/base64"
 	"encoding/json"
 	"errors"
@@ -11,22 +12,29 @@ import (
 	"net"
 	"net/http"
 	"net/url"
+	"os"
+	"os/exec"
+	"path/filepath"
 	"regexp"
 	"strconv"
 	"strings"
+	"time"
 
+	"golang.org/x/net/html"
 	"gopkg.in/yaml.v3"
 )
 
 const (
 	maxRegexLinkCount         = 32
 	maxRegexLinkResponseBytes = 10 * 1024 * 1024
+	maxCurlDepth              = 1
 )
 
 var (
 	Transformers               = map[string]Transformer{}
 	allowPrivateRegexLinkHosts = false
 	errUnsafeRegexLinkRedirect = errors.New("unsafe regex link redirect")
+	curlImpersonateFetch       = fetchCurlImpersonate
 	regexLinkClient            = &http.Client{
 		Transport: client.Transport,
 		CheckRedirect: func(req *http.Request, _ []*http.Request) error {
@@ -42,6 +50,7 @@ func init() {
 	Transformers["base64"] = FromBase64
 	Transformers["clash"] = FromClash
 	Transformers["link"] = FromLinks
+	Transformers["curl"] = FromCurl
 }
 
 type Transformer func(data []byte, options string) []byte
@@ -124,6 +133,248 @@ func FromLinks(buf []byte, spec string) []byte {
 	}
 
 	return result.Bytes()
+}
+
+var proxyLinkPattern = regexp.MustCompile(`(?i)\b(?:socks4a?|socks5(?:a|h)?|vmess|vless|trojan|ssr?|hy2?|hysteria2?|hhysteria2?|hhy2|tuic|wireguard|anytls)://[^\s"'<>]+`)
+
+// FromCurl finds proxy URLs on the current page or one matching linked page.
+// Options use [depth-]selector[-protocol+protocol], for example 1-/servers/-ss+trojan.
+func FromCurl(buf []byte, spec string) []byte {
+	return fromCurl(buf, spec, "")
+}
+
+func fromCurl(buf []byte, spec, sourceURL string) []byte {
+	depth, selector, protocols, ok := parseCurlSpec(spec)
+	if !ok {
+		return []byte{}
+	}
+
+	var pages [][]byte
+	if depth == 0 {
+		pages = append(pages, buf)
+	} else {
+		pages = fetchCurlPages(buf, sourceURL, selector)
+	}
+
+	pattern := proxyLinkPattern
+	if len(protocols) > 0 {
+		var alternatives []string
+		for _, protocol := range protocols {
+			alternatives = append(alternatives, regexp.QuoteMeta(protocol))
+		}
+		pattern = regexp.MustCompile(`(?i)\b(?:` + strings.Join(alternatives, "|") + `)://[^\s"'<>]+`)
+	}
+
+	var result bytes.Buffer
+	seen := map[string]struct{}{}
+	for _, page := range pages {
+		for _, match := range pattern.FindAll(page, -1) {
+			proxyURL := html.UnescapeString(strings.TrimRight(string(match), ",;.)]}:"))
+			if _, exists := seen[proxyURL]; exists {
+				continue
+			}
+			seen[proxyURL] = struct{}{}
+			result.WriteString(proxyURL)
+			result.WriteByte('\n')
+		}
+	}
+	return result.Bytes()
+}
+
+func parseCurlSpec(spec string) (int, string, []string, bool) {
+	depth := 0
+	if index := strings.IndexByte(spec, '-'); index >= 0 {
+		candidate := spec[:index]
+		if candidate != "" && isDecimal(candidate) {
+			parsedDepth, err := strconv.Atoi(candidate)
+			if err != nil || parsedDepth > maxCurlDepth {
+				return 0, "", nil, false
+			}
+			depth = parsedDepth
+			spec = spec[index+1:]
+		}
+	}
+
+	selector := spec
+	var protocols []string
+	if isProxyScheme(strings.ToLower(spec)) {
+		selector = ""
+		protocols = []string{strings.ToLower(spec)}
+	} else if index := strings.LastIndexByte(spec, '-'); index >= 0 {
+		candidates := strings.Split(strings.ToLower(spec[index+1:]), "+")
+		valid := len(candidates) > 0
+		for _, candidate := range candidates {
+			if !isProxyScheme(candidate) {
+				valid = false
+				break
+			}
+		}
+		if valid {
+			selector = spec[:index]
+			protocols = candidates
+		}
+	}
+	return depth, selector, protocols, true
+}
+
+func isDecimal(value string) bool {
+	if value == "" {
+		return false
+	}
+	for _, char := range value {
+		if char < '0' || char > '9' {
+			return false
+		}
+	}
+	return true
+}
+
+func isProxyScheme(scheme string) bool {
+	switch scheme {
+	case "http", "https", "socks4", "socks4a", "socks5", "socks5a", "socks5h", "vmess", "vless", "trojan", "ss", "ssr", "hy", "hy2", "hysteria", "hysteria2", "hhysteria", "hhysteria2", "hhy2", "tuic", "wireguard", "anytls":
+		return true
+	default:
+		return false
+	}
+}
+
+func fetchCurlPages(root []byte, sourceURL, selector string) [][]byte {
+	baseURL, _ := url.Parse(sourceURL)
+	links := extractHTMLLinks(root, baseURL)
+	seen := map[string]struct{}{}
+	pages := make([][]byte, 0, maxRegexLinkCount)
+	for _, rawURL := range links {
+		if selector != "" && !strings.Contains(strings.ToLower(rawURL), strings.ToLower(selector)) {
+			continue
+		}
+		if _, exists := seen[rawURL]; exists || !isAllowedRegexLink(rawURL) {
+			continue
+		}
+		if len(seen) >= maxRegexLinkCount {
+			break
+		}
+		seen[rawURL] = struct{}{}
+
+		body, err := curlImpersonateFetch(rawURL)
+		if err != nil {
+			continue
+		}
+		pages = append(pages, body)
+	}
+	return pages
+}
+
+func fetchCurlImpersonate(rawURL string) ([]byte, error) {
+	if !isAllowedRegexLink(rawURL) {
+		return nil, fmt.Errorf("curl-impersonate target is not allowed")
+	}
+
+	currentURL := rawURL
+	for redirects := 0; redirects <= 5; redirects++ {
+		ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+		command := exec.CommandContext(ctx, curlImpersonateBinary(),
+			"--silent", "--show-error", "--compressed",
+			"--max-redirs", "0", "--connect-timeout", "10", "--max-time", "20",
+			"--max-filesize", strconv.Itoa(maxRegexLinkResponseBytes),
+			"--proto", "=http,https",
+			"--write-out", "\n%{http_code}:%{redirect_url}", currentURL,
+		)
+		var stdout bytes.Buffer
+		var stderr bytes.Buffer
+		command.Stdout = &stdout
+		command.Stderr = &stderr
+		err := command.Run()
+		cancel()
+		if err != nil {
+			return nil, fmt.Errorf("curl-impersonate fetch failed: %w", err)
+		}
+
+		output := stdout.Bytes()
+		metadataStart := bytes.LastIndexByte(output, '\n')
+		if metadataStart < 0 {
+			return nil, fmt.Errorf("curl-impersonate returned no HTTP status")
+		}
+		metadata := strings.SplitN(string(output[metadataStart+1:]), ":", 2)
+		if len(metadata) != 2 {
+			return nil, fmt.Errorf("curl-impersonate returned invalid response metadata")
+		}
+		status, err := strconv.Atoi(metadata[0])
+		if err != nil {
+			return nil, fmt.Errorf("curl-impersonate returned invalid HTTP status")
+		}
+		if status >= http.StatusMultipleChoices && status < 400 {
+			if redirects == 5 || metadata[1] == "" {
+				return nil, fmt.Errorf("curl-impersonate redirect limit exceeded")
+			}
+			baseURL, _ := url.Parse(currentURL)
+			redirectURL, err := url.Parse(metadata[1])
+			if err != nil {
+				return nil, fmt.Errorf("curl-impersonate returned invalid redirect URL")
+			}
+			currentURL = baseURL.ResolveReference(redirectURL).String()
+			if !isAllowedRegexLink(currentURL) {
+				return nil, errUnsafeRegexLinkRedirect
+			}
+			continue
+		}
+		if status < http.StatusOK || status >= http.StatusMultipleChoices {
+			return nil, fmt.Errorf("curl-impersonate returned HTTP %d", status)
+		}
+		body := output[:metadataStart]
+		if len(body) > maxRegexLinkResponseBytes {
+			return nil, fmt.Errorf("curl-impersonate response exceeds size limit")
+		}
+		return body, nil
+	}
+	return nil, fmt.Errorf("curl-impersonate redirect limit exceeded")
+}
+
+func curlImpersonateBinary() string {
+	if binary := strings.TrimSpace(os.Getenv("CURL_IMPERSONATE_BIN")); binary != "" {
+		return binary
+	}
+	if binary, err := exec.LookPath("curl_chrome116"); err == nil {
+		return binary
+	}
+	if home := os.Getenv("HOME"); home != "" {
+		binary := filepath.Join(home, ".local", "bin", "curl_chrome116")
+		if info, err := os.Stat(binary); err == nil && !info.IsDir() {
+			return binary
+		}
+	}
+	return "curl_chrome116"
+}
+
+func extractHTMLLinks(body []byte, baseURL *url.URL) []string {
+	document, err := html.Parse(bytes.NewReader(body))
+	if err != nil {
+		return nil
+	}
+	var links []string
+	var visit func(*html.Node)
+	visit = func(node *html.Node) {
+		if node.Type == html.ElementNode && (node.Data == "a" || node.Data == "link" || node.Data == "iframe") {
+			for _, attribute := range node.Attr {
+				if attribute.Key != "href" && attribute.Key != "src" {
+					continue
+				}
+				reference, err := url.Parse(strings.TrimSpace(attribute.Val))
+				if err != nil {
+					continue
+				}
+				resolved := reference
+				if baseURL != nil {
+					resolved = baseURL.ResolveReference(reference)
+				}
+				links = append(links, resolved.String())
+			}
+		}
+		for child := node.FirstChild; child != nil; child = child.NextSibling {
+			visit(child)
+		}
+	}
+	visit(document)
+	return links
 }
 
 func parseLinkSpec(spec string) (Transformer, string) {

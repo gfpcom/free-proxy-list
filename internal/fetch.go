@@ -26,7 +26,6 @@ var (
 )
 
 func Fetch(proto, src string, transformer Transformer, transformerOptions string, parser Parser) int {
-	var total int
 	resp, err := client.Get(src)
 	if err != nil {
 		return 0
@@ -41,8 +40,20 @@ func Fetch(proto, src string, transformer Transformer, transformerOptions string
 		return 0
 	}
 
-	s := bufio.NewScanner(bytes.NewReader(transformer(buf, transformerOptions)))
+	return saveTransformedProxies(proto, transformer(buf, transformerOptions), parser)
+}
 
+func FetchCurl(proto, src, transformerOptions string, parser Parser) int {
+	buf, err := curlImpersonateFetch(src)
+	if err != nil {
+		return 0
+	}
+	return saveTransformedProxies(proto, fromCurl(buf, transformerOptions, src), parser)
+}
+
+func saveTransformedProxies(proto string, data []byte, parser Parser) int {
+	var total int
+	s := bufio.NewScanner(bytes.NewReader(data))
 	var line string
 
 	for s.Scan() {

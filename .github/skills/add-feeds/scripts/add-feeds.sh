@@ -69,6 +69,9 @@ matches_expected_format() {
 		link)
 			grep -Eiq "https?://[^[:space:]<>\"']+" "$sample_file"
 			;;
+		curl)
+			grep -Eiq '<(!doctype|html|a|input)([[:space:]>])' "$sample_file"
+			;;
 		*)
 			case "$parser_name" in
 				ColonURL)
@@ -132,7 +135,7 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 
 	transformer_name="${transformer_spec%%:*}"
 	case "$transformer_name" in
-		""|raw|base64|clash|link) ;;
+		""|raw|base64|clash|link|curl) ;;
 		*)
 			printf 'Line %s: transformer "%s" is not registered by this project.\n' "$line_number" "$transformer_name" >&2
 			has_errors=true
@@ -179,6 +182,16 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 		preview_file="$temp_dir/decoded"
 		if ! base64 --decode "$body_file" > "$preview_file" 2>/dev/null || [[ ! -s "$preview_file" ]]; then
 			printf 'Line %s: response is not valid non-empty Base64 content.\n' "$line_number" >&2
+			has_errors=true
+			continue
+		fi
+	fi
+	if [[ "$transformer_name" == curl ]]; then
+		validation_dir="$temp_dir/curl-validation-$line_number"
+		mkdir -p "$validation_dir/sources"
+		printf '%s\n' "$source_entry" > "$validation_dir/sources/$protocol.txt"
+		if ! go run "$root_dir/cmd" -dir "$validation_dir" -dry-run; then
+			printf 'Line %s: curl transformer produced no valid proxies.\n' "$line_number" >&2
 			has_errors=true
 			continue
 		fi

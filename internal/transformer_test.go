@@ -4,9 +4,12 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
+	"os"
+	"path/filepath"
 	"strings"
 	"testing"
 )
@@ -1154,6 +1157,168 @@ func TestFromLinksLimitsFanOutAndBodySize(t *testing.T) {
 	}
 	if requests != maxRegexLinkCount {
 		t.Fatalf("expected at most %d requests, got %d", maxRegexLinkCount, requests)
+	}
+}
+
+func TestFromCurlDepthOneSelectorAndProtocolFinder(t *testing.T) {
+	useHTTPFetcherForCurlTest(t)
+	allowPrivateRegexLinkHosts = true
+	defer func() { allowPrivateRegexLinkHosts = false }()
+
+	requests := map[string]int{}
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		requests[r.URL.Path]++
+		switch r.URL.Path {
+		case "/feed-vless":
+			_, _ = w.Write([]byte("vless://uuid@example.com:443\nvmess://uuid@example.com:443\n"))
+		case "/other":
+			_, _ = w.Write([]byte("vless://ignored@example.com:443\n"))
+		default:
+			http.NotFound(w, r)
+		}
+	}))
+	defer server.Close()
+
+	_, _, options, _ := parseLine(server.URL + ",curl:1-feed-vless-vless")
+	page := []byte(`<a href="/feed-vless">feed</a><a href="/other">other</a>vless://current@example.com:443`)
+	got := string(fromCurl(page, options, server.URL))
+	if got != "vless://uuid@example.com:443\n" {
+		t.Fatalf("expected only linked vless URL, got %q", got)
+	}
+	if requests["/feed-vless"] != 1 || requests["/other"] != 0 {
+		t.Fatalf("expected only selected link to be fetched once, got %#v", requests)
+	}
+}
+
+func TestFromCurlDepthZeroScansCurrentPageOnly(t *testing.T) {
+	useHTTPFetcherForCurlTest(t)
+	allowPrivateRegexLinkHosts = true
+	defer func() { allowPrivateRegexLinkHosts = false }()
+
+	requests := 0
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		requests++
+		_, _ = w.Write([]byte("vless://linked@example.com:443\n"))
+	}))
+	defer server.Close()
+
+	_, _, options, _ := parseLine(server.URL + ",curl:0-feed-vless-vless")
+	got := string(fromCurl([]byte(`<a href="/feed-vless">feed</a>vless://current@example.com:443`), options, server.URL))
+	if got != "vless://current@example.com:443\n" {
+		t.Fatalf("expected current-page vless URL, got %q", got)
+	}
+	if requests != 0 {
+		t.Fatalf("expected depth zero not to fetch links, got %d requests", requests)
+	}
+}
+
+func TestFromCurlDefaultFinderIgnoresWebsiteLinks(t *testing.T) {
+	page := []byte("https://example.com/page\nvless://uuid@example.com:443\n")
+	if got := string(FromCurl(page, "")); got != "vless://uuid@example.com:443\n" {
+		t.Fatalf("expected only proxy protocols by default, got %q", got)
+	}
+	if got := string(FromCurl(page, "https")); got != "https://example.com/page\n" {
+		t.Fatalf("expected explicit https finder to return website URL, got %q", got)
+	}
+}
+
+func TestFromCurlFindsMultipleProtocolsInInputValues(t *testing.T) {
+	page := []byte(`<input value="ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpwYXNz@1.2.3.4:443#node"><input value="trojan://uuid@example.com:443?security=tls&amp;sni=example.com"><input value="vless://uuid@example.com:443?type=tcp">`)
+	got := string(FromCurl(page, ""))
+	want := "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpwYXNz@1.2.3.4:443#node\ntrojan://uuid@example.com:443?security=tls&sni=example.com\nvless://uuid@example.com:443?type=tcp\n"
+	if got != want {
+		t.Fatalf("expected both input proxy URLs, got %q", got)
+	}
+}
+
+func TestFromCurlFiltersMultipleProtocolFinders(t *testing.T) {
+	page := []byte("ss://method:password@example.com:443#ss\ntrojan://password@example.com:443#trojan\nvless://uuid@example.com:443\n")
+	got := string(FromCurl(page, "/servers/-ss+trojan"))
+	want := "ss://method:password@example.com:443#ss\ntrojan://password@example.com:443#trojan\n"
+	if got != want {
+		t.Fatalf("expected only selected proxy protocols, got %q", got)
+	}
+}
+
+func useHTTPFetcherForCurlTest(t *testing.T) {
+	t.Helper()
+	previousFetcher := curlImpersonateFetch
+	curlImpersonateFetch = func(rawURL string) ([]byte, error) {
+		response, err := regexLinkClient.Get(rawURL)
+		if err != nil {
+			return nil, err
+		}
+		defer response.Body.Close()
+		if response.StatusCode < http.StatusOK || response.StatusCode >= http.StatusMultipleChoices {
+			return nil, fmt.Errorf("unexpected test response status: %d", response.StatusCode)
+		}
+		return io.ReadAll(io.LimitReader(response.Body, maxRegexLinkResponseBytes+1))
+	}
+	t.Cleanup(func() { curlImpersonateFetch = previousFetcher })
+}
+
+func TestCurlImpersonateFetchRunsConfiguredBinary(t *testing.T) {
+	allowPrivateRegexLinkHosts = true
+	defer func() { allowPrivateRegexLinkHosts = false }()
+
+	server := httptest.NewServer(http.NotFoundHandler())
+	defer server.Close()
+
+	const body = "vless://uuid@example.com:443\n"
+	tempDir := t.TempDir()
+	argsFile := filepath.Join(tempDir, "args.txt")
+	binary := filepath.Join(tempDir, "curl_chrome116")
+	script := "#!/bin/sh\nprintf '%s' \"$*\" > \"$CURL_IMPERSONATE_ARGS_FILE\"\nprintf '%s' \"$CURL_IMPERSONATE_TEST_BODY\"\nprintf '\\n200:'\n"
+	if err := os.WriteFile(binary, []byte(script), 0755); err != nil {
+		t.Fatal(err)
+	}
+	t.Setenv("CURL_IMPERSONATE_BIN", binary)
+	t.Setenv("CURL_IMPERSONATE_ARGS_FILE", argsFile)
+	t.Setenv("CURL_IMPERSONATE_TEST_BODY", body)
+
+	got, err := fetchCurlImpersonate(server.URL)
+	if err != nil {
+		t.Fatalf("fetchCurlImpersonate returned error: %v", err)
+	}
+	if string(got) != body {
+		t.Fatalf("expected body %q, got %q", body, got)
+	}
+	args, err := os.ReadFile(argsFile)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(args), "--proto =http,https") || !strings.HasSuffix(string(args), server.URL) {
+		t.Fatalf("expected protocol restriction and target URL in command args, got %q", args)
+	}
+}
+
+func TestLoadCurlUsesImpersonatingFetcherForRoot(t *testing.T) {
+	previousFetcher := curlImpersonateFetch
+	requestedURLs := []string{}
+	curlImpersonateFetch = func(rawURL string) ([]byte, error) {
+		requestedURLs = append(requestedURLs, rawURL)
+		return []byte("vless://uuid@example.com:443\n"), nil
+	}
+	t.Cleanup(func() { curlImpersonateFetch = previousFetcher })
+
+	const parserName = "testCurlImpersonatingFetch"
+	previousParser, hadParser := Parsers[parserName]
+	RegisterParser(parserName, func(_, _ string) (*Proxy, error) {
+		return &Proxy{Protocol: "vless", IP: "example.com", Port: 443}, nil
+	})
+	t.Cleanup(func() {
+		if hadParser {
+			Parsers[parserName] = previousParser
+		} else {
+			delete(Parsers, parserName)
+		}
+	})
+
+	if err := Load("vless", []byte("https://feed.example.com/,curl:0-vless,"+parserName)); err != nil {
+		t.Fatalf("Load returned error: %v", err)
+	}
+	if len(requestedURLs) != 1 || requestedURLs[0] != "https://feed.example.com/" {
+		t.Fatalf("expected the impersonating fetcher to fetch the root URL, got %#v", requestedURLs)
 	}
 }
 

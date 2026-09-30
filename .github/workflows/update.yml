@@ -19,6 +19,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Install curl-impersonate
+        run: make install-curl-impersonate
+
       - name: Update Lists
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
