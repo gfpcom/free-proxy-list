@@ -51,6 +51,16 @@ The first applies the `clash` transformer to matching children; the second uses 
 
 At most 32 unique child links are fetched, and each child response is limited to 10 MiB. Only public HTTP(S) targets are allowed; unsafe redirect destinations are rejected. A failed child fetch is skipped without discarding other results.
 
+## `list`
+
+Reads a plain-text source list with one HTTP(S) URL per line, downloads each unique URL, transforms each response, and combines the results. Blank lines and lines beginning with `#` are ignored. Use this for source lists whose entries point to proxy subscriptions instead of containing proxy records themselves. Specify the child transformer after `list:`:
+
+```text
+https://example.net/clash-subscriptions.txt,list:clash
+```
+
+This downloads the listed subscriptions, converts each Clash YAML response to proxy URI lines, and lets the configured parser process the merged output. `list:base64` can be used for Base64-encoded child feeds; omitting the option leaves child responses unchanged. The same 32-URL, 10 MiB response, public HTTP(S) target, redirect, and failure limits as `link` apply.
+
 ## `curl`
 
 `curl` uses `curl_chrome116` from curl-impersonate for both the root page and child-page requests. Install it on Linux with:

@@ -73,6 +73,7 @@ func init() {
 	Transformers["base64"] = FromBase64
 	Transformers["clash"] = FromClash
 	Transformers["link"] = FromLinks
+	Transformers["list"] = FromList
 	Transformers["curl"] = FromCurl
 	ProtocolFinders["uri"] = findURIProxyURLs
 	ProtocolFinders["dom"] = findDOMProxyURLs
@@ -130,13 +131,40 @@ func FromLinks(buf []byte, spec string) []byte {
 		return []byte{}
 	}
 
-	var result bytes.Buffer
-	seen := map[string]struct{}{}
+	links := make([]string, 0, len(matches))
 	for _, match := range matches {
 		rawURL := strings.Trim(string(match), " 	\r\n\"'<>)]}")
 		if keyword != "" && !strings.Contains(rawURL, keyword) {
 			continue
 		}
+		links = append(links, rawURL)
+	}
+
+	return downloadAndTransformLinks(links, transformer, "")
+}
+
+// FromList downloads URLs listed one per line and transforms each response.
+func FromList(buf []byte, spec string) []byte {
+	transformer, transformerOptions := GetTransformer(spec)
+	links := make([]string, 0)
+	for _, line := range strings.Split(string(buf), "\n") {
+		line = strings.TrimSpace(line)
+		if line == "" || strings.HasPrefix(line, "#") {
+			continue
+		}
+		fields := strings.Fields(line)
+		if len(fields) == 0 {
+			continue
+		}
+		links = append(links, strings.Trim(fields[0], "\"'"))
+	}
+	return downloadAndTransformLinks(links, transformer, transformerOptions)
+}
+
+func downloadAndTransformLinks(links []string, transformer Transformer, transformerOptions string) []byte {
+	var result bytes.Buffer
+	seen := map[string]struct{}{}
+	for _, rawURL := range links {
 		if _, ok := seen[rawURL]; ok || !isAllowedRegexLink(rawURL) {
 			continue
 		}
@@ -159,7 +187,7 @@ func FromLinks(buf []byte, spec string) []byte {
 			continue
 		}
 
-		result.Write(bytes.TrimSpace(transformer(body, "")))
+		result.Write(bytes.TrimSpace(transformer(body, transformerOptions)))
 		result.WriteByte('\n')
 	}
 

@@ -1071,6 +1071,74 @@ func TestFromLinksDownloadsKeywordMatchesAndAppliesTransformer(t *testing.T) {
 	}
 }
 
+func TestFromListDownloadsAndTransformsEachURL(t *testing.T) {
+	allowPrivateRegexLinkHosts = true
+	defer func() { allowPrivateRegexLinkHosts = false }()
+
+	requests := map[string]int{}
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		requests[r.URL.Path]++
+		switch r.URL.Path {
+		case "/first.yaml":
+			_, _ = w.Write([]byte("proxies:\n  - name: http\n    type: http\n    server: 1.2.3.4\n    port: 8080\n"))
+		case "/second.yaml":
+			_, _ = w.Write([]byte("proxies:\n  - name: socks\n    type: socks5\n    server: 5.6.7.8\n    port: 1080\n"))
+		default:
+			http.NotFound(w, r)
+		}
+	}))
+	defer server.Close()
+
+	list := "# Clash sources\n" + server.URL + "/first.yaml\n\n" + server.URL + "/second.yaml # second source\n" + server.URL + "/first.yaml\n"
+	transformer, options := GetTransformer("list:clash")
+	got := string(transformer([]byte(list), options))
+	want := "http://1.2.3.4:8080\nsocks5://5.6.7.8:1080\n"
+	if got != want {
+		t.Fatalf("expected %q, got %q", want, got)
+	}
+	if requests["/first.yaml"] != 1 || requests["/second.yaml"] != 1 {
+		t.Fatalf("expected each unique list URL to be fetched once, got %#v", requests)
+	}
+
+	for _, line := range strings.Fields(got) {
+		if _, err := ParseProxyURL("auto", line); err != nil {
+			t.Errorf("transformed proxy line %q was rejected by the normal parser: %v", line, err)
+		}
+	}
+}
+
+func TestFromListPassesNestedTransformerOptions(t *testing.T) {
+	allowPrivateRegexLinkHosts = true
+	defer func() { allowPrivateRegexLinkHosts = false }()
+
+	var baseURL string
+	requests := map[string]int{}
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		requests[r.URL.Path]++
+		switch r.URL.Path {
+		case "/index.txt":
+			_, _ = fmt.Fprintf(w, "%s/match-keyword.txt\n%s/other.txt\n", baseURL, baseURL)
+		case "/match-keyword.txt":
+			_, _ = w.Write([]byte("http://1.2.3.4:8080\n"))
+		case "/other.txt":
+			_, _ = w.Write([]byte("http://5.6.7.8:8080\n"))
+		default:
+			http.NotFound(w, r)
+		}
+	}))
+	defer server.Close()
+	baseURL = server.URL
+
+	transformer, options := GetTransformer("list:link:keyword")
+	got := string(transformer([]byte(server.URL+"/index.txt\n"), options))
+	if got != "http://1.2.3.4:8080\n" {
+		t.Fatalf("expected only the keyword-matching child feed, got %q", got)
+	}
+	if requests["/match-keyword.txt"] != 1 || requests["/other.txt"] != 0 {
+		t.Fatalf("expected nested keyword filtering before fetch, got %#v", requests)
+	}
+}
+
 func TestFromLinksAppliesKeywordBeforeFanOutLimit(t *testing.T) {
 	allowPrivateRegexLinkHosts = true
 	defer func() { allowPrivateRegexLinkHosts = false }()
