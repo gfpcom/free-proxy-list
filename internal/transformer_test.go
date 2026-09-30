@@ -1315,7 +1315,7 @@ func useHTTPFetcherForCurlTest(t *testing.T) {
 		if err != nil {
 			return nil, err
 		}
-		defer response.Body.Close()
+		defer response.Body.Close() // nolint: errcheck
 		if response.StatusCode < http.StatusOK || response.StatusCode >= http.StatusMultipleChoices {
 			return nil, fmt.Errorf("unexpected test response status: %d", response.StatusCode)
 		}
