@@ -1310,16 +1310,17 @@ func TestCurlAutomaticallyFollowsPagination(t *testing.T) {
 func useHTTPFetcherForCurlTest(t *testing.T) {
 	t.Helper()
 	previousFetcher := curlImpersonateFetch
-	curlImpersonateFetch = func(rawURL string) ([]byte, error) {
+	curlImpersonateFetch = func(rawURL string) (curlFetchResponse, error) {
 		response, err := regexLinkClient.Get(rawURL)
 		if err != nil {
-			return nil, err
+			return curlFetchResponse{}, err
 		}
 		defer response.Body.Close() // nolint: errcheck
 		if response.StatusCode < http.StatusOK || response.StatusCode >= http.StatusMultipleChoices {
-			return nil, fmt.Errorf("unexpected test response status: %d", response.StatusCode)
+			return curlFetchResponse{}, fmt.Errorf("unexpected test response status: %d", response.StatusCode)
 		}
-		return io.ReadAll(io.LimitReader(response.Body, maxRegexLinkResponseBytes+1))
+		body, err := io.ReadAll(io.LimitReader(response.Body, maxRegexLinkResponseBytes+1))
+		return curlFetchResponse{body: body, finalURL: response.Request.URL.String()}, err
 	}
 	t.Cleanup(func() { curlImpersonateFetch = previousFetcher })
 }
@@ -1335,7 +1336,7 @@ func TestCurlImpersonateFetchRunsConfiguredBinary(t *testing.T) {
 	tempDir := t.TempDir()
 	argsFile := filepath.Join(tempDir, "args.txt")
 	binary := filepath.Join(tempDir, "curl_chrome116")
-	script := "#!/bin/sh\nprintf '%s' \"$*\" > \"$CURL_IMPERSONATE_ARGS_FILE\"\nprintf '%s' \"$CURL_IMPERSONATE_TEST_BODY\"\nprintf '\\n200:'\n"
+	script := "#!/bin/sh\nprintf '%s' \"$*\" > \"$CURL_IMPERSONATE_ARGS_FILE\"\nprintf '%s' \"$CURL_IMPERSONATE_TEST_BODY\"\nprintf '200:' >&2\n"
 	if err := os.WriteFile(binary, []byte(script), 0755); err != nil {
 		t.Fatal(err)
 	}
@@ -1347,8 +1348,8 @@ func TestCurlImpersonateFetchRunsConfiguredBinary(t *testing.T) {
 	if err != nil {
 		t.Fatalf("fetchCurlImpersonate returned error: %v", err)
 	}
-	if string(got) != body {
-		t.Fatalf("expected body %q, got %q", body, got)
+	if string(got.body) != body {
+		t.Fatalf("expected body %q, got %q", body, got.body)
 	}
 	args, err := os.ReadFile(argsFile)
 	if err != nil {
@@ -1362,9 +1363,9 @@ func TestCurlImpersonateFetchRunsConfiguredBinary(t *testing.T) {
 func TestLoadCurlUsesImpersonatingFetcherForRoot(t *testing.T) {
 	previousFetcher := curlImpersonateFetch
 	requestedURLs := []string{}
-	curlImpersonateFetch = func(rawURL string) ([]byte, error) {
+	curlImpersonateFetch = func(rawURL string) (curlFetchResponse, error) {
 		requestedURLs = append(requestedURLs, rawURL)
-		return []byte("vless://uuid@example.com:443\n"), nil
+		return curlFetchResponse{body: []byte("vless://uuid@example.com:443\n"), finalURL: rawURL}, nil
 	}
 	t.Cleanup(func() { curlImpersonateFetch = previousFetcher })
 

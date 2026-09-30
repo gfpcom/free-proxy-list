@@ -34,13 +34,31 @@ const (
 	maxDOMFinderRows          = 1000
 )
 
+type curlFetchResponse struct {
+	body     []byte
+	finalURL string
+}
+
+type curlPageRequest struct {
+	url           string
+	discoverLinks bool
+}
+
+type curlFetchedPage struct {
+	body []byte
+	url  string
+}
+
 var (
 	Transformers               = map[string]Transformer{}
 	ProtocolFinders            = map[string]ProtocolFinder{}
 	allowPrivateRegexLinkHosts = false
 	errUnsafeRegexLinkRedirect = errors.New("unsafe regex link redirect")
 	curlImpersonateFetch       = fetchCurlImpersonate
-	regexLinkClient            = &http.Client{
+	curlIPLookup               = func(ctx context.Context, host string) ([]net.IPAddr, error) {
+		return net.DefaultResolver.LookupIPAddr(ctx, host)
+	}
+	regexLinkClient = &http.Client{
 		Transport: client.Transport,
 		CheckRedirect: func(req *http.Request, _ []*http.Request) error {
 			if !isAllowedRegexLink(req.URL.String()) {
@@ -171,9 +189,9 @@ func findURIProxyURLs(buf []byte, spec, sourceURL string) []byte {
 		return []byte{}
 	}
 
-	var pages [][]byte
+	var pages []curlFetchedPage
 	if depth == 0 {
-		pages = append(pages, buf)
+		pages = append(pages, curlFetchedPage{body: buf, url: sourceURL})
 		pages = append(pages, fetchPaginatedPages(buf, sourceURL)...)
 	} else {
 		pages = fetchCurlPages(buf, sourceURL, selector)
@@ -191,7 +209,7 @@ func findURIProxyURLs(buf []byte, spec, sourceURL string) []byte {
 	var result bytes.Buffer
 	seen := map[string]struct{}{}
 	for _, page := range pages {
-		for _, match := range pattern.FindAll(page, -1) {
+		for _, match := range pattern.FindAll(page.body, -1) {
 			proxyURL := html.UnescapeString(strings.TrimRight(string(match), ",;.)]}:"))
 			if _, exists := seen[proxyURL]; exists {
 				continue
@@ -221,7 +239,7 @@ func findDOMProxyURLs(buf []byte, options, sourceURL string) []byte {
 		return []byte{}
 	}
 
-	pages := [][]byte{buf}
+	pages := []curlFetchedPage{{body: buf, url: sourceURL}}
 	if config.depth == 1 {
 		pages = fetchCurlPages(buf, sourceURL, config.links)
 	} else {
@@ -232,7 +250,7 @@ func findDOMProxyURLs(buf []byte, options, sourceURL string) []byte {
 	seen := map[string]struct{}{}
 	rowCount := 0
 	for _, page := range pages {
-		document, err := goquery.NewDocumentFromReader(bytes.NewReader(page))
+		document, err := goquery.NewDocumentFromReader(bytes.NewReader(page.body))
 		if err != nil {
 			continue
 		}
@@ -395,70 +413,81 @@ func isProxyScheme(scheme string) bool {
 	}
 }
 
-func fetchCurlPages(root []byte, sourceURL, selector string) [][]byte {
+func fetchCurlPages(root []byte, sourceURL, selector string) []curlFetchedPage {
 	baseURL, err := url.Parse(sourceURL)
 	if err != nil {
 		return nil
 	}
 	links := extractHTMLLinks(root, baseURL)
-	queue := make([]string, 0, len(links))
+	queue := make([]curlPageRequest, 0, len(links))
 	for _, link := range links {
 		if selector == "" || strings.Contains(strings.ToLower(link), strings.ToLower(selector)) {
-			queue = append(queue, link)
+			queue = append(queue, curlPageRequest{url: link})
 		}
 	}
-	queue = append(queue, extractPaginationLinks(root, baseURL)...)
+	for _, link := range extractPaginationLinks(root, baseURL) {
+		queue = append(queue, curlPageRequest{url: link, discoverLinks: true})
+	}
+	return crawlCurlPages(queue, sourceURL, selector, true)
+}
+
+func fetchPaginatedPages(root []byte, sourceURL string) []curlFetchedPage {
+	baseURL, err := url.Parse(sourceURL)
+	if err != nil {
+		return nil
+	}
+	queue := make([]curlPageRequest, 0)
+	for _, link := range extractPaginationLinks(root, baseURL) {
+		queue = append(queue, curlPageRequest{url: link})
+	}
+	return crawlCurlPages(queue, sourceURL, "", false)
+}
+
+func crawlCurlPages(queue []curlPageRequest, sourceURL, selector string, discoverIndexLinks bool) []curlFetchedPage {
 	seen := map[string]struct{}{sourceURL: {}}
-	var pages [][]byte
-	for len(queue) > 0 && len(pages) < maxCurlPageCount {
-		rawURL := queue[0]
+	pages := make([]curlFetchedPage, 0, min(len(queue), maxCurlPageCount))
+	attempts := 0
+	for len(queue) > 0 && attempts < maxCurlPageCount {
+		request := queue[0]
 		queue = queue[1:]
-		if _, exists := seen[rawURL]; exists || !isAllowedRegexLink(rawURL) {
+		if _, exists := seen[request.url]; exists || !isCurlHTTPURL(request.url) {
 			continue
 		}
-		seen[rawURL] = struct{}{}
+		seen[request.url] = struct{}{}
+		attempts++
 
-		body, err := curlImpersonateFetch(rawURL)
+		response, err := curlImpersonateFetch(request.url)
 		if err != nil {
 			continue
 		}
-		pages = append(pages, body)
-		pageURL, err := url.Parse(rawURL)
-		if err == nil {
-			queue = append(queue, extractPaginationLinks(body, pageURL)...)
+		pageURL := response.finalURL
+		if pageURL == "" {
+			pageURL = request.url
+		}
+		seen[pageURL] = struct{}{}
+		pages = append(pages, curlFetchedPage{body: response.body, url: pageURL})
+
+		baseURL, err := url.Parse(pageURL)
+		if err != nil {
+			continue
+		}
+		if discoverIndexLinks && request.discoverLinks {
+			for _, link := range extractHTMLLinks(response.body, baseURL) {
+				if selector == "" || strings.Contains(strings.ToLower(link), strings.ToLower(selector)) {
+					queue = append(queue, curlPageRequest{url: link})
+				}
+			}
+		}
+		for _, link := range extractPaginationLinks(response.body, baseURL) {
+			queue = append(queue, curlPageRequest{url: link, discoverLinks: discoverIndexLinks && request.discoverLinks})
 		}
 	}
 	return pages
 }
 
-func fetchPaginatedPages(root []byte, sourceURL string) [][]byte {
-	baseURL, err := url.Parse(sourceURL)
-	if err != nil {
-		return nil
-	}
-	queue := extractPaginationLinks(root, baseURL)
-	seen := map[string]struct{}{}
-	seen[sourceURL] = struct{}{}
-	var pages [][]byte
-	for len(queue) > 0 && len(pages) < maxCurlPageCount {
-		rawURL := queue[0]
-		queue = queue[1:]
-		if _, exists := seen[rawURL]; exists || !isAllowedRegexLink(rawURL) {
-			continue
-		}
-		seen[rawURL] = struct{}{}
-
-		body, err := curlImpersonateFetch(rawURL)
-		if err != nil {
-			continue
-		}
-		pages = append(pages, body)
-		pageURL, err := url.Parse(rawURL)
-		if err == nil {
-			queue = append(queue, extractPaginationLinks(body, pageURL)...)
-		}
-	}
-	return pages
+func isCurlHTTPURL(rawURL string) bool {
+	u, err := url.Parse(rawURL)
+	return err == nil && u.Hostname() != "" && (u.Scheme == "http" || u.Scheme == "https")
 }
 
 func extractPaginationLinks(body []byte, baseURL *url.URL) []string {
@@ -544,69 +573,124 @@ func isNumberedPaginationLink(anchor *goquery.Selection, target *url.URL) bool {
 	return false
 }
 
-func fetchCurlImpersonate(rawURL string) ([]byte, error) {
-	if !isAllowedRegexLink(rawURL) {
-		return nil, fmt.Errorf("curl-impersonate target is not allowed")
-	}
-
+func fetchCurlImpersonate(rawURL string) (curlFetchResponse, error) {
 	currentURL := rawURL
 	for redirects := 0; redirects <= 5; redirects++ {
 		ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
-		command := exec.CommandContext(ctx, curlImpersonateBinary(),
+		resolve, err := resolveCurlTarget(ctx, currentURL)
+		if err != nil {
+			cancel()
+			return curlFetchResponse{}, err
+		}
+		args := []string{
 			"--silent", "--show-error", "--compressed",
 			"--max-redirs", "0", "--connect-timeout", "10", "--max-time", "20",
 			"--max-filesize", strconv.Itoa(maxRegexLinkResponseBytes),
-			"--proto", "=http,https",
-			"--write-out", "\n%{http_code}:%{redirect_url}", currentURL,
-		)
-		var stdout bytes.Buffer
+			"--proto", "=http,https", "--noproxy", "*",
+		}
+		if resolve != "" {
+			args = append(args, "--resolve", resolve)
+		}
+		args = append(args, "--write-out", "%{stderr}%{http_code}:%{redirect_url}", currentURL)
+		// The executable is an operator-configured curl binary; request URLs remain separate argv values and are never shell-evaluated.
+		// nosemgrep: go.lang.security.audit.dangerous-exec-command
+		command := exec.CommandContext(ctx, curlImpersonateBinary(), args...)
+		stdout, err := command.StdoutPipe()
+		if err != nil {
+			cancel()
+			return curlFetchResponse{}, fmt.Errorf("curl-impersonate stdout pipe failed: %w", err)
+		}
 		var stderr bytes.Buffer
-		command.Stdout = &stdout
 		command.Stderr = &stderr
-		err := command.Run()
+		if err := command.Start(); err != nil {
+			cancel()
+			return curlFetchResponse{}, fmt.Errorf("curl-impersonate start failed: %w", err)
+		}
+		body, readErr := io.ReadAll(io.LimitReader(stdout, maxRegexLinkResponseBytes+1))
+		if readErr != nil || len(body) > maxRegexLinkResponseBytes {
+			_ = command.Process.Kill()
+			_ = command.Wait()
+			cancel()
+			if readErr != nil {
+				return curlFetchResponse{}, fmt.Errorf("curl-impersonate response read failed: %w", readErr)
+			}
+			return curlFetchResponse{}, fmt.Errorf("curl-impersonate response exceeds size limit")
+		}
+		err = command.Wait()
 		cancel()
 		if err != nil {
-			return nil, fmt.Errorf("curl-impersonate fetch failed: %w", err)
+			return curlFetchResponse{}, fmt.Errorf("curl-impersonate fetch failed: %w: %s", err, strings.TrimSpace(stderr.String()))
 		}
 
-		output := stdout.Bytes()
-		metadataStart := bytes.LastIndexByte(output, '\n')
-		if metadataStart < 0 {
-			return nil, fmt.Errorf("curl-impersonate returned no HTTP status")
+		metadataLine := strings.TrimSpace(stderr.String())
+		if newline := strings.LastIndexByte(metadataLine, '\n'); newline >= 0 {
+			metadataLine = metadataLine[newline+1:]
 		}
-		metadata := strings.SplitN(string(output[metadataStart+1:]), ":", 2)
+		metadata := strings.SplitN(metadataLine, ":", 2)
 		if len(metadata) != 2 {
-			return nil, fmt.Errorf("curl-impersonate returned invalid response metadata")
+			return curlFetchResponse{}, fmt.Errorf("curl-impersonate returned invalid response metadata")
 		}
 		status, err := strconv.Atoi(metadata[0])
 		if err != nil {
-			return nil, fmt.Errorf("curl-impersonate returned invalid HTTP status")
+			return curlFetchResponse{}, fmt.Errorf("curl-impersonate returned invalid HTTP status")
 		}
 		if status >= http.StatusMultipleChoices && status < 400 {
 			if redirects == 5 || metadata[1] == "" {
-				return nil, fmt.Errorf("curl-impersonate redirect limit exceeded")
+				return curlFetchResponse{}, fmt.Errorf("curl-impersonate redirect limit exceeded")
 			}
 			baseURL, _ := url.Parse(currentURL)
 			redirectURL, err := url.Parse(metadata[1])
 			if err != nil {
-				return nil, fmt.Errorf("curl-impersonate returned invalid redirect URL")
+				return curlFetchResponse{}, fmt.Errorf("curl-impersonate returned invalid redirect URL")
 			}
 			currentURL = baseURL.ResolveReference(redirectURL).String()
-			if !isAllowedRegexLink(currentURL) {
-				return nil, errUnsafeRegexLinkRedirect
-			}
 			continue
 		}
 		if status < http.StatusOK || status >= http.StatusMultipleChoices {
-			return nil, fmt.Errorf("curl-impersonate returned HTTP %d", status)
+			return curlFetchResponse{}, fmt.Errorf("curl-impersonate returned HTTP %d", status)
 		}
-		body := output[:metadataStart]
-		if len(body) > maxRegexLinkResponseBytes {
-			return nil, fmt.Errorf("curl-impersonate response exceeds size limit")
-		}
-		return body, nil
+		return curlFetchResponse{body: body, finalURL: currentURL}, nil
 	}
-	return nil, fmt.Errorf("curl-impersonate redirect limit exceeded")
+	return curlFetchResponse{}, fmt.Errorf("curl-impersonate redirect limit exceeded")
+}
+
+func resolveCurlTarget(ctx context.Context, rawURL string) (string, error) {
+	u, err := url.Parse(rawURL)
+	if err != nil || u.Hostname() == "" || (u.Scheme != "http" && u.Scheme != "https") {
+		return "", fmt.Errorf("curl-impersonate target is not an HTTP(S) URL")
+	}
+	if allowPrivateRegexLinkHosts {
+		return "", nil
+	}
+	host := u.Hostname()
+	if ip := net.ParseIP(host); ip != nil {
+		if IsLocal(host) || !isPublicIP(ip) {
+			return "", fmt.Errorf("curl-impersonate target is not allowed")
+		}
+		return "", nil
+	}
+	addresses, err := curlIPLookup(ctx, host)
+	if err != nil || len(addresses) == 0 {
+		return "", fmt.Errorf("curl-impersonate target DNS lookup failed")
+	}
+	for _, address := range addresses {
+		if IsLocal(address.IP.String()) || !isPublicIP(address.IP) {
+			return "", fmt.Errorf("curl-impersonate target is not allowed")
+		}
+	}
+	port := u.Port()
+	if port == "" {
+		if u.Scheme == "https" {
+			port = "443"
+		} else {
+			port = "80"
+		}
+	}
+	address := addresses[0].IP.String()
+	if strings.Contains(address, ":") {
+		address = "[" + address + "]"
+	}
+	return net.JoinHostPort(host, port) + ":" + address, nil
 }
 
 func curlImpersonateBinary() string {

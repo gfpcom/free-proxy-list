@@ -44,11 +44,15 @@ func Fetch(proto, src string, transformer Transformer, transformerOptions string
 }
 
 func FetchCurl(proto, src, transformerOptions string, parser Parser) int {
-	buf, err := curlImpersonateFetch(src)
+	response, err := curlImpersonateFetch(src)
 	if err != nil {
 		return 0
 	}
-	return saveTransformedProxies(proto, fromCurl(buf, transformerOptions, src), parser)
+	rootURL := response.finalURL
+	if rootURL == "" {
+		rootURL = src
+	}
+	return saveTransformedProxies(proto, fromCurl(response.body, transformerOptions, rootURL), parser)
 }
 
 func saveTransformedProxies(proto string, data []byte, parser Parser) int {
