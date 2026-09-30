@@ -14,3 +14,12 @@ func TestParser(t *testing.T) {
 	require.NoError(t, err)
 	fmt.Println(proxy)
 }
+
+func TestParseProxyURLIgnoresTrailingAnnotation(t *testing.T) {
+	proxy, err := ParseProxyURL("auto", "socks5://80.76.49.48:60001      入库时间：09-30 07:50 [机房]")
+
+	require.NoError(t, err)
+	require.Equal(t, "80.76.49.48", proxy.IP)
+	require.Equal(t, 60001, proxy.Port)
+	require.Equal(t, "socks5", proxy.Protocol)
+}

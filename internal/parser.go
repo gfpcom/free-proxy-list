@@ -45,6 +45,10 @@ func init() {
 }
 
 func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
+	if fields := strings.Fields(proxyURL); len(fields) > 0 {
+		proxyURL = fields[0]
+	}
+
 	if !strings.Contains(proxyURL, "://") {
 		proxyURL = proto + "://" + proxyURL
 	}
