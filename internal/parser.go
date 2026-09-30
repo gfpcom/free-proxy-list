@@ -3,6 +3,7 @@ package internal
 import (
 	"errors"
 	"log/slog"
+	"net"
 	"net/url"
 	"strconv"
 	"strings"
@@ -180,6 +181,9 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 	if IsLocal(it.IP) {
 		return nil, ErrInvalidProxy
 	}
+	if net.ParseIP(it.IP) == nil && (strings.Contains(it.IP, ":") || isIPv4LiteralCandidate(it.IP)) {
+		return nil, ErrInvalidProxy
+	}
 
 	if !proxyclient.IsHost(it.IP) {
 		slog.Warn("gfp: invalid", slog.String("proto", proto), slog.String("proxy", proxyURL), slog.String("ip", it.IP))
@@ -189,6 +193,24 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 	it.Protocol = scheme
 
 	return it, nil
+}
+
+func isIPv4LiteralCandidate(host string) bool {
+	parts := strings.Split(host, ".")
+	if len(parts) != 4 {
+		return false
+	}
+	for _, part := range parts {
+		if part == "" {
+			return false
+		}
+		for _, char := range part {
+			if (char < '0' || char > '9') && char != 'x' && char != 'X' {
+				return false
+			}
+		}
+	}
+	return true
 }
 
 func IsLocal(ip string) bool {

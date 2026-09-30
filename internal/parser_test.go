@@ -23,3 +23,29 @@ func TestParseProxyURLIgnoresTrailingAnnotation(t *testing.T) {
 	require.Equal(t, 60001, proxy.Port)
 	require.Equal(t, "socks5", proxy.Protocol)
 }
+
+func TestParseProxyURLValidatesIPHosts(t *testing.T) {
+	tests := []struct {
+		name    string
+		address string
+		valid   bool
+	}{
+		{name: "valid IPv4", address: "8.8.8.8", valid: true},
+		{name: "valid IPv6", address: "2001:4860:4860::8888", valid: true},
+		{name: "hostname", address: "proxy.example.com", valid: true},
+		{name: "masked IPv4", address: "166.142.X.211"},
+		{name: "invalid IPv4 octet", address: "166.142.999.211"},
+		{name: "invalid IPv6", address: "2001:db8::xyz"},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			_, err := ParseProxyURL("https", "https://"+test.address+":9443")
+			if test.valid {
+				require.NoError(t, err)
+			} else {
+				require.Error(t, err)
+			}
+		})
+	}
+}
