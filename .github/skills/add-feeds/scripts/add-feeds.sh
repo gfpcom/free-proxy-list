@@ -178,18 +178,20 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 			continue
 		fi
 	fi
-	if ! "$fetch_client" --fail --location --silent --show-error \
-		--proto '=http,https' --proto-redir '=http,https' \
-		--connect-timeout 10 --max-time "$timeout_seconds" --max-filesize "$max_bytes" \
-		--output "$body_file" "$url"; then
-		printf 'Line %s: feed request failed: %s\n' "$line_number" "$url" >&2
-		has_errors=true
-		continue
-	fi
-	if [[ ! -s "$body_file" ]]; then
-		printf 'Line %s: feed response is empty: %s\n' "$line_number" "$url" >&2
-		has_errors=true
-		continue
+	if [[ "$transformer_name" != curl ]]; then
+		if ! "$fetch_client" --fail --location --silent --show-error \
+			--proto '=http,https' --proto-redir '=http,https' \
+			--connect-timeout 10 --max-time "$timeout_seconds" --max-filesize "$max_bytes" \
+			--output "$body_file" "$url"; then
+			printf 'Line %s: feed request failed: %s\n' "$line_number" "$url" >&2
+			has_errors=true
+			continue
+		fi
+		if [[ ! -s "$body_file" ]]; then
+			printf 'Line %s: feed response is empty: %s\n' "$line_number" "$url" >&2
+			has_errors=true
+			continue
+		fi
 	fi
 
 	preview_file="$body_file"
@@ -211,14 +213,16 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 			continue
 		fi
 	fi
-	if ! matches_expected_format "$preview_file" "$parser_name" "$transformer_name"; then
+	if [[ "$transformer_name" != curl ]] && ! matches_expected_format "$preview_file" "$parser_name" "$transformer_name"; then
 		printf 'Line %s: response sample does not match the configured format.\n' "$line_number" >&2
 		has_errors=true
 		continue
 	fi
 
 	printf 'Validated %s: %s\n' "$protocol" "$source_entry"
-	sed -n '1,4p' "$preview_file" | cut -c1-180 | sed 's/^/  /'
+	if [[ "$transformer_name" != curl ]]; then
+		sed -n '1,4p' "$preview_file" | cut -c1-180 | sed 's/^/  /'
+	fi
 	if [[ "$transformer_name" == link ]]; then
 		printf '  Note: inspect linked child feeds and their formats manually.\n'
 	fi
