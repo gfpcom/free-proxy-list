@@ -2,8 +2,8 @@ package internal
 
 import (
 	"fmt"
-	"testing"
 	"github.com/stretchr/testify/require"
+	"testing"
 )
 
 func TestParser(t *testing.T) {
@@ -46,6 +46,25 @@ func TestParseProxyURLValidatesIPHosts(t *testing.T) {
 			} else {
 				require.Error(t, err)
 			}
+		})
+	}
+}
+
+func TestIsIPLiteralCandidate(t *testing.T) {
+	tests := []struct {
+		host     string
+		isIPLike bool
+	}{
+		{host: "166.142.88.211", isIPLike: true},
+		{host: "166.142.X.211", isIPLike: true},
+		{host: "166.X.X.211", isIPLike: false},
+		{host: "proxy.example.com", isIPLike: false},
+		{host: "2001:db8::1", isIPLike: true},
+	}
+
+	for _, test := range tests {
+		t.Run(test.host, func(t *testing.T) {
+			require.Equal(t, test.isIPLike, isIPLiteralCandidate(test.host))
 		})
 	}
 }

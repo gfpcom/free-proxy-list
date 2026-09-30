@@ -178,10 +178,10 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 		it.Protocol = scheme
 	}
 
-	if IsLocal(it.IP) {
+	if isIPLiteralCandidate(it.IP) && net.ParseIP(it.IP) == nil {
 		return nil, ErrInvalidProxy
 	}
-	if net.ParseIP(it.IP) == nil && (strings.Contains(it.IP, ":") || isIPv4LiteralCandidate(it.IP)) {
+	if IsLocal(it.IP) {
 		return nil, ErrInvalidProxy
 	}
 
@@ -195,22 +195,33 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 	return it, nil
 }
 
-func isIPv4LiteralCandidate(host string) bool {
+func isIPLiteralCandidate(host string) bool {
+	if strings.Contains(host, ":") {
+		return true
+	}
+
 	parts := strings.Split(host, ".")
 	if len(parts) != 4 {
 		return false
 	}
+
+	numericParts := 0
 	for _, part := range parts {
 		if part == "" {
-			return false
+			continue
 		}
+		numeric := true
 		for _, char := range part {
-			if (char < '0' || char > '9') && char != 'x' && char != 'X' {
-				return false
+			if char < '0' || char > '9' {
+				numeric = false
+				break
 			}
 		}
+		if numeric {
+			numericParts++
+		}
 	}
-	return true
+	return numericParts >= 3
 }
 
 func IsLocal(ip string) bool {
