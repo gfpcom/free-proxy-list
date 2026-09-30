@@ -1107,6 +1107,38 @@ func TestFromListDownloadsAndTransformsEachURL(t *testing.T) {
 	}
 }
 
+func TestFromListPassesNestedTransformerOptions(t *testing.T) {
+	allowPrivateRegexLinkHosts = true
+	defer func() { allowPrivateRegexLinkHosts = false }()
+
+	var baseURL string
+	requests := map[string]int{}
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		requests[r.URL.Path]++
+		switch r.URL.Path {
+		case "/index.txt":
+			_, _ = fmt.Fprintf(w, "%s/match-keyword.txt\n%s/other.txt\n", baseURL, baseURL)
+		case "/match-keyword.txt":
+			_, _ = w.Write([]byte("http://1.2.3.4:8080\n"))
+		case "/other.txt":
+			_, _ = w.Write([]byte("http://5.6.7.8:8080\n"))
+		default:
+			http.NotFound(w, r)
+		}
+	}))
+	defer server.Close()
+	baseURL = server.URL
+
+	transformer, options := GetTransformer("list:link:keyword")
+	got := string(transformer([]byte(server.URL+"/index.txt\n"), options))
+	if got != "http://1.2.3.4:8080\n" {
+		t.Fatalf("expected only the keyword-matching child feed, got %q", got)
+	}
+	if requests["/match-keyword.txt"] != 1 || requests["/other.txt"] != 0 {
+		t.Fatalf("expected nested keyword filtering before fetch, got %#v", requests)
+	}
+}
+
 func TestFromLinksAppliesKeywordBeforeFanOutLimit(t *testing.T) {
 	allowPrivateRegexLinkHosts = true
 	defer func() { allowPrivateRegexLinkHosts = false }()

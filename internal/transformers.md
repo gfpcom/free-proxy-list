@@ -56,7 +56,7 @@ At most 32 unique child links are fetched, and each child response is limited to
 Reads a plain-text source list with one HTTP(S) URL per line, downloads each unique URL, transforms each response, and combines the results. Blank lines and lines beginning with `#` are ignored. Use this for source lists whose entries point to proxy subscriptions instead of containing proxy records themselves. Specify the child transformer after `list:`:
 
 ```text
-https://raw.githubusercontent.com/snakem982/proxypool/refs/heads/main/source/proxies.txt,list:clash
+https://example.net/clash-subscriptions.txt,list:clash
 ```
 
 This downloads the listed subscriptions, converts each Clash YAML response to proxy URI lines, and lets the configured parser process the merged output. `list:base64` can be used for Base64-encoded child feeds; omitting the option leaves child responses unchanged. The same 32-URL, 10 MiB response, public HTTP(S) target, redirect, and failure limits as `link` apply.

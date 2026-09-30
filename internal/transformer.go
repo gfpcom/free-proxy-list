@@ -140,12 +140,12 @@ func FromLinks(buf []byte, spec string) []byte {
 		links = append(links, rawURL)
 	}
 
-	return downloadAndTransformLinks(links, transformer)
+	return downloadAndTransformLinks(links, transformer, "")
 }
 
 // FromList downloads URLs listed one per line and transforms each response.
 func FromList(buf []byte, spec string) []byte {
-	transformer, _ := GetTransformer(spec)
+	transformer, transformerOptions := GetTransformer(spec)
 	links := make([]string, 0)
 	for _, line := range strings.Split(string(buf), "\n") {
 		line = strings.TrimSpace(line)
@@ -158,10 +158,10 @@ func FromList(buf []byte, spec string) []byte {
 		}
 		links = append(links, strings.Trim(fields[0], "\"'"))
 	}
-	return downloadAndTransformLinks(links, transformer)
+	return downloadAndTransformLinks(links, transformer, transformerOptions)
 }
 
-func downloadAndTransformLinks(links []string, transformer Transformer) []byte {
+func downloadAndTransformLinks(links []string, transformer Transformer, transformerOptions string) []byte {
 	var result bytes.Buffer
 	seen := map[string]struct{}{}
 	for _, rawURL := range links {
@@ -187,7 +187,7 @@ func downloadAndTransformLinks(links []string, transformer Transformer) []byte {
 			continue
 		}
 
-		result.Write(bytes.TrimSpace(transformer(body, "")))
+		result.Write(bytes.TrimSpace(transformer(body, transformerOptions)))
 		result.WriteByte('\n')
 	}
 
