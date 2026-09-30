@@ -3,6 +3,7 @@ package internal
 import (
 	"errors"
 	"log/slog"
+	"net"
 	"net/url"
 	"strconv"
 	"strings"
@@ -45,6 +46,10 @@ func init() {
 }
 
 func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
+	if fields := strings.Fields(proxyURL); len(fields) > 0 {
+		proxyURL = fields[0]
+	}
+
 	if !strings.Contains(proxyURL, "://") {
 		proxyURL = proto + "://" + proxyURL
 	}
@@ -173,6 +178,9 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 		it.Protocol = scheme
 	}
 
+	if isIPLiteralCandidate(it.IP) && net.ParseIP(it.IP) == nil {
+		return nil, ErrInvalidProxy
+	}
 	if IsLocal(it.IP) {
 		return nil, ErrInvalidProxy
 	}
@@ -185,6 +193,36 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 	it.Protocol = scheme
 
 	return it, nil
+}
+
+func isIPLiteralCandidate(host string) bool {
+	// Callers pass URL.Hostname output, so the port is already removed and colons indicate IPv6 syntax.
+	if strings.Contains(host, ":") {
+		return true
+	}
+
+	parts := strings.Split(host, ".")
+	if len(parts) != 4 {
+		return false
+	}
+
+	numericParts := 0
+	for _, part := range parts {
+		if part == "" {
+			continue
+		}
+		numeric := true
+		for _, char := range part {
+			if char < '0' || char > '9' {
+				numeric = false
+				break
+			}
+		}
+		if numeric {
+			numericParts++
+		}
+	}
+	return numericParts >= 3
 }
 
 func IsLocal(ip string) bool {

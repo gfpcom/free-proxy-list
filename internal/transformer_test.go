@@ -71,12 +71,12 @@ socks-port: 7891`,
 			expected: "",
 		},
 		{
-			name: "port as string",
+			name: "port string with non-digit suffix",
 			input: `proxies:
   - name: "http-proxy"
     type: http
     server: 1.2.3.4
-    port: "8080"`,
+    port: "8080?"`,
 			expected: "http://1.2.3.4:8080\n",
 		},
 		{
@@ -270,6 +270,31 @@ socks-port: 7891`,
     type: socks5
     server: 9.10.11.12
     port: 1080`,
+			expected: "http://1.2.3.4:8080\nsocks5://9.10.11.12:1080\n",
+		},
+		{
+			name: "malformed proxy does not discard valid proxies",
+			input: `proxies:
+  - name: "valid-before"
+    type: http
+    server: 1.2.3.4
+    port: 8080
+  - name: "invalid-port"
+    type: http
+    server: 5.6.7.8
+    port: "44x3?"
+  - name: "valid-after"
+    type: socks5
+    server: 9.10.11.12
+    port: 1080`,
+			expected: "http://1.2.3.4:8080\nsocks5://9.10.11.12:1080\n",
+		},
+		{
+			name: "malformed inline proxy does not discard valid proxies",
+			input: `proxies:
+  - {name: before, type: http, server: 1.2.3.4, port: 8080}
+  - {name: "broken-"2001:db8::1", type: vmess, server: 5.6.7.8, port: 443}
+  - {name: after, type: socks5, server: 9.10.11.12, port: 1080}`,
 			expected: "http://1.2.3.4:8080\nsocks5://9.10.11.12:1080\n",
 		},
 		{
