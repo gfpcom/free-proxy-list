@@ -1071,6 +1071,42 @@ func TestFromLinksDownloadsKeywordMatchesAndAppliesTransformer(t *testing.T) {
 	}
 }
 
+func TestFromListDownloadsAndTransformsEachURL(t *testing.T) {
+	allowPrivateRegexLinkHosts = true
+	defer func() { allowPrivateRegexLinkHosts = false }()
+
+	requests := map[string]int{}
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		requests[r.URL.Path]++
+		switch r.URL.Path {
+		case "/first.yaml":
+			_, _ = w.Write([]byte("proxies:\n  - name: http\n    type: http\n    server: 1.2.3.4\n    port: 8080\n"))
+		case "/second.yaml":
+			_, _ = w.Write([]byte("proxies:\n  - name: socks\n    type: socks5\n    server: 5.6.7.8\n    port: 1080\n"))
+		default:
+			http.NotFound(w, r)
+		}
+	}))
+	defer server.Close()
+
+	list := "# Clash sources\n" + server.URL + "/first.yaml\n\n" + server.URL + "/second.yaml # second source\n" + server.URL + "/first.yaml\n"
+	transformer, options := GetTransformer("list:clash")
+	got := string(transformer([]byte(list), options))
+	want := "http://1.2.3.4:8080\nsocks5://5.6.7.8:1080\n"
+	if got != want {
+		t.Fatalf("expected %q, got %q", want, got)
+	}
+	if requests["/first.yaml"] != 1 || requests["/second.yaml"] != 1 {
+		t.Fatalf("expected each unique list URL to be fetched once, got %#v", requests)
+	}
+
+	for _, line := range strings.Fields(got) {
+		if _, err := ParseProxyURL("auto", line); err != nil {
+			t.Errorf("transformed proxy line %q was rejected by the normal parser: %v", line, err)
+		}
+	}
+}
+
 func TestFromLinksAppliesKeywordBeforeFanOutLimit(t *testing.T) {
 	allowPrivateRegexLinkHosts = true
 	defer func() { allowPrivateRegexLinkHosts = false }()
