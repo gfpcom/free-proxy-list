@@ -26,14 +26,11 @@ command -v jq >/dev/null
 gh auth status >/dev/null
 
 repo_slug="$(gh repo view --json nameWithOwner --jq .nameWithOwner)"
-if date -u -v1d +%F >/dev/null 2>&1; then
-	current_month_start="$(date -u -v1d +%F)"
-	window_start="$(date -u -v1d -v-1m +%F)"
-	window_end="$(date -u -v1d -v-1d +%F)"
+window_end="$(date -u +%F)"
+if date -u -v-29d +%F >/dev/null 2>&1; then
+	window_start="$(date -u -v-29d +%F)"
 else
-	current_month_start="$(date -u +%Y-%m-01)"
-	window_start="$(date -u -d "$current_month_start -1 month" +%F)"
-	window_end="$(date -u -d "$current_month_start -1 day" +%F)"
+	window_start="$(date -u -d "$window_end -29 days" +%F)"
 fi
 source_dir="$(git rev-parse --show-toplevel)/sources"
 issue_json="$(gh issue view "$issue_number" --repo "$repo_slug" --json state,body,comments)"
@@ -61,6 +58,9 @@ fetch_tree_paths() {
 	local -a tree_shas prefixes paths
 
 	initial_tree="$(cat)"
+	if ! jq -e '(.tree | type) == "array"' >/dev/null <<< "$initial_tree"; then
+		return 1
+	fi
 	if jq -e '.truncated != true' >/dev/null <<< "$initial_tree"; then
 		jq -c '[.tree[] | select(.type == "blob") | .path]' <<< "$initial_tree"
 		return
@@ -76,6 +76,9 @@ fetch_tree_paths() {
 		prefixes=("${prefixes[@]:1}")
 		tree_json="$(gh api "repos/$repository/git/trees/$tree_sha" 2>/dev/null || true)"
 		[[ -z "$tree_json" ]] && continue
+		if ! jq -e '(.tree | type) == "array"' >/dev/null <<< "$tree_json"; then
+			return 1
+		fi
 		if [[ "$(jq -r '.truncated // false' <<< "$tree_json")" == true ]]; then
 			return 1
 		fi
@@ -114,7 +117,7 @@ queries=(
 
 search_results=''
 for query in "${queries[@]}"; do
-	result="$(gh search repos "$query pushed:>=$window_start pushed:<=$window_end fork:false archived:false" \
+	result="$(gh search repos "$query pushed:$window_start..$window_end fork:false archived:false" \
 		--sort updated --limit 100 \
 		--json fullName,description,pushedAt,isFork,isArchived)"
 	search_results+="$result"$'\n'
@@ -142,7 +145,7 @@ while IFS= read -r repository; do
 
 	tree="$(gh api "repos/$repository/git/trees/HEAD?recursive=1" 2>/dev/null || true)"
 	[[ -z "$tree" ]] && continue
-	tree_paths="$(fetch_tree_paths "$repository" <<< "$tree")"
+	tree_paths="$(fetch_tree_paths "$repository" <<< "$tree")" || continue
 	paths="$(jq -r '
 		map(select(
 			(test("\\.(txt|yaml|yml|json)$"; "i"))
