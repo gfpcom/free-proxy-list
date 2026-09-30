@@ -36,6 +36,10 @@ func load(proto string, content []byte, validate bool) error {
 
 		if strings.HasPrefix(line, "https://") || strings.HasPrefix(line, "http://") {
 			feedCount++
+			transformerName := ""
+			if items := strings.Split(line, ","); len(items) > 1 {
+				transformerName, _ = parseTransformerSpec(strings.TrimSpace(items[1]))
+			}
 			src, transformer, transformerOptions, parser = parseLine(line)
 			if src == "" {
 				if validate {
@@ -44,7 +48,12 @@ func load(proto string, content []byte, validate bool) error {
 				continue
 			}
 
-			count := Fetch(proto, src, transformer, transformerOptions, parser)
+			var count int
+			if transformerName == "curl" {
+				count = FetchCurl(proto, src, transformerOptions, parser)
+			} else {
+				count = Fetch(proto, src, transformer, transformerOptions, parser)
+			}
 			log.Printf("> %v %s", count, src)
 			if validate && count == 0 {
 				return fmt.Errorf("line %d: feed %s produced no valid proxies", lineNumber, src)

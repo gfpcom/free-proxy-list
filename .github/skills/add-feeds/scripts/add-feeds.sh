@@ -69,6 +69,9 @@ matches_expected_format() {
 		link)
 			grep -Eiq "https?://[^[:space:]<>\"']+" "$sample_file"
 			;;
+		curl)
+			grep -Eiq '<(!doctype|html|a|input)([[:space:]>])' "$sample_file"
+			;;
 		*)
 			case "$parser_name" in
 				ColonURL)
@@ -132,7 +135,7 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 
 	transformer_name="${transformer_spec%%:*}"
 	case "$transformer_name" in
-		""|raw|base64|clash|link) ;;
+		""|raw|base64|clash|link|curl) ;;
 		*)
 			printf 'Line %s: transformer "%s" is not registered by this project.\n' "$line_number" "$transformer_name" >&2
 			has_errors=true
@@ -160,18 +163,35 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 	seen_urls["$url"]=1
 
 	body_file="$temp_dir/body"
-	if ! curl --fail --location --silent --show-error \
-		--proto '=http,https' --proto-redir '=http,https' \
-		--connect-timeout 10 --max-time "$timeout_seconds" --max-filesize "$max_bytes" \
-		--output "$body_file" "$url"; then
-		printf 'Line %s: feed request failed: %s\n' "$line_number" "$url" >&2
-		has_errors=true
-		continue
+	fetch_client=curl
+	if [[ "$transformer_name" == curl ]]; then
+		fetch_client="${CURL_IMPERSONATE_BIN:-}"
+		if [[ -z "$fetch_client" ]]; then
+			fetch_client="$(command -v curl_chrome116 || true)"
+		fi
+		if [[ -z "$fetch_client" && -x "${HOME:-}/.local/bin/curl_chrome116" ]]; then
+			fetch_client="${HOME}/.local/bin/curl_chrome116"
+		fi
+		if [[ -z "$fetch_client" ]]; then
+			printf 'Line %s: curl transformer requires curl_chrome116.\n' "$line_number" >&2
+			has_errors=true
+			continue
+		fi
 	fi
-	if [[ ! -s "$body_file" ]]; then
-		printf 'Line %s: feed response is empty: %s\n' "$line_number" "$url" >&2
-		has_errors=true
-		continue
+	if [[ "$transformer_name" != curl ]]; then
+		if ! "$fetch_client" --fail --location --silent --show-error \
+			--proto '=http,https' --proto-redir '=http,https' \
+			--connect-timeout 10 --max-time "$timeout_seconds" --max-filesize "$max_bytes" \
+			--output "$body_file" "$url"; then
+			printf 'Line %s: feed request failed: %s\n' "$line_number" "$url" >&2
+			has_errors=true
+			continue
+		fi
+		if [[ ! -s "$body_file" ]]; then
+			printf 'Line %s: feed response is empty: %s\n' "$line_number" "$url" >&2
+			has_errors=true
+			continue
+		fi
 	fi
 
 	preview_file="$body_file"
@@ -183,14 +203,26 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 			continue
 		fi
 	fi
-	if ! matches_expected_format "$preview_file" "$parser_name" "$transformer_name"; then
+	if [[ "$transformer_name" == curl ]]; then
+		validation_dir="$temp_dir/curl-validation-$line_number"
+		mkdir -p "$validation_dir/sources"
+		printf '%s\n' "$source_entry" > "$validation_dir/sources/$protocol.txt"
+		if ! go run "$root_dir/cmd" -dir "$validation_dir" -dry-run; then
+			printf 'Line %s: curl transformer produced no valid proxies.\n' "$line_number" >&2
+			has_errors=true
+			continue
+		fi
+	fi
+	if [[ "$transformer_name" != curl ]] && ! matches_expected_format "$preview_file" "$parser_name" "$transformer_name"; then
 		printf 'Line %s: response sample does not match the configured format.\n' "$line_number" >&2
 		has_errors=true
 		continue
 	fi
 
 	printf 'Validated %s: %s\n' "$protocol" "$source_entry"
-	sed -n '1,4p' "$preview_file" | cut -c1-180 | sed 's/^/  /'
+	if [[ "$transformer_name" != curl ]]; then
+		sed -n '1,4p' "$preview_file" | cut -c1-180 | sed 's/^/  /'
+	fi
 	if [[ "$transformer_name" == link ]]; then
 		printf '  Note: inspect linked child feeds and their formats manually.\n'
 	fi

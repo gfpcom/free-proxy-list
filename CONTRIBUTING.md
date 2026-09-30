@@ -49,6 +49,8 @@ The application reads files from the `sources/` directory. Each file in this dir
 
 Sometimes, a source provides data in a non-standard format. Our application uses **Transformers** and **Parsers** to handle these cases. You can specify them in the source file on the same line as the URL, separated by commas.
 
+See the [Transformer Reference](internal/transformers.md) for detailed behavior and configuration examples.
+
 **URL Tokens:**
 
 You can use dynamic tokens in the source URLs to fetch lists that are generated based on the current date and time. The application will replace these tokens with the current values.
@@ -64,7 +66,7 @@ You can use dynamic tokens in the source URLs to fetch lists that are generated 
 **Format:** `url,transformer,parser`
 
 -   **`url`**: (Required) The URL of the proxy list.
--   **`transformer`**: (Optional) Specifies how to transform the raw data before parsing. The default is `raw` (no transformation). Transformer options use `name[:options]`. We also have `base64` for sources encoded in Base64, `clash` for Clash YAML, and `link[:transformer-keyword]` for extracting link-like strings from documents such as README files. For example, `link:base64-fn0618` fetches links containing `fn0618`, decodes each linked response as Base64, and merges the transformed proxy links before parsing.
+-   **`transformer`**: (Optional) Specifies how to transform the raw data before parsing. The default is `raw` (no transformation). Transformer options use `name[:options]`. We also have `base64` for sources encoded in Base64, `clash` for Clash YAML, and `link[:transformer-keyword]` for extracting link-like strings from documents such as README files. For example, `link:base64-fn0618` fetches links containing `fn0618`, decodes each linked response as Base64, and merges the transformed proxy links before parsing. The `curl` transformer uses curl-impersonate, scans the current page, and automatically follows detected pagination links; it can also fetch matching child pages at depth `1`. It finds all supported proxy schemes by default or accepts a `+`-separated finder list, such as `curl:1-/servers/-ss+trojan+vless`. Its built-in `dom` finder accepts CSS selectors for each URL field and a template, for example: `curl:dom;row=tbody.table-proxy-list tr;protocol=td:nth-child(4);host=th.tblport;port=td.tblport;template={protocol}://{host}:{port}`. Field selectors return element text by default; append `@attribute` to read an attribute instead. The example assembles mixed-protocol entries from `https://freeproxylist.ru/en/?page=1`.
 -   **`parser`**: (Optional) Specifies how to parse individual lines from the source. The default `ParseProxyURL` handles standard proxy URLs. Other options include `ColonURL` (for `ip:port` formats) and `SpaceURL` (for `ip port` formats).
 
 **Example:**

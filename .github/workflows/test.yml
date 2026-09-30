@@ -13,6 +13,8 @@ jobs:
       uses: actions/setup-go@v6
       with:
         go-version: '1.26'
+    - name: Install curl-impersonate
+      run: make install-curl-impersonate
     - name: Test
       run: make test
     - name: Upload coverage reports to Codecov
@@ -45,6 +47,8 @@ jobs:
         uses: actions/setup-go@v6
         with:
           go-version: '1.26'
+      - name: Install curl-impersonate
+        run: make install-curl-impersonate
       - name: Validate newly added feeds
         env:
           PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
