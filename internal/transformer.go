@@ -20,6 +20,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/PuerkitoBio/goquery"
+	"github.com/andybalholm/cascadia"
 	"golang.org/x/net/html"
 	"gopkg.in/yaml.v3"
 )
@@ -28,10 +30,13 @@ const (
 	maxRegexLinkCount         = 32
 	maxRegexLinkResponseBytes = 10 * 1024 * 1024
 	maxCurlDepth              = 1
+	maxCurlPageCount          = 32
+	maxDOMFinderRows          = 1000
 )
 
 var (
 	Transformers               = map[string]Transformer{}
+	ProtocolFinders            = map[string]ProtocolFinder{}
 	allowPrivateRegexLinkHosts = false
 	errUnsafeRegexLinkRedirect = errors.New("unsafe regex link redirect")
 	curlImpersonateFetch       = fetchCurlImpersonate
@@ -51,9 +56,17 @@ func init() {
 	Transformers["clash"] = FromClash
 	Transformers["link"] = FromLinks
 	Transformers["curl"] = FromCurl
+	ProtocolFinders["uri"] = findURIProxyURLs
+	ProtocolFinders["dom"] = findDOMProxyURLs
 }
 
 type Transformer func(data []byte, options string) []byte
+
+type ProtocolFinder func(data []byte, options, sourceURL string) []byte
+
+func RegisterProtocolFinder(name string, finder ProtocolFinder) {
+	ProtocolFinders[name] = finder
+}
 
 func RegisterTransformer(name string, t Transformer) {
 	Transformers[name] = t
@@ -135,7 +148,7 @@ func FromLinks(buf []byte, spec string) []byte {
 	return result.Bytes()
 }
 
-var proxyLinkPattern = regexp.MustCompile(`(?i)\b(?:socks4a?|socks5(?:a|h)?|vmess|vless|trojan|ssr?|hy2?|hysteria2?|hhysteria2?|hhy2|tuic|wireguard|anytls)://[^\s"'<>]+`)
+var proxyLinkPattern = regexp.MustCompile(`(?i)\b(?:socks|socks4a?|socks5(?:a|h)?|vmess|vless|trojan|ssr?|hy2?|hysteria2?|hhysteria2?|hhy2|tuic|wireguard|anytls)://[^\s"'<>]+`)
 
 // FromCurl finds proxy URLs on the current page or one matching linked page.
 // Options use [depth-]selector[-protocol+protocol], for example 1-/servers/-ss+trojan.
@@ -144,6 +157,15 @@ func FromCurl(buf []byte, spec string) []byte {
 }
 
 func fromCurl(buf []byte, spec, sourceURL string) []byte {
+	if finderName, options, found := strings.Cut(spec, ";"); found {
+		if finder, ok := ProtocolFinders[finderName]; ok {
+			return finder(buf, options, sourceURL)
+		}
+	}
+	return ProtocolFinders["uri"](buf, spec, sourceURL)
+}
+
+func findURIProxyURLs(buf []byte, spec, sourceURL string) []byte {
 	depth, selector, protocols, ok := parseCurlSpec(spec)
 	if !ok {
 		return []byte{}
@@ -152,6 +174,7 @@ func fromCurl(buf []byte, spec, sourceURL string) []byte {
 	var pages [][]byte
 	if depth == 0 {
 		pages = append(pages, buf)
+		pages = append(pages, fetchPaginatedPages(buf, sourceURL)...)
 	} else {
 		pages = fetchCurlPages(buf, sourceURL, selector)
 	}
@@ -179,6 +202,140 @@ func fromCurl(buf []byte, spec, sourceURL string) []byte {
 		}
 	}
 	return result.Bytes()
+}
+
+type domFinderConfig struct {
+	depth    int
+	links    string
+	row      string
+	template string
+	fields   map[string]string
+}
+
+var domTemplateFieldPattern = regexp.MustCompile(`\{([a-zA-Z][a-zA-Z0-9_]*)\}`)
+var domFieldNamePattern = regexp.MustCompile(`^[a-zA-Z][a-zA-Z0-9_]*$`)
+
+func findDOMProxyURLs(buf []byte, options, sourceURL string) []byte {
+	config, ok := parseDOMFinderOptions(options)
+	if !ok {
+		return []byte{}
+	}
+
+	pages := [][]byte{buf}
+	if config.depth == 1 {
+		pages = fetchCurlPages(buf, sourceURL, config.links)
+	} else {
+		pages = append(pages, fetchPaginatedPages(buf, sourceURL)...)
+	}
+
+	var result bytes.Buffer
+	seen := map[string]struct{}{}
+	rowCount := 0
+	for _, page := range pages {
+		document, err := goquery.NewDocumentFromReader(bytes.NewReader(page))
+		if err != nil {
+			continue
+		}
+		document.Find(config.row).EachWithBreak(func(_ int, row *goquery.Selection) bool {
+			rowCount++
+			if rowCount > maxDOMFinderRows {
+				return false
+			}
+
+			values := make(map[string]string, len(config.fields))
+			for name, fieldSpec := range config.fields {
+				selector, attribute, hasAttribute := strings.Cut(fieldSpec, "@")
+				selected := row.Find(strings.TrimSpace(selector)).First()
+				value := selected.Text()
+				if hasAttribute {
+					var exists bool
+					value, exists = selected.Attr(strings.TrimSpace(attribute))
+					if !exists {
+						return true
+					}
+				}
+				value = html.UnescapeString(strings.TrimSpace(value))
+				if name == "protocol" || name == "scheme" {
+					value = strings.ToLower(value)
+				}
+				if value == "" {
+					return true
+				}
+				values[name] = value
+			}
+
+			proxyURL := domTemplateFieldPattern.ReplaceAllStringFunc(config.template, func(field string) string {
+				return values[field[1:len(field)-1]]
+			})
+			if strings.Contains(proxyURL, "{") || strings.Contains(proxyURL, "}") {
+				return true
+			}
+			if _, exists := seen[proxyURL]; exists {
+				return true
+			}
+			seen[proxyURL] = struct{}{}
+			result.WriteString(proxyURL)
+			result.WriteByte('\n')
+			return true
+		})
+		if rowCount > maxDOMFinderRows {
+			break
+		}
+	}
+	return result.Bytes()
+}
+
+func parseDOMFinderOptions(options string) (domFinderConfig, bool) {
+	config := domFinderConfig{fields: map[string]string{}}
+	for _, option := range strings.Split(options, ";") {
+		key, value, found := strings.Cut(strings.TrimSpace(option), "=")
+		if !found || key == "" || value == "" {
+			return domFinderConfig{}, false
+		}
+		value = strings.TrimSpace(value)
+		switch key {
+		case "depth":
+			depth, err := strconv.Atoi(value)
+			if err != nil || depth < 0 || depth > maxCurlDepth {
+				return domFinderConfig{}, false
+			}
+			config.depth = depth
+		case "links":
+			config.links = value
+		case "row":
+			config.row = value
+		case "template":
+			config.template = value
+		default:
+			if !domFieldNamePattern.MatchString(key) {
+				return domFinderConfig{}, false
+			}
+			if _, exists := config.fields[key]; exists {
+				return domFinderConfig{}, false
+			}
+			selector, _, _ := strings.Cut(value, "@")
+			if _, err := cascadia.Compile(strings.TrimSpace(selector)); err != nil {
+				return domFinderConfig{}, false
+			}
+			config.fields[key] = value
+		}
+	}
+	if config.row == "" || config.template == "" || len(config.fields) == 0 || (config.depth == 1 && config.links == "") {
+		return domFinderConfig{}, false
+	}
+	if _, err := cascadia.Compile(config.row); err != nil {
+		return domFinderConfig{}, false
+	}
+	fields := domTemplateFieldPattern.FindAllStringSubmatch(config.template, -1)
+	if len(fields) == 0 {
+		return domFinderConfig{}, false
+	}
+	for _, field := range fields {
+		if _, exists := config.fields[field[1]]; !exists {
+			return domFinderConfig{}, false
+		}
+	}
+	return config, true
 }
 
 func parseCurlSpec(spec string) (int, string, []string, bool) {
@@ -231,7 +388,7 @@ func isDecimal(value string) bool {
 
 func isProxyScheme(scheme string) bool {
 	switch scheme {
-	case "http", "https", "socks4", "socks4a", "socks5", "socks5a", "socks5h", "vmess", "vless", "trojan", "ss", "ssr", "hy", "hy2", "hysteria", "hysteria2", "hhysteria", "hhysteria2", "hhy2", "tuic", "wireguard", "anytls":
+	case "http", "https", "socks", "socks4", "socks4a", "socks5", "socks5a", "socks5h", "vmess", "vless", "trojan", "ss", "ssr", "hy", "hy2", "hysteria", "hysteria2", "hhysteria", "hhysteria2", "hhy2", "tuic", "wireguard", "anytls":
 		return true
 	default:
 		return false
@@ -239,19 +396,25 @@ func isProxyScheme(scheme string) bool {
 }
 
 func fetchCurlPages(root []byte, sourceURL, selector string) [][]byte {
-	baseURL, _ := url.Parse(sourceURL)
+	baseURL, err := url.Parse(sourceURL)
+	if err != nil {
+		return nil
+	}
 	links := extractHTMLLinks(root, baseURL)
-	seen := map[string]struct{}{}
-	pages := make([][]byte, 0, maxRegexLinkCount)
-	for _, rawURL := range links {
-		if selector != "" && !strings.Contains(strings.ToLower(rawURL), strings.ToLower(selector)) {
-			continue
+	queue := make([]string, 0, len(links))
+	for _, link := range links {
+		if selector == "" || strings.Contains(strings.ToLower(link), strings.ToLower(selector)) {
+			queue = append(queue, link)
 		}
+	}
+	queue = append(queue, extractPaginationLinks(root, baseURL)...)
+	seen := map[string]struct{}{sourceURL: {}}
+	var pages [][]byte
+	for len(queue) > 0 && len(pages) < maxCurlPageCount {
+		rawURL := queue[0]
+		queue = queue[1:]
 		if _, exists := seen[rawURL]; exists || !isAllowedRegexLink(rawURL) {
 			continue
-		}
-		if len(seen) >= maxRegexLinkCount {
-			break
 		}
 		seen[rawURL] = struct{}{}
 
@@ -260,8 +423,125 @@ func fetchCurlPages(root []byte, sourceURL, selector string) [][]byte {
 			continue
 		}
 		pages = append(pages, body)
+		pageURL, err := url.Parse(rawURL)
+		if err == nil {
+			queue = append(queue, extractPaginationLinks(body, pageURL)...)
+		}
 	}
 	return pages
+}
+
+func fetchPaginatedPages(root []byte, sourceURL string) [][]byte {
+	baseURL, err := url.Parse(sourceURL)
+	if err != nil {
+		return nil
+	}
+	queue := extractPaginationLinks(root, baseURL)
+	seen := map[string]struct{}{}
+	seen[sourceURL] = struct{}{}
+	var pages [][]byte
+	for len(queue) > 0 && len(pages) < maxCurlPageCount {
+		rawURL := queue[0]
+		queue = queue[1:]
+		if _, exists := seen[rawURL]; exists || !isAllowedRegexLink(rawURL) {
+			continue
+		}
+		seen[rawURL] = struct{}{}
+
+		body, err := curlImpersonateFetch(rawURL)
+		if err != nil {
+			continue
+		}
+		pages = append(pages, body)
+		pageURL, err := url.Parse(rawURL)
+		if err == nil {
+			queue = append(queue, extractPaginationLinks(body, pageURL)...)
+		}
+	}
+	return pages
+}
+
+func extractPaginationLinks(body []byte, baseURL *url.URL) []string {
+	document, err := goquery.NewDocumentFromReader(bytes.NewReader(body))
+	if err != nil {
+		return nil
+	}
+	var links []string
+	seen := map[string]struct{}{}
+	document.Find("a[href]").Each(func(_ int, anchor *goquery.Selection) {
+		href, exists := anchor.Attr("href")
+		if !exists || strings.TrimSpace(href) == "" {
+			return
+		}
+		class, _ := anchor.Attr("class")
+		ariaLabel, _ := anchor.Attr("aria-label")
+		title, _ := anchor.Attr("title")
+		rel, _ := anchor.Attr("rel")
+		label := strings.ToLower(strings.Join(strings.Fields(anchor.Text()), " "))
+		attributes := strings.ToLower(strings.Join([]string{class, ariaLabel, title, rel}, " "))
+		if strings.Contains(attributes, "disabled") {
+			return
+		}
+
+		isNext := false
+		for _, token := range strings.Fields(strings.ToLower(rel)) {
+			if token == "next" {
+				isNext = true
+			}
+		}
+		for _, token := range strings.Fields(strings.ToLower(class)) {
+			if token == "next" || token == "next-page" || token == "pagination-next" {
+				isNext = true
+			}
+		}
+		if strings.Contains(strings.ToLower(ariaLabel+" "+title), "next") || label == "next" || label == "next page" || label == "older" || label == "›" || label == "»" || label == "→" {
+			isNext = true
+		}
+
+		reference, err := url.Parse(strings.TrimSpace(href))
+		if err != nil {
+			return
+		}
+		resolved := reference
+		if baseURL != nil {
+			resolved = baseURL.ResolveReference(reference)
+		}
+		if !isNext && !isNumberedPaginationLink(anchor, resolved) {
+			return
+		}
+		link := resolved.String()
+		if _, duplicate := seen[link]; duplicate {
+			return
+		}
+		seen[link] = struct{}{}
+		links = append(links, link)
+	})
+	return links
+}
+
+func isNumberedPaginationLink(anchor *goquery.Selection, target *url.URL) bool {
+	label := strings.TrimSpace(anchor.Text())
+	if _, err := strconv.Atoi(label); err != nil {
+		return false
+	}
+	query := target.Query()
+	for _, key := range []string{"page", "p", "paged"} {
+		if query.Get(key) != "" {
+			return true
+		}
+	}
+	if regexp.MustCompile(`(?i)(?:^|/)page/\d+/?$`).MatchString(target.Path) {
+		return true
+	}
+	for ancestor := anchor; ancestor.Length() > 0; ancestor = ancestor.Parent() {
+		class, _ := ancestor.Attr("class")
+		id, _ := ancestor.Attr("id")
+		role, _ := ancestor.Attr("role")
+		if strings.Contains(strings.ToLower(class+" "+id+" "+role), "pagination") || strings.EqualFold(role, "navigation") {
+			return true
+		}
+	}
+	return false
 }
 
 func fetchCurlImpersonate(rawURL string) ([]byte, error) {

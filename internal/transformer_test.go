@@ -10,6 +10,7 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"testing"
 )
@@ -1237,6 +1238,72 @@ func TestFromCurlFiltersMultipleProtocolFinders(t *testing.T) {
 	want := "ss://method:password@example.com:443#ss\ntrojan://password@example.com:443#trojan\n"
 	if got != want {
 		t.Fatalf("expected only selected proxy protocols, got %q", got)
+	}
+}
+
+func TestDOMProtocolFinderBuildsMixedProxyURLs(t *testing.T) {
+	page := []byte(`<table><tbody class="table-proxy-list">
+<tr><th class="tblport">187.188.131.169</th><td class="tblport">1080</td><td>Mexico</td><td class="protocol"><a href="/protocol/socks">SOCKS</a></td></tr>
+<tr><th class="tblport">199.34.230.5</th><td class="tblport">80</td><td>United States</td><td class="protocol"><a href="/protocol/http">HTTP</a></td></tr>
+</tbody></table>`)
+	options := "dom;row=tbody.table-proxy-list tr;protocol=td.protocol;host=th.tblport;port=td.tblport;template={protocol}://{host}:{port}"
+	got := string(FromCurl(page, options))
+	want := "socks://187.188.131.169:1080\nhttp://199.34.230.5:80\n"
+	if got != want {
+		t.Fatalf("expected DOM fields to assemble mixed proxy URLs, got %q", got)
+	}
+}
+
+func TestDOMProtocolFinderReadsAttributesAndRejectsInvalidSelectors(t *testing.T) {
+	page := []byte(`<div class="row"><span class="host" data-ip="192.0.2.1"></span><span class="port" data-port="8080"></span><span class="protocol" data-scheme="http"></span></div>`)
+	options := "dom;row=.row;protocol=.protocol@data-scheme;host=.host@data-ip;port=.port@data-port;template={protocol}://{host}:{port}"
+	if got := string(FromCurl(page, options)); got != "http://192.0.2.1:8080\n" {
+		t.Fatalf("expected selected attributes to form a proxy URL, got %q", got)
+	}
+	if got := FromCurl(page, "dom;row=[invalid;host=.host;template={host}"); len(got) != 0 {
+		t.Fatalf("expected invalid selector configuration to be ignored, got %q", got)
+	}
+}
+
+func TestCurlAutomaticallyFollowsPagination(t *testing.T) {
+	useHTTPFetcherForCurlTest(t)
+	allowPrivateRegexLinkHosts = true
+	defer func() { allowPrivateRegexLinkHosts = false }()
+
+	requests := map[string]int{}
+	pageHTML := func(page int) string {
+		navigation := ""
+		if page < 3 {
+			navigation = fmt.Sprintf(`<nav class="pagination"><a href="?page=%d">%d</a><a class="pagination__arrow next" rel="next" href="?page=%d">Next</a></nav>`, page+1, page+1, page+1)
+		}
+		return fmt.Sprintf(`<div class="entry"><span class="protocol">http</span><span class="host">192.0.2.%d</span><span class="port">80%d</span></div>vless://uuid%d@example.com:443%s`, page, page, page, navigation)
+	}
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		page, err := strconv.Atoi(r.URL.Query().Get("page"))
+		if err != nil || page < 1 {
+			page = 1
+		}
+		requests[r.URL.Query().Get("page")]++
+		_, _ = fmt.Fprint(w, pageHTML(page))
+	}))
+	defer server.Close()
+
+	rootURL := server.URL + "/?page=1"
+	root := []byte(pageHTML(1))
+	uriResult := string(fromCurl(root, "", rootURL))
+	wantURIs := "vless://uuid1@example.com:443\nvless://uuid2@example.com:443\nvless://uuid3@example.com:443\n"
+	if uriResult != wantURIs {
+		t.Fatalf("URI finder pagination mismatch: got %q, want %q", uriResult, wantURIs)
+	}
+
+	domOptions := "dom;row=.entry;protocol=.protocol;host=.host;port=.port;template={protocol}://{host}:{port}"
+	domResult := string(fromCurl(root, domOptions, rootURL))
+	wantDOM := "http://192.0.2.1:801\nhttp://192.0.2.2:802\nhttp://192.0.2.3:803\n"
+	if domResult != wantDOM {
+		t.Fatalf("DOM finder pagination mismatch: got %q, want %q", domResult, wantDOM)
+	}
+	if requests["2"] != 2 || requests["3"] != 2 || requests["4"] != 0 {
+		t.Fatalf("expected pages 2 and 3 once per finder and no page 4, got %#v", requests)
 	}
 }
 

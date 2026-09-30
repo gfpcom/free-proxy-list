@@ -163,7 +163,22 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 	seen_urls["$url"]=1
 
 	body_file="$temp_dir/body"
-	if ! curl --fail --location --silent --show-error \
+	fetch_client=curl
+	if [[ "$transformer_name" == curl ]]; then
+		fetch_client="${CURL_IMPERSONATE_BIN:-}"
+		if [[ -z "$fetch_client" ]]; then
+			fetch_client="$(command -v curl_chrome116 || true)"
+		fi
+		if [[ -z "$fetch_client" && -x "${HOME:-}/.local/bin/curl_chrome116" ]]; then
+			fetch_client="${HOME}/.local/bin/curl_chrome116"
+		fi
+		if [[ -z "$fetch_client" ]]; then
+			printf 'Line %s: curl transformer requires curl_chrome116.\n' "$line_number" >&2
+			has_errors=true
+			continue
+		fi
+	fi
+	if ! "$fetch_client" --fail --location --silent --show-error \
 		--proto '=http,https' --proto-redir '=http,https' \
 		--connect-timeout 10 --max-time "$timeout_seconds" --max-filesize "$max_bytes" \
 		--output "$body_file" "$url"; then
