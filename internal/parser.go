@@ -196,6 +196,7 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 }
 
 func isIPLiteralCandidate(host string) bool {
+	// Callers pass URL.Hostname output, so the port is already removed and colons indicate IPv6 syntax.
 	if strings.Contains(host, ":") {
 		return true
 	}
