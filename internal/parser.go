@@ -248,7 +248,7 @@ func ParseIPv4Auth(proto, proxyLine string) (*Proxy, error) {
 
 	ip := items[0]
 	parsedIP := net.ParseIP(ip)
-	if parsedIP == nil || parsedIP.To4() == nil || IsLocal(ip) || !proxyclient.IsHost(ip) {
+	if strings.Contains(ip, ":") || parsedIP == nil || parsedIP.To4() == nil || IsLocal(ip) || !proxyclient.IsHost(ip) {
 		return nil, ErrInvalidProxy
 	}
 

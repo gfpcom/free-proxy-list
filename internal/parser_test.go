@@ -2,8 +2,9 @@ package internal
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestParser(t *testing.T) {
@@ -45,6 +46,8 @@ func TestParseIPv4AuthRejectsInvalidLines(t *testing.T) {
 		"104.207.38.226:3129::proxy-pass",
 		"104.207.38.226:3129:proxy-user:",
 		"127.0.0.1:3129:proxy-user:proxy-pass",
+		"::ffff:8.8.8.8:3129:proxy-user:proxy-pass",
+		"::ffff:127.0.0.1:3129:proxy-user:proxy-pass",
 	}
 
 	for _, line := range tests {
