@@ -47,14 +47,14 @@ declare -A seen_urls=()
 has_errors=false
 
 source_url_exists() {
-	local target_url="$1"
-	local source_file source_line
-	for source_file in "$source_dir"/*.txt; do
-		[[ -f "$source_file" ]] || continue
-		while IFS= read -r source_line || [[ -n "$source_line" ]]; do
-			[[ "${source_line%%,*}" == "$target_url" ]] && return 0
-		done < "$source_file"
-	done
+	local protocol="$1"
+	local target_url="$2"
+	local source_file="$source_dir/$protocol.txt"
+	local source_line
+	[[ -f "$source_file" ]] || return 1
+	while IFS= read -r source_line || [[ -n "$source_line" ]]; do
+		[[ "${source_line%%,*}" == "$target_url" ]] && return 0
+	done < "$source_file"
 	return 1
 }
 
@@ -156,11 +156,12 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 		continue
 	fi
 
-	if [[ -n "${seen_urls[$url]:-}" ]] || source_url_exists "$url"; then
-		printf 'Line %s: duplicate feed URL, skipped: %s\n' "$line_number" "$url"
+	source_key="$protocol"$'\t'"$url"
+	if [[ -n "${seen_urls[$source_key]:-}" ]] || source_url_exists "$protocol" "$url"; then
+		printf 'Line %s: duplicate source URL for %s, skipped: %s\n' "$line_number" "$protocol" "$url"
 		continue
 	fi
-	seen_urls["$url"]=1
+	seen_urls["$source_key"]=1
 
 	body_file="$temp_dir/body"
 	fetch_client=curl
