@@ -43,6 +43,7 @@ func GetParser(name string) Parser {
 func init() {
 	Parsers["ColonURL"] = ParseColonURL
 	Parsers["SpaceURL"] = ParseSpaceURL
+	Parsers["IPv4Auth"] = ParseIPv4Auth
 }
 
 func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
@@ -237,6 +238,32 @@ func ParseColonURL(proto, proxyURL string) (*Proxy, error) {
 	}
 
 	return ParseProxyURL(proto, items[0]+":"+items[1])
+}
+
+func ParseIPv4Auth(proto, proxyLine string) (*Proxy, error) {
+	items := strings.SplitN(strings.TrimSpace(proxyLine), ":", 4)
+	if len(items) != 4 || items[2] == "" || items[3] == "" {
+		return nil, ErrInvalidProxy
+	}
+
+	ip := items[0]
+	parsedIP := net.ParseIP(ip)
+	if strings.Contains(ip, ":") || parsedIP == nil || parsedIP.To4() == nil || IsLocal(ip) || !proxyclient.IsHost(ip) {
+		return nil, ErrInvalidProxy
+	}
+
+	port, err := strconv.Atoi(items[1])
+	if err != nil || port < 1 || port > 65535 {
+		return nil, ErrInvalidProxy
+	}
+
+	return &Proxy{
+		IP:       ip,
+		Port:     port,
+		User:     items[2],
+		Passwd:   items[3],
+		Protocol: strings.ToLower(proto),
+	}, nil
 }
 
 func ParseSpaceURL(proto, proxyURL string) (*Proxy, error) {
