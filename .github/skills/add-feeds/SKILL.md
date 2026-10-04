@@ -46,7 +46,7 @@ auto	https://raw.githubusercontent.com/example/nodes/main/sub.txt,base64
 http	https://raw.githubusercontent.com/example/proxies/main/http.txt,,ColonURL
 ```
 
-By default, the script only checks and previews entries. It requires `curl` and `base64`. Requests are limited to 20 MiB by default; `ADD_FEEDS_TIMEOUT` and `ADD_FEEDS_MAX_BYTES` can adjust the request limits.
+By default, the script only checks and previews entries. It requires `curl` and `base64`. Requests are limited to 30 MiB by default; `ADD_FEEDS_TIMEOUT` and `ADD_FEEDS_MAX_BYTES` can adjust the request limits.
 
 ```bash
 bash .github/skills/add-feeds/scripts/add-feeds.sh candidates.tsv

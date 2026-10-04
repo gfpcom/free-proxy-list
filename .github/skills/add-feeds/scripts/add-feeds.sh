@@ -33,7 +33,7 @@ command -v base64 >/dev/null
 root_dir="$(git rev-parse --show-toplevel)"
 source_dir="$root_dir/sources"
 timeout_seconds="${ADD_FEEDS_TIMEOUT:-20}"
-max_bytes="${ADD_FEEDS_MAX_BYTES:-20971520}"
+max_bytes="${ADD_FEEDS_MAX_BYTES:-31457280}"
 if ! [[ "$timeout_seconds" =~ ^[1-9][0-9]*$ && "$max_bytes" =~ ^[1-9][0-9]*$ ]]; then
 	printf 'ADD_FEEDS_TIMEOUT and ADD_FEEDS_MAX_BYTES must be positive integers.\n' >&2
 	exit 2
