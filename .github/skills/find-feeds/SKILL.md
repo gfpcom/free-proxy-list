@@ -15,7 +15,8 @@ Discover candidate repositories for this project's `sources/` lists and register
 3. Exclude forks, archived repositories, repositories already in `sources/`, and repositories already mentioned in the issue.
 4. Inspect each candidate's repository tree. Keep candidates with likely data files (`txt`, `yaml`, `yml`, or `json`) whose paths suggest proxy, node, subscription, protocol, or aggregated config data. Exclude workflow, docs, fixture, and dependency metadata files.
 5. Confirm each repository's latest push is within the date window. Gather the repository, last-push date, and candidate data paths.
-6. By default, find at most 50 candidates and append any eligible candidates found to the body of issue #21 in the current GitHub repository. Stop searching once the limit is reached. Do not add feeds to `sources/`; the issue is a handoff for later extraction and parser/transformer validation. Never create a comment or pull request for discovery results.
+6. By default, find at most 50 candidates and append any eligible candidates found to the existing table in issue #21 in the current GitHub repository. Stop searching once the limit is reached. Do not add feeds to `sources/`; the issue is a handoff for later extraction and parser/transformer validation. Never create a comment or pull request for discovery results.
+   Use exactly these columns: `Candidate repository / feed URL`, `Last pushed (UTC)`, `Candidate data path(s)`, and `Validation status / decision`. Do not add a row number, a review-window column, or a separate table for each search. Format push dates as `YYYY-MM-DD`, list up to three candidate paths, and mark every new row `Pending: candidate discovered; verify reachability, content format, duplicates, and parser/transformer support before import.`
 7. If no eligible candidates are found, do not update the issue body; report that none were found and the blocker.
 
 ## Run
@@ -28,4 +29,4 @@ bash .github/skills/find-feeds/scripts/find-feeds.sh
 
 Requirements: authenticated `gh`, `jq`, and a checkout of this repository. `FIND_FEEDS_ISSUE` overrides the default issue number; `FIND_FEEDS_LIMIT` sets a smaller limit from 1 to 50. Pass `--dry-run` to print the complete proposed issue body without updating it.
 
-Treat results as leads, not validated proxy endpoints. Include the search cutoff and candidate file paths, and clearly state that feeds still need reachability, format, duplication, and parser/transformer checks.
+Treat results as leads, not validated proxy endpoints. Report the search cutoff in the completion summary, not as a table column. Candidate paths belong in the table; clearly state that feeds still need reachability, format, duplication, and parser/transformer checks.

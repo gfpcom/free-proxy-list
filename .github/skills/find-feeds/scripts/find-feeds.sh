@@ -180,8 +180,7 @@ for query in "${queries[@]}"; do
 		' <<< "$tree_paths")"
 		[[ -z "$paths" ]] && continue
 
-		row_number="$((${#rows[@]} + 1))"
-		rows+=("| $row_number | https://github.com/$repository | ${pushed_at%%T*} | \`$paths\` |")
+		rows+=("| https://github.com/$repository | ${pushed_at%%T*} | \`$paths\` | Pending: candidate discovered; verify reachability, content format, duplicates, and parser/transformer support before import. |")
 		repositories+=("$repository")
 		seen_repositories["$key"]=1
 		if (( ${#rows[@]} >= limit )); then
@@ -209,13 +208,11 @@ if [[ "$dry_run" != true ]]; then
 		[[ -n "$repository" ]] && latest_repositories["$repository"]=1
 	done < <(printf '%s\n' "$issue_body" | extract_repositories)
 	filtered_rows=()
-	row_number=1
 	for index in "${!rows[@]}"; do
 		key="$(tr '[:upper:]' '[:lower:]' <<< "${repositories[$index]}")"
 		[[ -n "${latest_repositories[$key]:-}" ]] && continue
 		latest_repositories["$key"]=1
-		filtered_rows+=("$(sed -E "s/^\\| [0-9]+ \\|/| $row_number |/" <<< "${rows[$index]}")")
-		row_number=$((row_number + 1))
+		filtered_rows+=("${rows[$index]}")
 	done
 	rows=("${filtered_rows[@]}")
 	if (( ${#rows[@]} == 0 )); then
@@ -225,24 +222,41 @@ if [[ "$dry_run" != true ]]; then
 	fi
 fi
 
-new_section="## Newly discovered repositories ($(date -u +%F))
+append_rows_to_table() {
+	local body="$1"
+	shift
+	local line output="" in_table=false inserted=false found=false
+	local expected_header='| Candidate repository / feed URL | Last pushed (UTC) | Candidate data path(s) | Validation status / decision |'
 
-Search window: $window_start through $window_end. Each repository was checked for a recent push, absence from sources/ and this issue, and likely text/YAML/JSON data files. Paths are extraction starting points; verify reachability, content format, duplication, and parser/transformer needs before merging.
+	while IFS= read -r line || [[ -n "$line" ]]; do
+		if [[ "$line" == "$expected_header" ]]; then
+			in_table=true
+			found=true
+		fi
+		if [[ "$in_table" == true && "$line" != \|* ]]; then
+			printf -v output '%s%s\n' "$output" "$(printf '%s\n' "$@")"
+			inserted=true
+			in_table=false
+		fi
+		output+="$line"$'\n'
+	done <<< "$body"
 
-| # | Repository | Last pushed | Candidate data path(s) |
-|---:|---|---|---|
-$(printf '%s\n' "${rows[@]}")
+	if [[ "$in_table" == true ]]; then
+		printf -v output '%s%s\n' "$output" "$(printf '%s\n' "$@")"
+		inserted=true
+	fi
+	if [[ "$found" != true || "$inserted" != true ]]; then
+		printf 'Issue body is missing the expected candidate table; refusing to add rows.\n' >&2
+		return 1
+	fi
+	printf '%s' "${output%$'\n'}"
+}
 
-These are discovery candidates only; no entries have been merged into sources/."
-
-body="${issue_body%$'\n'}"
-if [[ -n "$body" ]]; then
-	body+=$'\n\n'
+if ! issue_body="$(append_rows_to_table "$issue_body" "${rows[@]}")"; then
+	exit 1
 fi
-body+="$new_section"
-
 if [[ "$dry_run" == true ]]; then
-	printf '%s\n' "$body"
+	printf '%s\n' "$issue_body"
 else
-	gh issue edit "$issue_number" --repo "$repo_slug" --body "$body"
+	gh issue edit "$issue_number" --repo "$repo_slug" --body "$issue_body"
 fi
