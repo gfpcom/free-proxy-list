@@ -2,6 +2,7 @@ package internal
 
 import (
 	"fmt"
+	"net"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -74,7 +75,7 @@ func TestParseProxyURLValidatesIPHosts(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			_, err := ParseProxyURL("https", "https://"+test.address+":9443")
+			_, err := ParseProxyURL("https", "https://"+net.JoinHostPort(test.address, "9443"))
 			if test.valid {
 				require.NoError(t, err)
 			} else {
