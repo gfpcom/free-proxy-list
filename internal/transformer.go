@@ -71,6 +71,7 @@ var (
 
 func init() {
 	Transformers["base64"] = FromBase64
+	Transformers["json"] = FromJSON
 	Transformers["clash"] = FromClash
 	Transformers["link"] = FromLinks
 	Transformers["list"] = FromList
