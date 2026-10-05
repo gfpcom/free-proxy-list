@@ -47,6 +47,11 @@ func load(proto string, content []byte, validate bool) error {
 				}
 				continue
 			}
+			if transformerName == "json" {
+				if err := validateJSONTransformerOptions(transformerOptions); err != nil {
+					return fmt.Errorf("line %d: invalid json transformer: %w", lineNumber, err)
+				}
+			}
 
 			var count int
 			if transformerName == "curl" {

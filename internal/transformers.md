@@ -24,6 +24,25 @@ Decodes the entire response using standard Base64. If decoding fails, it returns
 https://example.net/subscription.txt,base64
 ```
 
+## `json`
+
+Maps records in a JSON response to proxy URI lines. Options are semicolon-separated `key=value` pairs. `path` selects records; use `$` for the root, `.field` for object properties, `[N]` for an array index, and `[*]` to select every array item. Field mappings are relative to each selected record and support the same property/index selectors.
+
+Map an existing URI field:
+
+```text
+https://example.net/proxies.json,json:path=$[*];uri=proxy
+```
+
+Or assemble an endpoint from record fields. If `scheme` is omitted, the configured source protocol is supplied by the normal parser:
+
+```text
+https://example.net/proxies.json,json:path=$.data.proxies[*];scheme=protocol;host=ip;port=port
+https://example.net/http-proxies.json,json:path=$[*];host=ip;port=port
+```
+
+Exactly one mapping is required: `uri`, or `host` plus `port` and an optional `scheme`. URI fields must be strings; host and scheme fields must be strings; ports may be integer JSON numbers or digit-only strings from 1 through 65535. Records with missing or invalid values are skipped. Invalid transformer options fail source validation. JSON is limited to 10 MiB and 100,000 selected records; malformed, trailing, or oversized JSON produces no output.
+
 ## `clash`
 
 Reads a Clash YAML document and converts its `proxies` entries into proxy URI lines. It supports `http`, `https`, `socks4`, `socks5`, `ss`, `vmess`, `vless`, and `trojan`. Invalid entries and unsupported types are skipped. The converter maps supported TLS, Reality, SNI, fingerprint, WebSocket, gRPC, and HTTP/2 fields. Input is limited to 10 MiB, and ports must be integers from 1 through 65535.

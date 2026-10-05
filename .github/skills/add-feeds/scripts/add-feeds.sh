@@ -135,7 +135,7 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 
 	transformer_name="${transformer_spec%%:*}"
 	case "$transformer_name" in
-		""|raw|base64|clash|link|curl) ;;
+		""|raw|base64|json|clash|link|curl) ;;
 		*)
 			printf 'Line %s: transformer "%s" is not registered by this project.\n' "$line_number" "$transformer_name" >&2
 			has_errors=true
@@ -204,24 +204,24 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 			continue
 		fi
 	fi
-	if [[ "$transformer_name" == curl ]]; then
-		validation_dir="$temp_dir/curl-validation-$line_number"
+	if [[ "$transformer_name" == curl || "$transformer_name" == json ]]; then
+		validation_dir="$temp_dir/transformer-validation-$line_number"
 		mkdir -p "$validation_dir/sources"
 		printf '%s\n' "$source_entry" > "$validation_dir/sources/$protocol.txt"
 		if ! go run "$root_dir/cmd" -dir "$validation_dir" -dry-run; then
-			printf 'Line %s: curl transformer produced no valid proxies.\n' "$line_number" >&2
+			printf 'Line %s: %s transformer produced no valid proxies.\n' "$line_number" "$transformer_name" >&2
 			has_errors=true
 			continue
 		fi
 	fi
-	if [[ "$transformer_name" != curl ]] && ! matches_expected_format "$preview_file" "$parser_name" "$transformer_name"; then
+	if [[ "$transformer_name" != curl && "$transformer_name" != json ]] && ! matches_expected_format "$preview_file" "$parser_name" "$transformer_name"; then
 		printf 'Line %s: response sample does not match the configured format.\n' "$line_number" >&2
 		has_errors=true
 		continue
 	fi
 
 	printf 'Validated %s: %s\n' "$protocol" "$source_entry"
-	if [[ "$transformer_name" != curl ]]; then
+	if [[ "$transformer_name" != curl && "$transformer_name" != json ]]; then
 		sed -n '1,4p' "$preview_file" | cut -c1-180 | sed 's/^/  /'
 	fi
 	if [[ "$transformer_name" == link ]]; then

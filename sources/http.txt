@@ -127,3 +127,4 @@ https://raw.githubusercontent.com/Jamshed-Dev/public-proxy-list/refs/heads/main/
 https://raw.githubusercontent.com/Hanfeng768/CONNECT-IP/refs/heads/main/output/proxies_20260825_165742.txt,,ColonURL
 https://raw.githubusercontent.com/SteepSmit/my-proxy-list/refs/heads/main/proxies.txt,,ColonURL
 https://raw.githubusercontent.com/gnxD3RfTT2WE/free-proxy-list-daily/main/http.txt,,ColonURL
+https://raw.githubusercontent.com/EDT-Pages/Proxy-List/main/data/http.json,json:path=$[*];scheme=protocol;host=ip;port=port
