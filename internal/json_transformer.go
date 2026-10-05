@@ -137,8 +137,8 @@ func parseJSONPath(path string, rooted bool) ([]string, bool) {
 	path = path[1:]
 	var selectors []string
 	for len(path) > 0 {
-		switch {
-		case path[0] == '.':
+		switch path[0] {
+		case '.':
 			path = path[1:]
 			end := 0
 			for end < len(path) && isJSONPathKeyChar(path[end], end == 0) {
@@ -149,7 +149,7 @@ func parseJSONPath(path string, rooted bool) ([]string, bool) {
 			}
 			selectors = append(selectors, path[:end])
 			path = path[end:]
-		case path[0] == '[':
+		case '[':
 			end := strings.IndexByte(path, ']')
 			if end < 2 {
 				return nil, false
@@ -270,7 +270,10 @@ func transformJSONRecord(record any, config jsonTransformerConfig) (string, bool
 		return "", false
 	}
 	for i, char := range scheme {
-		if !(char >= 'a' && char <= 'z' || i > 0 && (char >= '0' && char <= '9' || char == '+' || char == '.' || char == '-')) {
+		switch {
+		case char >= 'a' && char <= 'z':
+		case i > 0 && (char >= '0' && char <= '9' || char == '+' || char == '.' || char == '-'):
+		default:
 			return "", false
 		}
 	}
