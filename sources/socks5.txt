@@ -70,3 +70,4 @@ https://raw.githubusercontent.com/nguyenduytan/NDT-Proxy-Scraper/refs/heads/main
 https://raw.githubusercontent.com/gnxD3RfTT2WE/verified-proxy-list/refs/heads/main/socks5.txt,,ColonURL
 https://raw.githubusercontent.com/Jamshed-Dev/public-proxy-list/refs/heads/main/proxies/ALL.txt,,ColonURL
 https://raw.githubusercontent.com/EDT-Pages/Proxy-List/main/data/socks5.json,json:path=$[*];scheme=protocol;host=ip;port=port
+https://raw.githubusercontent.com/mauricegift/free-proxies/master/files/proxies.json,json:path=$.socks5[*];endpoint=$

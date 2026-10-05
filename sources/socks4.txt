@@ -69,3 +69,4 @@ https://raw.githubusercontent.com/Cheagjihvg/simple-proxylist/refs/heads/main/so
 https://raw.githubusercontent.com/RioMMO/ProxyFree/refs/heads/main/SOCKS4.txt,,ColonURL
 https://raw.githubusercontent.com/nguyenduytan/NDT-Proxy-Scraper/refs/heads/main/socks4.txt,,ColonURL
 https://raw.githubusercontent.com/gnxD3RfTT2WE/verified-proxy-list/refs/heads/main/socks4.txt,,ColonURL
+https://raw.githubusercontent.com/mauricegift/free-proxies/master/files/proxies.json,json:path=$.socks4[*];endpoint=$

@@ -16,11 +16,14 @@ const (
 )
 
 type jsonTransformerConfig struct {
-	path   []string
-	uri    []string
-	host   []string
-	port   []string
-	scheme []string
+	path        []string
+	uri         []string
+	uriSet      bool
+	endpoint    []string
+	endpointSet bool
+	host        []string
+	port        []string
+	scheme      []string
 }
 
 func FromJSON(data []byte, options string) []byte {
@@ -84,7 +87,7 @@ func parseJSONTransformerOptions(options string) (jsonTransformerConfig, error) 
 			return config, fmt.Errorf("expected non-empty key=value options")
 		}
 		switch key {
-		case "path", "uri", "host", "port", "scheme":
+		case "path", "uri", "endpoint", "host", "port", "scheme":
 		default:
 			return config, fmt.Errorf("unknown option %q", key)
 		}
@@ -101,12 +104,23 @@ func parseJSONTransformerOptions(options string) (jsonTransformerConfig, error) 
 	if config.path, ok = parseJSONPath(settings["path"], true); !ok {
 		return config, fmt.Errorf("invalid path %q", settings["path"])
 	}
-	if uri := settings["uri"]; uri != "" {
-		if settings["host"] != "" || settings["port"] != "" || settings["scheme"] != "" {
-			return config, fmt.Errorf("uri cannot be combined with host, port, or scheme")
+	if uri, endpoint := settings["uri"], settings["endpoint"]; uri != "" || endpoint != "" {
+		if uri != "" && endpoint != "" {
+			return config, fmt.Errorf("uri and endpoint cannot be combined")
 		}
-		if config.uri, ok = parseJSONPath(uri, false); !ok {
-			return config, fmt.Errorf("invalid uri field path %q", uri)
+		if settings["host"] != "" || settings["port"] != "" || settings["scheme"] != "" {
+			return config, fmt.Errorf("uri or endpoint cannot be combined with host, port, or scheme")
+		}
+		if uri != "" {
+			if config.uri, ok = parseJSONPath(uri, uri == "$"); !ok {
+				return config, fmt.Errorf("invalid uri field path %q", uri)
+			}
+			config.uriSet = true
+		} else {
+			if config.endpoint, ok = parseJSONPath(endpoint, endpoint == "$"); !ok {
+				return config, fmt.Errorf("invalid endpoint field path %q", endpoint)
+			}
+			config.endpointSet = true
 		}
 		return config, nil
 	}
@@ -226,7 +240,7 @@ func resolveJSONPath(value any, selectors []string) ([]any, bool) {
 }
 
 func transformJSONRecord(record any, config jsonTransformerConfig) (string, bool) {
-	if len(config.uri) > 0 {
+	if config.uriSet {
 		value, ok := resolveJSONPath(record, config.uri)
 		if !ok || len(value) != 1 {
 			return "", false
@@ -234,6 +248,25 @@ func transformJSONRecord(record any, config jsonTransformerConfig) (string, bool
 		text, ok := value[0].(string)
 		text = strings.TrimSpace(text)
 		return text, ok && text != "" && !strings.ContainsAny(text, "\r\n")
+	}
+	if config.endpointSet {
+		value, ok := resolveJSONPath(record, config.endpoint)
+		if !ok || len(value) != 1 {
+			return "", false
+		}
+		address, ok := value[0].(string)
+		if !ok {
+			return "", false
+		}
+		host, rawPort, err := net.SplitHostPort(strings.TrimSpace(address))
+		if err != nil || host == "" || strings.ContainsAny(host, "/?#@ \t\r\n") {
+			return "", false
+		}
+		port, ok := jsonPort(rawPort)
+		if !ok {
+			return "", false
+		}
+		return net.JoinHostPort(host, strconv.Itoa(port)), true
 	}
 
 	hostValue, ok := resolveJSONPath(record, config.host)

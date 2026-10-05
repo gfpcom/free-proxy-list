@@ -28,10 +28,11 @@ https://example.net/subscription.txt,base64
 
 Maps records in a JSON response to proxy URI lines. Options are semicolon-separated `key=value` pairs. `path` selects records; use `$` for the root, `.field` for object properties, `[N]` for an array index, and `[*]` to select every array item. Field mappings are relative to each selected record and support the same property/index selectors.
 
-Map an existing URI field:
+Map an existing URI field or a single record that is already an `IP:PORT` endpoint:
 
 ```text
 https://example.net/proxies.json,json:path=$[*];uri=proxy
+https://example.net/http.json,json:path=$.proxies[*];endpoint=$
 ```
 
 Or assemble an endpoint from record fields. If `scheme` is omitted, the configured source protocol is supplied by the normal parser:
@@ -41,7 +42,7 @@ https://example.net/proxies.json,json:path=$.data.proxies[*];scheme=protocol;hos
 https://example.net/http-proxies.json,json:path=$[*];host=ip;port=port
 ```
 
-Exactly one mapping is required: `uri`, or `host` plus `port` and an optional `scheme`. URI fields must be strings; host and scheme fields must be strings; ports may be integer JSON numbers or digit-only strings from 1 through 65535. Records with missing or invalid values are skipped. Invalid transformer options fail source validation. JSON is limited to 10 MiB and 100,000 selected records; malformed, trailing, or oversized JSON produces no output.
+Exactly one mapping is required: `uri`, `endpoint`, or `host` plus `port` and an optional `scheme`. URI and endpoint fields must be strings; endpoints must be valid `IP:PORT` values. Host and scheme fields must be strings; ports may be integer JSON numbers or digit-only strings from 1 through 65535. Records with missing or invalid values are skipped. Invalid transformer options fail source validation. JSON is limited to 10 MiB and 100,000 selected records; malformed, trailing, or oversized JSON produces no output.
 
 ## `clash`
 

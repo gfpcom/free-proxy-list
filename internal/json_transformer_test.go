@@ -39,6 +39,12 @@ func TestFromJSON(t *testing.T) {
 			want:    "http://1.2.3.4:8080\n",
 		},
 		{
+			name:    "array of endpoints within a protocol group",
+			input:   `{"http":["1.2.3.4:8080","[2001:db8::1]:3128"]}`,
+			options: "path=$.http[*];endpoint=$",
+			want:    "1.2.3.4:8080\n[2001:db8::1]:3128\n",
+		},
+		{
 			name:    "array index selector",
 			input:   `{"proxies":[{"proxy":"http://1.2.3.4:8080"},{"proxy":"socks5://5.6.7.8:1080"}]}`,
 			options: "path=$.proxies[1];uri=proxy",
@@ -95,6 +101,8 @@ func TestParseJSONTransformerOptions(t *testing.T) {
 		{name: "missing mapping", options: "path=$[*]"},
 		{name: "incomplete field mapping", options: "path=$[*];host=ip"},
 		{name: "uri with conflicting fields", options: "path=$[*];uri=proxy;host=ip"},
+		{name: "endpoint with conflicting URI", options: "path=$[*];uri=proxy;endpoint=$"},
+		{name: "endpoint with conflicting fields", options: "path=$[*];endpoint=$;host=ip"},
 		{name: "duplicate option", options: "path=$[*];uri=proxy;uri=link"},
 		{name: "unknown option", options: "path=$[*];uri=proxy;filter=active"},
 		{name: "unsupported path filter", options: "path=$[?(@.active)];uri=proxy"},
