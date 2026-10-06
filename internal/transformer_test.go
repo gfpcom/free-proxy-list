@@ -16,11 +16,12 @@ import (
 )
 
 func TestFromMTProtoExtractsProxyLinks(t *testing.T) {
-	input := []byte(`updated: 2026-10-05 https://t.me/proxy?server=proxy.example.com&amp;port=443&amp;secret=ee123abc. tg://proxy?server=8.8.8.8&port=443&secret=dd456def#fast https://t.me/proxy?server=proxy.example.com&port=443&secret=ee123abc`)
+	input := []byte(`updated: 2026-10-05 https://t.me/proxy?server=proxy.example.com&amp;port=443&amp;secret=0123456789abcdef0123456789abcdef, tg://proxy?server=8.8.8.8&port=443&secret=0123456789abcdef0123456789abcdef#fast;https://t.me/proxy?server=other.example.com&port=443&secret=0123456789abcdef0123456789abcdef`)
 
 	got := string(FromMTProto(input, ""))
-	want := "https://t.me/proxy?server=proxy.example.com&port=443&secret=ee123abc\n" +
-		"tg://proxy?server=8.8.8.8&port=443&secret=dd456def#fast\n"
+	want := "https://t.me/proxy?server=proxy.example.com&port=443&secret=0123456789abcdef0123456789abcdef\n" +
+		"tg://proxy?server=8.8.8.8&port=443&secret=0123456789abcdef0123456789abcdef#fast\n" +
+		"https://t.me/proxy?server=other.example.com&port=443&secret=0123456789abcdef0123456789abcdef\n"
 	if got != want {
 		t.Fatalf("FromMTProto() = %q, want %q", got, want)
 	}
@@ -1303,9 +1304,9 @@ func TestFromCurlDefaultFinderIgnoresWebsiteLinks(t *testing.T) {
 }
 
 func TestFromCurlFindsMultipleProtocolsInInputValues(t *testing.T) {
-	page := []byte(`<input value="ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpwYXNz@1.2.3.4:443#node"><input value="trojan://uuid@example.com:443?security=tls&amp;sni=example.com"><input value="vless://uuid@example.com:443?type=tcp">`)
+	page := []byte(`<input value="ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpwYXNz@1.2.3.4:443#node"><input value="trojan://uuid@example.com:443?security=tls&amp;sni=example.com"><input value="vless://uuid@example.com:443?type=tcp"><input value="tg://proxy?server=8.8.8.8&amp;port=443&amp;secret=0123456789abcdef0123456789abcdef">`)
 	got := string(FromCurl(page, ""))
-	want := "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpwYXNz@1.2.3.4:443#node\ntrojan://uuid@example.com:443?security=tls&sni=example.com\nvless://uuid@example.com:443?type=tcp\n"
+	want := "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpwYXNz@1.2.3.4:443#node\ntrojan://uuid@example.com:443?security=tls&sni=example.com\nvless://uuid@example.com:443?type=tcp\ntg://proxy?server=8.8.8.8&port=443&secret=0123456789abcdef0123456789abcdef\n"
 	if got != want {
 		t.Fatalf("expected both input proxy URLs, got %q", got)
 	}
@@ -1317,6 +1318,15 @@ func TestFromCurlFiltersMultipleProtocolFinders(t *testing.T) {
 	want := "ss://method:password@example.com:443#ss\ntrojan://password@example.com:443#trojan\n"
 	if got != want {
 		t.Fatalf("expected only selected proxy protocols, got %q", got)
+	}
+}
+
+func TestFromCurlFiltersMTProtoFinder(t *testing.T) {
+	page := []byte("tg://proxy?server=8.8.8.8&port=443&secret=0123456789abcdef0123456789abcdef\nhttps://example.com")
+	got := string(FromCurl(page, "tg"))
+	want := "tg://proxy?server=8.8.8.8&port=443&secret=0123456789abcdef0123456789abcdef\n"
+	if got != want {
+		t.Fatalf("expected only MTProto URLs, got %q", got)
 	}
 }
 

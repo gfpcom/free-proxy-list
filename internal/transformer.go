@@ -112,7 +112,7 @@ func FromRaw(buf []byte, _ string) []byte {
 	return buf
 }
 
-var mtprotoURLPattern = regexp.MustCompile(`(?i)(?:tg://proxy|https?://(?:t\.me|telegram\.me)/proxy)\?[^\s"'<>]+`)
+var mtprotoURLPattern = regexp.MustCompile(`(?i)(?:tg://proxy|https?://(?:t\.me|telegram\.me)/proxy)\?[^\s"'<>;,]+`)
 
 func FromMTProto(buf []byte, _ string) []byte {
 	var result bytes.Buffer
@@ -218,7 +218,7 @@ func downloadAndTransformLinks(links []string, transformer Transformer, transfor
 	return result.Bytes()
 }
 
-var proxyLinkPattern = regexp.MustCompile(`(?i)\b(?:socks|socks4a?|socks5(?:a|h)?|vmess|vless|trojan|ssr?|hy2?|hysteria2?|hhysteria2?|hhy2|tuic|wireguard|anytls)://[^\s"'<>]+`)
+var proxyLinkPattern = regexp.MustCompile(`(?i)\b(?:socks|socks4a?|socks5(?:a|h)?|tg|vmess|vless|trojan|ssr?|hy2?|hysteria2?|hhysteria2?|hhy2|tuic|wireguard|anytls)://[^\s"'<>]+`)
 
 // FromCurl finds proxy URLs on the current page or one matching linked page.
 // Options use [depth-]selector[-protocol+protocol], for example 1-/servers/-ss+trojan.
@@ -458,7 +458,7 @@ func isDecimal(value string) bool {
 
 func isProxyScheme(scheme string) bool {
 	switch scheme {
-	case "http", "https", "socks", "socks4", "socks4a", "socks5", "socks5a", "socks5h", "vmess", "vless", "trojan", "ss", "ssr", "hy", "hy2", "hysteria", "hysteria2", "hhysteria", "hhysteria2", "hhy2", "tuic", "wireguard", "anytls":
+	case "http", "https", "socks", "socks4", "socks4a", "socks5", "socks5a", "socks5h", "tg", "vmess", "vless", "trojan", "ss", "ssr", "hy", "hy2", "hysteria", "hysteria2", "hhysteria", "hhysteria2", "hhy2", "tuic", "wireguard", "anytls":
 		return true
 	default:
 		return false

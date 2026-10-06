@@ -18,7 +18,7 @@ https://example.net/proxies.txt
 
 ## `mtproto`
 
-Extracts Telegram MTProto proxy links from text or HTML-like feed responses. It recognizes `tg://proxy`, `https://t.me/proxy`, and `https://telegram.me/proxy` links and emits one link per line, so feeds that put several records on one line can be parsed. The source protocol should be `tg`; the parser validates the server, port, and required secret, then stores each record as a `tg://proxy` URI.
+Extracts Telegram MTProto proxy links from text or HTML-like feed responses. It recognizes `tg://proxy`, `https://t.me/proxy`, and `https://telegram.me/proxy` links and emits one link per line, so feeds that put several records on one line can be parsed. The source protocol should be `tg`; the parser validates the server, port, and supported secret formats, rejects private IP addresses, then stores each record as a `tg://proxy` URI.
 
 ```text
 https://example.net/telegram-proxies.txt,mtproto
@@ -107,14 +107,14 @@ https://example.net/,curl:<finder>;<options>
 
 ### URI finder
 
-The default `uri` finder searches HTML/text bytes for supported proxy URI schemes. It supports a depth, an optional link URL substring selector, and an optional scheme filter:
+The default `uri` finder searches HTML/text bytes for supported proxy URI schemes, including MTProto `tg://proxy` links. It supports a depth, an optional link URL substring selector, and an optional scheme filter:
 
 ```text
 https://openkeys.net/,curl:1-/key/-vless
 https://example.net/,curl:1-/servers/-ss+trojan+vless
 ```
 
-Depth `0` scans the root response. Depth `1` scans matching child links selected from `a[href]`, `link[href]`, and `iframe[src]`; relative links are resolved against the page URL. The selector match is case-insensitive. A final suffix filters schemes, joined with `+`; without a suffix, all recognized proxy schemes are searched. Recognized schemes include `socks`, `socks4`, `socks4a`, `socks5`, `socks5a`, `socks5h`, `ss`, `ssr`, `vmess`, `vless`, `trojan`, `hy`, `hy2`, `hysteria`, `hysteria2`, `tuic`, `wireguard`, and `anytls`. `http` and `https` may be selected explicitly.
+Depth `0` scans the root response. Depth `1` scans matching child links selected from `a[href]`, `link[href]`, and `iframe[src]`; relative links are resolved against the page URL. The selector match is case-insensitive. A final suffix filters schemes, joined with `+`; without a suffix, all recognized proxy schemes are searched. Recognized schemes include `socks`, `socks4`, `socks4a`, `socks5`, `socks5a`, `socks5h`, `tg`, `ss`, `ssr`, `vmess`, `vless`, `trojan`, `hy`, `hy2`, `hysteria`, `hysteria2`, `tuic`, `wireguard`, and `anytls`. `http` and `https` may be selected explicitly.
 
 The crawler automatically follows detected pagination links for both the root page and fetched child pages. It recognizes `rel="next"`, common next-page classes/labels, numbered links in pagination/navigation containers, numeric `page`, `p`, or `paged` query parameters, and `/page/<number>` paths. Pagination is followed even at depth `0`; depth controls ordinary child-link fetching. Duplicate page URLs are fetched once.
 

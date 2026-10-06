@@ -5,7 +5,9 @@ import (
 	"encoding/hex"
 	"fmt"
 	"io"
+	"net"
 	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
 	"sort"
@@ -20,7 +22,21 @@ var (
 func Save(it *Proxy) {
 	identity := fmt.Sprintf("%s://%s:%v", it.Protocol, it.IP, it.Port)
 	if strings.EqualFold(it.Protocol, "tg") {
-		identity += ":" + it.Opaque
+		server := strings.TrimSuffix(strings.ToLower(it.IP), ".")
+		if ip := net.ParseIP(it.IP); ip != nil {
+			server = ip.String()
+		}
+		query, err := url.ParseQuery(strings.TrimPrefix(it.Opaque, "proxy?"))
+		secretValues := query["secret"]
+		if err == nil && len(secretValues) == 1 {
+			secret := secretValues[0]
+			if _, err := hex.DecodeString(secret); err == nil {
+				secret = strings.ToLower(secret)
+			}
+			identity = fmt.Sprintf("tg://%s:%d:%s", server, it.Port, secret)
+		} else {
+			identity += ":" + it.Opaque
+		}
 	}
 	h := md5.New()
 	id := hex.EncodeToString(h.Sum([]byte(identity)))

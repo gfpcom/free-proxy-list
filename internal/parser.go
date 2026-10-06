@@ -1,6 +1,8 @@
 package internal
 
 import (
+	"encoding/base64"
+	"encoding/hex"
 	"errors"
 	"log/slog"
 	"net"
@@ -228,7 +230,7 @@ func parseMTProtoProxyURL(u *url.URL) (*Proxy, error) {
 	portValue := query.Get("port")
 	secret := query.Get("secret")
 	if len(query["server"]) != 1 || len(query["port"]) != 1 || len(query["secret"]) != 1 ||
-		server == "" || portValue == "" || secret == "" {
+		server == "" || portValue == "" || !isValidMTProtoSecret(secret) {
 		return nil, ErrInvalidProxy
 	}
 
@@ -239,13 +241,13 @@ func parseMTProtoProxyURL(u *url.URL) (*Proxy, error) {
 	if isIPLiteralCandidate(server) && net.ParseIP(server) == nil {
 		return nil, ErrInvalidProxy
 	}
-	if IsLocal(server) || !proxyclient.IsHost(server) {
+	if IsLocal(server) || isPrivateMTProtoServer(server) || !proxyclient.IsHost(server) {
 		return nil, ErrInvalidProxy
 	}
 
 	normalizedQuery := url.Values{
 		"server": {server},
-		"port":   {portValue},
+		"port":   {strconv.Itoa(port)},
 		"secret": {secret},
 	}
 	return &Proxy{
@@ -254,6 +256,35 @@ func parseMTProtoProxyURL(u *url.URL) (*Proxy, error) {
 		Opaque:   "proxy?" + normalizedQuery.Encode(),
 		Protocol: "tg",
 	}, nil
+}
+
+func isValidMTProtoSecret(secret string) bool {
+	if decoded, err := hex.DecodeString(secret); err == nil {
+		switch {
+		case len(decoded) == 16:
+			return true
+		case strings.HasPrefix(strings.ToLower(secret), "dd") && len(decoded) == 17:
+			return true
+		case strings.HasPrefix(strings.ToLower(secret), "ee") && len(decoded) >= 17:
+			return true
+		}
+	}
+
+	for _, encoding := range []*base64.Encoding{base64.RawURLEncoding, base64.URLEncoding} {
+		if decoded, err := encoding.DecodeString(secret); err == nil && len(decoded) == 16 {
+			return true
+		}
+	}
+	return false
+}
+
+func isPrivateMTProtoServer(server string) bool {
+	ip := net.ParseIP(server)
+	if ip == nil {
+		return false
+	}
+	return !ip.IsGlobalUnicast() || ip.IsPrivate() || ip.IsLoopback() ||
+		ip.IsLinkLocalUnicast() || ip.IsUnspecified()
 }
 
 func isIPLiteralCandidate(host string) bool {
