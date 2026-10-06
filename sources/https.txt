@@ -97,3 +97,13 @@ https://raw.githubusercontent.com/Denisyoya/Proxy-List-Gamt/refs/heads/main/prox
 https://raw.githubusercontent.com/b4mbo-o/Check-Free-Proxy/refs/heads/main/alive_http.txt,,ColonURL
 https://raw.githubusercontent.com/kenzopanel/Free-Indonesia-Proxy/refs/heads/main/proxy.json,json:path=$.data[*];endpoint=$,ColonURL
 https://raw.githubusercontent.com/netafrcloud/ProxyList/refs/heads/main/raw.txt,,Split:separator=comma;host=0;port=1
+https://raw.githubusercontent.com/BrenoFariasdaSilva/Proxy-List-Generator/refs/heads/main/Proxies_List/socks_proxy_proxies.txt,,ColonURL
+https://raw.githubusercontent.com/afrcloud-net/ProxyList-Scaner/refs/heads/main/ProxyList.txt,,Split:separator=comma;host=0;port=1
+https://raw.githubusercontent.com/afrcloud-net/ProxyList-Scaner/refs/heads/main/rawProxyList.txt,,Split:separator=comma;host=0;port=1
+https://raw.githubusercontent.com/afrcloud07/ListProxy/refs/heads/main/proxyip.txt,,Split:separator=comma;host=0;port=1
+https://raw.githubusercontent.com/afrcloud07/ListProxy/refs/heads/main/proxyip.json,json:path=$[*];host=proxy;port=port
+https://raw.githubusercontent.com/netafrcloud/ProxyList/refs/heads/main/proxyip.txt,,Split:separator=comma;host=0;port=1
+https://raw.githubusercontent.com/netafrcloud/ProxyList/refs/heads/main/proxyip.json,json:path=$[*];host=proxy;port=port
+https://raw.githubusercontent.com/Denisyoya/Proxy-List-Gamt/refs/heads/main/proxy/all.txt,,ColonURL
+https://raw.githubusercontent.com/BlacKSnowDot0/Proxy-Pulse/refs/heads/main/http.txt,,ColonURL
+https://raw.githubusercontent.com/BlacKSnowDot0/Proxy-Pulse/refs/heads/main/https.txt,,ColonURL
