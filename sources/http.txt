@@ -177,3 +177,4 @@ https://raw.githubusercontent.com/BlacKSnowDot0/Proxy-Pulse/refs/heads/main/http
 https://raw.githubusercontent.com/BlacKSnowDot0/Proxy-Pulse/refs/heads/main/https.txt,,ColonURL
 https://raw.githubusercontent.com/afr0700/ProxyList/main/rawProxyList.txt,,Split:separator=comma;host=0;port=1
 https://raw.githubusercontent.com/rix4uni/fresh-proxy-list/refs/heads/main/proxylist.txt,,ColonURL
+https://raw.githubusercontent.com/daisymashiro/proxy-free/main/proxy_alive.txt,,Split:separator=comma;endpoint=0;protocol=1
