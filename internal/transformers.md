@@ -57,9 +57,10 @@ Or assemble an endpoint from record fields. If `scheme` is omitted, the configur
 ```text
 https://example.net/proxies.json,json:path=$.data.proxies[*];scheme=protocol;host=ip;port=port
 https://example.net/http-proxies.json,json:path=$[*];host=ip;port=port
+https://example.net/country-groups.json,json:path=$.countries.*[*];scheme=protocol;host=ip;port=port
 ```
 
-Exactly one mapping is required: `uri`, `endpoint`, or `host` plus `port` and an optional `scheme`. URI and endpoint fields must be strings; endpoints must be valid `IP:PORT` values. Host and scheme fields must be strings; ports may be integer JSON numbers or digit-only strings from 1 through 65535. Records with missing or invalid values are skipped. Invalid transformer options fail source validation. JSON is limited to 50 MiB and 100,000 selected records; malformed, trailing, or oversized JSON produces no output.
+Paths support object fields, numeric array indexes, array wildcards (`[*]`), and object-value wildcards (`.*`). Object wildcard values are visited in sorted key order. Exactly one mapping is required: `uri`, `endpoint`, or `host` plus `port` and an optional `scheme`. URI and endpoint fields must be strings; endpoints must be valid `IP:PORT` values. Host and scheme fields must be strings; ports may be integer JSON numbers or digit-only strings from 1 through 65535. Records with missing or invalid values are skipped. Invalid transformer options fail source validation. JSON is limited to 50 MiB and 100,000 selected records; malformed, trailing, or oversized JSON produces no output.
 
 ## `clash`
 

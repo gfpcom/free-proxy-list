@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -154,6 +155,11 @@ func parseJSONPath(path string, rooted bool) ([]string, bool) {
 		switch path[0] {
 		case '.':
 			path = path[1:]
+			if strings.HasPrefix(path, "*") {
+				selectors = append(selectors, "*")
+				path = path[1:]
+				continue
+			}
 			end := 0
 			for end < len(path) && isJSONPathKeyChar(path[end], end == 0) {
 				end++
@@ -221,6 +227,20 @@ func resolveJSONPath(value any, selectors []string) ([]any, bool) {
 			default:
 				object, ok := current.(map[string]any)
 				if !ok {
+					continue
+				}
+				if selector == "*" {
+					if len(object) > maxJSONRecords-len(next) {
+						return nil, false
+					}
+					keys := make([]string, 0, len(object))
+					for key := range object {
+						keys = append(keys, key)
+					}
+					sort.Strings(keys)
+					for _, key := range keys {
+						next = append(next, object[key])
+					}
 					continue
 				}
 				if field, found := object[selector]; found {
