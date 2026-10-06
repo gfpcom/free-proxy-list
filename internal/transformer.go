@@ -28,11 +28,11 @@ import (
 )
 
 const (
-	maxRegexLinkCount         = 32
-	maxRegexLinkResponseBytes = 10 * 1024 * 1024
-	maxCurlDepth              = 1
-	maxCurlPageCount          = 32
-	maxDOMFinderRows          = 1000
+	maxRegexLinkCount = 32
+	maxFeedSizeBytes  = 50 * 1024 * 1024
+	maxCurlDepth      = 1
+	maxCurlPageCount  = 32
+	maxDOMFinderRows  = 1000
 )
 
 type curlFetchResponse struct {
@@ -205,9 +205,9 @@ func downloadAndTransformLinks(links []string, transformer Transformer, transfor
 			resp.Body.Close() // nolint: errcheck
 			continue
 		}
-		body, err := io.ReadAll(io.LimitReader(resp.Body, maxRegexLinkResponseBytes+1))
+		body, err := io.ReadAll(io.LimitReader(resp.Body, maxFeedSizeBytes+1))
 		resp.Body.Close() // nolint: errcheck
-		if err != nil || len(body) > maxRegexLinkResponseBytes {
+		if err != nil || len(body) > maxFeedSizeBytes {
 			continue
 		}
 
@@ -637,7 +637,7 @@ func fetchCurlImpersonate(rawURL string) (curlFetchResponse, error) {
 		args := []string{
 			"--silent", "--show-error", "--compressed",
 			"--max-redirs", "0", "--connect-timeout", "10", "--max-time", "20",
-			"--max-filesize", strconv.Itoa(maxRegexLinkResponseBytes),
+			"--max-filesize", strconv.Itoa(maxFeedSizeBytes),
 			"--proto", "=http,https", "--noproxy", "*",
 		}
 		if resolve != "" {
@@ -658,8 +658,8 @@ func fetchCurlImpersonate(rawURL string) (curlFetchResponse, error) {
 			cancel()
 			return curlFetchResponse{}, fmt.Errorf("curl-impersonate start failed: %w", err)
 		}
-		body, readErr := io.ReadAll(io.LimitReader(stdout, maxRegexLinkResponseBytes+1))
-		if readErr != nil || len(body) > maxRegexLinkResponseBytes {
+		body, readErr := io.ReadAll(io.LimitReader(stdout, maxFeedSizeBytes+1))
+		if readErr != nil || len(body) > maxFeedSizeBytes {
 			_ = command.Process.Kill()
 			_ = command.Wait()
 			cancel()
@@ -949,9 +949,7 @@ type ClashConfig struct {
 
 // FromClash parses a Clash YAML config and extracts proxy URLs.
 func FromClash(buf []byte, _ string) []byte {
-	// Limit YAML size to prevent OOM attacks (10MB max)
-	const maxYAMLSize = 10 * 1024 * 1024
-	if len(buf) > maxYAMLSize {
+	if len(buf) > maxFeedSizeBytes {
 		return []byte{}
 	}
 

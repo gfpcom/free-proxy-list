@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	maxJSONSize    = 10 * 1024 * 1024
+	maxJSONSize    = maxFeedSizeBytes
 	maxJSONRecords = 100000
 )
 

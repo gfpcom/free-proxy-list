@@ -59,11 +59,11 @@ https://example.net/proxies.json,json:path=$.data.proxies[*];scheme=protocol;hos
 https://example.net/http-proxies.json,json:path=$[*];host=ip;port=port
 ```
 
-Exactly one mapping is required: `uri`, `endpoint`, or `host` plus `port` and an optional `scheme`. URI and endpoint fields must be strings; endpoints must be valid `IP:PORT` values. Host and scheme fields must be strings; ports may be integer JSON numbers or digit-only strings from 1 through 65535. Records with missing or invalid values are skipped. Invalid transformer options fail source validation. JSON is limited to 10 MiB and 100,000 selected records; malformed, trailing, or oversized JSON produces no output.
+Exactly one mapping is required: `uri`, `endpoint`, or `host` plus `port` and an optional `scheme`. URI and endpoint fields must be strings; endpoints must be valid `IP:PORT` values. Host and scheme fields must be strings; ports may be integer JSON numbers or digit-only strings from 1 through 65535. Records with missing or invalid values are skipped. Invalid transformer options fail source validation. JSON is limited to 50 MiB and 100,000 selected records; malformed, trailing, or oversized JSON produces no output.
 
 ## `clash`
 
-Reads a Clash YAML document and converts its `proxies` entries into proxy URI lines. It supports `http`, `https`, `socks4`, `socks5`, `ss`, `vmess`, `vless`, and `trojan`. Invalid entries and unsupported types are skipped. The converter maps supported TLS, Reality, SNI, fingerprint, WebSocket, gRPC, and HTTP/2 fields. Input is limited to 10 MiB, and ports must be integers from 1 through 65535.
+Reads a Clash YAML document and converts its `proxies` entries into proxy URI lines. It supports `http`, `https`, `socks4`, `socks5`, `ss`, `vmess`, `vless`, and `trojan`. Invalid entries and unsupported types are skipped. The converter maps supported TLS, Reality, SNI, fingerprint, WebSocket, gRPC, and HTTP/2 fields. Input is limited to 50 MiB, and ports must be integers from 1 through 65535.
 
 ```text
 https://example.net/config.yaml,clash
@@ -86,7 +86,7 @@ https://example.net/index.html,link:fn0618
 
 The first applies the `clash` transformer to matching children; the second uses raw child bodies and filters links by `fn0618`. The child transformer name is separated from its keyword with `-`.
 
-At most 32 unique child links are fetched, and each child response is limited to 10 MiB. Only public HTTP(S) targets are allowed; unsafe redirect destinations are rejected. A failed child fetch is skipped without discarding other results.
+At most 32 unique child links are fetched, and each child response is limited to 50 MiB. Only public HTTP(S) targets are allowed; unsafe redirect destinations are rejected. A failed child fetch is skipped without discarding other results.
 
 ## `list`
 
@@ -96,7 +96,7 @@ Reads a plain-text source list with one HTTP(S) URL per line, downloads each uni
 https://example.net/clash-subscriptions.txt,list:clash
 ```
 
-This downloads the listed subscriptions, converts each Clash YAML response to proxy URI lines, and lets the configured parser process the merged output. `list:base64` can be used for Base64-encoded child feeds; omitting the option leaves child responses unchanged. The same 32-URL, 10 MiB response, public HTTP(S) target, redirect, and failure limits as `link` apply.
+This downloads the listed subscriptions, converts each Clash YAML response to proxy URI lines, and lets the configured parser process the merged output. `list:base64` can be used for Base64-encoded child feeds; omitting the option leaves child responses unchanged. The same 32-URL, 50 MiB response, public HTTP(S) target, redirect, and failure limits as `link` apply.
 
 ## `curl`
 
@@ -151,7 +151,7 @@ An attribute-based field can be configured as `host=.host@data-ip`. The protocol
 
 ### Curl safety limits
 
-The crawler supports at most depth `1`, follows at most 32 unique pages, limits each response to 10 MiB, uses connection/request timeouts, and allows HTTP(S) only. Public-address checks apply before requests and at each redirect; private, loopback, link-local, and unspecified targets are rejected. The root source URL and every child page use curl-impersonate.
+The crawler supports at most depth `1`, follows at most 32 unique pages, limits each response to 50 MiB, uses connection/request timeouts, and allows HTTP(S) only. Public-address checks apply before requests and at each redirect; private, loopback, link-local, and unspecified targets are rejected. The root source URL and every child page use curl-impersonate.
 
 ## Adding a transformer or finder
 
