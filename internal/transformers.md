@@ -8,12 +8,13 @@ Transformers convert a downloaded source response into proxy lines before the co
 
 The transformer and parser are optional. The default transformer is raw (unchanged bytes); the default parser is `ParseProxyURL`. The loader substitutes date/time URL tokens before fetching the source.
 
-## `IPPortCSV` parser
+## `Split` parser
 
-Parses four-column CSV rows with an IP address, port, country, and provider. The metadata columns are ignored; the IP and port are validated and assigned the protocol of the configured source file.
+Parses delimited fields using a configured separator and zero-based host and port column indexes. `comma`, `space` (one or more whitespace characters), and `tab` are recognized separator names; any other single character can be used directly. Other columns are ignored, and the selected endpoint is validated and assigned the protocol of the configured source file.
 
 ```text
-https://example.net/proxies.csv,,IPPortCSV
+https://example.net/proxies.csv,,Split:separator=comma;host=0;port=1
+https://example.net/proxies.txt,,Split:separator=space;host=0;port=1
 ```
 
 ## `raw`

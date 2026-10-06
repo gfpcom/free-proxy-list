@@ -1260,7 +1260,10 @@ func TestFromCurlDepthOneSelectorAndProtocolFinder(t *testing.T) {
 	}))
 	defer server.Close()
 
-	_, _, options, _ := parseLine(server.URL + ",curl:1-feed-vless-vless")
+	_, _, options, _, err := parseLine(server.URL + ",curl:1-feed-vless-vless")
+	if err != nil {
+		t.Fatal(err)
+	}
 	page := []byte(`<a href="/feed-vless">feed</a><a href="/other">other</a>vless://current@example.com:443`)
 	got := string(fromCurl(page, options, server.URL))
 	if got != "vless://uuid@example.com:443\n" {
@@ -1283,7 +1286,10 @@ func TestFromCurlDepthZeroScansCurrentPageOnly(t *testing.T) {
 	}))
 	defer server.Close()
 
-	_, _, options, _ := parseLine(server.URL + ",curl:0-feed-vless-vless")
+	_, _, options, _, err := parseLine(server.URL + ",curl:0-feed-vless-vless")
+	if err != nil {
+		t.Fatal(err)
+	}
 	got := string(fromCurl([]byte(`<a href="/feed-vless">feed</a>vless://current@example.com:443`), options, server.URL))
 	if got != "vless://current@example.com:443\n" {
 		t.Fatalf("expected current-page vless URL, got %q", got)

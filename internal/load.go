@@ -40,7 +40,15 @@ func load(proto string, content []byte, validate bool) error {
 			if items := strings.Split(line, ","); len(items) > 1 {
 				transformerName, _ = parseTransformerSpec(strings.TrimSpace(items[1]))
 			}
-			src, transformer, transformerOptions, parser = parseLine(line)
+			var err error
+			src, transformer, transformerOptions, parser, err = parseLine(line)
+			if err != nil {
+				if validate {
+					return fmt.Errorf("line %d: invalid source configuration: %w", lineNumber, err)
+				}
+				log.Printf("line %d: invalid source configuration: %v", lineNumber, err)
+				continue
+			}
 			if src == "" {
 				if validate {
 					return fmt.Errorf("line %d: invalid feed URL", lineNumber)
@@ -142,7 +150,7 @@ func applyTokenizer(url string) string {
 	return url
 }
 
-func parseLine(line string) (string, Transformer, string, Parser) {
+func parseLine(line string) (string, Transformer, string, Parser, error) {
 
 	if strings.HasPrefix(line, "https://") || strings.HasPrefix(line, "http://") {
 		items := strings.Split(line, ",")
@@ -161,11 +169,15 @@ func parseLine(line string) (string, Transformer, string, Parser) {
 		}
 
 		if len(items) > 2 {
-			parser = GetParser(strings.TrimSpace(items[2]))
+			var err error
+			parser, err = GetParser(strings.TrimSpace(items[2]))
+			if err != nil {
+				return "", nil, "", nil, err
+			}
 		}
 
-		return src, transformer, transformerOptions, parser
+		return src, transformer, transformerOptions, parser, nil
 	}
 
-	return "", nil, "", nil
+	return "", nil, "", nil, fmt.Errorf("expected an http(s) feed URL")
 }

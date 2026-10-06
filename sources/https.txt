@@ -90,4 +90,4 @@ https://raw.githubusercontent.com/Hanfeng768/CONNECT-IP/refs/heads/main/output/p
 https://raw.githubusercontent.com/SteepSmit/my-proxy-list/refs/heads/main/proxies.txt,,ColonURL
 https://raw.githubusercontent.com/gnxD3RfTT2WE/free-proxy-list-daily/main/http.txt,,ColonURL
 https://raw.githubusercontent.com/EDT-Pages/Proxy-List/main/data/https.json,json:path=$[*];scheme=protocol;host=ip;port=port
-https://raw.githubusercontent.com/afr0700/ProxyList/main/ProxyList.txt,,IPPortCSV
+https://raw.githubusercontent.com/afr0700/ProxyList/main/ProxyList.txt,,Split:separator=comma;host=0;port=1

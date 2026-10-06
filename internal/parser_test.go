@@ -84,7 +84,8 @@ func TestParseMTProtoProxyURLRejectsInvalidLinks(t *testing.T) {
 }
 
 func TestParseIPv4Auth(t *testing.T) {
-	parser := GetParser("IPv4Auth")
+	parser, err := GetParser("IPv4Auth")
+	require.NoError(t, err)
 	proxy, err := parser("http", "104.207.38.226:3129:proxy-user:proxy-pass")
 
 	require.NoError(t, err)
@@ -95,36 +96,85 @@ func TestParseIPv4Auth(t *testing.T) {
 	require.Equal(t, "http", proxy.Protocol)
 }
 
-func TestParseIPPortCSV(t *testing.T) {
-	parser := GetParser("IPPortCSV")
-	for _, protocol := range []string{"http", "https"} {
-		proxy, err := parser(protocol, `8.8.8.8,443,US,"Example, Inc"`)
+func TestParseSplitColumns(t *testing.T) {
+	commaParser, err := GetParser("Split:separator=comma;host=1;port=3")
+	require.NoError(t, err)
+	spaceParser, err := GetParser("Split:separator=space;host=0;port=1")
+	require.NoError(t, err)
+	pipeParser, err := GetParser("Split:separator=|;host=1;port=3")
+	require.NoError(t, err)
 
-		require.NoError(t, err)
-		require.Equal(t, "8.8.8.8", proxy.IP)
-		require.Equal(t, 443, proxy.Port)
-		require.Equal(t, protocol, proxy.Protocol)
+	for _, protocol := range []string{"http", "https"} {
+		for _, test := range []struct {
+			parser Parser
+			line   string
+		}{
+			{parser: commaParser, line: "US,8.8.8.8,Example Inc,443,metadata"},
+			{parser: spaceParser, line: "8.8.8.8 443 US Example Inc"},
+			{parser: pipeParser, line: "US|8.8.8.8|Example Inc|443|metadata"},
+		} {
+			proxy, err := test.parser(protocol, test.line)
+
+			require.NoError(t, err)
+			require.Equal(t, "8.8.8.8", proxy.IP)
+			require.Equal(t, 443, proxy.Port)
+			require.Equal(t, protocol, proxy.Protocol)
+		}
 	}
 }
 
-func TestParseIPPortCSVRejectsInvalidLines(t *testing.T) {
+func TestSplitParserOptions(t *testing.T) {
+	for _, test := range []struct {
+		spec string
+	}{
+		{spec: "Split"},
+		{spec: "Split:host=0;port=1"},
+		{spec: "Split:separator=comma;host=-1;port=1"},
+		{spec: "Split:separator=comma;host=one;port=1"},
+		{spec: "Split:separator=comma;host=0;port=1;other=2"},
+		{spec: "Split:separator=comma;host=0;host=1;port=2"},
+		{spec: "Split:separator=comma;host=0;port=1;separator=|"},
+		{spec: "Split:separator=multi;host=0;port=1"},
+	} {
+		t.Run(test.spec, func(t *testing.T) {
+			_, err := GetParser(test.spec)
+			require.Error(t, err)
+		})
+	}
+}
+
+func TestSplitParserRejectsInvalidLines(t *testing.T) {
+	parser, err := GetParser("Split:separator=comma;host=0;port=1")
+	require.NoError(t, err)
 	tests := []string{
-		"8.8.8.8,443,US",
-		"8.8.8.8,443,US,provider,extra",
-		"not-an-ip,443,US,provider",
+		"8.8.8.8",
 		"8.8.8.8,invalid,US,provider",
 		"8.8.8.8,0,US,provider",
 		"8.8.8.8,65536,US,provider",
 		"127.0.0.1,443,US,provider",
-		`8.8.8.8,443,US,"unterminated`,
 	}
 
 	for _, line := range tests {
 		t.Run(line, func(t *testing.T) {
-			_, err := ParseIPPortCSV("http", line)
+			_, err := parser("http", line)
 			require.Error(t, err)
 		})
 	}
+}
+
+func TestParseLineConfiguredParser(t *testing.T) {
+	_, _, _, parser, err := parseLine("https://feed.example/proxies.csv,,Split:separator=comma;host=2;port=3")
+	require.NoError(t, err)
+
+	proxy, err := parser("http", "US,Provider,8.8.8.8,443")
+	require.NoError(t, err)
+	require.Equal(t, "8.8.8.8", proxy.IP)
+	require.Equal(t, 443, proxy.Port)
+}
+
+func TestValidateSourceRejectsInvalidParserOptions(t *testing.T) {
+	err := ValidateSource("http", []byte("https://feed.example/proxies.txt,,Split:separator=comma;host=0"))
+	require.ErrorContains(t, err, "Split parser requires host and port column mappings")
 }
 
 func TestParseIPv4AuthRejectsInvalidLines(t *testing.T) {
