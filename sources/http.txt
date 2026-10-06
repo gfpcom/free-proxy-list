@@ -179,3 +179,4 @@ https://raw.githubusercontent.com/afr0700/ProxyList/main/rawProxyList.txt,,Split
 https://raw.githubusercontent.com/rix4uni/fresh-proxy-list/refs/heads/main/proxylist.txt,,ColonURL
 https://raw.githubusercontent.com/daisymashiro/proxy-free/main/proxy_alive.txt,,Split:separator=comma;endpoint=0;protocol=1
 https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&protocol=http&proxy_format=ipport&format=text,,ColonURL
+https://raw.githubusercontent.com/afrcloud07/ListProxy/refs/heads/main/raw.json,json:path=$[*];host=proxy;port=port
