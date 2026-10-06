@@ -70,3 +70,4 @@ https://raw.githubusercontent.com/RioMMO/ProxyFree/refs/heads/main/SOCKS4.txt,,C
 https://raw.githubusercontent.com/nguyenduytan/NDT-Proxy-Scraper/refs/heads/main/socks4.txt,,ColonURL
 https://raw.githubusercontent.com/gnxD3RfTT2WE/verified-proxy-list/refs/heads/main/socks4.txt,,ColonURL
 https://raw.githubusercontent.com/mauricegift/free-proxies/master/files/proxies.json,json:path=$.socks4[*];endpoint=$
+https://raw.githubusercontent.com/b4mbo-o/Check-Free-Proxy/refs/heads/main/alive_socks4.txt,,ColonURL
