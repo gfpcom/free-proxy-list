@@ -135,7 +135,7 @@ https://raw.githubusercontent.com/MohammadBahemmat/V2ray-Collector/refs/heads/ma
 https://raw.githubusercontent.com/MohammadBahemmat/V2ray-Collector/refs/heads/main/servers/vmess_servers.txt
 https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/all_sub.txt
 https://raw.githubusercontent.com/ssrsub/ssr/master/v2ray,base64,
-https://www.v2nodes.com/subscriptions/country/all/?key=45FF29821C5F021,base64,
+https://www.v2nodes.com/,curl:1-/servers/
 https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/main/proxies/all/data.txt
 https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/nodes.txt,base64
 https://raw.githubusercontent.com/MustafaBaqer/VestraNet-Nodes/main/subscriptions/mix-base64.txt,base64
