@@ -332,7 +332,15 @@ func isIPLiteralCandidate(host string) bool {
 }
 
 func IsLocal(ip string) bool {
-	return strings.HasPrefix(ip, "0.") || strings.HasPrefix(ip, "127.") || strings.HasPrefix(ip, "169.254.")
+	parsedIP := net.ParseIP(ip)
+	if parsedIP == nil {
+		return strings.HasPrefix(ip, "0.") || strings.HasPrefix(ip, "127.") || strings.HasPrefix(ip, "169.254.")
+	}
+	if ipv4 := parsedIP.To4(); ipv4 != nil {
+		ip = ipv4.String()
+		return strings.HasPrefix(ip, "0.") || strings.HasPrefix(ip, "127.") || strings.HasPrefix(ip, "169.254.")
+	}
+	return parsedIP.IsLoopback() || parsedIP.IsLinkLocalUnicast() || parsedIP.IsPrivate() || parsedIP.IsUnspecified()
 }
 
 func ParseColonURL(proto, proxyURL string) (*Proxy, error) {
@@ -352,40 +360,40 @@ func newSplitParser(options string) (Parser, error) {
 	for _, option := range strings.Split(options, ";") {
 		key, value, ok := strings.Cut(option, "=")
 		if !ok {
-			return nil, errors.New("Split parser options must be key=value pairs")
+			return nil, errors.New("split parser options must be key=value pairs")
 		}
 		switch key {
 		case "separator":
 			if hasSeparator {
-				return nil, errors.New("Split parser separator is configured more than once")
+				return nil, errors.New("split parser separator is configured more than once")
 			}
 			separator, hasSeparator = value, true
 			continue
 		}
 		index, err := strconv.Atoi(value)
 		if err != nil || index < 0 {
-			return nil, errors.New("Split parser column indexes must be non-negative integers")
+			return nil, errors.New("split parser column indexes must be non-negative integers")
 		}
 		switch key {
 		case "host":
 			if hasHost {
-				return nil, errors.New("Split parser host column is configured more than once")
+				return nil, errors.New("split parser host column is configured more than once")
 			}
 			hostColumn, hasHost = index, true
 		case "port":
 			if hasPort {
-				return nil, errors.New("Split parser port column is configured more than once")
+				return nil, errors.New("split parser port column is configured more than once")
 			}
 			portColumn, hasPort = index, true
 		default:
-			return nil, errors.New("Split parser supports only separator, host, and port options")
+			return nil, errors.New("split parser supports only separator, host, and port options")
 		}
 	}
 	if !hasSeparator || separator == "" {
-		return nil, errors.New("Split parser requires a separator")
+		return nil, errors.New("split parser requires a separator")
 	}
 	if !hasHost || !hasPort {
-		return nil, errors.New("Split parser requires host and port column mappings")
+		return nil, errors.New("split parser requires host and port column mappings")
 	}
 	switch separator {
 	case "comma":
@@ -396,7 +404,7 @@ func newSplitParser(options string) (Parser, error) {
 		separator = "\t"
 	default:
 		if len(separator) != 1 {
-			return nil, errors.New("Split parser separator must be comma, whitespace, tab, or one character")
+			return nil, errors.New("split parser separator must be comma, whitespace, tab, or one character")
 		}
 	}
 

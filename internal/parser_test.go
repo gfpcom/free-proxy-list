@@ -174,7 +174,7 @@ func TestParseLineConfiguredParser(t *testing.T) {
 
 func TestValidateSourceRejectsInvalidParserOptions(t *testing.T) {
 	err := ValidateSource("http", []byte("https://feed.example/proxies.txt,,Split:separator=comma;host=0"))
-	require.ErrorContains(t, err, "Split parser requires host and port column mappings")
+	require.ErrorContains(t, err, "split parser requires host and port column mappings")
 }
 
 func TestParseIPv4AuthRejectsInvalidLines(t *testing.T) {
@@ -210,6 +210,9 @@ func TestParseProxyURLValidatesIPHosts(t *testing.T) {
 		{name: "masked IPv4", address: "166.142.X.211"},
 		{name: "invalid IPv4 octet", address: "166.142.999.211"},
 		{name: "invalid IPv6", address: "2001:db8::xyz"},
+		{name: "IPv6 loopback", address: "::1"},
+		{name: "IPv6 link-local", address: "fe80::1"},
+		{name: "IPv6 private", address: "fd00::1"},
 	}
 
 	for _, test := range tests {
@@ -220,6 +223,36 @@ func TestParseProxyURLValidatesIPHosts(t *testing.T) {
 			} else {
 				require.Error(t, err)
 			}
+		})
+	}
+}
+
+func TestProxyStringFormatsIPv6Endpoints(t *testing.T) {
+	tests := []struct {
+		name  string
+		proxy Proxy
+		want  string
+	}{
+		{
+			name:  "without credentials",
+			proxy: Proxy{Protocol: "http", IP: "2001:4860:4860::8888", Port: 8080},
+			want:  "http://[2001:4860:4860::8888]:8080",
+		},
+		{
+			name:  "with username",
+			proxy: Proxy{Protocol: "http", IP: "2001:4860:4860::8888", Port: 8080, User: "user"},
+			want:  "http://user@[2001:4860:4860::8888]:8080",
+		},
+		{
+			name:  "with credentials",
+			proxy: Proxy{Protocol: "http", IP: "2001:4860:4860::8888", Port: 8080, User: "user", Passwd: "pass"},
+			want:  "http://user:pass@[2001:4860:4860::8888]:8080",
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			require.Equal(t, test.want, test.proxy.String())
 		})
 	}
 }
