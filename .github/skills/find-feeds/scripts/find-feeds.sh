@@ -4,12 +4,24 @@ set -euo pipefail
 limit="${FIND_FEEDS_LIMIT:-50}"
 issue_number="${FIND_FEEDS_ISSUE:-21}"
 dry_run=false
+candidates_file="${FIND_FEEDS_CANDIDATES_FILE:-}"
+candidates_only=false
 
-for argument in "$@"; do
-	case "$argument" in
+while (( $# > 0 )); do
+	case "$1" in
 		--dry-run) dry_run=true ;;
-		*) printf 'Unknown argument: %s\n' "$argument" >&2; exit 2 ;;
+		--candidates-only) candidates_only=true ;;
+		--candidates-file)
+			(( $# >= 2 )) || { printf '%s\n' '--candidates-file requires a path.' >&2; exit 2; }
+			candidates_file="$2"
+			shift
+			;;
+		*)
+			printf 'Unknown argument: %s\n' "$1" >&2
+			exit 2
+			;;
 	esac
+	shift
 done
 
 if ! [[ "$limit" =~ ^[1-9][0-9]*$ ]]; then
@@ -22,6 +34,14 @@ if (( limit > 50 )); then
 fi
 if ! [[ "$issue_number" =~ ^[1-9][0-9]*$ ]]; then
 	printf 'FIND_FEEDS_ISSUE must be a positive integer.\n' >&2
+	exit 2
+fi
+if [[ "$candidates_only" == true && -z "$candidates_file" ]]; then
+	printf '%s\n' '--candidates-only requires --candidates-file or FIND_FEEDS_CANDIDATES_FILE.' >&2
+	exit 2
+fi
+if [[ -n "$candidates_file" && ! -r "$candidates_file" ]]; then
+	printf 'Candidate file is not readable: %s\n' "$candidates_file" >&2
 	exit 2
 fi
 
@@ -111,10 +131,15 @@ done < <(jq -r '[.body, (.comments[].body)] | join("\n")' <<< "$issue_json" | ex
 queries=(
 	"proxy list"
 	"free proxy"
+	"open proxy list"
+	"public proxy list"
+	"proxy subscription url"
+	"proxy provider list"
 	"free http proxy list"
 	"free https proxy list"
 	"free socks4 proxy list"
 	"free socks5 proxy list"
+	"ip port proxy list"
 	"v2ray subscription"
 	"v2ray nodes"
 	"shadowsocks subscription"
@@ -123,9 +148,13 @@ queries=(
 	"vmess subscription"
 	"trojan subscription"
 	"xray subscription"
+	"sing-box subscription"
+	"hysteria2 subscription"
+	"tuic subscription"
 	"free nodes clash"
 	"clash proxy subscription"
 	"mihomo proxy list"
+	"clash config nodes"
 	"base64 proxy subscription"
 	"http socks proxy list"
 	"proxy collector"
@@ -139,55 +168,97 @@ search_results=''
 declare -A considered_repositories=()
 rows=()
 repositories=()
-for query in "${queries[@]}"; do
-	result="$(gh search repos "$query pushed:$window_start..$window_end fork:false archived:false" \
-		--sort updated --limit 100 \
-		--json fullName,description,pushedAt,isFork,isArchived)"
-	search_results+="$result"$'\n'
-	candidate_repositories="$(jq -sr --arg window_start "$window_start" --arg window_end "$window_end" '
-		add | unique_by(.fullName | ascii_downcase)
-		| map(select(.isFork == false and .isArchived == false and .pushedAt[:10] >= $window_start and .pushedAt[:10] <= $window_end))
-		| map(select((.description // "" | test("bot[- _]?ips?|ips?[^.]{0,30}used[^.]{0,20}bots|blocklists?|blacklists?|deny lists?|proxy ips? addresses? used by bots"; "i")) | not))
-		| sort_by(.pushedAt) | reverse | .[].fullName
-	' <<< "$search_results")"
 
+process_candidate() {
+	local repository="$1"
+	local key metadata pushed_at is_fork is_archived tree tree_paths paths
+	key="$(tr '[:upper:]' '[:lower:]' <<< "$repository")"
+	[[ -n "${considered_repositories[$key]:-}" ]] && return 0
+	considered_repositories["$key"]=1
+	[[ -n "${seen_repositories[$key]:-}" ]] && return 0
+
+	metadata="$(gh api "repos/$repository" --jq '[.pushed_at, .fork, .archived] | @tsv' 2>/dev/null || true)"
+	IFS=$'\t' read -r pushed_at is_fork is_archived <<< "$metadata"
+	[[ -z "${pushed_at:-}" ]] && return 0
+	local pushed_date="${pushed_at%%T*}"
+	[[ "$pushed_date" < "$window_start" || "$pushed_date" > "$window_end" ]] && return 0
+	[[ "$is_fork" == true || "$is_archived" == true ]] && return 0
+
+	tree="$(gh api "repos/$repository/git/trees/HEAD?recursive=1" 2>/dev/null || true)"
+	[[ -z "$tree" ]] && return 0
+	tree_paths="$(fetch_tree_paths "$repository" <<< "$tree")" || return 0
+	paths="$(jq -r '
+		map(select(
+			(test("\\.(txt|yaml|yml|json)$"; "i"))
+			and (test("(^|/)(\\.github|docs?|tests?|fixtures?|node_modules)(/|$)"; "i") | not)
+			and (test("(^|/)(package(-lock)?|tsconfig|manifest|version|info|metadata|stats|badges?)(\\.[^/]*)?\\.(json|yaml|yml)$"; "i") | not)
+			and (test("(^|/)(configs?)(\\.prod)?\\.(yaml|yml|json)$"; "i") | not)
+			and (test("(blocklist|blacklist|denylist|bot.?ips?)"; "i") | not)
+			and (test("(^|/)(protocols|countries)/[^/]+\\.(txt|yaml|yml|json)$"; "i") or test("(^|/)(all|sub|subscriptions|proxies?|nodes?|http|https|socks|vless|vmess|trojan|shadowsocks|clash|mix|raw|result|servers?|vpn|wireguard|sing[-_.]?box|hysteria2?|hy2|tuic|providers?|feeds?|pools?|exports?)([-_.][^/]*)?\\.(txt|yaml|yml|json)$"; "i") or test("[^/]*(proxy|proxies|node|nodes|subscription|sub|http|https|socks|vless|vmess|trojan|shadowsocks|clash|mix|raw|result|server|vpn|wireguard|sing[-_.]?box|hysteria2?|hy2|tuic|provider|feed|pool|export)[^/]*\\.(txt|yaml|yml|json)$"; "i"))
+		))
+		| unique | .[0:3] | join(", ")
+	' <<< "$tree_paths")"
+	[[ -z "$paths" ]] && return 0
+
+	rows+=("| https://github.com/$repository | $pushed_date | \`$paths\` | Pending: candidate discovered; verify reachability, content format, duplicates, and parser/transformer support before import. |")
+	repositories+=("$repository")
+	seen_repositories["$key"]=1
+}
+
+read_candidate_file() {
+	local line owner repository
+	while IFS= read -r line || [[ -n "$line" ]]; do
+		[[ "$line" =~ ^[[:space:]]*(#|$) ]] && continue
+		line="${line#"${line%%[![:space:]]*}"}"
+		line="${line%"${line##*[![:space:]]}"}"
+		if [[ "$line" =~ ^https?://(www\.)?github\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)(\.git)?/?$ ]]; then
+			owner="${BASH_REMATCH[2]}"
+			repository="${BASH_REMATCH[3]}"
+			printf '%s/%s\n' "$owner" "${repository%.git}"
+		elif [[ "$line" =~ ^([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)(\.git)?$ ]]; then
+			owner="${BASH_REMATCH[1]}"
+			repository="${BASH_REMATCH[2]}"
+			printf '%s/%s\n' "$owner" "${repository%.git}"
+		else
+			printf 'Invalid candidate on line: %s\n' "$line" >&2
+			return 1
+		fi
+	done < "$candidates_file"
+}
+
+if [[ -n "$candidates_file" ]]; then
+	candidate_list="$(read_candidate_file)" || exit 2
 	while IFS= read -r repository; do
 		[[ -z "$repository" ]] && continue
-		key="$(tr '[:upper:]' '[:lower:]' <<< "$repository")"
-		[[ -n "${considered_repositories[$key]:-}" ]] && continue
-		considered_repositories["$key"]=1
-		[[ -n "${seen_repositories[$key]:-}" ]] && continue
-
-		metadata="$(gh api "repos/$repository" --jq '[.pushed_at, .fork, .archived] | @tsv' 2>/dev/null || true)"
-		IFS=$'\t' read -r pushed_at is_fork is_archived <<< "$metadata"
-		pushed_date="${pushed_at%%T*}"
-		[[ -z "${pushed_at:-}" || "$pushed_date" < "$window_start" || "$pushed_date" > "$window_end" ]] && continue
-		[[ "$is_fork" == true || "$is_archived" == true ]] && continue
-
-		tree="$(gh api "repos/$repository/git/trees/HEAD?recursive=1" 2>/dev/null || true)"
-		[[ -z "$tree" ]] && continue
-		tree_paths="$(fetch_tree_paths "$repository" <<< "$tree")" || continue
-		paths="$(jq -r '
-			map(select(
-				(test("\\.(txt|yaml|yml|json)$"; "i"))
-				and (test("(^|/)(\\.github|docs?|tests?|fixtures?|node_modules)(/|$)"; "i") | not)
-				and (test("(^|/)(package(-lock)?|tsconfig|manifest|version|info|metadata|stats|badges?)(\\.[^/]*)?\\.(json|yaml|yml)$"; "i") | not)
-				and (test("(^|/)(configs?)(\\.prod)?\\.(yaml|yml|json)$"; "i") | not)
-				and (test("(blocklist|blacklist|denylist|bot.?ips?)"; "i") | not)
-				and (test("(^|/)(protocols|countries)/[^/]+\\.(txt|yaml|yml|json)$"; "i") or test("(^|/)(all|sub|subscriptions|proxies?|nodes?|http|https|socks|vless|vmess|trojan|shadowsocks|clash|mix|raw|result|servers?)([-_.][^/]*)?\\.(txt|yaml|yml|json)$"; "i") or test("[^/]*(proxy|proxies|node|nodes|subscription|sub|http|https|socks|vless|vmess|trojan|shadowsocks|clash|mix|raw|result|server)[^/]*\\.(txt|yaml|yml|json)$"; "i"))
-			))
-			| unique | .[0:3] | join(", ")
-		' <<< "$tree_paths")"
-		[[ -z "$paths" ]] && continue
-
-		rows+=("| https://github.com/$repository | ${pushed_at%%T*} | \`$paths\` | Pending: candidate discovered; verify reachability, content format, duplicates, and parser/transformer support before import. |")
-		repositories+=("$repository")
-		seen_repositories["$key"]=1
+		process_candidate "$repository"
 		if (( ${#rows[@]} >= limit )); then
-			break 2
+			break
 		fi
-	done <<< "$candidate_repositories"
-done
+	done <<< "$candidate_list"
+fi
+
+if [[ "$candidates_only" != true ]] && (( ${#rows[@]} < limit )); then
+	for query in "${queries[@]}"; do
+		result="$(gh search repos "$query pushed:$window_start..$window_end fork:false archived:false" \
+			--sort updated --limit 100 \
+			--json fullName,description,pushedAt,isFork,isArchived)"
+		search_results+="$result"$'\n'
+		candidate_repositories="$(jq -sr --arg window_start "$window_start" --arg window_end "$window_end" '
+			add | unique_by(.fullName | ascii_downcase)
+			| map(select(.isFork == false and .isArchived == false and .pushedAt[:10] >= $window_start and .pushedAt[:10] <= $window_end))
+			| map(select((.description // "" | test("bot[- _]?ips?|ips?[^.]{0,30}used[^.]{0,20}bots|blocklists?|blacklists?|deny lists?|proxy ips? addresses? used by bots"; "i")) | not))
+			| sort_by(.pushedAt) | reverse | .[].fullName
+		' <<< "$search_results")"
+
+		while IFS= read -r repository; do
+			[[ -z "$repository" ]] && continue
+			process_candidate "$repository"
+			if (( ${#rows[@]} >= limit )); then
+				break 2
+			fi
+		done <<< "$candidate_repositories"
+	done
+fi
 
 if (( ${#rows[@]} == 0 )); then
 	printf 'Found no eligible candidates for %s through %s; issue body was not updated.\n' \
