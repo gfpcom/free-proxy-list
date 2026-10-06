@@ -123,6 +123,37 @@ func TestParseSplitColumns(t *testing.T) {
 	}
 }
 
+func TestParseSplitEndpointAndProtocol(t *testing.T) {
+	parser, err := GetParser("Split:separator=comma;endpoint=0;protocol=1")
+	require.NoError(t, err)
+
+	tests := []struct {
+		protocol string
+		line     string
+		wantIP   string
+		wantPort int
+	}{
+		{protocol: "http", line: "191.101.1.116:80, HTTP, 16ms", wantIP: "191.101.1.116", wantPort: 80},
+		{protocol: "https", line: "191.101.1.116:443, HTTPS, 16ms", wantIP: "191.101.1.116", wantPort: 443},
+		{protocol: "socks4", line: "47.88.94.79:1080, SOCKS4, 86ms", wantIP: "47.88.94.79", wantPort: 1080},
+		{protocol: "socks5", line: "47.88.94.79:1080, SOCKS5, 86ms", wantIP: "47.88.94.79", wantPort: 1080},
+	}
+	for _, test := range tests {
+		t.Run(test.protocol, func(t *testing.T) {
+			proxy, err := parser(test.protocol, test.line)
+			require.NoError(t, err)
+			require.Equal(t, test.wantIP, proxy.IP)
+			require.Equal(t, test.wantPort, proxy.Port)
+			require.Equal(t, test.protocol, proxy.Protocol)
+		})
+	}
+
+	_, err = parser("http", "47.88.94.79:1080, SOCKS4, 86ms")
+	require.Error(t, err)
+	_, err = parser("http", "47.88.94.79:invalid, HTTP, 86ms")
+	require.Error(t, err)
+}
+
 func TestSplitParserOptions(t *testing.T) {
 	for _, test := range []struct {
 		spec string
@@ -135,6 +166,10 @@ func TestSplitParserOptions(t *testing.T) {
 		{spec: "Split:separator=comma;host=0;host=1;port=2"},
 		{spec: "Split:separator=comma;host=0;port=1;separator=|"},
 		{spec: "Split:separator=multi;host=0;port=1"},
+		{spec: "Split:separator=comma;endpoint=0;endpoint=1"},
+		{spec: "Split:separator=comma;endpoint=0;protocol=0"},
+		{spec: "Split:separator=comma;endpoint=0;protocol=1;host=2;port=3"},
+		{spec: "Split:separator=comma;host=0;port=1;protocol=2"},
 	} {
 		t.Run(test.spec, func(t *testing.T) {
 			_, err := GetParser(test.spec)
@@ -174,7 +209,7 @@ func TestParseLineConfiguredParser(t *testing.T) {
 
 func TestValidateSourceRejectsInvalidParserOptions(t *testing.T) {
 	err := ValidateSource("http", []byte("https://feed.example/proxies.txt,,Split:separator=comma;host=0"))
-	require.ErrorContains(t, err, "split parser requires host and port column mappings")
+	require.ErrorContains(t, err, "split parser requires either an endpoint column or host and port column mappings")
 }
 
 func TestParseIPv4AuthRejectsInvalidLines(t *testing.T) {

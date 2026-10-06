@@ -355,8 +355,8 @@ func ParseColonURL(proto, proxyURL string) (*Proxy, error) {
 
 func newSplitParser(options string) (Parser, error) {
 	separator := ""
-	var hostColumn, portColumn int
-	hasSeparator, hasHost, hasPort := false, false, false
+	var hostColumn, portColumn, endpointColumn, protocolColumn int
+	hasSeparator, hasHost, hasPort, hasEndpoint, hasProtocol := false, false, false, false, false
 	for _, option := range strings.Split(options, ";") {
 		key, value, ok := strings.Cut(option, "=")
 		if !ok {
@@ -385,15 +385,34 @@ func newSplitParser(options string) (Parser, error) {
 				return nil, errors.New("split parser port column is configured more than once")
 			}
 			portColumn, hasPort = index, true
+		case "endpoint":
+			if hasEndpoint {
+				return nil, errors.New("split parser endpoint column is configured more than once")
+			}
+			endpointColumn, hasEndpoint = index, true
+		case "protocol":
+			if hasProtocol {
+				return nil, errors.New("split parser protocol column is configured more than once")
+			}
+			protocolColumn, hasProtocol = index, true
 		default:
-			return nil, errors.New("split parser supports only separator, host, and port options")
+			return nil, errors.New("split parser supports only separator, host, port, endpoint, and protocol options")
 		}
 	}
 	if !hasSeparator || separator == "" {
 		return nil, errors.New("split parser requires a separator")
 	}
-	if !hasHost || !hasPort {
-		return nil, errors.New("split parser requires host and port column mappings")
+	if hasEndpoint {
+		if hasHost || hasPort {
+			return nil, errors.New("split parser endpoint cannot be combined with host or port")
+		}
+		if hasProtocol && protocolColumn == endpointColumn {
+			return nil, errors.New("split parser endpoint and protocol columns must differ")
+		}
+	} else if !hasHost || !hasPort {
+		return nil, errors.New("split parser requires either an endpoint column or host and port column mappings")
+	} else if hasProtocol {
+		return nil, errors.New("split parser protocol requires an endpoint column")
 	}
 	switch separator {
 	case "comma":
@@ -414,6 +433,25 @@ func newSplitParser(options string) (Parser, error) {
 			record = strings.Fields(line)
 		} else {
 			record = strings.Split(line, separator)
+		}
+		if hasEndpoint {
+			if endpointColumn >= len(record) {
+				return nil, ErrInvalidProxy
+			}
+			if hasProtocol {
+				if protocolColumn >= len(record) || !strings.EqualFold(strings.TrimSpace(record[protocolColumn]), proto) {
+					return nil, ErrInvalidProxy
+				}
+			}
+			host, port, err := net.SplitHostPort(strings.TrimSpace(record[endpointColumn]))
+			if err != nil || host == "" {
+				return nil, ErrInvalidProxy
+			}
+			portValue, err := strconv.Atoi(port)
+			if err != nil || portValue < 1 || portValue > 65535 {
+				return nil, ErrInvalidProxy
+			}
+			return ParseProxyURL(proto, net.JoinHostPort(host, strconv.Itoa(portValue)))
 		}
 		if hostColumn >= len(record) || portColumn >= len(record) {
 			return nil, ErrInvalidProxy
