@@ -130,3 +130,8 @@ https://raw.githubusercontent.com/gnxD3RfTT2WE/free-proxy-list-daily/main/http.t
 https://raw.githubusercontent.com/EDT-Pages/Proxy-List/main/data/http.json,json:path=$[*];scheme=protocol;host=ip;port=port
 https://raw.githubusercontent.com/mauricegift/free-proxies/master/files/proxies.json,json:path=$.http[*];endpoint=$
 https://raw.githubusercontent.com/afr0700/ProxyList/main/ProxyList.txt,,Split:separator=comma;host=0;port=1
+https://raw.githubusercontent.com/BrenoFariasdaSilva/Proxy-List-Generator/refs/heads/main/Proxies_List/free_proxy_list_proxies.txt,,ColonURL
+https://raw.githubusercontent.com/BrenoFariasdaSilva/Proxy-List-Generator/refs/heads/main/Proxies_List/spys_me_proxies.txt,,ColonURL
+https://raw.githubusercontent.com/Denisyoya/Proxy-List-Gamt/refs/heads/main/proxy/http.txt,,ColonURL
+https://raw.githubusercontent.com/b4mbo-o/Check-Free-Proxy/refs/heads/main/alive_http.txt,,ColonURL
+https://raw.githubusercontent.com/kenzopanel/Free-Indonesia-Proxy/refs/heads/main/proxy.json,json:path=$.data[*];endpoint=$,ColonURL
