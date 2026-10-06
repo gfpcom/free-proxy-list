@@ -8,6 +8,15 @@ Transformers convert a downloaded source response into proxy lines before the co
 
 The transformer and parser are optional. The default transformer is raw (unchanged bytes); the default parser is `ParseProxyURL`. The loader substitutes date/time URL tokens before fetching the source.
 
+## `Split` parser
+
+Parses delimited fields using a configured separator and zero-based host and port column indexes. `comma`, `space` (one or more whitespace characters), and `tab` are recognized separator names; any other single character can be used directly. Other columns are ignored, and the selected endpoint is validated and assigned the protocol of the configured source file.
+
+```text
+https://example.net/proxies.csv,,Split:separator=comma;host=0;port=1
+https://example.net/proxies.txt,,Split:separator=space;host=0;port=1
+```
+
 ## `raw`
 
 Returns the response body unchanged. It is the default when the transformer column is omitted. Unknown transformer names also fall back to raw, so misspellings do not currently produce a configuration error.

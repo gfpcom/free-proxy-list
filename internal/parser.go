@@ -16,7 +16,8 @@ import (
 )
 
 var (
-	Parsers = map[string]Parser{}
+	Parsers         = map[string]Parser{}
+	ParserFactories = map[string]ParserFactory{}
 
 	ErrInvalidProxy = errors.New("gfp: invalid proxy")
 )
@@ -29,23 +30,36 @@ const (
 )
 
 type Parser func(string, string) (*Proxy, error)
+type ParserFactory func(string) (Parser, error)
 
 func RegisterParser(name string, parser Parser) {
 	Parsers[name] = parser
 }
 
-func GetParser(name string) Parser {
+func RegisterParserFactory(name string, factory ParserFactory) {
+	ParserFactories[name] = factory
+}
+
+func GetParser(spec string) (Parser, error) {
+	name, options, hasOptions := strings.Cut(spec, ":")
+	if factory, ok := ParserFactories[name]; ok {
+		return factory(options)
+	}
+	if hasOptions {
+		return nil, errors.New("parser does not accept options")
+	}
 	if parser, ok := Parsers[name]; ok {
-		return parser
+		return parser, nil
 	}
 
-	return ParseProxyURL
+	return ParseProxyURL, nil
 }
 
 func init() {
 	Parsers["ColonURL"] = ParseColonURL
 	Parsers["SpaceURL"] = ParseSpaceURL
 	Parsers["IPv4Auth"] = ParseIPv4Auth
+	RegisterParserFactory("Split", newSplitParser)
 }
 
 func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
@@ -318,7 +332,15 @@ func isIPLiteralCandidate(host string) bool {
 }
 
 func IsLocal(ip string) bool {
-	return strings.HasPrefix(ip, "0.") || strings.HasPrefix(ip, "127.") || strings.HasPrefix(ip, "169.254.")
+	parsedIP := net.ParseIP(ip)
+	if parsedIP == nil {
+		return strings.HasPrefix(ip, "0.") || strings.HasPrefix(ip, "127.") || strings.HasPrefix(ip, "169.254.")
+	}
+	if ipv4 := parsedIP.To4(); ipv4 != nil {
+		ip = ipv4.String()
+		return strings.HasPrefix(ip, "0.") || strings.HasPrefix(ip, "127.") || strings.HasPrefix(ip, "169.254.")
+	}
+	return parsedIP.IsLoopback() || parsedIP.IsLinkLocalUnicast() || parsedIP.IsPrivate() || parsedIP.IsUnspecified()
 }
 
 func ParseColonURL(proto, proxyURL string) (*Proxy, error) {
@@ -329,6 +351,80 @@ func ParseColonURL(proto, proxyURL string) (*Proxy, error) {
 	}
 
 	return ParseProxyURL(proto, items[0]+":"+items[1])
+}
+
+func newSplitParser(options string) (Parser, error) {
+	separator := ""
+	var hostColumn, portColumn int
+	hasSeparator, hasHost, hasPort := false, false, false
+	for _, option := range strings.Split(options, ";") {
+		key, value, ok := strings.Cut(option, "=")
+		if !ok {
+			return nil, errors.New("split parser options must be key=value pairs")
+		}
+		switch key {
+		case "separator":
+			if hasSeparator {
+				return nil, errors.New("split parser separator is configured more than once")
+			}
+			separator, hasSeparator = value, true
+			continue
+		}
+		index, err := strconv.Atoi(value)
+		if err != nil || index < 0 {
+			return nil, errors.New("split parser column indexes must be non-negative integers")
+		}
+		switch key {
+		case "host":
+			if hasHost {
+				return nil, errors.New("split parser host column is configured more than once")
+			}
+			hostColumn, hasHost = index, true
+		case "port":
+			if hasPort {
+				return nil, errors.New("split parser port column is configured more than once")
+			}
+			portColumn, hasPort = index, true
+		default:
+			return nil, errors.New("split parser supports only separator, host, and port options")
+		}
+	}
+	if !hasSeparator || separator == "" {
+		return nil, errors.New("split parser requires a separator")
+	}
+	if !hasHost || !hasPort {
+		return nil, errors.New("split parser requires host and port column mappings")
+	}
+	switch separator {
+	case "comma":
+		separator = ","
+	case "space", "whitespace":
+		separator = " "
+	case "tab":
+		separator = "\t"
+	default:
+		if len(separator) != 1 {
+			return nil, errors.New("split parser separator must be comma, whitespace, tab, or one character")
+		}
+	}
+
+	return func(proto, line string) (*Proxy, error) {
+		var record []string
+		if separator == " " {
+			record = strings.Fields(line)
+		} else {
+			record = strings.Split(line, separator)
+		}
+		if hostColumn >= len(record) || portColumn >= len(record) {
+			return nil, ErrInvalidProxy
+		}
+		host := strings.TrimSpace(record[hostColumn])
+		portValue, err := strconv.Atoi(strings.TrimSpace(record[portColumn]))
+		if host == "" || err != nil || portValue < 1 || portValue > 65535 {
+			return nil, ErrInvalidProxy
+		}
+		return ParseProxyURL(proto, net.JoinHostPort(host, strconv.Itoa(portValue)))
+	}, nil
 }
 
 func ParseIPv4Auth(proto, proxyLine string) (*Proxy, error) {

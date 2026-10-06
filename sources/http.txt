@@ -129,3 +129,4 @@ https://raw.githubusercontent.com/SteepSmit/my-proxy-list/refs/heads/main/proxie
 https://raw.githubusercontent.com/gnxD3RfTT2WE/free-proxy-list-daily/main/http.txt,,ColonURL
 https://raw.githubusercontent.com/EDT-Pages/Proxy-List/main/data/http.json,json:path=$[*];scheme=protocol;host=ip;port=port
 https://raw.githubusercontent.com/mauricegift/free-proxies/master/files/proxies.json,json:path=$.http[*];endpoint=$
+https://raw.githubusercontent.com/afr0700/ProxyList/main/ProxyList.txt,,Split:separator=comma;host=0;port=1

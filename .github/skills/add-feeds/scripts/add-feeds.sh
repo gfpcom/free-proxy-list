@@ -142,10 +142,11 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 			continue
 			;;
 	esac
-	case "$parser_name" in
-		""|ColonURL|SpaceURL) ;;
+	parser_type="${parser_name%%:*}"
+	case "$parser_type" in
+		""|ColonURL|SpaceURL|Split) ;;
 		*)
-			printf 'Line %s: parser "%s" is not registered by this project.\n' "$line_number" "$parser_name" >&2
+			printf 'Line %s: parser "%s" is not registered by this project.\n' "$line_number" "$parser_type" >&2
 			has_errors=true
 			continue
 			;;
@@ -204,17 +205,17 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 			continue
 		fi
 	fi
-	if [[ "$transformer_name" == curl || "$transformer_name" == json || "$transformer_name" == mtproto ]]; then
+	if [[ "$transformer_name" == curl || "$transformer_name" == json || "$transformer_name" == mtproto || "$parser_type" == Split ]]; then
 		validation_dir="$temp_dir/transformer-validation-$line_number"
 		mkdir -p "$validation_dir/sources"
 		printf '%s\n' "$source_entry" > "$validation_dir/sources/$protocol.txt"
 		if ! go run "$root_dir/cmd" -dir "$validation_dir" -dry-run; then
-			printf 'Line %s: %s transformer produced no valid proxies.\n' "$line_number" "$transformer_name" >&2
+			printf 'Line %s: configured transformer/parser produced no valid proxies.\n' "$line_number" >&2
 			has_errors=true
 			continue
 		fi
 	fi
-	if [[ "$transformer_name" != curl && "$transformer_name" != json && "$transformer_name" != mtproto ]] && ! matches_expected_format "$preview_file" "$parser_name" "$transformer_name"; then
+	if [[ "$transformer_name" != curl && "$transformer_name" != json && "$transformer_name" != mtproto && "$parser_type" != Split ]] && ! matches_expected_format "$preview_file" "$parser_type" "$transformer_name"; then
 		printf 'Line %s: response sample does not match the configured format.\n' "$line_number" >&2
 		has_errors=true
 		continue

@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"net"
 	"strconv"
 	"strings"
 )
@@ -19,13 +20,14 @@ func (p *Proxy) String() string {
 		return strings.ToLower(p.Protocol) + "://" + p.Opaque
 	}
 
+	address := net.JoinHostPort(p.IP, strconv.Itoa(p.Port))
 	if p.User == "" {
-		return strings.ToLower(p.Protocol) + "://" + p.IP + ":" + strconv.Itoa(p.Port)
+		return strings.ToLower(p.Protocol) + "://" + address
 	}
 
 	if p.Passwd == "" {
-		return strings.ToLower(p.Protocol) + "://" + p.User + "@" + p.IP + ":" + strconv.Itoa(p.Port)
+		return strings.ToLower(p.Protocol) + "://" + p.User + "@" + address
 	}
 
-	return strings.ToLower(p.Protocol) + "://" + p.User + ":" + p.Passwd + "@" + p.IP + ":" + strconv.Itoa(p.Port)
+	return strings.ToLower(p.Protocol) + "://" + p.User + ":" + p.Passwd + "@" + address
 }
