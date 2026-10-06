@@ -15,6 +15,17 @@ import (
 	"testing"
 )
 
+func TestFromMTProtoExtractsProxyLinks(t *testing.T) {
+	input := []byte(`updated: 2026-10-05 https://t.me/proxy?server=proxy.example.com&amp;port=443&amp;secret=ee123abc. tg://proxy?server=8.8.8.8&port=443&secret=dd456def#fast https://t.me/proxy?server=proxy.example.com&port=443&secret=ee123abc`)
+
+	got := string(FromMTProto(input, ""))
+	want := "https://t.me/proxy?server=proxy.example.com&port=443&secret=ee123abc\n" +
+		"tg://proxy?server=8.8.8.8&port=443&secret=dd456def#fast\n"
+	if got != want {
+		t.Fatalf("FromMTProto() = %q, want %q", got, want)
+	}
+}
+
 func TestFromClash(t *testing.T) {
 	tests := []struct {
 		name     string

@@ -21,7 +21,7 @@ var (
 
 const (
 	// MaxSchemeLength defines the maximum allowed length for proxy scheme.
-	// Legitimate proxy protocols (http, https, socks4, socks5, vmess, trojan, vless, ss, ssr, hy, hy2)
+	// Legitimate proxy protocols (http, https, socks4, socks5, vmess, trojan, vless, ss, ssr, tg, hy, hy2)
 	// are all 6 characters or less. 15 provides safe headroom for future protocols.
 	MaxSchemeLength = 15
 )
@@ -77,6 +77,10 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 		scheme = "hy2"
 		proxyURL = "hy2://" + strings.TrimPrefix(proxyURL, u.Scheme+"://")
 		u, _ = url.Parse(proxyURL)
+	}
+
+	if scheme == "tg" || (strings.EqualFold(proto, "tg") && isTelegramProxyLink(u)) {
+		return parseMTProtoProxyURL(u)
 	}
 
 	var it *Proxy
@@ -194,6 +198,62 @@ func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
 	it.Protocol = scheme
 
 	return it, nil
+}
+
+func isTelegramProxyLink(u *url.URL) bool {
+	scheme := strings.ToLower(u.Scheme)
+	if scheme != "http" && scheme != "https" {
+		return false
+	}
+
+	host := strings.ToLower(u.Hostname())
+	return (host == "t.me" || host == "telegram.me") && u.Path == "/proxy"
+}
+
+func parseMTProtoProxyURL(u *url.URL) (*Proxy, error) {
+	if strings.EqualFold(u.Scheme, "tg") {
+		if !strings.EqualFold(u.Hostname(), "proxy") || (u.Path != "" && u.Path != "/") {
+			return nil, ErrInvalidProxy
+		}
+	} else if !isTelegramProxyLink(u) {
+		return nil, ErrInvalidProxy
+	}
+
+	query, err := url.ParseQuery(u.RawQuery)
+	if err != nil {
+		return nil, ErrInvalidProxy
+	}
+
+	server := query.Get("server")
+	portValue := query.Get("port")
+	secret := query.Get("secret")
+	if len(query["server"]) != 1 || len(query["port"]) != 1 || len(query["secret"]) != 1 ||
+		server == "" || portValue == "" || secret == "" {
+		return nil, ErrInvalidProxy
+	}
+
+	port, err := strconv.Atoi(portValue)
+	if err != nil || port < 1 || port > 65535 {
+		return nil, ErrInvalidProxy
+	}
+	if isIPLiteralCandidate(server) && net.ParseIP(server) == nil {
+		return nil, ErrInvalidProxy
+	}
+	if IsLocal(server) || !proxyclient.IsHost(server) {
+		return nil, ErrInvalidProxy
+	}
+
+	normalizedQuery := url.Values{
+		"server": {server},
+		"port":   {portValue},
+		"secret": {secret},
+	}
+	return &Proxy{
+		IP:       server,
+		Port:     port,
+		Opaque:   "proxy?" + normalizedQuery.Encode(),
+		Protocol: "tg",
+	}, nil
 }
 
 func isIPLiteralCandidate(host string) bool {

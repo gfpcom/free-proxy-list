@@ -18,8 +18,12 @@ var (
 )
 
 func Save(it *Proxy) {
+	identity := fmt.Sprintf("%s://%s:%v", it.Protocol, it.IP, it.Port)
+	if strings.EqualFold(it.Protocol, "tg") {
+		identity += ":" + it.Opaque
+	}
 	h := md5.New()
-	id := hex.EncodeToString(h.Sum([]byte(fmt.Sprintf("%s://%s:%v", it.Protocol, it.IP, it.Port))))
+	id := hex.EncodeToString(h.Sum([]byte(identity)))
 	db[id] = it
 }
 

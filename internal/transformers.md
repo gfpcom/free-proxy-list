@@ -16,6 +16,14 @@ Returns the response body unchanged. It is the default when the transformer colu
 https://example.net/proxies.txt
 ```
 
+## `mtproto`
+
+Extracts Telegram MTProto proxy links from text or HTML-like feed responses. It recognizes `tg://proxy`, `https://t.me/proxy`, and `https://telegram.me/proxy` links and emits one link per line, so feeds that put several records on one line can be parsed. The source protocol should be `tg`; the parser validates the server, port, and required secret, then stores each record as a `tg://proxy` URI.
+
+```text
+https://example.net/telegram-proxies.txt,mtproto
+```
+
 ## `base64`
 
 Decodes the entire response using standard Base64. If decoding fails, it returns the original bytes unchanged, which will normally result in parser rejection. Base64URL and recursive decoding are not supported.

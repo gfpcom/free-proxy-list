@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	stdhtml "html"
 	"io"
 	"math"
 	"net"
@@ -71,6 +72,7 @@ var (
 
 func init() {
 	Transformers["base64"] = FromBase64
+	Transformers["mtproto"] = FromMTProto
 	Transformers["json"] = FromJSON
 	Transformers["clash"] = FromClash
 	Transformers["link"] = FromLinks
@@ -108,6 +110,27 @@ func parseTransformerSpec(spec string) (string, string) {
 
 func FromRaw(buf []byte, _ string) []byte {
 	return buf
+}
+
+var mtprotoURLPattern = regexp.MustCompile(`(?i)(?:tg://proxy|https?://(?:t\.me|telegram\.me)/proxy)\?[^\s"'<>]+`)
+
+func FromMTProto(buf []byte, _ string) []byte {
+	var result bytes.Buffer
+	seen := make(map[string]struct{})
+	decoded := []byte(stdhtml.UnescapeString(string(buf)))
+	for _, match := range mtprotoURLPattern.FindAll(decoded, -1) {
+		link := strings.TrimRight(string(match), ".,;:!?)]}|")
+		if link == "" {
+			continue
+		}
+		if _, ok := seen[link]; ok {
+			continue
+		}
+		seen[link] = struct{}{}
+		result.WriteString(link)
+		result.WriteByte('\n')
+	}
+	return result.Bytes()
 }
 
 func FromBase64(buf []byte, _ string) []byte {
