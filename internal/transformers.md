@@ -8,6 +8,14 @@ Transformers convert a downloaded source response into proxy lines before the co
 
 The transformer and parser are optional. The default transformer is raw (unchanged bytes); the default parser is `ParseProxyURL`. The loader substitutes date/time URL tokens before fetching the source.
 
+## `IPPortCSV` parser
+
+Parses four-column CSV rows with an IP address, port, country, and provider. The metadata columns are ignored; the IP and port are validated and assigned the protocol of the configured source file.
+
+```text
+https://example.net/proxies.csv,,IPPortCSV
+```
+
 ## `raw`
 
 Returns the response body unchanged. It is the default when the transformer column is omitted. Unknown transformer names also fall back to raw, so misspellings do not currently produce a configuration error.

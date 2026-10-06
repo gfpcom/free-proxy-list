@@ -95,6 +95,38 @@ func TestParseIPv4Auth(t *testing.T) {
 	require.Equal(t, "http", proxy.Protocol)
 }
 
+func TestParseIPPortCSV(t *testing.T) {
+	parser := GetParser("IPPortCSV")
+	for _, protocol := range []string{"http", "https"} {
+		proxy, err := parser(protocol, `8.8.8.8,443,US,"Example, Inc"`)
+
+		require.NoError(t, err)
+		require.Equal(t, "8.8.8.8", proxy.IP)
+		require.Equal(t, 443, proxy.Port)
+		require.Equal(t, protocol, proxy.Protocol)
+	}
+}
+
+func TestParseIPPortCSVRejectsInvalidLines(t *testing.T) {
+	tests := []string{
+		"8.8.8.8,443,US",
+		"8.8.8.8,443,US,provider,extra",
+		"not-an-ip,443,US,provider",
+		"8.8.8.8,invalid,US,provider",
+		"8.8.8.8,0,US,provider",
+		"8.8.8.8,65536,US,provider",
+		"127.0.0.1,443,US,provider",
+		`8.8.8.8,443,US,"unterminated`,
+	}
+
+	for _, line := range tests {
+		t.Run(line, func(t *testing.T) {
+			_, err := ParseIPPortCSV("http", line)
+			require.Error(t, err)
+		})
+	}
+}
+
 func TestParseIPv4AuthRejectsInvalidLines(t *testing.T) {
 	tests := []string{
 		"104.207.38.226:3129:proxy-user",

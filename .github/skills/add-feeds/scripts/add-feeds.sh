@@ -77,6 +77,9 @@ matches_expected_format() {
 				ColonURL)
 					grep -Eq '^[[:space:]]*([[:alnum:]_.-]+):[0-9]{1,5}([[:space:]]|$)' "$sample_file"
 					;;
+				IPPortCSV)
+					grep -Eq '^[[:space:]]*[^,]+,[0-9]{1,5},[^,]*,' "$sample_file"
+					;;
 				SpaceURL)
 					grep -Eq '^[[:space:]]*[^[:space:]]+[[:space:]]+[0-9]{1,5}([[:space:]]|$)' "$sample_file"
 					;;
@@ -143,7 +146,7 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 			;;
 	esac
 	case "$parser_name" in
-		""|ColonURL|SpaceURL) ;;
+		""|ColonURL|IPPortCSV|SpaceURL) ;;
 		*)
 			printf 'Line %s: parser "%s" is not registered by this project.\n' "$line_number" "$parser_name" >&2
 			has_errors=true
@@ -204,7 +207,7 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 			continue
 		fi
 	fi
-	if [[ "$transformer_name" == curl || "$transformer_name" == json || "$transformer_name" == mtproto ]]; then
+	if [[ "$transformer_name" == curl || "$transformer_name" == json || "$transformer_name" == mtproto || "$parser_name" == IPPortCSV ]]; then
 		validation_dir="$temp_dir/transformer-validation-$line_number"
 		mkdir -p "$validation_dir/sources"
 		printf '%s\n' "$source_entry" > "$validation_dir/sources/$protocol.txt"

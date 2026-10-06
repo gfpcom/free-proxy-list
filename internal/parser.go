@@ -2,6 +2,7 @@ package internal
 
 import (
 	"encoding/base64"
+	"encoding/csv"
 	"encoding/hex"
 	"errors"
 	"log/slog"
@@ -46,6 +47,7 @@ func init() {
 	Parsers["ColonURL"] = ParseColonURL
 	Parsers["SpaceURL"] = ParseSpaceURL
 	Parsers["IPv4Auth"] = ParseIPv4Auth
+	Parsers["IPPortCSV"] = ParseIPPortCSV
 }
 
 func ParseProxyURL(proto, proxyURL string) (*Proxy, error) {
@@ -329,6 +331,28 @@ func ParseColonURL(proto, proxyURL string) (*Proxy, error) {
 	}
 
 	return ParseProxyURL(proto, items[0]+":"+items[1])
+}
+
+func ParseIPPortCSV(proto, proxyLine string) (*Proxy, error) {
+	record, err := csv.NewReader(strings.NewReader(proxyLine)).Read()
+	if err != nil {
+		return nil, err
+	}
+	if len(record) != 4 {
+		return nil, ErrInvalidProxy
+	}
+
+	ip := strings.TrimSpace(record[0])
+	if net.ParseIP(ip) == nil {
+		return nil, ErrInvalidProxy
+	}
+
+	port, err := strconv.Atoi(strings.TrimSpace(record[1]))
+	if err != nil || port < 1 || port > 65535 {
+		return nil, ErrInvalidProxy
+	}
+
+	return ParseProxyURL(proto, net.JoinHostPort(ip, strconv.Itoa(port)))
 }
 
 func ParseIPv4Auth(proto, proxyLine string) (*Proxy, error) {
