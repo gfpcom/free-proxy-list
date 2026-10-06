@@ -323,17 +323,17 @@ socks-port: 7891`,
 			expected: "http://[::1]:8080\n",
 		},
 		{
-			// 10MB is the maxYAMLSize boundary: input passes the size gate and
+			// 50 MiB is the feed size boundary: input passes the size gate and
 			// reaches the YAML parser, which fails on non-YAML content, so output is empty.
-			name:     "input at 10MB size limit reaches parser and yields empty output on parse failure",
-			input:    strings.Repeat("x", 10*1024*1024),
+			name:     "input at 50 MiB size limit reaches parser and yields empty output on parse failure",
+			input:    strings.Repeat("x", maxFeedSizeBytes),
 			expected: "",
 		},
 		{
-			// 11MB exceeds maxYAMLSize: input is rejected by the size gate
+			// One byte above the feed size limit is rejected by the size gate
 			// before YAML parsing, so output is empty without a parse attempt.
-			name:     "input above 10MB size limit rejected by size gate before parsing",
-			input:    strings.Repeat("x", 11*1024*1024), // 11MB
+			name:     "input above 50 MiB size limit rejected by size gate before parsing",
+			input:    strings.Repeat("x", maxFeedSizeBytes+1),
 			expected: "",
 		},
 	}
@@ -1218,7 +1218,7 @@ func TestFromLinksLimitsFanOutAndBodySize(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		requests++
 		if r.URL.Path == "/oversize.txt" {
-			_, _ = w.Write([]byte(strings.Repeat("x", maxRegexLinkResponseBytes+1)))
+			_, _ = w.Write([]byte(strings.Repeat("x", maxFeedSizeBytes+1)))
 			return
 		}
 		_, _ = w.Write([]byte("http://1.2.3.4:8080\n"))
@@ -1414,7 +1414,7 @@ func useHTTPFetcherForCurlTest(t *testing.T) {
 		if response.StatusCode < http.StatusOK || response.StatusCode >= http.StatusMultipleChoices {
 			return curlFetchResponse{}, fmt.Errorf("unexpected test response status: %d", response.StatusCode)
 		}
-		body, err := io.ReadAll(io.LimitReader(response.Body, maxRegexLinkResponseBytes+1))
+		body, err := io.ReadAll(io.LimitReader(response.Body, maxFeedSizeBytes+1))
 		return curlFetchResponse{body: body, finalURL: response.Request.URL.String()}, err
 	}
 	t.Cleanup(func() { curlImpersonateFetch = previousFetcher })

@@ -82,6 +82,11 @@ func TestFromJSON(t *testing.T) {
 
 func TestFromJSONEnforcesInputAndRecordLimits(t *testing.T) {
 	options := "path=$[*];uri=proxy"
+	valid := ` [{"proxy":"http://1.2.3.4:8080"}]`
+	exactLimitInput := valid + strings.Repeat(" ", maxJSONSize-len(valid))
+	if got := string(FromJSON([]byte(exactLimitInput), options)); got != "http://1.2.3.4:8080\n" {
+		t.Fatalf("expected input at the size limit to be processed, got %q", got)
+	}
 	if got := FromJSON(make([]byte, maxJSONSize+1), options); len(got) != 0 {
 		t.Fatalf("expected oversized input to produce no output, got %d bytes", len(got))
 	}
