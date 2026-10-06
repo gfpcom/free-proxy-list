@@ -3,6 +3,8 @@ set -euo pipefail
 
 limit="${FIND_FEEDS_LIMIT:-50}"
 issue_number="${FIND_FEEDS_ISSUE:-21}"
+parallelism="${FIND_FEEDS_JOBS:-8}"
+http_timeout="${FIND_FEEDS_HTTP_TIMEOUT:-12}"
 dry_run=false
 candidates_file="${FIND_FEEDS_CANDIDATES_FILE:-}"
 candidates_only=false
@@ -32,6 +34,28 @@ if (( limit > 50 )); then
 	printf 'FIND_FEEDS_LIMIT must not exceed 50.\n' >&2
 	exit 2
 fi
+if ! [[ "$parallelism" =~ ^[0-9]+$ ]]; then
+	printf 'FIND_FEEDS_JOBS must be an integer from 1 to 16.\n' >&2
+	exit 2
+fi
+while [[ ${#parallelism} -gt 1 && "${parallelism:0:1}" == 0 ]]; do
+	parallelism="${parallelism:1}"
+done
+if (( ${#parallelism} > 2 )) || (( parallelism < 1 || parallelism > 16 )); then
+	printf 'FIND_FEEDS_JOBS must be an integer from 1 to 16.\n' >&2
+	exit 2
+fi
+if ! [[ "$http_timeout" =~ ^[0-9]+$ ]]; then
+	printf 'FIND_FEEDS_HTTP_TIMEOUT must be an integer from 1 to 120 seconds.\n' >&2
+	exit 2
+fi
+while [[ ${#http_timeout} -gt 1 && "${http_timeout:0:1}" == 0 ]]; do
+	http_timeout="${http_timeout:1}"
+done
+if (( ${#http_timeout} > 3 )) || (( http_timeout < 1 || http_timeout > 120 )); then
+	printf 'FIND_FEEDS_HTTP_TIMEOUT must be an integer from 1 to 120 seconds.\n' >&2
+	exit 2
+fi
 if ! [[ "$issue_number" =~ ^[1-9][0-9]*$ ]]; then
 	printf 'FIND_FEEDS_ISSUE must be a positive integer.\n' >&2
 	exit 2
@@ -47,9 +71,15 @@ fi
 
 command -v gh >/dev/null
 command -v jq >/dev/null
-gh auth status >/dev/null
+timeout_bin="$(command -v timeout || command -v gtimeout || true)"
+[[ -n "$timeout_bin" ]] || { printf '%s\n' 'GNU-compatible timeout (timeout or gtimeout) is required.' >&2; exit 2; }
+run_gh() {
+	"$timeout_bin" --kill-after=2s "${http_timeout}s" gh "$@"
+}
 
-repo_slug="$(gh repo view --json nameWithOwner --jq .nameWithOwner)"
+run_gh auth status >/dev/null
+
+repo_slug="$(run_gh repo view --json nameWithOwner --jq .nameWithOwner)"
 window_end="$(date -u +%F)"
 if date -u -v-29d +%F >/dev/null 2>&1; then
 	window_start="$(date -u -v-29d +%F)"
@@ -57,13 +87,15 @@ else
 	window_start="$(date -u -d "$window_end -29 days" +%F)"
 fi
 source_dir="$(git rev-parse --show-toplevel)/sources"
-issue_json="$(gh issue view "$issue_number" --repo "$repo_slug" --json state,body,comments)"
+issue_json="$(run_gh issue view "$issue_number" --repo "$repo_slug" --json state,body,comments)"
 issue_state="$(jq -r .state <<< "$issue_json")"
 issue_body="$(jq -r '.body // ""' <<< "$issue_json")"
 if [[ "$issue_state" != OPEN ]]; then
 	printf 'Source issue #%s is not open; refusing to update it.\n' "$issue_number" >&2
 	exit 1
 fi
+work_dir="$(mktemp -d)"
+trap 'rm -rf "$work_dir"' EXIT
 
 declare -A seen_repositories=()
 
@@ -98,8 +130,9 @@ fetch_tree_paths() {
 		prefix="${prefixes[0]}"
 		tree_shas=("${tree_shas[@]:1}")
 		prefixes=("${prefixes[@]:1}")
-		tree_json="$(gh api "repos/$repository/git/trees/$tree_sha" 2>/dev/null || true)"
-		[[ -z "$tree_json" ]] && continue
+		if ! tree_json="$("$timeout_bin" --kill-after=2s "${http_timeout}s" gh api "repos/$repository/git/trees/$tree_sha" 2>/dev/null)"; then
+			return 1
+		fi
 		if ! jq -e '(.tree | type) == "array"' >/dev/null <<< "$tree_json"; then
 			return 1
 		fi
@@ -164,29 +197,33 @@ queries=(
 	"free v2ray config"
 )
 
-search_results=''
 declare -A considered_repositories=()
 rows=()
 repositories=()
+process_invocation=0
 
-process_candidate() {
+validate_candidate() {
 	local repository="$1"
-	local key metadata pushed_at is_fork is_archived tree tree_paths paths
-	key="$(tr '[:upper:]' '[:lower:]' <<< "$repository")"
-	[[ -n "${considered_repositories[$key]:-}" ]] && return 0
-	considered_repositories["$key"]=1
-	[[ -n "${seen_repositories[$key]:-}" ]] && return 0
+	local metadata pushed_at is_fork is_archived tree tree_paths paths
 
-	metadata="$(gh api "repos/$repository" --jq '[.pushed_at, .fork, .archived] | @tsv' 2>/dev/null || true)"
+	if ! metadata="$("$timeout_bin" --kill-after=2s "${http_timeout}s" gh api "repos/$repository" --jq '[.pushed_at, .fork, .archived] | @tsv' 2>/dev/null)"; then
+		printf 'Warning: timed out or failed reading metadata for %s; skipping.\n' "$repository" >&2
+		return 0
+	fi
 	IFS=$'\t' read -r pushed_at is_fork is_archived <<< "$metadata"
 	[[ -z "${pushed_at:-}" ]] && return 0
 	local pushed_date="${pushed_at%%T*}"
 	[[ "$pushed_date" < "$window_start" || "$pushed_date" > "$window_end" ]] && return 0
 	[[ "$is_fork" == true || "$is_archived" == true ]] && return 0
 
-	tree="$(gh api "repos/$repository/git/trees/HEAD?recursive=1" 2>/dev/null || true)"
-	[[ -z "$tree" ]] && return 0
-	tree_paths="$(fetch_tree_paths "$repository" <<< "$tree")" || return 0
+	if ! tree="$("$timeout_bin" --kill-after=2s "${http_timeout}s" gh api "repos/$repository/git/trees/HEAD?recursive=1" 2>/dev/null)"; then
+		printf 'Warning: timed out or failed reading the file tree for %s; skipping.\n' "$repository" >&2
+		return 0
+	fi
+	if ! tree_paths="$(fetch_tree_paths "$repository" <<< "$tree")"; then
+		printf 'Warning: could not fully inspect the file tree for %s; skipping.\n' "$repository" >&2
+		return 0
+	fi
 	paths="$(jq -r '
 		map(select(
 			(test("\\.(txt|yaml|yml|json)$"; "i"))
@@ -200,9 +237,63 @@ process_candidate() {
 	' <<< "$tree_paths")"
 	[[ -z "$paths" ]] && return 0
 
-	rows+=("| https://github.com/$repository | $pushed_date | \`$paths\` | Pending: candidate discovered; verify reachability, content format, duplicates, and parser/transformer support before import. |")
-	repositories+=("$repository")
-	seen_repositories["$key"]=1
+	printf '%s\t| https://github.com/%s | %s | \`%s\` | Pending: candidate discovered; verify reachability, content format, duplicates, and parser/transformer support before import. |\n' \
+		"$repository" "$repository" "$pushed_date" "$paths"
+}
+
+process_candidates() {
+	local candidate_list="$1"
+	local repository key index batch_end completed=0 run_id
+	local -a candidates=() pids=() launched=()
+	((process_invocation += 1))
+	run_id="$process_invocation"
+	mapfile -t candidates <<< "$candidate_list"
+	local total="${#candidates[@]}"
+
+	for ((index = 0; index < total && ${#rows[@]} < limit; index += parallelism)); do
+		batch_end=$((index + parallelism))
+		(( batch_end > total )) && batch_end="$total"
+		pids=()
+		launched=()
+		printf '[validate] Checking candidates %d-%d of %d (%d already eligible).\n' \
+			"$((index + 1))" "$batch_end" "$total" "${#rows[@]}" >&2
+
+		for ((batch_index = index; batch_index < batch_end; batch_index++)); do
+			repository="${candidates[$batch_index]}"
+			[[ -z "$repository" ]] && continue
+			key="$(tr '[:upper:]' '[:lower:]' <<< "$repository")"
+			if [[ -n "${considered_repositories[$key]:-}" || -n "${seen_repositories[$key]:-}" ]]; then
+				continue
+			fi
+			considered_repositories["$key"]=1
+			launched+=("$batch_index")
+			(
+				validate_candidate "$repository" > "$work_dir/candidate-$run_id-$batch_index"
+			) &
+			pids+=("$!")
+		done
+
+		for pid in "${pids[@]}"; do
+			if ! wait "$pid"; then
+				printf 'Warning: candidate validation worker %s failed.\n' "$pid" >&2
+			fi
+		done
+		for batch_index in "${launched[@]}"; do
+			[[ -r "$work_dir/candidate-$run_id-$batch_index" ]] || continue
+			while IFS=$'\t' read -r repository row; do
+				[[ -z "$repository" || -z "$row" ]] && continue
+				if (( ${#rows[@]} < limit )); then
+					rows+=("$row")
+					repositories+=("$repository")
+					seen_repositories["$(tr '[:upper:]' '[:lower:]' <<< "$repository")"]=1
+				fi
+			done < "$work_dir/candidate-$run_id-$batch_index"
+			rm -f "$work_dir/candidate-$run_id-$batch_index"
+		done
+		completed="$batch_end"
+		printf '[validate] Finished %d/%d; %d eligible candidate(s) retained.\n' \
+			"$completed" "$total" "${#rows[@]}" >&2
+	done
 }
 
 read_candidate_file() {
@@ -228,35 +319,48 @@ read_candidate_file() {
 
 if [[ -n "$candidates_file" ]]; then
 	candidate_list="$(read_candidate_file)" || exit 2
-	while IFS= read -r repository; do
-		[[ -z "$repository" ]] && continue
-		process_candidate "$repository"
-		if (( ${#rows[@]} >= limit )); then
-			break
-		fi
-	done <<< "$candidate_list"
+	printf '[discover] Validating AI-discovered candidates.\n' >&2
+	process_candidates "$candidate_list"
 fi
 
 if [[ "$candidates_only" != true ]] && (( ${#rows[@]} < limit )); then
+	search_files=()
+	search_index=0
+	search_batch_size=0
+	search_parallelism="$parallelism"
+	(( search_parallelism > 4 )) && search_parallelism=4
+	printf '[discover] Running %d planned GitHub searches.\n' "${#queries[@]}" >&2
 	for query in "${queries[@]}"; do
-		result="$(gh search repos "$query pushed:$window_start..$window_end fork:false archived:false" \
-			--sort updated --limit 100 \
-			--json fullName,description,pushedAt,isFork,isArchived)"
-		search_results+="$result"$'\n'
-		candidate_repositories="$(jq -sr --arg window_start "$window_start" --arg window_end "$window_end" '
-			add | unique_by(.fullName | ascii_downcase)
-			| map(select(.isFork == false and .isArchived == false and .pushedAt[:10] >= $window_start and .pushedAt[:10] <= $window_end))
-			| map(select((.description // "" | test("bot[- _]?ips?|ips?[^.]{0,30}used[^.]{0,20}bots|blocklists?|blacklists?|deny lists?|proxy ips? addresses? used by bots"; "i")) | not))
-			| sort_by(.pushedAt) | reverse | .[].fullName
-		' <<< "$search_results")"
-
-		while IFS= read -r repository; do
-			[[ -z "$repository" ]] && continue
-			process_candidate "$repository"
-			if (( ${#rows[@]} >= limit )); then
-				break 2
+		search_index=$((search_index + 1))
+		search_file="$work_dir/search-$search_index.json"
+		search_files+=("$search_file")
+		(
+			if ! run_gh search repos "$query pushed:$window_start..$window_end fork:false archived:false" \
+				--sort updated --limit 100 \
+				--json fullName,description,pushedAt,isFork,isArchived > "$search_file"; then
+				printf 'Warning: GitHub search %d/%d failed or timed out: %s\n' \
+					"$search_index" "${#queries[@]}" "$query" >&2
+				printf '[]\n' > "$search_file"
 			fi
-		done <<< "$candidate_repositories"
+		) &
+		((search_batch_size += 1))
+		if (( search_batch_size == search_parallelism || search_index == ${#queries[@]} )); then
+			wait
+			printf '[discover] Completed %d/%d GitHub searches.\n' "$search_index" "${#queries[@]}" >&2
+			search_results="$(jq -s 'add' "${search_files[@]}")"
+			candidate_repositories="$(jq -r --arg window_start "$window_start" --arg window_end "$window_end" '
+				unique_by(.fullName | ascii_downcase)
+				| map(select(.isFork == false and .isArchived == false and .pushedAt[:10] >= $window_start and .pushedAt[:10] <= $window_end))
+				| map(select((.description // "" | test("bot[- _]?ips?|ips?[^.]{0,30}used[^.]{0,20}bots|blocklists?|blacklists?|deny lists?|proxy ips? addresses? used by bots"; "i")) | not))
+				| sort_by(.pushedAt) | reverse | .[].fullName
+			' <<< "$search_results")"
+			printf '[discover] Validating planned-search results.\n' >&2
+			process_candidates "$candidate_repositories"
+			if (( ${#rows[@]} >= limit )); then
+				break
+			fi
+			search_batch_size=0
+		fi
 	done
 fi
 
@@ -267,7 +371,7 @@ if (( ${#rows[@]} == 0 )); then
 fi
 
 if [[ "$dry_run" != true ]]; then
-	issue_json="$(gh issue view "$issue_number" --repo "$repo_slug" --json state,body)"
+	issue_json="$(run_gh issue view "$issue_number" --repo "$repo_slug" --json state,body)"
 	issue_state="$(jq -r .state <<< "$issue_json")"
 	if [[ "$issue_state" != OPEN ]]; then
 		printf 'Source issue #%s is not open; refusing to update it.\n' "$issue_number" >&2
@@ -329,5 +433,5 @@ fi
 if [[ "$dry_run" == true ]]; then
 	printf '%s\n' "$issue_body"
 else
-	gh issue edit "$issue_number" --repo "$repo_slug" --body "$issue_body"
+	run_gh issue edit "$issue_number" --repo "$repo_slug" --body "$issue_body"
 fi
