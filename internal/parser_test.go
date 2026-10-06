@@ -26,6 +26,63 @@ func TestParseProxyURLIgnoresTrailingAnnotation(t *testing.T) {
 	require.Equal(t, "socks5", proxy.Protocol)
 }
 
+func TestParseMTProtoProxyURL(t *testing.T) {
+	tests := []struct {
+		name string
+		line string
+		want string
+	}{
+		{
+			name: "tg scheme",
+			line: "tg://proxy?server=8.8.8.8&port=0443&secret=dd0123456789abcdef0123456789abcdef",
+			want: "tg://proxy?port=443&secret=dd0123456789abcdef0123456789abcdef&server=8.8.8.8",
+		},
+		{
+			name: "Telegram link with a hostname",
+			line: "https://t.me/proxy?server=proxy.example.com&port=8443&secret=ee0123456789abcdef0123456789abcdef6578616d706c652e636f6d#Fast",
+			want: "tg://proxy?port=8443&secret=ee0123456789abcdef0123456789abcdef6578616d706c652e636f6d&server=proxy.example.com",
+		},
+		{
+			name: "Telegram alternate domain",
+			line: "https://telegram.me/proxy?server=8.8.4.4&port=443&secret=AAAAAAAAAAAAAAAAAAAAAA==",
+			want: "tg://proxy?port=443&secret=AAAAAAAAAAAAAAAAAAAAAA%3D%3D&server=8.8.4.4",
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			proxy, err := ParseProxyURL("tg", test.line)
+			require.NoError(t, err)
+			require.Equal(t, "tg", proxy.Protocol)
+			require.Equal(t, test.want, proxy.String())
+		})
+	}
+}
+
+func TestParseMTProtoProxyURLRejectsInvalidLinks(t *testing.T) {
+	tests := []string{
+		"tg://proxy?server=8.8.8.8&port=443",
+		"tg://proxy?server=8.8.8.8&port=443&secret=not-a-secret",
+		"tg://other?server=8.8.8.8&port=443&secret=0123456789abcdef0123456789abcdef",
+		"tg://proxy?server=8.8.8.8&port=0&secret=0123456789abcdef0123456789abcdef",
+		"tg://proxy?server=8.8.8.8&port=65536&secret=0123456789abcdef0123456789abcdef",
+		"tg://proxy?server=127.0.0.1&port=443&secret=0123456789abcdef0123456789abcdef",
+		"tg://proxy?server=10.0.0.1&port=443&secret=0123456789abcdef0123456789abcdef",
+		"tg://proxy?server=::1&port=443&secret=0123456789abcdef0123456789abcdef",
+		"tg://proxy?server=fc00::1&port=443&secret=0123456789abcdef0123456789abcdef",
+		"tg://proxy?server=999.8.8.8&port=443&secret=0123456789abcdef0123456789abcdef",
+		"tg://proxy?server=8.8.8.8&port=443&port=444&secret=0123456789abcdef0123456789abcdef",
+		"https://t.me/socks?server=8.8.8.8&port=443&secret=0123456789abcdef0123456789abcdef",
+	}
+
+	for _, line := range tests {
+		t.Run(line, func(t *testing.T) {
+			_, err := ParseProxyURL("tg", line)
+			require.Error(t, err)
+		})
+	}
+}
+
 func TestParseIPv4Auth(t *testing.T) {
 	parser := GetParser("IPv4Auth")
 	proxy, err := parser("http", "104.207.38.226:3129:proxy-user:proxy-pass")

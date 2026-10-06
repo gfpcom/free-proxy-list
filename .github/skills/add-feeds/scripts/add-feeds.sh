@@ -81,7 +81,7 @@ matches_expected_format() {
 					grep -Eq '^[[:space:]]*[^[:space:]]+[[:space:]]+[0-9]{1,5}([[:space:]]|$)' "$sample_file"
 					;;
 				*)
-					grep -Eiq '^[[:space:]]*(https?|socks4a?|socks5a?|ssr?|vmess|vless|trojan|hy2?|hysteria2?|anytls|tuic)://[^[:space:]]+' "$sample_file"
+					grep -Eiq '^[[:space:]]*(https?|tg|socks4a?|socks5a?|ssr?|vmess|vless|trojan|hy2?|hysteria2?|anytls|tuic)://[^[:space:]]+' "$sample_file"
 					;;
 			esac
 			;;
@@ -135,7 +135,7 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 
 	transformer_name="${transformer_spec%%:*}"
 	case "$transformer_name" in
-		""|raw|base64|json|clash|link|curl) ;;
+		""|raw|base64|mtproto|json|clash|link|curl) ;;
 		*)
 			printf 'Line %s: transformer "%s" is not registered by this project.\n' "$line_number" "$transformer_name" >&2
 			has_errors=true
@@ -204,7 +204,7 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 			continue
 		fi
 	fi
-	if [[ "$transformer_name" == curl || "$transformer_name" == json ]]; then
+	if [[ "$transformer_name" == curl || "$transformer_name" == json || "$transformer_name" == mtproto ]]; then
 		validation_dir="$temp_dir/transformer-validation-$line_number"
 		mkdir -p "$validation_dir/sources"
 		printf '%s\n' "$source_entry" > "$validation_dir/sources/$protocol.txt"
@@ -214,7 +214,7 @@ while IFS= read -r manifest_line || [[ -n "$manifest_line" ]]; do
 			continue
 		fi
 	fi
-	if [[ "$transformer_name" != curl && "$transformer_name" != json ]] && ! matches_expected_format "$preview_file" "$parser_name" "$transformer_name"; then
+	if [[ "$transformer_name" != curl && "$transformer_name" != json && "$transformer_name" != mtproto ]] && ! matches_expected_format "$preview_file" "$parser_name" "$transformer_name"; then
 		printf 'Line %s: response sample does not match the configured format.\n' "$line_number" >&2
 		has_errors=true
 		continue
