@@ -3,6 +3,7 @@ package internal
 import (
 	"net/http"
 	"net/http/httptest"
+	"strconv"
 	"strings"
 	"testing"
 )
@@ -25,6 +26,12 @@ func TestFromJSON(t *testing.T) {
 			input:   `{"data":{"proxies":[{"protocol":"socks5","ip":"2001:db8::1","port":1080},{"protocol":"http","ip":"1.2.3.4","port":"8080"}]}}`,
 			options: "path=$.data.proxies[*];scheme=protocol;host=ip;port=port",
 			want:    "socks5://[2001:db8::1]:1080\nhttp://1.2.3.4:8080\n",
+		},
+		{
+			name:    "object wildcard selects grouped records in key order",
+			input:   `{"countries":{"US":[{"proto":"http","ip":"1.2.3.4","port":8080}],"JP":[{"proto":"socks5","ip":"5.6.7.8","port":1080}]}}`,
+			options: "path=$.countries.*[*];scheme=proto;host=ip;port=port",
+			want:    "socks5://5.6.7.8:1080\nhttp://1.2.3.4:8080\n",
 		},
 		{
 			name:    "source protocol supplies scheme",
@@ -87,6 +94,7 @@ func TestFromJSONEnforcesInputAndRecordLimits(t *testing.T) {
 	if got := string(FromJSON([]byte(exactLimitInput), options)); got != "http://1.2.3.4:8080\n" {
 		t.Fatalf("expected input at the size limit to be processed, got %q", got)
 	}
+
 	if got := FromJSON(make([]byte, maxJSONSize+1), options); len(got) != 0 {
 		t.Fatalf("expected oversized input to produce no output, got %d bytes", len(got))
 	}
@@ -94,6 +102,16 @@ func TestFromJSONEnforcesInputAndRecordLimits(t *testing.T) {
 	input := `[` + strings.Repeat(`{},`, maxJSONRecords) + `{}]`
 	if got := FromJSON([]byte(input), options); len(got) != 0 {
 		t.Fatalf("expected excess records to produce no output, got %d bytes", len(got))
+	}
+}
+
+func TestResolveJSONPathEnforcesWildcardRecordLimit(t *testing.T) {
+	object := make(map[string]any, maxJSONRecords+1)
+	for i := 0; i <= maxJSONRecords; i++ {
+		object[strconv.Itoa(i)] = i
+	}
+	if _, ok := resolveJSONPath(object, []string{"*"}); ok {
+		t.Fatal("expected object wildcard exceeding the record limit to fail")
 	}
 }
 
@@ -112,6 +130,7 @@ func TestParseJSONTransformerOptions(t *testing.T) {
 		{name: "unknown option", options: "path=$[*];uri=proxy;filter=active"},
 		{name: "unsupported path filter", options: "path=$[?(@.active)];uri=proxy"},
 		{name: "empty array index", options: "path=$[];uri=proxy"},
+		{name: "object wildcard must be a complete selector", options: "path=$.proxies.*name;uri=proxy"},
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
