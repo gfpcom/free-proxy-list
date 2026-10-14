@@ -55,31 +55,31 @@ Click on your preferred proxy type to get the latest list. These links always po
 
 <!-- BEGIN PROXY LIST -->
 
-Last Updated: 2026-10-14 10:33:33 UTC
+Last Updated: 2026-10-14 15:27:15 UTC
 
-**Total Proxies: 2343530**
+**Total Proxies: 2344688**
 
 Click on your preferred proxy type to get the latest list. These links always point to the most recently updated proxy files.
 
 | Protocol | Count | Download |
 |----------|-------|----------|
-| ANYTLS | 12 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/anytls.txt |
-| HTTP | 589104 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/http.txt |
-| HTTPS | 540560 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/https.txt |
+| ANYTLS | 13 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/anytls.txt |
+| HTTP | 589530 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/http.txt |
+| HTTPS | 540895 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/https.txt |
 | HY | 143 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/hy.txt |
-| HY2 | 2081 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/hy2.txt |
+| HY2 | 2085 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/hy2.txt |
 | LESS | 1 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/less.txt |
-| SOCKS | 28 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/socks.txt |
-| SOCKS4 | 526231 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/socks4.txt |
-| SOCKS5 | 541086 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/socks5.txt |
-| SS | 13221 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/ss.txt |
-| SSR | 247 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/ssr.txt |
-| TG | 2040 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/tg.txt |
-| TROJAN | 23646 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/trojan.txt |
-| TUIC | 251 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/tuic.txt |
-| VLESS | 90351 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/vless.txt |
-| VMESS | 13905 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/vmess.txt |
-| WIREGUARD | 623 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/wireguard.txt |
+| SOCKS | 32 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/socks.txt |
+| SOCKS4 | 526970 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/socks4.txt |
+| SOCKS5 | 541249 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/socks5.txt |
+| SS | 13288 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/ss.txt |
+| SSR | 273 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/ssr.txt |
+| TG | 1932 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/tg.txt |
+| TROJAN | 23642 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/trojan.txt |
+| TUIC | 252 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/tuic.txt |
+| VLESS | 89900 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/vless.txt |
+| VMESS | 13856 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/vmess.txt |
+| WIREGUARD | 627 | https://raw.githubusercontent.com/wiki/gfpcom/free-proxy-list/lists/wireguard.txt |
 
 <!-- END PROXY LIST -->
 
