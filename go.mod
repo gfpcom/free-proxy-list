@@ -7,7 +7,7 @@ require (
 	github.com/andybalholm/cascadia v1.3.5
 	github.com/cnlangzi/proxyclient v0.1.2
 	github.com/stretchr/testify v1.12.1
-	golang.org/x/net v0.61.0
+	golang.org/x/net v0.62.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
