@@ -3,7 +3,7 @@ module github.com/gfpcom/free-proxy-list
 go 1.26.0
 
 require (
-	github.com/PuerkitoBio/goquery v1.13.0
+	github.com/PuerkitoBio/goquery v1.14.0
 	github.com/andybalholm/cascadia v1.3.5
 	github.com/cnlangzi/proxyclient v0.1.2
 	github.com/stretchr/testify v1.12.1
